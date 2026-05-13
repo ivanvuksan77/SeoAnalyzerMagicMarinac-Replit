@@ -1,0 +1,54 @@
+/* Shared tokens for the 3 PDF tier mockups */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+.pdf-page {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #ffffff;
+  color: #0f172a;
+  width: 100%;
+  min-height: 100%;
+  padding: 36px 40px 48px;
+  box-sizing: border-box;
+  font-size: 11px;
+  line-height: 1.45;
+}
+.pdf-page h1, .pdf-page h2, .pdf-page h3 { color: #0f172a; margin: 0; }
+.pdf-page .muted { color: #64748b; }
+.pdf-page .card {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  background: #ffffff;
+}
+.pdf-page .section-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.pdf-page .section-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+.pdf-page .check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 14px;
+  border-bottom: 1px dashed #f1f5f9;
+  font-size: 10px;
+}
+.pdf-page .check-row:last-child { border-bottom: none; }
+.pdf-page .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-weight: 600;
+}

@@ -1,0 +1,347 @@
+
+> rest-express@1.0.0 dev
+> cross-env NODE_ENV=development tsx server/index.ts
+
+[1G[0K[myPOS] env snapshot {
+  hasSid: [33mtrue[39m,
+  hasWallet: [33mtrue[39m,
+  hasPrivateKey: [33mtrue[39m,
+  hasPublicKey: [33mtrue[39m,
+  keyIndex: [32m'1'[39m,
+  sidMasked: [32m'0000...010'[39m,
+  walletMasked: [32m'619...610'[39m,
+  privateKeyHeader: [32m'-----BEGIN RSA PRIVATE KEY-----'[39m,
+  publicKeyHeader: [32m'-----BEGIN CERTIFICATE-----'[39m,
+  privateKeyFingerprint: [32m'1f47b648e53a1e18'[39m,
+  publicKeyFingerprint: [32m'763feb9479776668'[39m,
+  privateKeyLength: [33m886[39m,
+  publicKeyLength: [33m647[39m,
+  useSandbox: [33mtrue[39m
+}
+Failed to load access codes from Firestore: Error: 16 UNAUTHENTICATED: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at callErrorFromStatus [90m(/home/runner/workspace/[39mnode_modules/[4m@grpc/grpc-js[24m/src/call.ts:84:17[90m)[39m
+    at Object.onReceiveStatus [90m(/home/runner/workspace/[39mnode_modules/[4m@grpc/grpc-js[24m/src/client.ts:612:51[90m)[39m
+    at Object.onReceiveStatus [90m(/home/runner/workspace/[39mnode_modules/[4m@grpc/grpc-js[24m/src/client-interceptors.ts:424:48[90m)[39m
+    at <anonymous> [90m(/home/runner/workspace/[39mnode_modules/[4m@grpc/grpc-js[24m/src/resolving-call.ts:170:24[90m)[39m
+[90m    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)[39m
+for call at
+    at ServiceClientImpl.makeServerStreamRequest [90m(/home/runner/workspace/[39mnode_modules/[4m@grpc/grpc-js[24m/src/client.ts:595:42[90m)[39m
+    at ServiceClientImpl.<anonymous> [90m(/home/runner/workspace/[39mnode_modules/[4m@grpc/grpc-js[24m/src/make-client.ts:189:15[90m)[39m
+    at [90m/home/runner/workspace/[39mnode_modules/[4m@google-cloud/firestore[24m/build/src/v1/firestore_client.js:242:33
+    at <anonymous> [90m(/home/runner/workspace/[39mnode_modules/[4mgoogle-gax[24m/src/streamingCalls/streamingApiCaller.ts:59:19[90m)[39m
+    at <anonymous> [90m(/home/runner/workspace/[39mnode_modules/[4mgoogle-gax[24m/src/normalCalls/timeout.ts:54:13[90m)[39m
+    at Object.request [90m(/home/runner/workspace/[39mnode_modules/[4mgoogle-gax[24m/src/streamingCalls/streaming.ts:331:28[90m)[39m
+    at makeRequest [90m(/home/runner/workspace/[39mnode_modules/[4mretry-request[24m/index.js:159:28[90m)[39m
+    at retryRequest [90m(/home/runner/workspace/[39mnode_modules/[4mretry-request[24m/index.js:119:5[90m)[39m
+    at StreamProxy.setStream [90m(/home/runner/workspace/[39mnode_modules/[4mgoogle-gax[24m/src/streamingCalls/streaming.ts:322:29[90m)[39m
+    at StreamingApiCaller.call [90m(/home/runner/workspace/[39mnode_modules/[4mgoogle-gax[24m/src/streamingCalls/streamingApiCaller.ts:89:12[90m)[39m
+Caused by: Error
+    at QueryUtil._getResponse [90m(/home/runner/workspace/[39mnode_modules/[4m@google-cloud/firestore[24m/build/src/reference/query-util.js:44:23[90m)[39m
+    at CollectionReference._getResponse [90m(/home/runner/workspace/[39mnode_modules/[4m@google-cloud/firestore[24m/build/src/reference/query.js:784:32[90m)[39m
+    at CollectionReference._get [90m(/home/runner/workspace/[39mnode_modules/[4m@google-cloud/firestore[24m/build/src/reference/query.js:777:35[90m)[39m
+    at [90m/home/runner/workspace/[39mnode_modules/[4m@google-cloud/firestore[24m/build/src/reference/query.js:745:43
+    at [90m/home/runner/workspace/[39mnode_modules/[4m@google-cloud/firestore[24m/build/src/telemetry/enabled-trace-util.js:110:30
+    at NoopContextManager.with [90m(/home/runner/workspace/[39mnode_modules/[4m@opentelemetry/api[24m/src/context/NoopContextManager.ts:31:15[90m)[39m
+    at ContextAPI.with [90m(/home/runner/workspace/[39mnode_modules/[4m@opentelemetry/api[24m/src/api/context.ts:77:42[90m)[39m
+    at NoopTracer.startActiveSpan [90m(/home/runner/workspace/[39mnode_modules/[4m@opentelemetry/api[24m/src/trace/NoopTracer.ts:98:27[90m)[39m
+    at ProxyTracer.startActiveSpan [90m(/home/runner/workspace/[39mnode_modules/[4m@opentelemetry/api[24m/src/trace/ProxyTracer.ts:51:20[90m)[39m
+    at EnabledTraceUtil.startActiveSpan [90m(/home/runner/workspace/[39mnode_modules/[4m@google-cloud/firestore[24m/build/src/telemetry/enabled-trace-util.js:102:28[90m)[39m {
+  code: [33m16[39m,
+  details: [32m'Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.'[39m,
+  metadata: Metadata {
+    internalRepr: Map(2) {
+      [32m'www-authenticate'[39m => [36m[Array][39m,
+      [32m'x-debug-tracking-id'[39m => [36m[Array][39m
+    },
+    opaqueData: Map(0) {},
+    options: {}
+  }
+}
+12:16:30 PM [express] serving on port 5000
+Browserslist: browsers data (caniuse-lite) is 19 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[turnstile] master-analyze request {
+  hasTurnstileSecret: [33mtrue[39m,
+  hasTurnstileToken: [33mfalse[39m,
+  hasAccessCode: [33mfalse[39m,
+  isReplitDevHost: [33mtrue[39m
+}
+12:22:21 PM [express] POST /api/master-analyze 200 in 4547ms :: {"url":"https://magicmarinac.hr/","se…
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1;1H[0J[2m12:29:12 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/master-analyzer.tsx, /src/index.css?v=16Qzst1J4unWCRr8k5duR[22m
+[turnstile] master-analyze request {
+  hasTurnstileSecret: [33mtrue[39m,
+  hasTurnstileToken: [33mfalse[39m,
+  hasAccessCode: [33mfalse[39m,
+  isReplitDevHost: [33mtrue[39m
+}
+12:42:38 PM [express] POST /api/master-analyze 200 in 3394ms :: {"url":"https://genom.hr","seo":{"dat…
+[myPOS] /api/create-checkout incoming {
+  hasBody: [33mtrue[39m,
+  bodyKeys: [
+    [32m'sessionId'[39m, [32m'tier'[39m,
+    [32m'email'[39m,     [32m'firstName'[39m,
+    [32m'lastName'[39m,  [32m'phone'[39m,
+    [32m'country'[39m,   [32m'city'[39m,
+    [32m'zipCode'[39m,   [32m'address'[39m
+  ],
+  receivedAtUtc: [32m'2026-05-13T12:43:09.924Z'[39m,
+  receivedAtLocal: [32m'Wed May 13 2026 12:43:09 GMT+0000 (Coordinated Universal Time)'[39m,
+  tzOffsetMinutes: [33m0[39m,
+  nodeVersion: [32m'v20.20.0'[39m
+}
+[myPOS] /api/create-checkout parsed {
+  sessionIdPreview: [32m'475644f9...ce40da9b'[39m,
+  tier: [32m'pro'[39m,
+  emailDomain: [32m'magicmarinac.hr'[39m,
+  host: [32m'03e83dde-55cf-4396-9945-e2fa789c6310-00-3qdjj7cwsxfv7.worf.replit.dev'[39m,
+  forwardedFor: [32m'78.0.42.45, 10.83.12.130, 127.0.0.1'[39m,
+  userAgent: [32m'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'[39m
+}
+[myPOS] /api/create-checkout urls resolved {
+  configuredBaseUrl: [32m'https://seo.magicmarinac.hr'[39m,
+  forwardedProto: [32m'https'[39m,
+  detectedProtocol: [32m'https'[39m,
+  host: [32m'03e83dde-55cf-4396-9945-e2fa789c6310-00-3qdjj7cwsxfv7.worf.replit.dev'[39m,
+  baseUrl: [32m'https://seo.magicmarinac.hr'[39m
+}
+[myPOS] create checkout request {
+  sessionIdPreview: [32m'475644f9...ce40da9b'[39m,
+  tier: [32m'pro'[39m,
+  urlOk: [32m'https://seo.magicmarinac.hr/?payment=success&session=475644f9-f40a-4310-804d-89c2ce40da9b&tier=pro'[39m,
+  urlCancel: [32m'https://seo.magicmarinac.hr/?payment=cancelled&session=475644f9-f40a-4310-804d-89c2ce40da9b'[39m,
+  urlNotify: [32m'https://seo.magicmarinac.hr/api/mypos-notify'[39m,
+  startedAtUtc: [32m'2026-05-13T12:43:09.926Z'[39m,
+  startedAtLocal: [32m'Wed May 13 2026 12:43:09 GMT+0000 (Coordinated Universal Time)'[39m,
+  tzOffsetMinutes: [33m0[39m
+}
+[myPOS] fields before signing {
+  checkoutAttemptId: [32m'chk_SRWMP41VNQF5BA7F1DD'[39m,
+  orderedKeys: [
+    [32m'IPCmethod'[39m,
+    [32m'IPCVersion'[39m,
+    [32m'IPCLanguage'[39m,
+    [32m'SID'[39m,
+    [32m'WalletNumber'[39m,
+    [32m'Amount'[39m,
+    [32m'Currency'[39m,
+    [32m'OrderID'[39m,
+    [32m'URL_OK'[39m,
+    [32m'URL_Cancel'[39m,
+    [32m'URL_Notify'[39m,
+    [32m'CardTokenRequest'[39m,
+    [32m'KeyIndex'[39m,
+    [32m'PaymentParametersRequired'[39m,
+    [32m'PaymentMethod'[39m,
+    [32m'CustomerEmail'[39m,
+    [32m'CustomerFirstNames'[39m,
+    [32m'CustomerFamilyName'[39m,
+    [32m'CustomerPhone'[39m,
+    [32m'CustomerCountry'[39m,
+    [32m'CustomerCity'[39m,
+    [32m'CustomerZIPCode'[39m,
+    [32m'CustomerAddress'[39m,
+    [32m'Note'[39m,
+    [32m'CartItems'[39m,
+    [32m'Article_1'[39m,
+    [32m'Quantity_1'[39m,
+    [32m'Price_1'[39m,
+    [32m'Currency_1'[39m,
+    [32m'Amount_1'[39m
+  ],
+  fieldLengths: {
+    IPCmethod: [33m11[39m,
+    IPCVersion: [33m3[39m,
+    IPCLanguage: [33m2[39m,
+    SID: [33m15[39m,
+    WalletNumber: [33m11[39m,
+    Amount: [33m5[39m,
+    Currency: [33m3[39m,
+    OrderID: [33m19[39m,
+    URL_OK: [33m98[39m,
+    URL_Cancel: [33m91[39m,
+    URL_Notify: [33m44[39m,
+    CardTokenRequest: [33m1[39m,
+    KeyIndex: [33m1[39m,
+    PaymentParametersRequired: [33m1[39m,
+    PaymentMethod: [33m1[39m,
+    CustomerEmail: [33m26[39m,
+    CustomerFirstNames: [33m4[39m,
+    CustomerFamilyName: [33m6[39m,
+    CustomerPhone: [33m10[39m,
+    CustomerCountry: [33m3[39m,
+    CustomerCity: [33m6[39m,
+    CustomerZIPCode: [33m5[39m,
+    CustomerAddress: [33m12[39m,
+    Note: [33m25[39m,
+    CartItems: [33m1[39m,
+    Article_1: [33m25[39m,
+    Quantity_1: [33m1[39m,
+    Price_1: [33m5[39m,
+    Currency_1: [33m3[39m,
+    Amount_1: [33m5[39m
+  },
+  orderId: [32m'SRWMP41VNQF5BA7F1DD'[39m,
+  emailDomain: [32m'magicmarinac.hr'[39m
+}
+[myPOS] signing payload {
+  orderedKeys: [
+    [32m'IPCmethod'[39m,
+    [32m'IPCVersion'[39m,
+    [32m'IPCLanguage'[39m,
+    [32m'SID'[39m,
+    [32m'WalletNumber'[39m,
+    [32m'Amount'[39m,
+    [32m'Currency'[39m,
+    [32m'OrderID'[39m,
+    [32m'URL_OK'[39m,
+    [32m'URL_Cancel'[39m,
+    [32m'URL_Notify'[39m,
+    [32m'CardTokenRequest'[39m,
+    [32m'KeyIndex'[39m,
+    [32m'PaymentParametersRequired'[39m,
+    [32m'PaymentMethod'[39m,
+    [32m'CustomerEmail'[39m,
+    [32m'CustomerFirstNames'[39m,
+    [32m'CustomerFamilyName'[39m,
+    [32m'CustomerPhone'[39m,
+    [32m'CustomerCountry'[39m,
+    [32m'CustomerCity'[39m,
+    [32m'CustomerZIPCode'[39m,
+    [32m'CustomerAddress'[39m,
+    [32m'Note'[39m,
+    [32m'CartItems'[39m,
+    [32m'Article_1'[39m,
+    [32m'Quantity_1'[39m,
+    [32m'Price_1'[39m,
+    [32m'Currency_1'[39m,
+    [32m'Amount_1'[39m
+  ],
+  fieldCount: [33m30[39m,
+  payloadMode: [32m'base64_dash_joined_values'[39m,
+  dataToSignLength: [33m632[39m,
+  dataToSignHash: [32m'cfa2354b17c4f5de0124150497b37d4ad5df92cf87bcdc0c1b7525e916ef70f7'[39m,
+  dataToSignPreview: [32m'SVBDUHVyY2hhc2UtMS40LUVOLTAwMDAwMDAwMDAwMDAxMC02MTkzODE2NjYxMC0y...'[39m,
+  privateKeyHeader: [32m'-----BEGIN RSA PRIVATE KEY-----'[39m,
+  privateKeyFingerprint: [32m'1f47b648e53a1e18'[39m
+}
+[myPOS] signature generated {
+  signatureLength: [33m172[39m,
+  signaturePreview: [32m'TEIGz6l2/P0Z66+2...9IxUGZax8qHPbXo='[39m
+}
+[myPOS] checkout fields generated {
+  checkoutAttemptId: [32m'chk_SRWMP41VNQF5BA7F1DD'[39m,
+  signedKeys: [
+    [32m'IPCmethod'[39m,
+    [32m'IPCVersion'[39m,
+    [32m'IPCLanguage'[39m,
+    [32m'SID'[39m,
+    [32m'WalletNumber'[39m,
+    [32m'Amount'[39m,
+    [32m'Currency'[39m,
+    [32m'OrderID'[39m,
+    [32m'URL_OK'[39m,
+    [32m'URL_Cancel'[39m,
+    [32m'URL_Notify'[39m,
+    [32m'CardTokenRequest'[39m,
+    [32m'KeyIndex'[39m,
+    [32m'PaymentParametersRequired'[39m,
+    [32m'PaymentMethod'[39m,
+    [32m'CustomerEmail'[39m,
+    [32m'CustomerFirstNames'[39m,
+    [32m'CustomerFamilyName'[39m,
+    [32m'CustomerPhone'[39m,
+    [32m'CustomerCountry'[39m,
+    [32m'CustomerCity'[39m,
+    [32m'CustomerZIPCode'[39m,
+    [32m'CustomerAddress'[39m,
+    [32m'Note'[39m,
+    [32m'CartItems'[39m,
+    [32m'Article_1'[39m,
+    [32m'Quantity_1'[39m,
+    [32m'Price_1'[39m,
+    [32m'Currency_1'[39m,
+    [32m'Amount_1'[39m
+  ],
+  urlOk: [32m'https://seo.magicmarinac.hr/?payment=success&session=475644f9-f40a-4310-804d-89c2ce40da9b&tier=pro'[39m,
+  urlCancel: [32m'https://seo.magicmarinac.hr/?payment=cancelled&session=475644f9-f40a-4310-804d-89c2ce40da9b'[39m,
+  urlNotify: [32m'https://seo.magicmarinac.hr/api/mypos-notify'[39m,
+  orderIdLength: [33m19[39m,
+  signatureLength: [33m172[39m,
+  payloadHash: [32m'cfa2354b17c4f5de0124150497b37d4ad5df92cf87bcdc0c1b7525e916ef70f7'[39m,
+  sid: [32m'000000000000010'[39m,
+  walletTail: [32m'6610'[39m,
+  keyIndex: [32m'1'[39m,
+  paymentParametersRequired: [32m'1'[39m,
+  generatedAtUtc: [32m'2026-05-13T12:43:09.930Z'[39m,
+  generatedAtLocal: [32m'Wed May 13 2026 12:43:09 GMT+0000 (Coordinated Universal Time)'[39m,
+  nodeVersion: [32m'v20.20.0'[39m,
+  signatureMode: [32m'docs_base64_dash_joined_values_rsa_sha256'[39m
+}
+[myPOS] /api/create-checkout form ready {
+  actionUrl: [32m'https://www.mypos.com/vmp/checkout-test'[39m,
+  fieldCount: [33m31[39m,
+  fieldKeys: [
+    [32m'IPCmethod'[39m,
+    [32m'IPCVersion'[39m,
+    [32m'IPCLanguage'[39m,
+    [32m'SID'[39m,
+    [32m'WalletNumber'[39m,
+    [32m'Amount'[39m,
+    [32m'Currency'[39m,
+    [32m'OrderID'[39m,
+    [32m'URL_OK'[39m,
+    [32m'URL_Cancel'[39m,
+    [32m'URL_Notify'[39m,
+    [32m'CardTokenRequest'[39m,
+    [32m'KeyIndex'[39m,
+    [32m'PaymentParametersRequired'[39m,
+    [32m'PaymentMethod'[39m,
+    [32m'CustomerEmail'[39m,
+    [32m'CustomerFirstNames'[39m,
+    [32m'CustomerFamilyName'[39m,
+    [32m'Note'[39m,
+    [32m'CartItems'[39m,
+    [32m'Article_1'[39m,
+    [32m'Quantity_1'[39m,
+    [32m'Price_1'[39m,
+    [32m'Currency_1'[39m,
+    [32m'Amount_1'[39m,
+    [32m'CustomerPhone'[39m,
+    [32m'CustomerCountry'[39m,
+    [32m'CustomerCity'[39m,
+    [32m'CustomerZIPCode'[39m,
+    [32m'CustomerAddress'[39m,
+    [32m'Signature'[39m
+  ],
+  signatureLength: [33m172[39m
+}
+[myPOS] /api/create-checkout pending payment set {
+  sessionIdPreview: [32m'475644f9...ce40da9b'[39m,
+  orderId: [32m'SRWMP41VNQF5BA7F1DD'[39m,
+  tier: [32m'pro'[39m
+}
+12:43:09 PM [express] POST /api/create-checkout 200 in 8ms :: {"url":"https://www.mypos.com/vmp/check…

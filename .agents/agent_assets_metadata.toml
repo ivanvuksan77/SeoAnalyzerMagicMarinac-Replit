@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "qQ1vVMiJ97FxFnfFDN4h5"
+uri = "file://exports/seo-analyzer-pro.zip"
+type = "unspecified"
+title = "seo-analyzer-pro.zip — clean source for Hetzner upload"

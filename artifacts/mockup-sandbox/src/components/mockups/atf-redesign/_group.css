@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+.atf-root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Light mode (default) — soft pastel gradient */
+.atf-root.light {
+  background: linear-gradient(180deg, #fbfaff 0%, #f4f6ff 60%, #eef1ff 100%);
+  color: #0f172a;
+}
+.atf-root.light .grid-bg {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 80% 0%, rgba(59, 130, 246, 0.10), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 10% 100%, rgba(59, 130, 246, 0.08), transparent 60%);
+}
+.atf-root.light .blob-a {
+  background: radial-gradient(circle, rgba(59,130,246,0.22), transparent 65%);
+}
+.atf-root.light .blob-b {
+  background: radial-gradient(circle, rgba(59,130,246,0.16), transparent 65%);
+}
+
+/* Dark mode — deep navy gradient */
+.atf-root.dark {
+  background: linear-gradient(180deg, #0b1020 0%, #0f1730 60%, #131b3a 100%);
+  color: #f1f5f9;
+}
+.atf-root.dark .grid-bg {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 80% 0%, rgba(59, 130, 246, 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 10% 100%, rgba(59, 130, 246, 0.10), transparent 60%);
+}
+.atf-root.dark .blob-a {
+  background: radial-gradient(circle, rgba(59,130,246,0.28), transparent 65%);
+}
+.atf-root.dark .blob-b {
+  background: radial-gradient(circle, rgba(59,130,246,0.18), transparent 65%);
+}
+
+.atf-root .blob-a {
+  position: absolute;
+  width: 520px; height: 520px; border-radius: 50%;
+  filter: blur(8px);
+  top: -160px; right: -120px; pointer-events: none;
+}
+
+.atf-root .blob-b {
+  position: absolute;
+  width: 380px; height: 380px; border-radius: 50%;
+  filter: blur(8px);
+  bottom: -120px; left: -120px; pointer-events: none;
+}
+
+.atf-root .pdf-card {
+  border-radius: 18px;
+  overflow: hidden;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.atf-root.light .pdf-card {
+  background: white;
+  box-shadow: 0 30px 60px -20px rgba(15, 23, 42, 0.25), 0 12px 24px -12px rgba(15, 23, 42, 0.18);
+}
+.atf-root.dark .pdf-card {
+  background: #1a2240;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.55), 0 12px 24px -12px rgba(0, 0, 0, 0.4);
+}
+
+.atf-root .pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 9px; font-weight: 700; padding: 3px 7px;
+  border-radius: 999px; letter-spacing: 0.04em; text-transform: uppercase;
+}

@@ -1,0 +1,1184 @@
+{
+  "header": {
+    "title": "SiteSnap",
+    "toggleDark": "Promijeni temu",
+    "toggleLang": "Promijeni jezik",
+    "languageEnglish": "Engleski",
+    "languageCroatian": "Hrvatski",
+    "languageLabel": "Jezik",
+    "slogan": "Scan. Snap. Fix What Matters."
+  },
+  "hero": {
+    "badge": "Svih 8 alata jednim klikom",
+    "title": "Master SEO Analizator",
+    "description": "Unesite URL i pokrenite sve alate za analizu odjednom: SEO audit, Google Ads iskustvo odredišne stranice, ocjenu kvalitete oglasnog teksta (naslovi i opisi), AEO spremnost, GEO spremnost, provjera neispravnih linkova, optimizacija slika, interna povezanost i validacija mape stranica.",
+    "eyebrow": "Za Google Ads i organski SEO",
+    "lead": "Riješite probleme s",
+    "accent": "Google rangiranjem — brzo",
+    "sub": "Pronađite probleme s odredišnom stranicom, Core Web Vitals greške i SEO propuste — sve poredano po utjecaju kako biste znali što popraviti prvo.",
+    "cta": "Pokrenite besplatnu analizu",
+    "trust1": "Besplatno · Bez registracije",
+    "trust2": "Rezultati za 30 sekundi",
+    "trust3": "8 alata u jednom izvješću",
+    "preview": {
+      "label": "PRO IZVJEŠĆE · €29",
+      "subtitle": "Svi podaci + prioritizirane upute za popravak",
+      "overall": "UKUPNO",
+      "issuesFound": "Pronađeni glavni problemi",
+      "fixes": "Prioritizirani popravci",
+      "tools": {
+        "seo": "SEO",
+        "adsLp": "Ads LP",
+        "aeo": "AEO",
+        "speed": "Brzina"
+      },
+      "issues": {
+        "meta": "Nedostaje meta opis",
+        "lcp": "LCP 4.2s — sporo",
+        "tracking": "Nema praćenja konverzija",
+        "images": "12 slika preko 500KB"
+      },
+      "notes": {
+        "homepage": "Početna stranica",
+        "images": "Optimizacija slika",
+        "cwv": "Core Web Vitals",
+        "adsLp": "Google Ads LP"
+      },
+      "domain": "vasadomena.hr"
+    }
+  },
+  "form": {
+    "placeholder": "Unesite URL web stranice (npr. example.com)",
+    "analyzing": "Analiziram...",
+    "runAll": "Pokreni sve testove",
+    "urlRequired": "Molimo unesite URL"
+  },
+  "accessCode": {
+    "haveCode": "Imate pristupni kôd?",
+    "placeholder": "npr. PRO-A1B2C3",
+    "activate": "Aktiviraj",
+    "cancel": "Odustani",
+    "scansLeft": "{{count}} skeniranje preostalo",
+    "scansLeft_other": "{{count}} skeniranja preostalo",
+    "scansLeftInfinity": "∞ skeniranja preostalo",
+    "ofToday": "{{count}} od 3 preostalo danas",
+    "freeScans": "3 besplatna skeniranja/dan",
+    "paidPlans": "Plaćeni planovi imaju 5-10 skeniranja",
+    "remove": "Ukloni pristupni kôd"
+  },
+  "loading": {
+    "title": "Pokrećem svih 8 alata za analizu...",
+    "description": "Ovo pokreće SEO, Ads, AEO, GEO, provjeru linkova, slika, internih linkova i mape stranica paralelno. Može potrajati do jedne minute."
+  },
+  "dashboard": {
+    "overall": "UKUPNO",
+    "excellent": "Izvrsno",
+    "good": "Dobro",
+    "needsWork": "Treba poboljšanje",
+    "critical": "Kritično",
+    "comprehensiveAnalysis": "Sveobuhvatna analiza \"{{url}}\" kroz {{count}} alata",
+    "free": "Besplatno",
+    "freeDesc": "Potpuni izvještaj + ključni problemi",
+    "getFreeReport": "Preuzmi besplatni izvještaj",
+    "basicPrice": "€19",
+    "basicDesc": "Potpuni tehnički pregled",
+    "basicCredits": "5 kredita za skeniranje · Bez isteka",
+    "basicReport": "Basic izvještaj",
+    "proPrice": "€29",
+    "proDesc": "Potpuni izvještaj s naprednim preporukama",
+    "proCredits": "10 kredita za skeniranje · Bez isteka",
+    "proReport": "Pro izvještaj",
+    "devPreview": "Dev pregled:"
+  },
+  "sections": {
+    "seoAudit": "SEO Audit",
+    "googleAds": "Google Ads odredišna stranica",
+    "aeo": "AEO / AI SEO spremnost",
+    "geo": "GEO / Generativni pretraživač",
+    "brokenLinks": "Provjera neispravnih linkova",
+    "imageOpt": "Optimizacija slika",
+    "internalLinks": "Interni linkovi",
+    "sitemap": "Mapa stranica i Robots.txt",
+    "moreDetails": "Više detalja",
+    "showLess": "Prikaži manje",
+    "failed": "Neuspjelo"
+  },
+  "locked": {
+    "title": "Otključajte sve detalje",
+    "description": "Dobijte potpuni pregled sa svim provjerama, podacima i stručnim preporukama",
+    "basic": "€19 Basic",
+    "pro": "€29 Pro",
+    "credits": "Basic: 5 skeniranja · Pro: 10 skeniranja · Krediti nikad ne istječu"
+  },
+  "freeFindings": {
+    "noIssues": "Izgleda dobro! Nisu otkriveni kritični problemi.",
+    "keyFindings": "Ključni nalazi",
+    "issuesFound": "{{count}} problema pronađeno",
+    "moreHidden": "+ {{count}} skrivenih problema — otključajte za prikaz svih"
+  },
+  "seo": {
+    "overallScore": "Ukupni SEO rezultat",
+    "technical": "Tehničko",
+    "performance": "Performanse",
+    "accessibility": "Pristupačnost",
+    "keywords": "Ključne riječi",
+    "content": "Sadržaj",
+    "compare": "Usporedi",
+    "passed": "Prošlo",
+    "failed": "Palo",
+    "warnings": "Upozorenja",
+    "trafficPotential": "Potencijal organskog prometa",
+    "basedOnIssues": "Na temelju {{count}} problema",
+    "trafficImprovement": "Ispravljanjem identificiranih SEO problema mogla bi se poboljšati vidljivost u organskom pretraživanju za otprilike {{low}}–{{high}}%.",
+    "monthlyTraffic": "Procijenjena dodatna mjesečna vrijednost prometa",
+    "basedOnAvg": "na temelju prosječne vrijednosti organskog klika",
+    "disclaimer": "* Procjene temeljene na industrijskim prosjecima. Stvarni utjecaj ovisi o konkurenciji, autoritetu domene i volumenu pretraživanja u vašoj niši."
+  },
+  "performance": {
+    "coreWebVitals": "Temeljni Web Vitals",
+    "pageSpeedScores": "Rezultati brzine stranice",
+    "lcp": "Largest Contentful Paint (LCP)",
+    "lcpDesc": "Mjeri koliko brzo se učitava najveći vidljivi sadržaj",
+    "fid": "First Input Delay (FID)",
+    "fidDesc": "Mjeri responsivnost pri prvoj interakciji korisnika",
+    "cls": "Cumulative Layout Shift (CLS)",
+    "clsDesc": "Mjeri vizualnu stabilnost tijekom učitavanja elemenata",
+    "target": "Cilj: {{value}}",
+    "desktopScore": "Desktop rezultat",
+    "mobileScore": "Mobilni rezultat",
+    "mobileUsability": "Mobilna upotrebljivost",
+    "lighthouseScore": "Lighthouse rezultat",
+    "notAvailable": "Podaci o performansama nisu dostupni."
+  },
+  "keywords": {
+    "metaTags": "Analiza meta oznaka",
+    "metaTitle": "Meta naslov",
+    "metaDescription": "Meta opis",
+    "headingStructure": "Struktura naslova (H1)",
+    "topPhrases": "Najčešće ključne fraze",
+    "topSingle": "Najčešće pojedinačne ključne riječi",
+    "notAvailable": "Podaci o ključnim riječima nisu dostupni."
+  },
+  "modals": {
+    "freeReport": {
+      "title": "Preuzmite besplatni SEO izvještaj",
+      "description": "Unesite email za besplatni SEO izvještaj s potpunim podacima po odjeljcima i istaknutim ključnim problemima.",
+      "emailLabel": "Email adresa",
+      "emailPlaceholder": "vi@primjer.com",
+      "sending": "Šaljem...",
+      "download": "Pošalji besplatni izvještaj",
+      "privacy": "Poštujemo vašu privatnost. Odjava u bilo kojem trenutku."
+    },
+    "pricing": {
+      "title": "Nadogradite svoj izvještaj",
+      "description": "Odaberite plan za otključavanje punog potencijala vaše SEO analize.",
+      "basicPrice": "€19",
+      "basicTitle": "Basic izvještaj",
+      "basicFeatures": {
+        "fullBreakdown": "Potpuni tehnički pregled svih 8 alata",
+        "detailedScores": "Detaljni rezultati i provjere",
+        "downloadPdf": "PDF izvještaj za preuzimanje",
+        "noFix": "Upute za popravke i preporuke"
+      },
+      "basicCredits": "5 kredita za skeniranje",
+      "basicCreditsDesc": "Skenirajte do 5 različitih URL-ova. Krediti nikad ne istječu i rade s bilo kojeg uređaja.",
+      "getBasic": "Preuzmi Basic izvještaj",
+      "bestValue": "NAJBOLJA VRIJEDNOST",
+      "proPrice": "€29",
+      "proTitle": "Pro izvještaj",
+      "proFeatures": {
+        "fullBreakdown": "Potpuni tehnički pregled svih 8 alata",
+        "completeFix": "Potpune upute za popravke i preporuke",
+        "downloadPdf": "PDF sa svim popravcima i isječcima koda"
+      },
+      "proCredits": "10 kredita za skeniranje",
+      "proCreditsDesc": "Skenirajte do 10 različitih URL-ova. Krediti nikad ne istječu i rade s bilo kojeg uređaja.",
+      "getPro": "Preuzmi Pro izvještaj"
+    },
+    "accessCode": {
+      "title": "Vaš pristupni kôd",
+      "description": "Spremite ovaj kôd — trebat će vam za korištenje preostalih skeniranja kad se vratite.",
+      "tierScans": "{{tier}} razina · {{count}} skeniranja dostupno",
+      "copy": "Kopiraj pristupni kôd",
+      "hint": "Unesite ovaj kôd u polje \"Imate pristupni kôd?\" kad se vratite za korištenje preostalih skeniranja."
+    },
+    "upgradeEmail": {
+      "title": "Unesite email",
+      "description": "Poslat ćemo vaš pristupni kôd i račun na ovu email adresu.",
+      "emailLabel": "Email adresa",
+      "emailPlaceholder": "vas@email.com",
+      "continue": "Nastavi na {{tier}} izvještaj",
+      "cancel": "Odustani"
+    },
+    "orderSummary": {
+      "title": "Sažetak narudžbe",
+      "description": "Prije sigurnog preusmjeravanja na plaćanje provjerite detalje plana i pravne informacije.",
+      "planLabel": "Plan",
+      "priceLabel": "Cijena",
+      "scansLabel": "Što dobivate",
+      "deliverableLabel": "Isporuka",
+      "planBasic": "Basic",
+      "planPro": "Pro",
+      "deliverableBasic": "Detaljan PDF izvještaj s potpunim tehničkim pregledom.",
+      "deliverablePro": "Detaljan PDF izvještaj s naprednim preporukama.",
+      "legalLinksTitle": "Pravne poveznice",
+      "companyTitle": "Pravni podaci tvrtke",
+      "proceedCta": "Nastavi na sigurno plaćanje (myPOS)",
+      "cancel": "Odustani",
+      "sessionMissing": "Sesija nije pronađena. Prvo pokrenite analizu, zatim nastavite na naplatu.",
+      "termsConsent": "Pročitao/la sam i slažem se s uvjetima korištenja i odredbama web-stranice. *"
+    }
+  },
+  "legacy": {
+    "analysisForm": {
+      "validUrl": "Molimo unesite ispravan URL",
+      "title": "Analizirajte SEO svoje web stranice",
+      "description": "Dobijte sveobuhvatne uvide i konkretne preporuke za poboljsanje optimizacije za trazilice.",
+      "placeholder": "https://example.com",
+      "analyze": "Analiziraj",
+      "toastCompleteTitle": "Analiza dovrsena",
+      "toastCompleteDescription": "Uspjesno analizirano: {{url}}",
+      "toastFailedTitle": "Analiza nije uspjela",
+      "toastFailedDescription": "Neuspjela analiza web stranice",
+      "features": {
+        "technicalSeo": "Tehnicki SEO",
+        "performanceAnalysis": "Analiza performansi",
+        "accessibilityCheck": "Provjera pristupacnosti",
+        "pdfReport": "PDF izvjestaj"
+      }
+    },
+    "analysisResults": {
+      "downloadPdf": "Preuzmi PDF izvjestaj",
+      "shareReport": "Podijeli izvjestaj",
+      "scoreDescription": {
+        "excellent": "Izvrsna SEO izvedba",
+        "good": "Dobra izvedba uz prostor za poboljsanje",
+        "average": "Prosjecna izvedba, potrebna optimizacija",
+        "belowAverage": "Ispod prosjeka, zahtijeva paznju",
+        "poor": "Slaba izvedba, potrebna hitna akcija"
+      }
+    },
+    "categoryCards": {
+      "categories": {
+        "technical": "Tehnicki SEO",
+        "contentQuality": "Kvaliteta sadrzaja"
+      },
+      "checks": {
+        "indexingCrawling": "Indeksiranje/Crawling",
+        "robots": "Robots.txt",
+        "sitemap": "Sitemap",
+        "mobileFriendly": "Prilagodeno mobilnim uredajima",
+        "pageSpeed": "Brzina stranice",
+        "ariaLabels": "ARIA oznake",
+        "textContrast": "Kontrast teksta",
+        "keyboardNavigation": "Navigacija tipkovnicom",
+        "wordCount": "Broj rijeci",
+        "readability": "Citljivost",
+        "imageAltTags": "Alt oznake slika"
+      },
+      "viewDetails": "Prikazi detalje"
+    },
+    "detailedAnalysis": {
+      "tabs": {
+        "technical": "Tehnicki SEO",
+        "keywords": "Analiza kljucnih rijeci",
+        "content": "Kvaliteta sadrzaja"
+      },
+      "table": {
+        "check": "Provjera",
+        "status": "Status",
+        "details": "Detalji",
+        "priority": "Prioritet",
+        "action": "Akcija",
+        "wcagLevel": "WCAG razina"
+      },
+      "review": "Pregledaj",
+      "actionRequired": "Potrebna akcija:",
+      "learnMore": "Saznaj vise:",
+      "present": "Prisutno:",
+      "yes": "Da",
+      "no": "Ne",
+      "length": "Duljina:",
+      "characters": "{{count}} znakova",
+      "optimized": "Optimizirano:",
+      "topKeywords": "Najcesce kljucne rijeci",
+      "contentNotAvailable": "Podaci o sadrzaju nisu dostupni",
+      "contentMetrics": "Metrike sadrzaja",
+      "wordCount": "Broj rijeci:",
+      "readabilityScore": "Ocjena citljivosti:",
+      "structuredData": "Strukturirani podaci:",
+      "missing": "Nedostaje",
+      "imageAnalysis": "Analiza slika",
+      "totalImages": "Ukupno slika:",
+      "withAltTags": "S alt oznakama:",
+      "altTagCoverage": "Pokrivenost alt oznakama:",
+      "mobile": "Mobilni:",
+      "guidance": {
+        "h1": {
+          "description": "H1 oznake su kljucne za SEO jer trazilicama govore o cemu je stranica.",
+          "pass": "Odlicno! Stranica ima tocno jednu H1 oznaku.",
+          "fail": "Dodajte jednu jasnu i opisnu H1 oznaku na stranicu."
+        },
+        "metaDescription": {
+          "description": "Meta opisi se prikazuju u rezultatima pretrage i utjecu na stopu klikova.",
+          "pass": "Odlicno! Meta opis je ispravno postavljen.",
+          "fail": "Dodajte uvjerljiv meta opis duljine 150-160 znakova."
+        },
+        "imageAltTags": {
+          "description": "Alt oznake pomazu trazilicama razumjeti slike i poboljsavaju pristupacnost.",
+          "pass": "Odlicno! Vase slike imaju ispravne alt oznake.",
+          "fail": "Dodajte opisne alt oznake svim slikama."
+        },
+        "default": {
+          "description": "Ova provjera pomaze poboljsati SEO izvedbu vase web stranice.",
+          "pass": "Odlican posao! Ova provjera prolazi.",
+          "fail": "Pregledajte i poboljsajte ovaj aspekt web stranice."
+        }
+      }
+    },
+    "recommendations": {
+      "emptyTitle": "Odlican posao!",
+      "emptyDescription": "Nisu pronadeni kriticni problemi. SEO vase web stranice je u dobrom stanju!",
+      "title": "Prioritetne preporuke",
+      "actionItems": "Stavke za akciju:",
+      "priorityLabel": "{{priority}} prioritet",
+      "estimatedImpact": "Procijenjeni utjecaj: {{impact}}",
+      "timeToFix": "Vrijeme za ispravak: {{value}}",
+      "learnMore": "Saznaj vise",
+      "viewAll": "Prikazi sve preporuke ({{count}})"
+    }
+  },
+  "footer": {
+    "madeIn": "Napravljeno u",
+    "copyrightPrefix": "© {{year}} SiteSnap. Made in",
+    "companyName": "MagićMarinac",
+    "privacy": "Pravila privatnosti",
+    "terms": "Uvjeti korištenja",
+    "support": "Podrška"
+  },
+  "legalPages": {
+    "common": {
+      "backHome": "Natrag na SiteSnap",
+      "companyIdentityTitle": "Podaci o tvrtki i kontakt",
+      "relatedPoliciesTitle": "Povezane politike"
+    },
+    "company": {
+      "name": "Magićmarinac d.o.o.",
+      "addressLine1": "Tuškanova 24",
+      "addressLine2": "10000 Zagreb, Hrvatska",
+      "oib": "OIB: 35536574301",
+      "email": "info@magicmarinac.hr"
+    },
+    "links": {
+      "privacy": "Pravila privatnosti",
+      "terms": "Uvjeti korištenja",
+      "refund": "Povrat i otkazivanje",
+      "delivery": "Dostava i ispunjenje usluge"
+    },
+    "privacy": {
+      "title": "Pravila privatnosti",
+      "intro": "Korištenjem ove aplikacije prihvaćate ova pravila privatnosti. Osobne podatke obrađujemo zakonito, pošteno i transparentno, u skladu s GDPR-om i hrvatskim propisima.",
+      "sections": {
+        "dataProtection": {
+          "title": "Zaštita i sigurnost osobnih podataka",
+          "p1": "Magićmarinac d.o.o. je voditelj obrade i primjenjuje odgovarajuće tehničke i organizacijske mjere za zaštitu osobnih podataka od neovlaštenog pristupa, gubitka, zlouporabe ili uništenja.",
+          "p2": "Osobni podaci su sve informacije koje se odnose na utvrđenu ili utvrdljivu fizičku osobu, a obrada uključuje prikupljanje, pohranu, korištenje, dijeljenje, ograničavanje i brisanje."
+        },
+        "processing": {
+          "title": "Način obrade podataka",
+          "p1": "Prikupljamo podatke koje korisnici dostavljaju izravno (primjerice kontakt i zahtjeve za uslugu) te ograničene tehničke podatke poput IP adrese, informacija o pregledniku i signala interakcije radi sigurnosti i kvalitete usluge.",
+          "p2": "Možemo koristiti servise za zaštitu od zlouporabe kako bismo spriječili spam i automatizirane napade. Ako podatke trebamo obrađivati u novu svrhu, po potrebi ćemo zatražiti dodatnu privolu."
+        },
+        "retention": {
+          "title": "Razdoblje čuvanja podataka",
+          "p1": "Razdoblje čuvanja ovisi o svrsi obrade i zakonskim obvezama. Podaci koji se obrađuju na temelju privole čuvaju se dok su privola i svrha valjani, odnosno do povlačenja privole.",
+          "p2": "Po isteku razdoblja čuvanja ili prestanku svrhe podaci se brišu ili anonimiziraju, osim ako zakon propisuje dulje čuvanje."
+        },
+        "rights": {
+          "title": "Vaša prava",
+          "p1": "Možete zatražiti pristup, ispravak, brisanje, ograničenje obrade, prigovor ili prenosivost osobnih podataka, u skladu s GDPR-om.",
+          "p2": "Zahtjeve možete poslati na info@magicmarinac.hr. Odgovaramo u zakonskom roku te po potrebi možemo zatražiti dodatne informacije radi provjere identiteta."
+        },
+        "cookies": {
+          "title": "Kolačići i analitika",
+          "p1": "Koristimo nužne kolačiće za osnovnu funkcionalnost, a možemo koristiti i funkcionalne, analitičke ili oglašivačke kolačiće radi boljeg korisničkog iskustva i razumijevanja načina korištenja.",
+          "p2": "Postavke kolačića možete upravljati u postavkama preglednika. Onemogućavanje određenih kolačića može ograničiti pojedine funkcionalnosti."
+        }
+      }
+    },
+    "terms": {
+      "title": "Uvjeti korištenja",
+      "intro": "Korištenjem ove aplikacije i povezanih usluga korisnici potvrđuju da su pročitali, razumjeli i prihvatili ove uvjete.",
+      "sections": {
+        "acceptance": {
+          "title": "Opći uvjeti",
+          "p1": "Ovi uvjeti uređuju pristup i korištenje aplikacije. Korisnici moraju koristiti uslugu zakonito i ne smiju ugrožavati sigurnost, dostupnost ni integritet podataka.",
+          "p2": "Uvjeti se mogu ažurirati radi pravnih, tehničkih ili operativnih promjena. Nastavak korištenja nakon objave izmjena smatra se prihvaćanjem ažuriranih uvjeta."
+        },
+        "ip": {
+          "title": "Intelektualno vlasništvo",
+          "p1": "Svi objavljeni materijali, softverski elementi, brending i sadržaj zaštićeni su autorskim i srodnim pravima prema važećim propisima.",
+          "p2": "Bez prethodnog pisanog odobrenja nije dopušteno kopiranje, redistribucija, izmjena ni komercijalno iskorištavanje zaštićenog sadržaja izvan zakonom dopuštene uporabe."
+        },
+        "liability": {
+          "title": "Odgovornost i dostupnost usluge",
+          "p1": "Usluga se pruža prema načelu dostupnosti. Nastojimo osigurati pouzdanost, ali ne možemo uvijek jamčiti neprekidan rad i potpunu odsutnost pogrešaka.",
+          "p2": "U najvećoj mjeri dopuštenoj zakonom ne odgovaramo za neizravnu štetu nastalu zbog privremene nedostupnosti, usluga trećih strana ili okolnosti izvan razumne kontrole."
+        },
+        "dataRights": {
+          "title": "Prava povezana s osobnim podacima",
+          "p1": "Korisnici mogu ostvariti prava vezana uz obradu osobnih podataka, uključujući pristup, ispravak, brisanje, ograničenje obrade, prigovor i prenosivost kada je primjenjivo.",
+          "p2": "Za pitanja ili zahtjeve vezane uz osobne podatke obratite nam se na info@magicmarinac.hr."
+        }
+      },
+      "footerNote": "Zagreb, ožujak 2025."
+    },
+    "refund": {
+      "title": "Politika povrata i otkazivanja",
+      "intro": "Ova politika objašnjava uvjete otkazivanja i povrata za digitalne usluge koje se pružaju putem ove aplikacije.",
+      "sections": {
+        "scope": {
+          "title": "Opseg primjene",
+          "p1": "Naše su usluge digitalne i isporučuju se elektroničkim putem. Predajom narudžbe korisnik potvrđuje da ispunjenje može započeti odmah nakon uspješne uplate i dostave potrebnih podataka.",
+          "p2": "Pravo na povrat ovisi o tome je li usluga isporučena, je li izvršenje započelo te vrijede li zakonske ili ugovorne iznimke."
+        },
+        "nonDelivery": {
+          "title": "Neisporuka ili značajan nedostatak usluge",
+          "p1": "Ako ne isporučimo kupljenu digitalnu uslugu u navedenom roku iz razloga pod našom kontrolom, korisnik može zatražiti razmjeran ili potpuni povrat, ovisno o stupnju izvršenja.",
+          "p2": "Ako je isporučen samo dio usluge, iznos povrata može se uskladiti prema izvršenom dijelu."
+        },
+        "userCancellation": {
+          "title": "Otkazivanje od strane korisnika",
+          "p1": "Korisnik može zatražiti otkazivanje prije početka izvršenja usluge. Nakon početka digitalne isporuke ili znatnog izvršenja prilagođene usluge pravo na otkazivanje može biti ograničeno.",
+          "p2": "Ako zakon propisuje obvezna potrošačka prava, ona ostaju nepromijenjena."
+        },
+        "howToRequest": {
+          "title": "Način podnošenja zahtjeva",
+          "p1": "Zahtjev pošaljite e-poštom na info@magicmarinac.hr uz podatke o narudžbi, kontakt podatke i razlog zahtjeva.",
+          "p2": "Svaki se zahtjev razmatra pojedinačno. Odgovaramo u razumnom roku, a odobreni povrat izvršava se na izvorni način plaćanja, osim ako nije drukčije dogovoreno."
+        }
+      }
+    },
+    "delivery": {
+      "title": "Politika dostave i ispunjenja usluge",
+      "intro": "Ova politika opisuje kako i kada se digitalne usluge isporučuju nakon kupnje.",
+      "sections": {
+        "digitalDelivery": {
+          "title": "Način digitalne isporuke",
+          "p1": "Usluge se isporučuju digitalno putem e-pošte, pristupa platformi, materijala za preuzimanje ili drugog dogovorenog elektroničkog kanala.",
+          "p2": "Fizička dostava nije uključena, osim ako je izričito navedeno za određenu ponudu."
+        },
+        "serviceTiming": {
+          "title": "Rokovi ispunjenja",
+          "p1": "Standardne digitalne isporuke obično se izvršavaju unutar 1 do 5 radnih dana nakon potvrde uplate i primitka svih potrebnih ulaznih podataka za projekt.",
+          "p2": "Za složenije ili prilagođene usluge rokovi se dogovaraju zasebno te ovise o opsegu, složenosti i pravovremenoj suradnji korisnika."
+        },
+        "clientResponsibilities": {
+          "title": "Obveze korisnika",
+          "p1": "Korisnik je odgovoran za dostavu točnih podataka, potrebnih materijala i pravovremene povratne informacije potrebne za uspješnu isporuku.",
+          "p2": "Kašnjenja uzrokovana nepotpunim ili zakašnjelim unosom korisnika mogu produljiti rok ispunjenja."
+        },
+        "support": {
+          "title": "Podrška i problemi s isporukom",
+          "p1": "Ako ne zaprimite isporučene materijale u očekivanom roku, kontaktirajte nas na info@magicmarinac.hr kako bismo provjerili i riješili problem.",
+          "p2": "Ako se problem s isporukom ne može razumno riješiti, dostupna pravna sredstva primjenjuju se prema važećem pravu i ovoj politici povrata i otkazivanja."
+        }
+      }
+    }
+  },
+  "tabs": {
+    "checks": "Provjere",
+    "recommendations": "Preporuke",
+    "schema": "Shema",
+    "aiPreview": "AI pregled",
+    "citations": "Citati",
+    "contentGaps": "Praznine u sadržaju",
+    "compare": "Usporedi"
+  },
+  "common": {
+    "pass": "Prošlo",
+    "fail": "Palo",
+    "warning": "Upozorenje",
+    "fix": "Popravak:",
+    "technicalFixGuide": "Vodič za tehnički popravak",
+    "stepByStep": "Upute korak po korak",
+    "notAvailable": "Podaci nisu dostupni."
+  },
+  "errors": {
+    "botBlocked": {
+      "title": "Ova stranica blokira automatske zahtjeve",
+      "description": "Stranica koju ste skenirali nalazi se iza Cloudflarea ili slične zaštite od botova koja blokira naš alat.",
+      "suggestion": "Pokušajte s dubljom stranicom (npr. URL proizvoda ili članka) na istoj domeni ili provjerite URL.",
+      "retry": "Pokušaj ponovno",
+      "compareCardLabel": "Blokirano zaštitom od botova"
+    },
+    "fetchTimeout": {
+      "title": "Stranica nije odgovorila na vrijeme",
+      "description": "Čekali smo, ali stranica nije odgovorila na vrijeme. Možda je privremeno spora ili nedostupna.",
+      "retry": "Pokušaj ponovno",
+      "compareCardLabel": "Isteklo vrijeme čekanja"
+    },
+    "fetchNetwork": {
+      "title": "Nije moguće pristupiti stranici",
+      "description": "Nismo se mogli spojiti na stranicu. Provjerite URL i pokušajte ponovno.",
+      "retry": "Pokušaj ponovno",
+      "compareCardLabel": "Stranica nedostupna"
+    }
+  },
+  "toast": {
+    "error": "Greška",
+    "copied": "Kopirano!",
+    "codeCopied": "Pristupni kôd kopiran u međuspremnik",
+    "accessGenerated": "Pristupni kôd generiran",
+    "yourCode": "Vaš kôd: {{code}}",
+    "adminActivated": "Admin pristup aktiviran",
+    "codeActivated": "Pristupni kôd aktiviran",
+    "invalidCode": "Nevažeći ili potrošeni pristupni kôd",
+    "saveEmail": "Nije moguće spremiti email",
+    "paymentNotAvailable": "Plaćanje nije dostupno",
+    "paymentSetup": "Obrada plaćanja se postavlja. Pokušajte ponovo kasnije.",
+    "checkoutError": "Nije moguće pokrenuti naplatu"
+  },
+  "tiers": {
+    "free": "Besplatni paket",
+    "basic": "Basic (€19)",
+    "pro": "Pro (€29)"
+  },
+  "master": {
+    "ratings": {
+      "aboveAverage": "Iznad prosjeka",
+      "average": "Prosječno",
+      "belowAverage": "Ispod prosjeka",
+      "highlyOptimized": "Visoko optimizirano",
+      "aiReady": "AI-spremno",
+      "partiallyReady": "Djelomično spremno",
+      "notReady": "Nije spremno",
+      "optimized": "Optimizirano",
+      "emerging": "U razvoju"
+    },
+    "tabs": {
+      "overview": "Pregled",
+      "analysis": "Analiza",
+      "links": "Linkovi"
+    },
+    "compare": {
+      "comparisonFailedTitle": "Usporedba nije uspjela",
+      "somethingWentWrong": "Došlo je do pogreške",
+      "needCompetitorTitle": "Potreban je barem jedan konkurent",
+      "needCompetitorDescription": "Unesite barem jedan URL konkurenta za usporedbu.",
+      "yourUrl": "Vaš URL",
+      "competitorLabel": "Konkurent {{count}}",
+      "competitorPlaceholder": "https://konkurent.com",
+      "comparing": "Uspoređujem...",
+      "addCompetitor": "+ Dodaj konkurenta",
+      "comparisonSummary": "Sažetak usporedbe",
+      "winner": "Pobjednik",
+      "overall": "Ukupno",
+      "strengths": "Prednosti",
+      "weaknesses": "Slabosti",
+      "competitorSeoComparison": "SEO usporedba s konkurencijom",
+      "compareSeoDescription": "Usporedite svoje SEO rezultate s konkurencijom. Vaš URL je unaprijed popunjen.",
+      "competitorAdsComparison": "Ads usporedba odredišne stranice",
+      "compareAdsDescription": "Usporedite iskustvo vaše odredišne stranice s konkurencijom. Vaš URL je unaprijed popunjen.",
+      "competitorAeoComparison": "AEO usporedba s konkurencijom",
+      "compareAeoDescription": "Usporedite svoju AEO spremnost s konkurencijom. Vaš URL je unaprijed popunjen.",
+      "competitorGeoComparison": "GEO usporedba s konkurencijom",
+      "compareGeoDescription": "Usporedite svoju GEO spremnost s konkurencijom. Vaš URL je unaprijed popunjen."
+    },
+    "common": {
+      "issues": "Problemi",
+      "noRecommendations": "Trenutno nema preporuka.",
+      "found": "Pronađeno",
+      "missing": "Nedostaje",
+      "status": "Status",
+      "impact": "Utjecaj"
+    },
+    "ads": {
+      "landingPageExperience": "Iskustvo odredišne stranice",
+      "potentialSavingsEstimate": "Procjena moguće uštede",
+      "impact": "Utjecaj",
+      "detailedCheckResults": "Detaljni rezultati provjera",
+      "impactOnGoogleAds": "Utjecaj na Google Ads",
+      "qualityScoreImpact": "Utjecaj na Quality Score",
+      "cpcCostImpact": "Utjecaj na CPC i trošak",
+      "basedOnIssues": "Na temelju {{count}} problema",
+      "qualityScoreImprovement": "Ispravljanje identificiranih problema moglo bi poboljšati vaš Quality Score za ~{{improvement}} bodova i smanjiti CPC za približno {{low}}-{{high}}%.",
+      "estimatedMonthlySavings": "Procijenjena mjesečna ušteda",
+      "estimatedAnnualSavings": "Procijenjena godišnja ušteda",
+      "onMonthlySpend": "na potrošnji od 1.000 EUR mjesečno",
+      "disclaimer": "* Procjene se temelje na industrijskim prosjecima. Stvarna ušteda ovisi o industriji, konkurenciji i trenutnom Quality Scoreu. Poboljšanje od 1 QS boda obično smanjuje CPC za 6-10%.",
+      "cdn": "CDN",
+      "cache": "Cache",
+      "noRedirects": "Bez preusmjerenja",
+      "mobileUx": "Mobilni UX",
+      "ttfb": "TTFB",
+      "performanceAndSpeed": "Performanse i brzina",
+      "deliveryInfrastructure": "Dostava i infrastruktura",
+      "cachingFragmentation": "Cache i fragmentacija",
+      "mobileUxRelevance": "Mobilni UX i relevantnost",
+      "fieldData": {
+        "title": "Stvarni podaci korisnika (CrUX)",
+        "subtitle": "Što Google Ads zapravo vidi od stvarnih Chrome posjetitelja",
+        "sourceUrl": "Podaci za ovu stranicu",
+        "sourceOrigin": "Domenska zamjena",
+        "sourceNone": "Nema stvarnih podataka",
+        "sourceUrlHint": "Stvarni Chrome korisnici na ovoj točnoj stranici (zadnjih 28 dana).",
+        "sourceOriginHint": "Koriste se prosjeci cijele domene jer ova stranica ima premalo Chrome prometa.",
+        "sourceNoneHint": "Google nema stvarne podatke za ovu stranicu ni domenu. Dok se promet ne nakupi, Landing Page Experience se ocjenjuje iz manje preciznih signala.",
+        "lcp": "Largest Contentful Paint",
+        "cls": "Cumulative Layout Shift",
+        "inp": "Interaction to Next Paint",
+        "fcp": "First Contentful Paint",
+        "ttfb": "Time to First Byte",
+        "categoryFast": "Dobro",
+        "categoryAverage": "Potrebno poboljšanje",
+        "categorySlow": "Loše",
+        "noData": "Nema podataka",
+        "openInPagespeed": "Otvori u PageSpeed Insightsu"
+      },
+      "adMatch": {
+        "tabLabel": "Podudaranje oglasa",
+        "title": "Podudaranje teksta oglasa s odredišnom stranicom",
+        "intro": "Google Ads ocjenjuje Landing Page Experience djelomično prema tome pojavljuju li se ključne riječi vašeg oglasa zapravo na stranici na koju šaljete ljude. Zalijepite tekst oglasa ispod kako biste vidjeli gdje su rupe.",
+        "headlinesLabel": "Naslovi oglasa",
+        "headlinesPlaceholder": "Zalijepite svaki naslov u zaseban red",
+        "descriptionsLabel": "Opisi oglasa",
+        "descriptionsPlaceholder": "Zalijepite svaki opis u zaseban red",
+        "keywordsLabel": "Ključne riječi za koje licitirate",
+        "keywordsPlaceholder": "Jedna ključna riječ po redu, npr. izrada web stranica",
+        "analyze": "Analiziraj relevantnost",
+        "analyzing": "Analiziram…",
+        "overallScore": "Ukupna ocjena podudaranja",
+        "matchRate": "Pojmovi pronađeni bilo gdje na stranici",
+        "pageSummary": "Što smo pronašli na stranici",
+        "pageTitleLabel": "Naslov",
+        "pageH1Label": "H1",
+        "perTerm": "Razrada po pojmovima",
+        "termColumn": "Pojam",
+        "kindColumn": "Vrsta",
+        "titleCol": "Naslov",
+        "h1Col": "H1",
+        "subCol": "Podnaslovi",
+        "fpCol": "Prvi odlomak",
+        "altCol": "Alt tekst",
+        "bodyCol": "Tijelo",
+        "kindHeadline": "Naslov",
+        "kindDescription": "Opis",
+        "kindKeyword": "Ključna riječ",
+        "recommendations": "Preporuke",
+        "noResults": "Unesite barem jedan naslov, opis ili ključnu riječ i kliknite Analiziraj.",
+        "errorTitle": "Nije moguće analizirati relevantnost",
+        "scoreLow": "Ispod prosjeka — popravite rupe ispod",
+        "scoreMedium": "OK — zatvorite pojmove koji nedostaju za brzu pobjedu",
+        "scoreHigh": "Snažno poklapanje poruke"
+      }
+    },
+    "labels": {
+      "seo": "SEO",
+      "ads": "Ads",
+      "adsLp": "Ads LP",
+      "aeo": "AEO",
+      "geo": "GEO",
+      "links": "Linkovi",
+      "images": "Slike",
+      "internalLinksShort": "Int. linkovi",
+      "sitemap": "Sitemap"
+    },
+    "content": {
+      "wordCount": "Broj riječi",
+      "wordCountValue": "{{count}} riječi",
+      "goodLength": "Dobra duljina sadržaja za SEO",
+      "aimFor300": "Ciljajte barem 300 riječi za bolje rangiranje",
+      "wordCountFix": "Dodajte detaljniji i vrijedniji sadržaj s relevantnim podtemama i primjerima.",
+      "readabilityScore": "Rezultat čitljivosti",
+      "fleschScore": "Flesch Reading Ease rezultat — {{label}} za čitanje",
+      "readabilityFix": "Koristite kraće rečenice, razlomite odlomke i pojednostavite izraze.",
+      "imageAltTags": "Alt oznake slika",
+      "imageAltValue": "{{withAlt}}/{{total}} slika ({{percentage}}%)",
+      "goodAltCoverage": "Dobra pokrivenost alt oznakama",
+      "missingAltText": "Mnogim slikama nedostaje alt tekst",
+      "altFix": "Dodajte opisni alt tekst svim važnim slikama.",
+      "structuredDataSchema": "Strukturirani podaci (Schema)",
+      "foundSchema": "Pronađeno: {{schema}}",
+      "noStructuredData": "Nisu pronađeni strukturirani podaci",
+      "schemaHelps": "Schema oznake pomažu tražilicama razumjeti sadržaj",
+      "schemaCanImprove": "Dodavanje schema oznaka može poboljšati rich snippet prikaz",
+      "schemaFix": "Dodajte JSON-LD strukturirane podatke na stranicu."
+    },
+    "payment": {
+      "processingTitle": "Obrada plaćanja",
+      "processingDescription": "Uplata je zaprimljena, ali pristupni kôd se još generira. Pokušajte unijeti ID sesije ili kontaktirajte podršku.",
+      "noScansLeftTitle": "Nema više skeniranja",
+      "noScansLeftDescription": "Ovaj pristupni kôd više nema preostalih skeniranja.",
+      "invalidCodeTitle": "Neispravan kôd",
+      "invalidCodeDescription": "Nije moguće validirati pristupni kôd",
+      "analysisCompleteTitle": "Master analiza završena",
+      "verificationRequiredTitle": "Potrebna verifikacija",
+      "verificationRequiredDescription": "Dovršite bot verifikaciju i pokušajte ponovno.",
+      "pdfDownloadFailedTitle": "Slanje izvještaja nije uspjelo",
+      "pdfDownloadFailedDescription": "Nije moguće poslati PDF izvještaj na email",
+      "reportSentTitle": "Izvještaj poslan",
+      "reportSentDescription": "Vaš PDF izvještaj je poslan na email.",
+      "reportAlreadySentTitle": "Izvještaj je već poslan",
+      "reportAlreadySentDescription": "Za svaki skenirani izvještaj moguće je poslati samo jedan email.",
+      "emailSavedTitle": "Email spremljen!",
+      "emailSavedDescription": "Vaš besplatni izvještaj stiže na email.",
+      "reportReadyTitle": "Izvještaj spreman",
+      "reportReadyDescription": "Vaš PDF izvještaj otvara se u novoj kartici.",
+      "sessionExpiredTitle": "Analiza istekla",
+      "sessionExpiredDescription": "Vaša analiza je istekla. Ponovite analizu za nastavak."
+    },
+    "aeo": {
+      "readinessScore": "AEO rezultat spremnosti",
+      "structuredData": "Strukturirani podaci",
+      "contentFormat": "Format sadržaja",
+      "authority": "Autoritet",
+      "semantic": "Semantika",
+      "aiAccessibility": "AI pristupačnost",
+      "aiSearchOpportunity": "Prilika u AI pretraživanju",
+      "aeoScoreBadge": "AEO rezultat: {{score}}/100",
+      "aiSearchOpportunityText": "Optimizacija za AI tražilice mogla bi povećati pojavljivanje vaših istaknutih isječaka za ~{{snippetChance}}%. Upiti vođeni AI-jem sada čine ~{{aiQueryShare}}% svih pretraga.",
+      "potentialAiCitationRate": "Potencijalna stopa AI citiranja",
+      "ofRelevantAiQueries": "od relevantnih AI upita",
+      "growingQueryShare": "Rastući udio upita",
+      "ofSearchesUseAi": "pretraga koristi AI",
+      "disclaimer": "* Temeljeno na trenutnim trendovima usvajanja AI pretrage. Stranice optimizirane za AEO dobivaju znatno više AI citata.",
+      "questionHeadings": "Naslovi u obliku pitanja",
+      "directAnswers": "Izravni odgovori",
+      "listsTables": "Liste/tablice",
+      "authorityAndEeat": "Autoritet i E-E-A-T",
+      "authorInfo": "Podaci o autoru",
+      "citations": "Citati",
+      "datePublished": "Datum objave",
+      "semanticStructure": "Semantička struktura",
+      "headingHierarchy": "Hijerarhija naslova",
+      "semanticHtml": "Semantički HTML",
+      "tableOfContents": "Sadržaj",
+      "aiCrawlers": "AI crawleri",
+      "canonicalUrl": "Kanonski URL",
+      "citationLikelihood": "Vjerojatnost citiranja",
+      "outOf100": "od 100",
+      "technicalFixGuideHint": "Kliknite \"Vodič za tehnički popravak\" na svakoj neuspješnoj provjeri za detaljne korake.",
+      "aiSearchPreview": "AI pregled pretraživanja",
+      "simulatedAiCitation": "Simulirani AI citat",
+      "schemaMarkupGenerator": "Generator schema oznaka",
+      "schemaMarkupDescription": "JSON-LD kod spreman za kopiranje, generiran iz sadržaja vaše stranice.",
+      "alreadyPresent": "Već prisutno",
+      "contentGapFinder": "Pronalaženje praznina u sadržaju",
+      "topicCoverage": "Pokrivenost tema",
+      "detectedTopics": "Otkrivene teme",
+      "missingQuestions": "Nedostajuća pitanja koja AI očekuje",
+      "contentCoversQuestions": "Odlično! Vaš sadržaj pokriva sve uobičajene obrasce pitanja.",
+      "recommendations": "AEO preporuke"
+    },
+    "geo": {
+      "readinessScore": "GEO rezultat spremnosti",
+      "generativeReadiness": "Generativna spremnost: {{score}}/100",
+      "sourceAuthority": "Autoritet izvora",
+      "contentFluency": "Tečnost sadržaja",
+      "uniqueValue": "Jedinstvena vrijednost",
+      "entityOptimization": "Optimizacija entiteta",
+      "multiFormat": "Više formata",
+      "generativeEngineImpact": "Utjecaj generativnih tražilica",
+      "geoScoreBadge": "GEO rezultat: {{score}}/100",
+      "generativeEngineImpactText": "Optimizacija za generativne tražilice mogla bi povećati AI citiranja za ~{{citationBoost}}% i potencijalno donijeti ~{{trafficPotential}} dodatnih AI posjeta mjesečno.",
+      "potentialCitationIncrease": "Potencijalno povećanje citiranja",
+      "inAiGeneratedResults": "u AI generiranim rezultatima",
+      "estimatedAdditionalAiTraffic": "Procijenjeni dodatni AI promet",
+      "fromGenerativeEngines": "iz generativnih tražilica",
+      "disclaimer": "* Procjene su temeljene na trendovima generativnog AI pretraživanja. Stranice optimizirane za GEO imaju do 40% veću vjerojatnost citiranja u AI odgovorima.",
+      "authorCredentials": "Autorove vjerodajnice",
+      "expertQuotes": "Citati stručnjaka",
+      "originalResearch": "Originalno istraživanje",
+      "caseStudies": "Studije slučaja",
+      "none": "Nema",
+      "multiFormatReadiness": "Spremnost za više formata",
+      "readability": "Čitljivost",
+      "summarizability": "Sažimljivost",
+      "paragraphClarity": "Jasnoća odlomaka",
+      "passiveVoice": "Pasiv",
+      "statistics": "Statistika",
+      "originalData": "Originalni podaci",
+      "quotes": "Citati",
+      "entityDensity": "Gustoća entiteta",
+      "headingCoverage": "Pokrivenost naslova",
+      "topicalDepth": "Tematska dubina",
+      "primary": "Primarno",
+      "videos": "Videozapisi",
+      "tables": "Tablice",
+      "charts": "Grafikoni",
+      "interactive": "Interaktivno",
+      "formats": "Formati"
+    },
+    "brokenLinks": {
+      "healthScore": "Rezultat zdravlja",
+      "totalLinks": "Ukupno linkova",
+      "broken": "Neispravni",
+      "redirects": "Preusmjerenja",
+      "redirected": "Preusmjereni",
+      "working": "Ispravni",
+      "linkEquityRecovery": "Povrat link autoriteta",
+      "brokenLinksCount": "{{count}} neispravnih linkova",
+      "equityLossText": "{{count}} neispravnih linkova uzrokuje približno {{equityLoss}}% gubitka link autoriteta vaše stranice, što negativno utječe na rangiranje.",
+      "estimatedLinkEquityLoss": "Procijenjeni gubitak link autoriteta",
+      "recoverableByFixingLinks": "moguće vratiti ispravkom linkova",
+      "disclaimer": "* Svaki neispravan link troši crawl budget i gubi autoritet koji bi mogao poboljšati rangiranje.",
+      "brokenLinksCountLabel": "Neispravni linkovi ({{count}})",
+      "showAllBrokenLinks": "Prikaži svih {{count}} neispravnih linkova",
+      "noBrokenLinksFound": "Nisu pronađeni neispravni linkovi!",
+      "redirectedLinksCountLabel": "Preusmjereni linkovi ({{count}})",
+      "noRedirectedLinksFound": "Nisu pronađeni preusmjereni linkovi.",
+      "workingCount": "{{count}} ispravnih",
+      "internalCount": "{{count}} internih",
+      "externalCount": "{{count}} eksternih"
+    },
+    "images": {
+      "optimizationScore": "Rezultat optimizacije",
+      "totalImages": "Ukupno slika",
+      "modernFormat": "Moderni format",
+      "oversized": "Prevelike",
+      "pageSpeedImpact": "Utjecaj na brzinu stranice",
+      "imagesNeedFixes": "{{count}} slika treba doradu",
+      "pageSpeedImpactText": "Optimizacija slika mogla bi smanjiti vrijeme učitavanja za ~{{loadReduction}}s i potencijalno povećati konverzije za ~{{conversionBoost}}%.",
+      "estimatedLoadTimeReduction": "Procijenjeno smanjenje vremena učitavanja",
+      "fasterPageLoad": "brže učitavanje stranice",
+      "estimatedConversionBoost": "Procijenjeni rast konverzija",
+      "fromFasterLoading": "zbog bržeg učitavanja",
+      "disclaimer": "* Svako poboljšanje učitavanja od 1s povećava konverzije za ~7% u prosjeku (Google/Deloitte studija).",
+      "optimizationMetrics": "Metrike optimizacije",
+      "altText": "Alt tekst",
+      "lazyLoading": "Lijeno učitavanje",
+      "explicitDimensions": "Eksplicitne dimenzije",
+      "responsiveSrcset": "Responzivno (srcset)",
+      "allImages": "Sve slike",
+      "noImageIssuesFound": "Nisu pronađeni problemi sa slikama!",
+      "noImagesFound": "Na ovoj stranici nisu pronađene slike.",
+      "altBadge": "Alt ✓",
+      "noAltBadge": "Nema Alt",
+      "lazyBadge": "Lazy ✓"
+    },
+    "internalLinks": {
+      "linkQualityScore": "Rezultat kvalitete linkova",
+      "totalInternalLinks": "Ukupno internih linkova",
+      "uniquePages": "Jedinstvene stranice",
+      "descriptiveAnchors": "Opisni anchori",
+      "internalAuthorityDistribution": "Distribucija internog autoriteta",
+      "improvementsFound": "{{count}} pronađenih poboljšanja",
+      "internalAuthorityDistributionText": "Poboljšanje interne link strukture moglo bi povećati distribuciju autoriteta stranica za ~{{authorityBoost}}% i crawl učinkovitost za ~{{crawlImprovement}}%.",
+      "authorityDistribution": "Distribucija autoriteta",
+      "betterLinkEquityFlow": "bolji protok link autoriteta",
+      "crawlEfficiency": "Crawl učinkovitost",
+      "improvedDiscoverability": "poboljšana otkrivost",
+      "disclaimer": "* Snažno interno povezivanje pomaže tražilicama učinkovitije otkriti i indeksirati stranice te raspodijeliti rangirajuću snagu kroz web.",
+      "linkAnalysis": "Analiza linkova",
+      "descriptiveAnchorText": "Opisni anchor tekst",
+      "genericAnchors": "Generički anchori",
+      "nofollowLinks": "Nofollow linkovi",
+      "deepLinks": "Duboki linkovi (3+)",
+      "shallowLinks": "Plitki linkovi",
+      "topAnchorTexts": "Najčešći anchor tekstovi",
+      "allInternalLinks": "Svi interni linkovi ({{count}})",
+      "linkRowMeta": "\"{{anchorText}}\" - dubina {{depth}} - {{location}}",
+      "descriptive": "Opisni",
+      "generic": "Generički",
+      "noInternalLinksFound": "Nisu pronađeni interni linkovi.",
+      "nofollow": "nofollow"
+    },
+    "sitemap": {
+      "validationScore": "Rezultat validacije",
+      "urlsCount": "{{count}} URL-ova",
+      "crawlAndIndexingEfficiency": "Učinkovitost crawlanja i indeksiranja",
+      "fixesNeeded": "{{count}} potrebnih ispravaka",
+      "crawlAndIndexingEfficiencyText": "Ispravljanje problema sa sitemapom i robots.txt datotekom moglo bi poboljšati crawl učinkovitost za ~{{crawlBoost}}% i pomoći tražilicama indeksirati ~{{indexBoost}}% više stranica.",
+      "crawlEfficiencyGain": "Povećanje crawl učinkovitosti",
+      "betterCrawlerGuidance": "bolje usmjeravanje crawlera",
+      "indexingImprovement": "Poboljšanje indeksiranja",
+      "morePagesDiscovered": "više otkrivenih stranica",
+      "disclaimer": "* Ispravna konfiguracija sitemapa i robots.txt datoteke osigurava da tražilice učinkovito pronađu i indeksiraju sve važne stranice.",
+      "robotsAnalysis": "Analiza robots.txt datoteke",
+      "userAgents": "User Agenti",
+      "disallowedPaths": "Zabranjene putanje",
+      "rulesCount": "{{count}} pravila",
+      "sitemapReferences": "Sitemap reference",
+      "foundCount": "{{count}} pronađeno",
+      "wildcardBlock": "Wildcard blokada",
+      "blocksImportantPaths": "Blokira važne putanje",
+      "clean": "Čisto",
+      "disallowedPathsLabel": "Zabranjene putanje:",
+      "noRobotsFound": "robots.txt datoteka nije pronađena.",
+      "sitemapAnalysis": "Analiza sitemapa",
+      "robotsTxt": "robots.txt",
+      "sitemap": "Sitemap",
+      "urls": "URL-ovi",
+      "sitemapIndexChildSitemaps": "Sitemap indeks - podređeni sitemapovi:",
+      "sampleUrls": "Primjeri URL-ova:",
+      "noSitemapFound": "Sitemap nije pronađen.",
+      "lastmod": "lastmod",
+      "changefreq": "changefreq",
+      "priority": "priority"
+    },
+    "seo": {
+      "accessibilityNotAvailable": "Podaci o pristupačnosti nisu dostupni.",
+      "metaTitleFix": "Napišite naslov između 30-60 znakova i uključite glavnu ključnu riječ na početku.",
+      "metaDescriptionFix": "Napišite opis između 120-160 znakova te uključite glavnu ključnu riječ i poziv na akciju.",
+      "h1FixMissing": "Dodajte točno jedan H1 naslov s glavnom ključnom riječi.",
+      "h1FixMultiple": "Koristite samo jedan H1 po stranici. Dodatne H1 naslove prebacite u H2 ili H3.",
+      "linkProfile": "Profil linkova",
+      "internalLinks": "Interni linkovi",
+      "externalLinks": "Eksterni linkovi",
+      "recommendation": "Preporuka",
+      "internalLinksRecommendation": "Dodajte više internih linkova (cilj 5+) kako bi tražilice lakše otkrivale i indeksirale stranice.",
+      "keywordPhrasesHelp": "Višerječne fraze otkrivaju teme koje tražilice povezuju s vašom stranicom.",
+      "tip": "Savjet",
+      "keywordPhrasesTip": "Ove fraze trebaju odgovarati ciljanim upitima. Ako glavne ključne riječi nisu prisutne, koristite ih prirodnije kroz sadržaj.",
+      "keywordDensityTip": "Idealna gustoća ključnih riječi je 1-3%. Previsoka gustoća može izazvati kazne, preniska znači slabu optimizaciju."
+    }
+  },
+  "verification": {
+    "loading": "Provjeravamo vašu e-mail adresu…",
+    "successTitle": "E-mail potvrđen!",
+    "successDescription": "{{email}} je sada potvrđen. Možete iskoristiti svoj pristupni kôd za otključavanje punih rezultata i PDF izvještaja.",
+    "errorTitle": "Potvrda nije uspjela",
+    "errorDescription": "Ova poveznica za potvrdu nije važeća ili je istekla. Zatražite novu putem obrasca za aktivaciju.",
+    "continue": "Nastavi u aplikaciju",
+    "backHome": "Natrag na početnu",
+    "emailLabel": "E-mail korišten pri kupnji",
+    "emailPlaceholder": "vi@primjer.com",
+    "checkInbox": "Provjerite {{email}} — poslali smo poveznicu za potvrdu.",
+    "sentTitle": "E-mail za potvrdu poslan",
+    "sentDescription": "Poslali smo poveznicu na {{email}}. Kliknite je za otključavanje skeniranja.",
+    "sendFailedTitle": "Slanje e-maila nije uspjelo",
+    "sendFailedDescription": "Pokušajte ponovno za trenutak.",
+    "emailRequiredTitle": "E-mail je obavezan",
+    "emailRequiredDescription": "Unesite e-mail koji ste koristili pri kupnji ovog koda.",
+    "mismatchTitle": "E-mail ne odgovara ovom kodu",
+    "mismatchDescription": "Ovaj pristupni kôd je registriran na drugu e-mail adresu."
+  },
+  "usp": {
+    "heading": "Što stvarno čini razliku u modernom SEO-u",
+    "subheading": "Ne provjeravamo samo meta oznake. Bodujemo četiri stupa koji odlučuju hoćete li rangirati, konvertirati i biti pronađeni od strane AI-a.",
+    "cards": {
+      "seo": {
+        "pillar": "01",
+        "title": "SEO Audit",
+        "desc": "Dubinska tehnička i on-page analiza koja pronalazi ono što Google stvarno kažnjava.",
+        "bullets": [
+          "Core Web Vitals + Lighthouse ocjena",
+          "Meta, naslovi, schema i canonical provjere",
+          "Crawlability, sitemap i robots.txt",
+          "Backlinkovi i indeksacija"
+        ],
+        "stat": "+38% prosj. rast rangiranja"
+      },
+      "ads": {
+        "pillar": "02",
+        "title": "Google Ads",
+        "desc": "Analiziramo vaše Google Ads landing stranice i ocjenjujemo kvalitetu oglasnog teksta — zalijepite naslove i opise i odmah vidite kako ih Google čita.",
+        "bullets": [
+          "Ocjena kvalitete oglasnog teksta (naslovi + opisi)",
+          "Relevantnost landing stranice za namjeru oglasa",
+          "Brzina i Core Web Vitals na LP-u",
+          "Kvaliteta forme, CTA-a i signala povjerenja"
+        ],
+        "stat": "Zatvorite rupe na LP-u, podignite ROAS"
+      },
+      "ai": {
+        "pillar": "03",
+        "title": "AI optimizacija",
+        "desc": "Budite pronađeni u ChatGPT-u, Perplexityju i Google AI pregledima — ne samo u klasičnoj pretrazi.",
+        "bullets": [
+          "GEO (Generative Engine Optimization) ocjena",
+          "Strukturirani podaci za AI crawlere",
+          "Mapiranje entiteta i tematskog autoriteta",
+          "Sadržaj prilagođen LLM modelima"
+        ],
+        "stat": "Promet otporan na budućnost"
+      },
+      "fixes": {
+        "pillar": "04",
+        "title": "Pro popravci i rješenja",
+        "desc": "Ne pronalazimo samo probleme — Pro izvještaj donosi gotov kod i rješenja korak po korak.",
+        "bullets": [
+          "Gotovi HTML / meta / schema isječci",
+          "Konfiguracije servera i .htaccess",
+          "Prioritetna lista popravaka (utjecaj × trud)",
+          "Očekivana ocjena prije / poslije"
+        ],
+        "stat": "Spremno za developere"
+      }
+    },
+    "tiers": {
+      "free": "Free",
+      "basic": "Basic",
+      "pro": "Pro",
+      "proOnly": "Samo Pro",
+      "footnote": {
+        "shared": "Više podataka u Basic · Gotov kod u Pro",
+        "proExclusive": "Dostupno samo u Pro planu"
+      }
+    }
+  },
+  "comparisonTable": {
+    "heading": "Odaberite svoj SiteSnap plan",
+    "subheading": "Free pokazuje ocjenu. Basic otključava sve podatke. Pro vam predaje gotova rješenja.",
+    "note": "Bez registracije · Jednokratna kupnja, bez pretplate · Jamstvo povrata novca",
+    "tiers": {
+      "free": {
+        "badge": "Free",
+        "price": "€0",
+        "priceSuffix": "/ skeniranje",
+        "tagline": "Ocjena + ključni problemi. Bez registracije.",
+        "cta": "Pokreni besplatno",
+        "features": [
+          "8-u-1 SEO analiza",
+          "Analiza Google Ads odredišne stranice",
+          "Ocjena kvalitete oglasnog teksta (naslovi + opisi)",
+          "AEO / AI SEO spremnost",
+          "GEO provjera spremnosti",
+          "Ukupna ocjena po stupu",
+          "Top 3 problema po sekciji",
+          "Dostava e-mailom"
+        ]
+      },
+      "basic": {
+        "badge": "Basic",
+        "price": "€19",
+        "priceSuffix": "jednokratno",
+        "tagline": "Potpuni izvještaj — bez rješenja.",
+        "cta": "Uzmi Basic",
+        "features": [
+          "Sve iz Free, plus:",
+          "Potpune liste problema (svi nalazi)",
+          "Cjeloviti PDF izvještaj",
+          "3 skeniranja uključena",
+          "Usporedba s URL-om konkurenta",
+          "Jamstvo povrata novca"
+        ]
+      },
+      "pro": {
+        "badge": "Pro",
+        "price": "€29",
+        "priceSuffix": "jednokratno",
+        "tagline": "Svi podaci + gotov kod za rješenja.",
+        "cta": "Uzmi Pro",
+        "features": [
+          "Sve iz Basic, plus:",
+          "Gotov kod za svaki problem",
+          "Tehničke upute korak po korak",
+          "10 skeniranja uključeno",
+          "Prioritetna dostava e-mailom",
+          "Provjera ponovno nakon svakog popravka"
+        ]
+      }
+    }
+  },
+  "faq": {
+    "eyebrow": "Česta pitanja",
+    "heading": "Sve što trebate znati prije nego što skenirate",
+    "subheading": "Jasni odgovori o tome što SiteSnap provjerava, što dobivate na svakoj razini i kako rješenja funkcioniraju.",
+    "items": {
+      "whatIsSitesnap": {
+        "q": "Što je SiteSnap i kako analizira SEO moje web stranice?",
+        "a": "SiteSnap je 8-u-1 skener za SEO i spremnost za AI. Zalijepite URL i u oko 30 sekundi analiziramo stranicu kroz klasični SEO, tehnički SEO, kvalitetu odredišne stranice za Google Ads, AEO (optimizaciju za ChatGPT, Perplexity, Gemini) i GEO (optimizaciju za generativnu tražilicu) — i točno vam kažemo što je pokvareno i što popraviti."
+      },
+      "whatChecked": {
+        "q": "Što obuhvaća kompletna SEO analiza — što SiteSnap provjerava na stranici?",
+        "a": "Svako skeniranje izvodi svih osam stupova: on-page SEO (naslov, meta, headinzi, sadržaj), tehnički SEO (status kodovi, robots, sitemap, crawlability), Core Web Vitals i performanse, prilagodljivost mobitelima, strukturirani podaci (JSON-LD / schema.org), kvaliteta Google Ads odredišnih stranica plus ocjena kvalitete oglasnog teksta za vaše naslove i opise, AEO spremnost za AI tražilice i GEO spremnost za generativnu pretragu."
+      },
+      "adCopyRater": {
+        "q": "Kako poboljšati Google Ads Quality Score i poziciju oglasa (Ad Rank)?",
+        "a": "Zalijepite Google Ads naslove i opise u SiteSnap i mi ocjenjujemo kvalitetu oglasnog teksta na način na koji to čini Google: relevantnost ključnih riječi, podudaranje s namjerom, jasnoću, učinkovito korištenje broja znakova, snagu CTA-a i koliko se tekst poklapa s odredišnom stranicom. Dobit ćete ocjenu po elementu i konkretne prijedloge prepravki koje dižu Quality Score, Ad Rank i CTR — i smanjuju cijenu po kliku."
+      },
+      "howLong": {
+        "q": "Koliko traje SEO analiza sa SiteSnap-om?",
+        "a": "Većina skeniranja završi za 20–40 sekundi. Vidjet ćete tijek uživo dok svaki stup radi, a cijeli izvještaj pojavljuje se čim se završi posljednja provjera — bez čekanja e-maila."
+      },
+      "freeVsPaid": {
+        "q": "Postoji li besplatan alat za SEO analizu koji pokazuje stvarne probleme, a ne samo najavu?",
+        "a": "Da — besplatno SiteSnap skeniranje daje vam ukupnu ocjenu, ocjenu po stupu i 3 najveća problema po sekciji, tako da stvarno vidite gdje stojite. Basic (€19) otključava svaki nalaz uz cjeloviti PDF izvještaj i usporedbu s konkurencijom. Pro (€29) dodaje gotova rješenja i upute korak po korak za svaki problem."
+      },
+      "basicVsPro": {
+        "q": "Trebam li kupiti SiteSnap Basic ili Pro za popravak SEO-a?",
+        "a": "Basic je cjeloviti izvještaj s podacima — svi problemi, svi nalazi, cijeli PDF, 3 skeniranja. Pro je Basic plus stvarna rješenja: gotove meta oznake, JSON-LD blokovi, robots/sitemap isječci i upute korak po korak za svaki problem koji pronađemo. Ako želite sami popravljati ili predati developeru jasnu listu zadataka, odaberite Pro. Pro uključuje i 10 skeniranja kako biste mogli ponovno testirati nakon svakog popravka."
+      },
+      "aiReady": {
+        "q": "Kako se rangirati u ChatGPT-u, Perplexityju i Google AI pregledima?",
+        "a": "Naši AEO i GEO stupovi provjeravaju upravo one signale koje AI tražilice koriste za citiranje stranice: jasnu strukturu pitanja i odgovora, svježinu činjenica, schema.org označavanje, llms.txt, semantički HTML i sadržaj pogodan za citiranje. Dobit ćete zaseban rezultat AI spremnosti i konkretne promjene koje povećavaju šanse da vas citiraju ChatGPT, Perplexity, Gemini i Google AI pregledi."
+      },
+      "whoFor": {
+        "q": "Tko bi trebao koristiti SiteSnap — marketingaši, developeri ili agencije?",
+        "a": "Marketingaši, osnivači, freelanceri, developeri i agencije — svi koriste SiteSnap. Marketingaši i osnivači dobivaju brzu i poštenu sliku kako stranica radi u Google pretrazi, u ocjeni kvalitete Google Adsa i u AI tražilicama. Developeri dobivaju gotove meta oznake, schema, robots i HTML isječke koje mogu odmah ubaciti u kod. Agencije koriste PDF izvještaj kao isporuku spremnu za klijenta — bez učenja deset različitih alata ili ručne revizije."
+      },
+      "needSignup": {
+        "q": "Mogu li pokrenuti SEO analizu bez registracije ili otvaranja računa?",
+        "a": "Da. Besplatna skeniranja ne traže ništa — bez e-maila, bez računa, bez kartice. Basic i Pro su jednokratna plaćanja — bez pretplate, bez ponavljajućih troškova, bez računa za upravljanje. Izvještaj dobivate e-mailom i ostaje dostupan putem linka."
+      },
+      "refund": {
+        "q": "Nudi li SiteSnap jamstvo povrata novca za SEO izvještaj?",
+        "a": "Da. I Basic i Pro dolaze s jamstvom povrata novca. Ako vam izvještaj ne donese konkretne uvide, kontaktirajte podršku i vraćamo vam novac. Jednokratno plaćanje, bez pretplate, bez sitnih slova."
+      },
+      "howFixes": {
+        "q": "Kako brzo popraviti SEO probleme — daje li SiteSnap gotov kod?",
+        "a": "Da. Za svaki problem koji pronađemo, Pro uključuje gotovo rješenje: točan title tag, meta description, JSON-LD blok, robots direktivu, image alt tekst ili HTML isječak koji vaš developer (ili vi) može odmah ubaciti u stranicu. Uz svako rješenje ide kratki vodič korak po korak — gdje ide i zašto je važno."
+      }
+    }
+  },
+  "upgradeCta": {
+    "eyebrow": "Besplatno skeniranje → Pro izvještaj",
+    "title": "Pokrenite besplatno skeniranje. Nadogradite na Pro za potpunu listu rješenja.",
+    "description": "Besplatno skeniranje gotovo je za manje od 30 sekundi — odmah vidite ukupnu ocjenu i ključne probleme. Nadogradite na Pro €29 i otključajte cijeli PDF izvještaj, 10 skeniranja i gotov kod za svaki pronađeni problem.",
+    "button": "Pokreni skeniranje",
+    "hint": "Bez registracije · Jednokratna kupnja, bez pretplate · Jamstvo povrata novca",
+    "perks": {
+      "pdf": "PDF izvještaj koji možete podijeliti s timom, klijentom ili vašim developerom",
+      "scans": "10 Pro skeniranja uključeno — provjerite ponovno nakon svakog popravka",
+      "fixes": "Gotov kod i upute korak po korak za rješavanje svakog problema"
+    }
+  },
+  "seo": {
+    "home": {
+      "title": "SiteSnap — Besplatni SEO, AEO, GEO i Google Ads analizator | Skeniraj. Snimi. Popravi.",
+      "description": "Besplatni alat koji u jednom kliku ocjenjuje SEO, AEO, GEO i Google Ads landing iskustvo — i daje gotove popravke koje možete primijeniti odmah."
+    },
+    "checkout": {
+      "title": "Naplata — Otključajte Pro popravke | SiteSnap",
+      "description": "Sigurna naplata za SiteSnap Basic (€19) ili Pro (€29). Dobijte sve podatke i gotove popravke za SEO, AEO, GEO i Google Ads."
+    },
+    "privacy": {
+      "title": "Politika privatnosti | SiteSnap",
+      "description": "Kako SiteSnap prikuplja, obrađuje i štiti vaše podatke kada skenirate web-stranice našim SEO, AEO, GEO i Google Ads alatom."
+    },
+    "terms": {
+      "title": "Uvjeti korištenja | SiteSnap",
+      "description": "Uvjeti koji uređuju korištenje SiteSnap analizatora, alata za bodovanje i izvještaja s popravcima."
+    },
+    "refund": {
+      "title": "Politika povrata i otkaza | SiteSnap",
+      "description": "SiteSnap pravila za povrat i otkaz za jednokratne Basic (€19) i Pro (€29) izvještaje."
+    },
+    "delivery": {
+      "title": "Isporuka i ispunjenje | SiteSnap",
+      "description": "Kako SiteSnap nakon plaćanja isporučuje izvještaj i Pro upute za popravke — trenutni pristup uz PDF na e-poštu."
+    },
+    "verify": {
+      "title": "Potvrda e-pošte | SiteSnap",
+      "description": "Potvrdite svoju e-poštu kako biste otključali SiteSnap izvještaj i upute za popravke."
+    },
+    "ads": {
+      "title": "Analizator odredišne stranice Google Adsa | SiteSnap",
+      "description": "Ocijenite iskustvo odredišne stranice Google Adsa: TTFB, CDN, predmemorija, preusmjeravanja, mobilni UX i kvaliteta oglasnog teksta s gotovim rješenjima."
+    },
+    "aeo": {
+      "title": "AEO / AI SEO analizator za ChatGPT i Perplexity | SiteSnap",
+      "description": "Provjerite spremnost stranice za AI tražilice: strukturirani podaci, vjerojatnost citiranja, pregled za ChatGPT/Perplexity i nedostaci sadržaja."
+    },
+    "dashboard": {
+      "title": "SiteSnap nadzorna ploča — pokrenite SEO, AEO i Ads audit",
+      "description": "Pokrenite potpuni SiteSnap audit: SEO, AEO, GEO i iskustvo odredišne stranice Google Adsa u jednom kliku s gotovim rješenjima."
+    },
+    "siteTools": {
+      "title": "Alati za stranicu — pokvarene veze, slike, sitemap i robots | SiteSnap",
+      "description": "Besplatni alati za cijelu stranicu: provjera pokvarenih veza, optimizacija slika, interno povezivanje, sitemap i robots.txt validacija."
+    }
+  }
+}

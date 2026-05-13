@@ -1,0 +1,21 @@
+[1G[0K⠙[1G[0K
+> rest-express@1.0.0 dev
+> NODE_ENV=development tsx server/index.ts
+
+[1G[0K⠙[1G[0K[myPOS] env snapshot {
+  hasSid: [33mfalse[39m,
+  hasWallet: [33mfalse[39m,
+  hasPrivateKey: [33mfalse[39m,
+  hasPublicKey: [33mfalse[39m,
+  keyIndex: [32m'1'[39m,
+  sidMasked: [1mnull[22m,
+  walletMasked: [1mnull[22m,
+  privateKeyHeader: [1mnull[22m,
+  publicKeyHeader: [1mnull[22m,
+  privateKeyFingerprint: [1mnull[22m,
+  publicKeyFingerprint: [1mnull[22m,
+  privateKeyLength: [33m0[39m,
+  publicKeyLength: [33m0[39m,
+  useSandbox: [33mtrue[39m
+}
+7:02:10 AM [express] serving on port 5000

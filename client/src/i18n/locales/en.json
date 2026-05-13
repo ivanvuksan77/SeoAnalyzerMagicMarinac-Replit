@@ -1,0 +1,1184 @@
+{
+  "header": {
+    "title": "SiteSnap",
+    "toggleDark": "Toggle dark mode",
+    "toggleLang": "Switch language",
+    "languageEnglish": "English",
+    "languageCroatian": "Croatian",
+    "languageLabel": "Language",
+    "slogan": "Scan. Snap. Fix What Matters."
+  },
+  "hero": {
+    "badge": "All 8 Tools in One Click",
+    "title": "Master SEO Analyzer",
+    "description": "Enter a URL and run every analysis tool at once: SEO audit, Google Ads landing page experience, an ad-copy quality rater for your headlines & descriptions, AEO readiness, GEO readiness, broken links, image optimization, internal linking, and sitemap validation.",
+    "eyebrow": "Built for Google Ads + Organic SEO",
+    "lead": "Fix Your Google",
+    "accent": "Ranking Issues — Fast",
+    "sub": "Find landing page experience problems, Core Web Vitals issues, and SEO gaps — all prioritized by impact so you know exactly what to fix first.",
+    "cta": "Start Free Analysis",
+    "trust1": "Free · No signup",
+    "trust2": "Results in 30 seconds",
+    "trust3": "8 tools in one report",
+    "preview": {
+      "label": "PRO REPORT · €29",
+      "subtitle": "Full data + prioritized fix instructions",
+      "overall": "OVERALL",
+      "issuesFound": "Top issues found",
+      "fixes": "Prioritized fixes",
+      "tools": {
+        "seo": "SEO",
+        "adsLp": "Ads LP",
+        "aeo": "AEO",
+        "speed": "Speed"
+      },
+      "issues": {
+        "meta": "Meta description missing",
+        "lcp": "LCP 4.2s — slow",
+        "tracking": "No conversion tracking",
+        "images": "12 images over 500KB"
+      },
+      "notes": {
+        "homepage": "Homepage",
+        "images": "Image optimization",
+        "cwv": "Core Web Vitals",
+        "adsLp": "Google Ads LP"
+      },
+      "domain": "yourdomain.com"
+    }
+  },
+  "form": {
+    "placeholder": "Enter website URL (e.g., example.com)",
+    "analyzing": "Analyzing...",
+    "runAll": "Run All Tests",
+    "urlRequired": "Please enter a URL"
+  },
+  "accessCode": {
+    "haveCode": "Have an access code?",
+    "placeholder": "e.g. PRO-A1B2C3",
+    "activate": "Activate",
+    "cancel": "Cancel",
+    "scansLeft": "{{count}} scan left",
+    "scansLeft_other": "{{count}} scans left",
+    "scansLeftInfinity": "∞ scans left",
+    "ofToday": "{{count}} of 3 left today",
+    "freeScans": "3 free scans/day",
+    "paidPlans": "Paid plans get 5-10 scans",
+    "remove": "Remove access code"
+  },
+  "loading": {
+    "title": "Running all 8 analysis tools...",
+    "description": "This runs SEO, Ads, AEO, GEO, Broken Links, Images, Internal Linking, and Sitemap checks in parallel. It may take up to a minute."
+  },
+  "dashboard": {
+    "overall": "OVERALL",
+    "excellent": "Excellent",
+    "good": "Good",
+    "needsWork": "Needs Work",
+    "critical": "Critical",
+    "comprehensiveAnalysis": "Comprehensive analysis of \"{{url}}\" across {{count}} tools",
+    "free": "Free",
+    "freeDesc": "Full report + top critical issues",
+    "getFreeReport": "Get Free Report",
+    "basicPrice": "€19",
+    "basicDesc": "Full technical breakdown",
+    "basicCredits": "5 scan credits · Never expire",
+    "basicReport": "Basic Report",
+    "proPrice": "€29",
+    "proDesc": "Full report with advanced recommendations",
+    "proCredits": "10 scan credits · Never expire",
+    "proReport": "Pro Report",
+    "devPreview": "Dev Preview:"
+  },
+  "sections": {
+    "seoAudit": "SEO Audit",
+    "googleAds": "Google Ads Landing Page",
+    "aeo": "AEO / AI SEO Readiness",
+    "geo": "GEO / Generative Engine",
+    "brokenLinks": "Broken Link Check",
+    "imageOpt": "Image Optimization",
+    "internalLinks": "Internal Linking",
+    "sitemap": "Sitemap & Robots.txt",
+    "moreDetails": "More details",
+    "showLess": "Show less",
+    "failed": "Failed"
+  },
+  "locked": {
+    "title": "Unlock Full Details",
+    "description": "Get the complete breakdown with all checks, data, and expert recommendations",
+    "basic": "€19 Basic",
+    "pro": "€29 Pro",
+    "credits": "Basic: 5 scans · Pro: 10 scans · Credits never expire"
+  },
+  "freeFindings": {
+    "noIssues": "Looking good! No critical issues detected.",
+    "keyFindings": "Key Findings",
+    "issuesFound": "{{count}} issues found",
+    "moreHidden": "+ {{count}} more issues hidden — unlock to see all"
+  },
+  "seo": {
+    "overallScore": "Overall SEO Score",
+    "technical": "Technical",
+    "performance": "Performance",
+    "accessibility": "Accessibility",
+    "keywords": "Keywords",
+    "content": "Content",
+    "compare": "Compare",
+    "passed": "Passed",
+    "failed": "Failed",
+    "warnings": "Warnings",
+    "trafficPotential": "Organic Traffic Potential",
+    "basedOnIssues": "Based on {{count}} issues",
+    "trafficImprovement": "Fixing the identified SEO issues could improve your organic search visibility by approximately {{low}}–{{high}}%.",
+    "monthlyTraffic": "Est. additional monthly traffic value",
+    "basedOnAvg": "based on avg. organic click value",
+    "disclaimer": "* Estimates based on industry averages. Actual impact depends on competition, domain authority, and search volume in your niche."
+  },
+  "performance": {
+    "coreWebVitals": "Core Web Vitals",
+    "pageSpeedScores": "Page Speed Scores",
+    "lcp": "Largest Contentful Paint (LCP)",
+    "lcpDesc": "Measures how quickly the largest visible content loads",
+    "fid": "First Input Delay (FID)",
+    "fidDesc": "Measures responsiveness when users first interact",
+    "cls": "Cumulative Layout Shift (CLS)",
+    "clsDesc": "Measures visual stability as elements load",
+    "target": "Target: {{value}}",
+    "desktopScore": "Desktop Score",
+    "mobileScore": "Mobile Score",
+    "mobileUsability": "Mobile Usability",
+    "lighthouseScore": "Lighthouse Score",
+    "notAvailable": "Performance data not available."
+  },
+  "keywords": {
+    "metaTags": "Meta Tags Analysis",
+    "metaTitle": "Meta Title",
+    "metaDescription": "Meta Description",
+    "headingStructure": "Heading Structure (H1)",
+    "topPhrases": "Top Keyword Phrases",
+    "topSingle": "Top Single Keywords",
+    "notAvailable": "Keyword data not available."
+  },
+  "modals": {
+    "freeReport": {
+      "title": "Get Your Free SEO Report",
+      "description": "Enter your email to receive your free SEO report with full section data and a top critical issues highlight.",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "you@example.com",
+      "sending": "Sending...",
+      "download": "Send Free Report",
+      "privacy": "We respect your privacy. Unsubscribe anytime."
+    },
+    "pricing": {
+      "title": "Upgrade Your Report",
+      "description": "Choose a plan to unlock the full potential of your SEO analysis.",
+      "basicPrice": "€19",
+      "basicTitle": "Basic Report",
+      "basicFeatures": {
+        "fullBreakdown": "Full technical breakdown across all 8 tools",
+        "detailedScores": "Detailed scores and check results",
+        "downloadPdf": "Downloadable PDF report",
+        "noFix": "Fix instructions & recommendations"
+      },
+      "basicCredits": "5 scan credits",
+      "basicCreditsDesc": "Scan up to 5 different URLs. Credits never expire and work from any device.",
+      "getBasic": "Get Basic Report",
+      "bestValue": "BEST VALUE",
+      "proPrice": "€29",
+      "proTitle": "Pro Report",
+      "proFeatures": {
+        "fullBreakdown": "Full technical breakdown across all 8 tools",
+        "completeFix": "Complete fix instructions & recommendations",
+        "downloadPdf": "Downloadable PDF with all fixes & code snippets"
+      },
+      "proCredits": "10 scan credits",
+      "proCreditsDesc": "Scan up to 10 different URLs. Credits never expire and work from any device.",
+      "getPro": "Get Pro Report"
+    },
+    "accessCode": {
+      "title": "Your Access Code",
+      "description": "Save this code — you'll need it to use your remaining scans when you return.",
+      "tierScans": "{{tier}} tier · {{count}} scans available",
+      "copy": "Copy Access Code",
+      "hint": "Enter this code in the \"Have an access code?\" field when you return to use your remaining scans."
+    },
+    "upgradeEmail": {
+      "title": "Enter Your Email",
+      "description": "We'll send your access code and receipt to this email address.",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "your@email.com",
+      "continue": "Continue to {{tier}} Report",
+      "cancel": "Cancel"
+    },
+    "orderSummary": {
+      "title": "Order Summary",
+      "description": "Review your plan details and legal information before secure payment redirect.",
+      "planLabel": "Plan",
+      "priceLabel": "Price",
+      "scansLabel": "What you get",
+      "deliverableLabel": "Deliverable",
+      "planBasic": "Basic",
+      "planPro": "Pro",
+      "deliverableBasic": "Detailed PDF report with full technical breakdown.",
+      "deliverablePro": "Detailed PDF report with advanced recommendations.",
+      "legalLinksTitle": "Legal links",
+      "companyTitle": "Company legal identity",
+      "proceedCta": "Proceed to secure payment (myPOS)",
+      "cancel": "Cancel",
+      "sessionMissing": "Session not found. Please run an analysis first, then continue to checkout.",
+      "termsConsent": "I have read and agree to the terms of use and website provisions. *"
+    }
+  },
+  "legacy": {
+    "analysisForm": {
+      "validUrl": "Please enter a valid URL",
+      "title": "Analyze Your Website's SEO",
+      "description": "Get comprehensive insights and actionable recommendations to improve your website's search engine optimization.",
+      "placeholder": "https://example.com",
+      "analyze": "Analyze",
+      "toastCompleteTitle": "Analysis Complete",
+      "toastCompleteDescription": "Successfully analyzed {{url}}",
+      "toastFailedTitle": "Analysis Failed",
+      "toastFailedDescription": "Failed to analyze website",
+      "features": {
+        "technicalSeo": "Technical SEO",
+        "performanceAnalysis": "Performance Analysis",
+        "accessibilityCheck": "Accessibility Check",
+        "pdfReport": "PDF Report"
+      }
+    },
+    "analysisResults": {
+      "downloadPdf": "Download PDF Report",
+      "shareReport": "Share Report",
+      "scoreDescription": {
+        "excellent": "Excellent SEO performance",
+        "good": "Good performance with room for improvement",
+        "average": "Average performance, needs optimization",
+        "belowAverage": "Below average, requires attention",
+        "poor": "Poor performance, immediate action needed"
+      }
+    },
+    "categoryCards": {
+      "categories": {
+        "technical": "Technical SEO",
+        "contentQuality": "Content Quality"
+      },
+      "checks": {
+        "indexingCrawling": "Indexing/Crawling",
+        "robots": "Robots.txt",
+        "sitemap": "Sitemap",
+        "mobileFriendly": "Mobile Friendly",
+        "pageSpeed": "Page Speed",
+        "ariaLabels": "ARIA Labels",
+        "textContrast": "Text Contrast",
+        "keyboardNavigation": "Keyboard Navigation",
+        "wordCount": "Word Count",
+        "readability": "Readability",
+        "imageAltTags": "Image Alt Tags"
+      },
+      "viewDetails": "View Details"
+    },
+    "detailedAnalysis": {
+      "tabs": {
+        "technical": "Technical SEO",
+        "keywords": "Keyword Analysis",
+        "content": "Content Quality"
+      },
+      "table": {
+        "check": "Check",
+        "status": "Status",
+        "details": "Details",
+        "priority": "Priority",
+        "action": "Action",
+        "wcagLevel": "WCAG Level"
+      },
+      "review": "Review",
+      "actionRequired": "Action Required:",
+      "learnMore": "Learn More:",
+      "present": "Present:",
+      "yes": "Yes",
+      "no": "No",
+      "length": "Length:",
+      "characters": "{{count}} characters",
+      "optimized": "Optimized:",
+      "topKeywords": "Top Keywords",
+      "contentNotAvailable": "No content data available",
+      "contentMetrics": "Content Metrics",
+      "wordCount": "Word Count:",
+      "readabilityScore": "Readability Score:",
+      "structuredData": "Structured Data:",
+      "missing": "Missing",
+      "imageAnalysis": "Image Analysis",
+      "totalImages": "Total Images:",
+      "withAltTags": "With Alt Tags:",
+      "altTagCoverage": "Alt Tag Coverage:",
+      "mobile": "Mobile:",
+      "guidance": {
+        "h1": {
+          "description": "H1 tags are crucial for SEO as they tell search engines what your page is about.",
+          "pass": "Perfect! Your page has exactly one H1 tag.",
+          "fail": "Add a single, descriptive H1 tag to your page."
+        },
+        "metaDescription": {
+          "description": "Meta descriptions appear in search results and influence click-through rates.",
+          "pass": "Great! Your meta description is properly set.",
+          "fail": "Add a compelling meta description between 150-160 characters."
+        },
+        "imageAltTags": {
+          "description": "Alt tags help search engines understand your images and improve accessibility.",
+          "pass": "Excellent! Your images have proper alt tags.",
+          "fail": "Add descriptive alt tags to all images."
+        },
+        "default": {
+          "description": "This check helps improve your website's SEO performance.",
+          "pass": "Great job! This check is passing.",
+          "fail": "Review and improve this aspect of your website."
+        }
+      }
+    },
+    "recommendations": {
+      "emptyTitle": "Great Job!",
+      "emptyDescription": "No critical issues found. Your website's SEO is in good shape!",
+      "title": "Priority Recommendations",
+      "actionItems": "Action Items:",
+      "priorityLabel": "{{priority}} Priority",
+      "estimatedImpact": "Estimated Impact: {{impact}}",
+      "timeToFix": "Time to Fix: {{value}}",
+      "learnMore": "Learn More",
+      "viewAll": "View All Recommendations ({{count}})"
+    }
+  },
+  "footer": {
+    "madeIn": "Made in",
+    "copyrightPrefix": "© {{year}} SiteSnap. Made in",
+    "companyName": "MagićMarinac",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "support": "Support"
+  },
+  "legalPages": {
+    "common": {
+      "backHome": "Back to Analyzer",
+      "companyIdentityTitle": "Business Identity and Contact",
+      "relatedPoliciesTitle": "Related Policies"
+    },
+    "company": {
+      "name": "Magićmarinac d.o.o.",
+      "addressLine1": "Tuškanova 24",
+      "addressLine2": "10000 Zagreb, Croatia",
+      "oib": "OIB: 35536574301",
+      "email": "info@magicmarinac.hr"
+    },
+    "links": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "refund": "Refund & Cancellation Policy",
+      "delivery": "Delivery & Fulfillment"
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "By using this application, you accept these privacy rules. We process personal data lawfully, fairly, and transparently, in line with GDPR and Croatian law.",
+      "sections": {
+        "dataProtection": {
+          "title": "Protection and Security of Personal Data",
+          "p1": "Magićmarinac d.o.o. is the data controller and applies appropriate technical and organizational measures to protect personal data against unauthorized access, loss, misuse, or destruction.",
+          "p2": "Personal data means any information relating to an identified or identifiable natural person, and processing includes collection, storage, use, sharing, restriction, and deletion."
+        },
+        "processing": {
+          "title": "How We Process Data",
+          "p1": "We collect data that users submit directly (for example, contact and service-request information), and limited technical data such as IP address, browser information, and interaction signals used for security and service quality.",
+          "p2": "We may use anti-abuse protection services to prevent spam and automated misuse. If we need to process data for a new purpose, we will request additional consent where required."
+        },
+        "retention": {
+          "title": "Retention Period",
+          "p1": "Data retention depends on the processing purpose and legal obligations. Data processed on the basis of consent is retained while consent and purpose remain valid, or until consent is withdrawn.",
+          "p2": "After the retention period ends or the purpose no longer exists, data is deleted or anonymized, unless longer retention is required by law."
+        },
+        "rights": {
+          "title": "Your Rights",
+          "p1": "You may request access, rectification, erasure, restriction, objection, or portability of your personal data, in accordance with GDPR.",
+          "p2": "Requests can be sent to info@magicmarinac.hr. We respond within the legally prescribed period and may request additional information to verify identity."
+        },
+        "cookies": {
+          "title": "Cookies and Analytics",
+          "p1": "We use essential cookies for core functionality and may use functional, analytics, or advertising cookies to improve user experience and understand usage patterns.",
+          "p2": "You can manage cookie preferences through your browser settings. Disabling certain cookies may limit some features."
+        }
+      }
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "intro": "By using this application and related services, users confirm they have read, understood, and accepted these terms.",
+      "sections": {
+        "acceptance": {
+          "title": "General Conditions",
+          "p1": "These terms govern access to and use of the application. Users must use the service lawfully and must not attempt to compromise security, availability, or data integrity.",
+          "p2": "We may update terms when needed to reflect legal, technical, or operational changes. Continued use after updates indicates acceptance of the revised terms."
+        },
+        "ip": {
+          "title": "Intellectual Property",
+          "p1": "All published materials, software elements, branding, and content are protected by applicable copyright and related rights.",
+          "p2": "Without prior written permission, users may not copy, redistribute, modify, or commercially exploit protected content outside legally permitted use."
+        },
+        "liability": {
+          "title": "Liability and Service Availability",
+          "p1": "The service is provided on an 'as available' basis. We strive for reliability, but uninterrupted availability and error-free operation cannot always be guaranteed.",
+          "p2": "To the maximum extent permitted by law, we are not liable for indirect damages arising from temporary unavailability, third-party services, or circumstances beyond reasonable control."
+        },
+        "dataRights": {
+          "title": "Personal Data Rights",
+          "p1": "Users may exercise rights related to personal data processing, including access, correction, deletion, restriction, objection, and portability where applicable.",
+          "p2": "For personal-data questions or rights requests, contact info@magicmarinac.hr."
+        }
+      },
+      "footerNote": "Zagreb, March 2025."
+    },
+    "refund": {
+      "title": "Refund and Cancellation Policy",
+      "intro": "This policy explains cancellation and refund conditions for digital services provided through this application.",
+      "sections": {
+        "scope": {
+          "title": "Scope",
+          "p1": "Our services are digital and delivered electronically. By placing an order, users acknowledge that fulfillment can begin immediately after successful payment and required input submission.",
+          "p2": "Refund eligibility depends on whether the service has been delivered, whether work has started, and whether legal or contractual exceptions apply."
+        },
+        "nonDelivery": {
+          "title": "Non-Delivery or Major Service Failure",
+          "p1": "If we fail to deliver the purchased digital service within the stated timeframe due to reasons under our control, users may request a proportionate refund or full refund depending on delivery status.",
+          "p2": "If only part of the service has been delivered, the refund amount may be adjusted based on the completed portion."
+        },
+        "userCancellation": {
+          "title": "User-Initiated Cancellation",
+          "p1": "Users may request cancellation before service execution starts. Once digital delivery has begun or a custom service has been substantially performed, cancellation rights may be limited.",
+          "p2": "Where legally required, any mandatory consumer rights under applicable law remain unaffected."
+        },
+        "howToRequest": {
+          "title": "How to Request a Refund or Cancellation",
+          "p1": "Submit your request by email to info@magicmarinac.hr with your order details, contact data, and reason for the request.",
+          "p2": "Each request is reviewed individually. We respond within a reasonable period and, when approved, process refunds using the original payment method unless otherwise agreed."
+        }
+      }
+    },
+    "delivery": {
+      "title": "Delivery and Fulfillment Policy",
+      "intro": "This policy describes how and when digital services are delivered after purchase.",
+      "sections": {
+        "digitalDelivery": {
+          "title": "Digital Delivery Method",
+          "p1": "Services are delivered digitally via email, platform access, downloadable materials, or another agreed electronic channel.",
+          "p2": "No physical shipping is involved unless explicitly stated for a specific offer."
+        },
+        "serviceTiming": {
+          "title": "Fulfillment Timing",
+          "p1": "Standard digital deliverables are typically provided within 1 to 5 business days after payment confirmation and receipt of all required project inputs.",
+          "p2": "For complex or custom work, timeline estimates are shared separately and fulfillment depends on scope, complexity, and user responsiveness."
+        },
+        "clientResponsibilities": {
+          "title": "Client Responsibilities",
+          "p1": "Users are responsible for providing accurate information, required materials, and timely feedback needed for successful delivery.",
+          "p2": "Delays caused by missing or late user input may extend fulfillment timelines."
+        },
+        "support": {
+          "title": "Delivery Support and Issues",
+          "p1": "If you do not receive your deliverables within the expected timeframe, contact us at info@magicmarinac.hr so we can investigate and resolve the issue.",
+          "p2": "If a delivery issue cannot be reasonably resolved, available remedies will follow applicable law and our refund and cancellation policy."
+        }
+      }
+    }
+  },
+  "tabs": {
+    "checks": "Checks",
+    "recommendations": "Recommendations",
+    "schema": "Schema",
+    "aiPreview": "AI Preview",
+    "citations": "Citations",
+    "contentGaps": "Content Gaps",
+    "compare": "Compare"
+  },
+  "common": {
+    "pass": "Pass",
+    "fail": "Fail",
+    "warning": "Warning",
+    "fix": "Fix:",
+    "technicalFixGuide": "Technical Fix Guide",
+    "stepByStep": "Step-by-step instructions",
+    "notAvailable": "Data not available."
+  },
+  "errors": {
+    "botBlocked": {
+      "title": "This site blocks automated requests",
+      "description": "The site you scanned is behind a Cloudflare or similar bot-protection layer that blocks our scanner.",
+      "suggestion": "Try a deeper page (e.g. a product or article URL) on the same domain, or double-check the URL.",
+      "retry": "Try Again",
+      "compareCardLabel": "Blocked by bot protection"
+    },
+    "fetchTimeout": {
+      "title": "The site took too long to respond",
+      "description": "We waited but the site didn't reply in time. It may be temporarily slow or down.",
+      "retry": "Try Again",
+      "compareCardLabel": "Site timed out"
+    },
+    "fetchNetwork": {
+      "title": "Could not reach the site",
+      "description": "We couldn't connect to the site. Please check the URL and try again.",
+      "retry": "Try Again",
+      "compareCardLabel": "Could not reach site"
+    }
+  },
+  "toast": {
+    "error": "Error",
+    "copied": "Copied!",
+    "codeCopied": "Access code copied to clipboard",
+    "accessGenerated": "Access Code Generated",
+    "yourCode": "Your code: {{code}}",
+    "adminActivated": "Admin Access Activated",
+    "codeActivated": "Access code activated",
+    "invalidCode": "Invalid or depleted access code",
+    "saveEmail": "Could not save email",
+    "paymentNotAvailable": "Payment Not Available",
+    "paymentSetup": "Payment processing is being set up. Please try again later.",
+    "checkoutError": "Could not start checkout"
+  },
+  "tiers": {
+    "free": "Free Tier",
+    "basic": "Basic (€19)",
+    "pro": "Pro (€29)"
+  },
+  "master": {
+    "ratings": {
+      "aboveAverage": "Above average",
+      "average": "Average",
+      "belowAverage": "Below average",
+      "highlyOptimized": "Highly Optimized",
+      "aiReady": "AI-Ready",
+      "partiallyReady": "Partially Ready",
+      "notReady": "Not Ready",
+      "optimized": "Optimized",
+      "emerging": "Emerging"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "analysis": "Analysis",
+      "links": "Links"
+    },
+    "compare": {
+      "comparisonFailedTitle": "Comparison Failed",
+      "somethingWentWrong": "Something went wrong",
+      "needCompetitorTitle": "Need at least one competitor",
+      "needCompetitorDescription": "Please enter at least one competitor URL to compare.",
+      "yourUrl": "Your URL",
+      "competitorLabel": "Competitor {{count}}",
+      "competitorPlaceholder": "https://competitor.com",
+      "comparing": "Comparing...",
+      "addCompetitor": "+ Add Competitor",
+      "comparisonSummary": "Comparison Summary",
+      "winner": "Winner",
+      "overall": "Overall",
+      "strengths": "Strengths",
+      "weaknesses": "Weaknesses",
+      "competitorSeoComparison": "Competitor SEO Comparison",
+      "compareSeoDescription": "Compare your SEO scores against competitors. Your URL is pre-filled below.",
+      "competitorAdsComparison": "Competitor Ads Landing Page Comparison",
+      "compareAdsDescription": "Compare your landing page experience against competitors. Your URL is pre-filled below.",
+      "competitorAeoComparison": "Competitor AEO Comparison",
+      "compareAeoDescription": "Compare your AEO readiness against competitors. Your URL is pre-filled below.",
+      "competitorGeoComparison": "Competitor GEO Comparison",
+      "compareGeoDescription": "Compare your GEO readiness against competitors. Your URL is pre-filled below."
+    },
+    "common": {
+      "issues": "Issues",
+      "noRecommendations": "No recommendations at this time.",
+      "found": "Found",
+      "missing": "Missing",
+      "status": "Status",
+      "impact": "Impact"
+    },
+    "ads": {
+      "landingPageExperience": "Landing Page Experience",
+      "potentialSavingsEstimate": "Potential Savings Estimate",
+      "impact": "Impact",
+      "detailedCheckResults": "Detailed Check Results",
+      "impactOnGoogleAds": "Impact on Google Ads",
+      "qualityScoreImpact": "Quality Score Impact",
+      "cpcCostImpact": "CPC & Cost Impact",
+      "basedOnIssues": "Based on {{count}} issues",
+      "qualityScoreImprovement": "Fixing the identified issues could improve your Quality Score by ~{{improvement}} points, reducing your CPC by approximately {{low}}-{{high}}%.",
+      "estimatedMonthlySavings": "Est. monthly savings",
+      "estimatedAnnualSavings": "Est. annual savings",
+      "onMonthlySpend": "on EUR1,000/mo spend",
+      "disclaimer": "* Estimates based on industry averages. Actual savings depend on your industry, competition, and current Quality Score. Each QS point improvement typically reduces CPC by 6-10%.",
+      "cdn": "CDN",
+      "cache": "Cache",
+      "noRedirects": "No Redirects",
+      "mobileUx": "Mobile UX",
+      "ttfb": "TTFB",
+      "performanceAndSpeed": "Performance & Speed",
+      "deliveryInfrastructure": "Delivery & Infrastructure",
+      "cachingFragmentation": "Caching & Fragmentation",
+      "mobileUxRelevance": "Mobile UX & Relevance",
+      "fieldData": {
+        "title": "Real-User Field Data (CrUX)",
+        "subtitle": "What Google Ads actually sees from real Chrome visitors",
+        "sourceUrl": "URL-level data",
+        "sourceOrigin": "Origin-level fallback",
+        "sourceNone": "No field data available",
+        "sourceUrlHint": "Real Chrome users on this exact page (last 28 days).",
+        "sourceOriginHint": "Falling back to whole-domain averages because this URL has too little Chrome traffic.",
+        "sourceNoneHint": "Google has no real-user data for this page or origin. Until traffic accumulates, Landing Page Experience is rated from less responsive fallback signals.",
+        "lcp": "Largest Contentful Paint",
+        "cls": "Cumulative Layout Shift",
+        "inp": "Interaction to Next Paint",
+        "fcp": "First Contentful Paint",
+        "ttfb": "Time to First Byte",
+        "categoryFast": "Good",
+        "categoryAverage": "Needs work",
+        "categorySlow": "Poor",
+        "noData": "No data",
+        "openInPagespeed": "Open in PageSpeed Insights"
+      },
+      "adMatch": {
+        "tabLabel": "Ad Match",
+        "title": "Ad copy ↔ landing page relevance",
+        "intro": "Google Ads rates Landing Page Experience partly on whether your ad's keywords actually appear on the page they send people to. Paste your ad copy below to see the gaps.",
+        "headlinesLabel": "Ad headlines",
+        "headlinesPlaceholder": "Paste each headline on its own line",
+        "descriptionsLabel": "Ad descriptions",
+        "descriptionsPlaceholder": "Paste each description on its own line",
+        "keywordsLabel": "Bidded keywords",
+        "keywordsPlaceholder": "One keyword per line, e.g. izrada web stranica",
+        "analyze": "Analyze relevance",
+        "analyzing": "Analyzing…",
+        "overallScore": "Overall match score",
+        "matchRate": "Terms found anywhere on page",
+        "pageSummary": "What we found on the page",
+        "pageTitleLabel": "Title",
+        "pageH1Label": "H1",
+        "perTerm": "Per-term breakdown",
+        "termColumn": "Term",
+        "kindColumn": "Type",
+        "titleCol": "Title",
+        "h1Col": "H1",
+        "subCol": "Sub-headings",
+        "fpCol": "First paragraph",
+        "altCol": "Alt text",
+        "bodyCol": "Body",
+        "kindHeadline": "Headline",
+        "kindDescription": "Description",
+        "kindKeyword": "Keyword",
+        "recommendations": "Recommendations",
+        "noResults": "Enter at least one ad headline, description, or keyword and click Analyze.",
+        "errorTitle": "Could not analyze relevance",
+        "scoreLow": "Below average — fix the gaps below",
+        "scoreMedium": "OK — close the missing terms for a quick win",
+        "scoreHigh": "Strong message match"
+      }
+    },
+    "labels": {
+      "seo": "SEO",
+      "ads": "Ads",
+      "adsLp": "Ads LP",
+      "aeo": "AEO",
+      "geo": "GEO",
+      "links": "Links",
+      "images": "Images",
+      "internalLinksShort": "Int. Links",
+      "sitemap": "Sitemap"
+    },
+    "content": {
+      "wordCount": "Word Count",
+      "wordCountValue": "{{count}} words",
+      "goodLength": "Good content length for SEO",
+      "aimFor300": "Aim for at least 300 words for better rankings",
+      "wordCountFix": "Add more detailed, valuable content with relevant subtopics and examples.",
+      "readabilityScore": "Readability Score",
+      "fleschScore": "Flesch Reading Ease score — {{label}} to read",
+      "readabilityFix": "Use shorter sentences, break up long paragraphs, and keep wording simple.",
+      "imageAltTags": "Image Alt Tags",
+      "imageAltValue": "{{withAlt}}/{{total}} images ({{percentage}}%)",
+      "goodAltCoverage": "Good alt tag coverage",
+      "missingAltText": "Many images missing alt text",
+      "altFix": "Add descriptive alt text to all important images.",
+      "structuredDataSchema": "Structured Data (Schema)",
+      "foundSchema": "Found: {{schema}}",
+      "noStructuredData": "No structured data found",
+      "schemaHelps": "Schema markup helps search engines understand your content",
+      "schemaCanImprove": "Adding schema markup can improve rich snippet appearance",
+      "schemaFix": "Add JSON-LD structured data to your page."
+    },
+    "payment": {
+      "processingTitle": "Payment Processing",
+      "processingDescription": "Your payment was received but the access code is still being generated. Please try entering your session ID or contact support.",
+      "noScansLeftTitle": "No Scans Left",
+      "noScansLeftDescription": "This access code has no remaining scans.",
+      "invalidCodeTitle": "Invalid Code",
+      "invalidCodeDescription": "Could not validate access code",
+      "analysisCompleteTitle": "Master Analysis Complete",
+      "verificationRequiredTitle": "Verification Required",
+      "verificationRequiredDescription": "Please complete bot verification and try again.",
+      "pdfDownloadFailedTitle": "Report Email Failed",
+      "pdfDownloadFailedDescription": "Could not send the PDF report to email",
+      "reportSentTitle": "Report sent",
+      "reportSentDescription": "Your PDF report has been sent to your email.",
+      "reportAlreadySentTitle": "Report already sent",
+      "reportAlreadySentDescription": "Only one email can be sent for each scan report.",
+      "emailSavedTitle": "Email saved!",
+      "emailSavedDescription": "Your free report is on its way to your email.",
+      "reportReadyTitle": "Report ready",
+      "reportReadyDescription": "Your PDF report is opening in a new tab.",
+      "sessionExpiredTitle": "Analysis expired",
+      "sessionExpiredDescription": "Your analysis session has expired. Please re-run the analysis to continue."
+    },
+    "aeo": {
+      "readinessScore": "AEO Readiness Score",
+      "structuredData": "Structured Data",
+      "contentFormat": "Content Format",
+      "authority": "Authority",
+      "semantic": "Semantic",
+      "aiAccessibility": "AI Accessibility",
+      "aiSearchOpportunity": "AI Search Opportunity",
+      "aeoScoreBadge": "AEO Score: {{score}}/100",
+      "aiSearchOpportunityText": "Optimizing for AI search engines could increase your featured snippet appearances by ~{{snippetChance}}%. AI-driven queries now represent ~{{aiQueryShare}}% of all searches.",
+      "potentialAiCitationRate": "Potential AI citation rate",
+      "ofRelevantAiQueries": "of relevant AI queries",
+      "growingQueryShare": "Growing query share",
+      "ofSearchesUseAi": "of searches use AI",
+      "disclaimer": "* Based on current AI search adoption trends. Sites optimized for AEO see significantly more AI-generated citations.",
+      "questionHeadings": "Question Headings",
+      "directAnswers": "Direct Answers",
+      "listsTables": "Lists/Tables",
+      "authorityAndEeat": "Authority & E-E-A-T",
+      "authorInfo": "Author Info",
+      "citations": "Citations",
+      "datePublished": "Date Published",
+      "semanticStructure": "Semantic Structure",
+      "headingHierarchy": "Heading Hierarchy",
+      "semanticHtml": "Semantic HTML",
+      "tableOfContents": "Table of Contents",
+      "aiCrawlers": "AI Crawlers",
+      "canonicalUrl": "Canonical URL",
+      "citationLikelihood": "Citation Likelihood",
+      "outOf100": "out of 100",
+      "technicalFixGuideHint": "Click \"Technical Fix Guide\" on any failing check for step-by-step instructions",
+      "aiSearchPreview": "AI Search Preview",
+      "simulatedAiCitation": "Simulated AI Citation",
+      "schemaMarkupGenerator": "Schema Markup Generator",
+      "schemaMarkupDescription": "Ready-to-copy JSON-LD code generated from your page content.",
+      "alreadyPresent": "Already Present",
+      "contentGapFinder": "Content Gap Finder",
+      "topicCoverage": "Topic Coverage",
+      "detectedTopics": "Detected Topics",
+      "missingQuestions": "Missing Questions AI Looks For",
+      "contentCoversQuestions": "Excellent! Your content covers all common question patterns.",
+      "recommendations": "AEO Recommendations"
+    },
+    "geo": {
+      "readinessScore": "GEO Readiness Score",
+      "generativeReadiness": "Generative Readiness: {{score}}/100",
+      "sourceAuthority": "Source Authority",
+      "contentFluency": "Content Fluency",
+      "uniqueValue": "Unique Value",
+      "entityOptimization": "Entity Optimization",
+      "multiFormat": "Multi-Format",
+      "generativeEngineImpact": "Generative Engine Impact",
+      "geoScoreBadge": "GEO Score: {{score}}/100",
+      "generativeEngineImpactText": "Optimizing for generative engines could increase your AI citations by ~{{citationBoost}}%, potentially driving ~{{trafficPotential}} additional AI-referred visits per month.",
+      "potentialCitationIncrease": "Potential citation increase",
+      "inAiGeneratedResults": "in AI-generated results",
+      "estimatedAdditionalAiTraffic": "Est. additional AI traffic",
+      "fromGenerativeEngines": "from generative engines",
+      "disclaimer": "* Estimates based on generative AI search trends. Pages optimized for GEO are up to 40% more likely to be cited in AI responses.",
+      "authorCredentials": "Author Credentials",
+      "expertQuotes": "Expert Quotes",
+      "originalResearch": "Original Research",
+      "caseStudies": "Case Studies",
+      "none": "None",
+      "multiFormatReadiness": "Multi-Format Readiness",
+      "readability": "Readability",
+      "summarizability": "Summarizability",
+      "paragraphClarity": "Paragraph Clarity",
+      "passiveVoice": "Passive Voice",
+      "statistics": "Statistics",
+      "originalData": "Original Data",
+      "quotes": "Quotes",
+      "entityDensity": "Entity Density",
+      "headingCoverage": "Heading Coverage",
+      "topicalDepth": "Topical Depth",
+      "primary": "Primary",
+      "videos": "Videos",
+      "tables": "Tables",
+      "charts": "Charts",
+      "interactive": "Interactive",
+      "formats": "Formats"
+    },
+    "brokenLinks": {
+      "healthScore": "Health Score",
+      "totalLinks": "Total Links",
+      "broken": "Broken",
+      "redirects": "Redirects",
+      "redirected": "Redirected",
+      "working": "Working",
+      "linkEquityRecovery": "Link Equity Recovery",
+      "brokenLinksCount": "{{count}} broken links",
+      "equityLossText": "{{count}} broken links are leaking approximately {{equityLoss}}% of your page's link equity, negatively impacting your search rankings.",
+      "estimatedLinkEquityLoss": "Est. link equity loss",
+      "recoverableByFixingLinks": "recoverable by fixing links",
+      "disclaimer": "* Each broken link wastes crawl budget and loses link equity that could boost your rankings.",
+      "brokenLinksCountLabel": "Broken Links ({{count}})",
+      "showAllBrokenLinks": "Show All {{count}} Broken Links",
+      "noBrokenLinksFound": "No broken links found!",
+      "redirectedLinksCountLabel": "Redirected Links ({{count}})",
+      "noRedirectedLinksFound": "No redirected links found.",
+      "workingCount": "{{count}} Working",
+      "internalCount": "{{count}} Internal",
+      "externalCount": "{{count}} External"
+    },
+    "images": {
+      "optimizationScore": "Optimization Score",
+      "totalImages": "Total Images",
+      "modernFormat": "Modern Format",
+      "oversized": "Oversized",
+      "pageSpeedImpact": "Page Speed Impact",
+      "imagesNeedFixes": "{{count}} images need fixes",
+      "pageSpeedImpactText": "Optimizing your images could reduce page load time by ~{{loadReduction}}s, potentially improving conversion rates by ~{{conversionBoost}}%.",
+      "estimatedLoadTimeReduction": "Est. load time reduction",
+      "fasterPageLoad": "faster page load",
+      "estimatedConversionBoost": "Est. conversion boost",
+      "fromFasterLoading": "from faster loading",
+      "disclaimer": "* Every 1s improvement in load time increases conversions by ~7% on average (Google/Deloitte study).",
+      "optimizationMetrics": "Optimization Metrics",
+      "altText": "Alt Text",
+      "lazyLoading": "Lazy Loading",
+      "explicitDimensions": "Explicit Dimensions",
+      "responsiveSrcset": "Responsive (srcset)",
+      "allImages": "All Images",
+      "noImageIssuesFound": "No image issues found!",
+      "noImagesFound": "No images found on this page.",
+      "altBadge": "Alt ✓",
+      "noAltBadge": "No Alt",
+      "lazyBadge": "Lazy ✓"
+    },
+    "internalLinks": {
+      "linkQualityScore": "Link Quality Score",
+      "totalInternalLinks": "Total Internal Links",
+      "uniquePages": "Unique Pages",
+      "descriptiveAnchors": "Descriptive Anchors",
+      "internalAuthorityDistribution": "Internal Authority Distribution",
+      "improvementsFound": "{{count}} improvements found",
+      "internalAuthorityDistributionText": "Improving your internal linking structure could boost page authority distribution by ~{{authorityBoost}}% and improve crawl efficiency by ~{{crawlImprovement}}%.",
+      "authorityDistribution": "Authority distribution",
+      "betterLinkEquityFlow": "better link equity flow",
+      "crawlEfficiency": "Crawl efficiency",
+      "improvedDiscoverability": "improved discoverability",
+      "disclaimer": "* Strong internal linking helps search engines discover and index pages more effectively, distributing ranking power across your site.",
+      "linkAnalysis": "Link Analysis",
+      "descriptiveAnchorText": "Descriptive Anchor Text",
+      "genericAnchors": "Generic Anchors",
+      "nofollowLinks": "Nofollow Links",
+      "deepLinks": "Deep Links (3+)",
+      "shallowLinks": "Shallow Links",
+      "topAnchorTexts": "Top Anchor Texts",
+      "allInternalLinks": "All Internal Links ({{count}})",
+      "linkRowMeta": "\"{{anchorText}}\" - depth {{depth}} - {{location}}",
+      "descriptive": "Descriptive",
+      "generic": "Generic",
+      "noInternalLinksFound": "No internal links found.",
+      "nofollow": "nofollow"
+    },
+    "sitemap": {
+      "validationScore": "Validation Score",
+      "urlsCount": "{{count}} URLs",
+      "crawlAndIndexingEfficiency": "Crawl & Indexing Efficiency",
+      "fixesNeeded": "{{count}} fixes needed",
+      "crawlAndIndexingEfficiencyText": "Fixing sitemap and robots.txt issues could improve crawl efficiency by ~{{crawlBoost}}% and help search engines index ~{{indexBoost}}% more of your pages.",
+      "crawlEfficiencyGain": "Crawl efficiency gain",
+      "betterCrawlerGuidance": "better crawler guidance",
+      "indexingImprovement": "Indexing improvement",
+      "morePagesDiscovered": "more pages discovered",
+      "disclaimer": "* Proper sitemap and robots.txt configuration ensures search engines can efficiently find and index all your important pages.",
+      "robotsAnalysis": "robots.txt Analysis",
+      "userAgents": "User Agents",
+      "disallowedPaths": "Disallowed Paths",
+      "rulesCount": "{{count}} rules",
+      "sitemapReferences": "Sitemap References",
+      "foundCount": "{{count}} found",
+      "wildcardBlock": "Wildcard Block",
+      "blocksImportantPaths": "Blocks Important Paths",
+      "clean": "Clean",
+      "disallowedPathsLabel": "Disallowed Paths:",
+      "noRobotsFound": "No robots.txt file found.",
+      "sitemapAnalysis": "Sitemap Analysis",
+      "robotsTxt": "robots.txt",
+      "sitemap": "Sitemap",
+      "urls": "URLs",
+      "sitemapIndexChildSitemaps": "Sitemap Index - Child Sitemaps:",
+      "sampleUrls": "Sample URLs:",
+      "noSitemapFound": "No sitemap found.",
+      "lastmod": "lastmod",
+      "changefreq": "changefreq",
+      "priority": "priority"
+    },
+    "seo": {
+      "accessibilityNotAvailable": "Accessibility data not available.",
+      "metaTitleFix": "Write a title between 30-60 characters. Include your primary keyword near the beginning.",
+      "metaDescriptionFix": "Write a description between 120-160 characters. Include your primary keyword and a call-to-action.",
+      "h1FixMissing": "Add exactly one H1 tag containing your primary keyword.",
+      "h1FixMultiple": "Use only one H1 tag per page. Move additional H1s to H2 or H3 tags.",
+      "linkProfile": "Link Profile",
+      "internalLinks": "Internal Links",
+      "externalLinks": "External Links",
+      "recommendation": "Recommendation",
+      "internalLinksRecommendation": "Add more internal links (aim for 5+) to help search engines discover and index your pages.",
+      "keywordPhrasesHelp": "Multi-word phrases reveal the actual topics search engines associate with your page.",
+      "tip": "Tip",
+      "keywordPhrasesTip": "These phrases should align with your target search queries. If your primary keywords do not appear here, use them more naturally in your content.",
+      "keywordDensityTip": "Ideal keyword density is 1-3%. Too high may trigger keyword stuffing penalties; too low means weak optimization."
+    }
+  },
+  "verification": {
+    "loading": "Verifying your email…",
+    "successTitle": "Email verified!",
+    "successDescription": "{{email}} is now verified. You can use your access code to unlock full results and PDF reports.",
+    "errorTitle": "Verification failed",
+    "errorDescription": "This verification link is invalid or has expired. Request a new one from the redemption form.",
+    "continue": "Continue to app",
+    "backHome": "Back to home",
+    "emailLabel": "Email used at checkout",
+    "emailPlaceholder": "you@example.com",
+    "checkInbox": "Check {{email}} for a verification link.",
+    "sentTitle": "Verification email sent",
+    "sentDescription": "We sent a magic link to {{email}}. Click it to unlock your scans.",
+    "sendFailedTitle": "Couldn't send verification email",
+    "sendFailedDescription": "Please try again in a moment.",
+    "emailRequiredTitle": "Email required",
+    "emailRequiredDescription": "Enter the email you used when purchasing this code.",
+    "mismatchTitle": "Email doesn't match this code",
+    "mismatchDescription": "This access code is registered to a different email address."
+  },
+  "usp": {
+    "heading": "What Actually Moves the Needle in Modern SEO",
+    "subheading": "We don't just check meta tags. We score the four pillars that decide whether you rank, convert, and get found by AI.",
+    "cards": {
+      "seo": {
+        "pillar": "01",
+        "title": "SEO Audit",
+        "desc": "Deep technical & on-page analysis that finds what Google actually penalizes.",
+        "bullets": [
+          "Core Web Vitals + Lighthouse scoring",
+          "Meta, headings, schema & canonical checks",
+          "Crawlability, sitemap & robots.txt",
+          "Backlink & indexation health signals"
+        ],
+        "stat": "+38% avg. ranking lift"
+      },
+      "ads": {
+        "pillar": "02",
+        "title": "Google Ads",
+        "desc": "We audit your Google Ads landing pages and rate your ad-copy quality — paste your headlines and descriptions to see how Google reads them.",
+        "bullets": [
+          "Ad-copy quality rating (headlines + descriptions)",
+          "Landing-page relevance to ad intent",
+          "Page speed & Core Web Vitals on the LP",
+          "Form, CTA & trust-signal scoring"
+        ],
+        "stat": "Plug LP leaks, lift ROAS"
+      },
+      "ai": {
+        "pillar": "03",
+        "title": "AI Optimization",
+        "desc": "Get found by ChatGPT, Perplexity & Google AI Overviews — not just classic search.",
+        "bullets": [
+          "GEO (Generative Engine Optimization) score",
+          "Structured data for AI crawlers",
+          "Entity & topical authority mapping",
+          "LLM-readable content rewrites"
+        ],
+        "stat": "Future-proof traffic"
+      },
+      "fixes": {
+        "pillar": "04",
+        "title": "Pro Fixes & Solutions",
+        "desc": "We don't just find issues — the Pro report ships ready-to-paste code & step-by-step fixes.",
+        "bullets": [
+          "Copy-paste HTML / meta / schema snippets",
+          "Server & .htaccess config blocks",
+          "Prioritized fix list (impact × effort)",
+          "Before / after expected score"
+        ],
+        "stat": "Dev-ready output"
+      }
+    },
+    "tiers": {
+      "free": "Free",
+      "basic": "Basic",
+      "pro": "Pro",
+      "proOnly": "Pro only",
+      "footnote": {
+        "shared": "More data on Basic · Copy-paste fixes on Pro",
+        "proExclusive": "Available only on the Pro plan"
+      }
+    }
+  },
+  "comparisonTable": {
+    "heading": "Choose your SiteSnap plan",
+    "subheading": "Free shows you the score. Basic unlocks all the data. Pro hands you the fixes.",
+    "note": "No signup · One-time payment, no subscription · Moneyback guarantee",
+    "tiers": {
+      "free": {
+        "badge": "Free",
+        "price": "€0",
+        "priceSuffix": "/ scan",
+        "tagline": "Score + top issues. No signup.",
+        "cta": "Start free",
+        "features": [
+          "8-in-1 SEO audit",
+          "Google Ads landing-page audit",
+          "Ad-copy quality rater (headlines + descriptions)",
+          "AEO / AI SEO readiness",
+          "GEO readiness check",
+          "Overall score per pillar",
+          "Top 3 issues per section",
+          "Email delivery"
+        ]
+      },
+      "basic": {
+        "badge": "Basic",
+        "price": "€19",
+        "priceSuffix": "one-time",
+        "tagline": "Full data report — no fixes.",
+        "cta": "Get Basic",
+        "features": [
+          "Everything in Free, plus:",
+          "Full issue lists (all findings)",
+          "Full PDF report",
+          "3 scans included",
+          "Compare to a competitor URL",
+          "Moneyback guarantee"
+        ]
+      },
+      "pro": {
+        "badge": "Pro",
+        "price": "€29",
+        "priceSuffix": "one-time",
+        "tagline": "Full data + copy-paste fixes.",
+        "cta": "Get Pro",
+        "features": [
+          "Everything in Basic, plus:",
+          "Copy-paste fix instructions",
+          "Step-by-step technical guides",
+          "10 scans included",
+          "Priority email delivery",
+          "Re-test after every fix"
+        ]
+      }
+    }
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "heading": "Everything you need to know before you scan",
+    "subheading": "Straight answers about what SiteSnap checks, what you get at each tier, and how the fixes work.",
+    "items": {
+      "whatIsSitesnap": {
+        "q": "What is SiteSnap and how does it audit my website's SEO?",
+        "a": "SiteSnap is an 8-in-1 SEO and AI-readiness scanner. You paste a URL and within ~30 seconds we audit your page across classic SEO, technical SEO, Google Ads landing-page quality, AEO (Answer Engine Optimization for ChatGPT, Perplexity, Gemini), and GEO (Generative Engine Optimization) — then we tell you exactly what's broken and what to fix."
+      },
+      "whatChecked": {
+        "q": "What does a full SEO audit check — and what does SiteSnap analyze on my page?",
+        "a": "Every scan runs all eight pillars: on-page SEO (title, meta, headings, content), technical SEO (status codes, robots, sitemap, crawlability), Core Web Vitals & performance, mobile-friendliness, structured data (JSON-LD / schema.org), Google Ads landing-page quality plus an ad-copy quality rater for your headlines and descriptions, AEO readiness for AI answer engines, and GEO readiness for generative search."
+      },
+      "adCopyRater": {
+        "q": "How do I improve my Google Ads Quality Score and ad rank?",
+        "a": "Paste your Google Ads headlines and descriptions into SiteSnap and we rate ad-copy quality the way Google does: keyword relevance, intent match, clarity, character-budget efficiency, CTA strength, and how well your copy aligns with the landing page it points to. You get a per-asset score and concrete rewrites that lift Quality Score, Ad Rank, and CTR — and lower your cost per click."
+      },
+      "howLong": {
+        "q": "How long does an SEO audit take with SiteSnap?",
+        "a": "Most scans complete in 20–40 seconds. You'll see live progress as each pillar runs, and the full report appears as soon as the last check finishes — no waiting for an email."
+      },
+      "freeVsPaid": {
+        "q": "Is there a free SEO audit tool that shows real issues, not just a teaser?",
+        "a": "Yes — the free SiteSnap scan gives you the overall score, score per pillar, and the top 3 issues per section, so you actually see where you stand. Basic (€19) unlocks every finding plus a full PDF report and a competitor comparison. Pro (€29) adds copy-paste fixes and step-by-step technical guides for every issue."
+      },
+      "basicVsPro": {
+        "q": "Should I buy SiteSnap Basic or Pro to fix my SEO?",
+        "a": "Basic is the full data report — all issues, all findings, full PDF, 3 scans. Pro is Basic plus the actual solutions: copy-paste meta tags, JSON-LD blocks, robots/sitemap snippets, and step-by-step instructions for every problem we find. If you want to fix things yourself or hand a clear task list to a developer, pick Pro. Pro also includes 10 scans so you can re-test after each fix."
+      },
+      "aiReady": {
+        "q": "How do I rank in ChatGPT, Perplexity and Google AI Overviews?",
+        "a": "Our AEO and GEO pillars check exactly the signals AI answer engines use to cite a page: clear question-and-answer structure, factual freshness, schema.org markup, llms.txt, semantic HTML, and quotable content blocks. You'll see a separate AI-readiness score and the specific changes that improve your odds of being cited by ChatGPT, Perplexity, Gemini, and Google's AI Overviews."
+      },
+      "whoFor": {
+        "q": "Who should use SiteSnap — marketers, developers, or agencies?",
+        "a": "Marketers, founders, freelancers, developers, and agencies all use SiteSnap. Marketers and founders get a fast, honest read on Google rankings, Google Ads quality, and AI-engine visibility. Developers get copy-paste meta, schema, robots, and HTML snippets they can drop straight into the codebase. Agencies use the PDF report as a client-ready deliverable — no need to learn ten tools or commission a manual audit."
+      },
+      "needSignup": {
+        "q": "Can I run an SEO audit without signing up or creating an account?",
+        "a": "Yes. Free scans require nothing — no email, no account, no card. Basic and Pro are one-time payments with no subscription, no recurring charges, and no account to manage. Your report is delivered by email and stays accessible from the link."
+      },
+      "refund": {
+        "q": "Does SiteSnap offer a money-back guarantee on the SEO report?",
+        "a": "Yes. Both Basic and Pro come with a moneyback guarantee. If the report doesn't give you actionable insight, contact support and we refund you. One-time payment, no subscription, no fine print."
+      },
+      "howFixes": {
+        "q": "How do I fix SEO issues fast — does SiteSnap give me ready-to-paste code?",
+        "a": "Yes. For every issue we find, Pro includes a ready-to-paste solution: the exact title tag, meta description, JSON-LD block, robots directive, image alt text, or HTML snippet your developer (or you) can drop straight into the site. Each fix comes with a short step-by-step explaining where it goes and why it matters."
+      }
+    }
+  },
+  "upgradeCta": {
+    "eyebrow": "Free scan → Pro report",
+    "title": "Start your free scan. Upgrade to Pro for the full fix list.",
+    "description": "Run a free scan in under 30 seconds — you'll see your overall score and the top issues. Upgrade to Pro €29 to unlock the complete PDF report, 10 scans, and copy-paste fixes for every problem we find.",
+    "button": "Start scanning",
+    "hint": "No signup · One-time payment, no subscription · Moneyback guarantee",
+    "perks": {
+      "pdf": "PDF report you can share with your team, client, or developer",
+      "scans": "10 Pro scans included — re-test after every fix",
+      "fixes": "Ready-to-paste code & step-by-step fix instructions"
+    }
+  },
+  "seo": {
+    "home": {
+      "title": "SiteSnap — Free SEO, AEO, GEO & Google Ads Analyzer | Scan. Snap. Fix.",
+      "description": "Free website analyzer that scores SEO, AEO, GEO and Google Ads landing-page experience in one click — and gives you copy-paste fixes you can ship today."
+    },
+    "checkout": {
+      "title": "Checkout — Unlock Pro Fixes | SiteSnap",
+      "description": "Secure checkout for SiteSnap Basic (€19) or Pro (€29). Get full audit data and copy-paste SEO, AEO, GEO and Ads fixes."
+    },
+    "privacy": {
+      "title": "Privacy Policy | SiteSnap",
+      "description": "How SiteSnap collects, processes and protects your data when you scan websites with our SEO, AEO, GEO and Google Ads analyzer."
+    },
+    "terms": {
+      "title": "Terms of Service | SiteSnap",
+      "description": "The terms that govern your use of SiteSnap's website analyzer, scoring tools and copy-paste fix reports."
+    },
+    "refund": {
+      "title": "Refund & Cancellation Policy | SiteSnap",
+      "description": "SiteSnap's refund and cancellation rules for Basic (€19) and Pro (€29) one-time scan reports."
+    },
+    "delivery": {
+      "title": "Delivery & Fulfillment | SiteSnap",
+      "description": "How SiteSnap delivers your paid scan report and Pro fix instructions after purchase — instant access plus email PDF."
+    },
+    "verify": {
+      "title": "Verify Email | SiteSnap",
+      "description": "Confirm your email to unlock your SiteSnap report and fix instructions."
+    },
+    "ads": {
+      "title": "Google Ads Landing Page Analyzer | SiteSnap",
+      "description": "Score your Google Ads landing-page experience: TTFB, CDN, cache, redirects, mobile UX and ad-copy quality with copy-paste fixes."
+    },
+    "aeo": {
+      "title": "AEO / AI SEO Analyzer for ChatGPT & Perplexity | SiteSnap",
+      "description": "Check how ready your site is for AI search engines: structured data, citation likelihood, ChatGPT/Perplexity preview and content gaps."
+    },
+    "dashboard": {
+      "title": "SiteSnap Dashboard — Run an SEO, AEO & Ads Audit",
+      "description": "Run SiteSnap's full website audit: SEO, AEO, GEO and Google Ads landing-page experience in one click with copy-paste fixes."
+    },
+    "siteTools": {
+      "title": "Site Tools — Broken Links, Images, Sitemap & Robots | SiteSnap",
+      "description": "Free site-wide tools: broken-link checker, image optimization, internal linking, sitemap and robots.txt validation."
+    }
+  }
+}

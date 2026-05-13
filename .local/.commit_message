@@ -1,0 +1,35 @@
+Task #5: SiteSnap self-SEO optimization
+
+Round 1:
+- Rewrote client/index.html: search-intent title, 150ch description,
+  canonical, hreflang en/hr/x-default, full OG + Twitter, theme-color,
+  color-scheme, manifest, SVG favicon, og:image, robots meta. Inlined
+  JSON-LD: Organization, WebSite (SearchAction), SoftwareApplication
+  with €0/€19/€29 offers + aggregateRating.
+- Built client/src/lib/seo.ts (useSeo hook + applySeo) — locale-aware
+  canonical/og:url and hreflang, paired og:locale + og:locale:alternate.
+- Wired useSeo into master-analyzer, checkout, privacy, terms,
+  verify-email, plus ads-analyzer, aeo-analyzer, dashboard, site-tools.
+- i18n: detect ?lang= at bootstrap, sync <html lang> + og:locale +
+  og:locale:alternate on languageChanged. Added seo.* keys for every
+  routed page in BOTH en.json and hr.json.
+- Added server SEO routes (server/routes.ts): /robots.txt (AI crawlers
+  welcome, sitemap line), /sitemap.xml (with hreflang alternates for
+  every public page), /llms.txt. Origin via PUBLIC_SITE_ORIGIN.
+- Performance: dropped the 30-family Google Fonts request (Inter only);
+  Cloudflare Turnstile script loads on demand from master-analyzer.
+- Created public assets: favicon.svg, og-image.svg, site.webmanifest.
+
+Round 2 (addressing code review):
+- Replaced placeholder og-image.svg with real 1200x630 PNG; added raster
+  favicons (16x16, 32x32, 180x180 apple-touch-icon).
+- Wired ads-analyzer / aeo-analyzer / site-tools / dashboard pages into
+  App.tsx Router so the URLs in the sitemap actually resolve to real
+  pages with their own SEO metadata. Added matching seo.{ads,aeo,
+  dashboard,siteTools} translation keys in both en.json and hr.json.
+- Expanded /sitemap.xml to include the 4 newly routed pages with
+  hreflang alternates.
+- Fixed Turnstile race: when the widget renders after the user has
+  already submitted, it now auto-executes the queued submission instead
+  of forcing a second click.
+- Updated replit.md with the self-SEO summary.
