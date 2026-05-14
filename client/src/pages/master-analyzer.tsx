@@ -4261,7 +4261,7 @@ export default function MasterAnalyzerPage() {
       <HeroSection />
 
       <div className="container mx-auto px-4 py-8">
-        <Card id="scanner" className="mb-8 border-primary/20 shadow-lg scroll-mt-6">
+        <Card id="scanner" className="mb-8 border-0 shadow-xl scroll-mt-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
           <CardContent className="pt-6">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col md:flex-row gap-3">
@@ -4273,7 +4273,7 @@ export default function MasterAnalyzerPage() {
                       <FormControl>
                         <Input
                           placeholder={t('form.placeholder')}
-                          className="h-12 text-lg"
+                          className="h-12 text-lg bg-white dark:bg-white text-slate-900 dark:text-slate-900 placeholder:text-slate-400 border-white/20 focus-visible:ring-white/40"
                           {...field}
                           data-testid="master-url"
                         />
@@ -4362,7 +4362,7 @@ export default function MasterAnalyzerPage() {
                       )}
                     </div>
                   ) : (
-                    <Button size="sm" variant="ghost" onClick={() => setShowAccessCodeInput(true)} className="h-8 text-xs text-muted-foreground hover:text-foreground">
+                    <Button size="sm" variant="outline" onClick={() => setShowAccessCodeInput(true)} className="h-8 text-xs font-semibold border-amber-400/70 bg-amber-400/10 text-amber-300 hover:bg-amber-400/20 hover:text-amber-200 hover:border-amber-300">
                       <KeyRound className="w-3.5 h-3.5 mr-1.5" />
                       {t('accessCode.haveCode')}
                     </Button>
@@ -4371,15 +4371,15 @@ export default function MasterAnalyzerPage() {
               )}
               <div className="flex items-center gap-2">
                 {!activeAccessCode && freeScansLeft !== null && (
-                  <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${freeScansLeft > 1 ? 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800' : freeScansLeft === 1 ? 'bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800' : 'bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800'}`}>
+                  <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${freeScansLeft > 1 ? 'bg-emerald-400/15 text-emerald-300 border-emerald-400/40' : freeScansLeft === 1 ? 'bg-amber-400/15 text-amber-300 border-amber-400/40' : 'bg-red-400/15 text-red-300 border-red-400/40'}`}>
                     <Gauge className="w-3 h-3" />
                     {t('accessCode.ofToday', { count: freeScansLeft })}
                   </div>
                 )}
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/5 dark:bg-primary/10 border border-primary/20 text-xs font-medium text-primary">
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-medium text-white/70">
                   <Sparkles className="w-3 h-3" />
                   {t('accessCode.freeScans')}
-                  <span className="text-primary/50">·</span>
+                  <span className="text-white/30">·</span>
                   {t('accessCode.paidPlans')}
                 </div>
               </div>
