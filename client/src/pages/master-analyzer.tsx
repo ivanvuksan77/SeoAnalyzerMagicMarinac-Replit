@@ -196,10 +196,10 @@ function OverallDashboard({ data, onDownloadPdf, sessionId, paidTier, emailCaptu
   const showFreePlan = isFreeTier;
   const showBasicPlan = !isProTier;
   const plansGridClass = isFreeTier
-    ? "grid grid-cols-1 lg:grid-cols-3 gap-3"
+    ? "grid grid-cols-1 sm:grid-cols-3 gap-3"
     : isProTier
-    ? "grid grid-cols-1 max-w-xs mx-auto gap-3"
-    : "grid grid-cols-1 lg:grid-cols-2 gap-3";
+    ? "grid grid-cols-1 gap-3"
+    : "grid grid-cols-1 sm:grid-cols-2 gap-3";
 
   return (
     <Card className="mb-8" data-testid="master-overview">
@@ -246,9 +246,9 @@ function OverallDashboard({ data, onDownloadPdf, sessionId, paidTier, emailCaptu
             {showBasicPlan && (
             <Card className="border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-950/30">
               <CardContent className="p-4 text-center">
-                <div className="text-lg font-bold text-blue-600">{t('dashboard.basicPrice')}</div>
+                {!isBasicTier && <div className="text-lg font-bold text-blue-600">{t('dashboard.basicPrice')}</div>}
                 <p className="text-xs text-muted-foreground mt-1">{t('dashboard.basicDesc')}</p>
-                <p className="text-[10px] text-blue-600/70 dark:text-blue-400/70 mt-0.5 font-medium">{t('dashboard.basicCredits')}</p>
+                {!isBasicTier && <p className="text-[10px] text-blue-600/70 dark:text-blue-400/70 mt-0.5 font-medium">{t('dashboard.basicCredits')}</p>}
                 <Button onClick={() => onDownloadPdf('basic')} size="sm" className="mt-3 w-full bg-blue-600 hover:bg-blue-700">
                   {isBasicTier && emailCaptured ? <Download className="w-4 h-4 mr-1" /> : <CreditCard className="w-4 h-4 mr-1" />}
                   {t('dashboard.basicReport')}
@@ -258,12 +258,16 @@ function OverallDashboard({ data, onDownloadPdf, sessionId, paidTier, emailCaptu
             )}
             <Card className="border-purple-200 dark:border-purple-800 bg-purple-50 dark:bg-purple-950/30 ring-2 ring-purple-400">
               <CardContent className="p-4 text-center">
-                <div className="flex items-center justify-center gap-1">
-                  <Crown className="w-4 h-4 text-purple-500" />
-                  <div className="text-lg font-bold text-purple-600">{t('dashboard.proPrice')}</div>
-                </div>
+                {!isProTier ? (
+                  <div className="flex items-center justify-center gap-1">
+                    <Crown className="w-4 h-4 text-purple-500" />
+                    <div className="text-lg font-bold text-purple-600">{t('dashboard.proPrice')}</div>
+                  </div>
+                ) : (
+                  <Crown className="w-4 h-4 text-purple-500 mx-auto" />
+                )}
                 <p className="text-xs text-muted-foreground mt-1">{t('dashboard.proDesc')}</p>
-                <p className="text-[10px] text-purple-600/70 dark:text-purple-400/70 mt-0.5 font-medium">{t('dashboard.proCredits')}</p>
+                {!isProTier && <p className="text-[10px] text-purple-600/70 dark:text-purple-400/70 mt-0.5 font-medium">{t('dashboard.proCredits')}</p>}
                 <Button onClick={() => onDownloadPdf('pro')} size="sm" className="mt-3 w-full bg-purple-600 hover:bg-purple-700">
                   {isProTier && emailCaptured ? <Download className="w-4 h-4 mr-1" /> : <Star className="w-4 h-4 mr-1" />}
                   {t('dashboard.proReport')}
