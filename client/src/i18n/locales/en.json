@@ -1101,7 +1101,7 @@
     "heading": "Everything you need to know before you scan",
     "subheading": "Straight answers about what FreeSEOSiteAnalyzer checks, what you get at each tier, and how the fixes work.",
     "items": {
-      "whatIsSitesnap": {
+      "whatIsFreeSEOSiteAnalyzer": {
         "q": "What is FreeSEOSiteAnalyzer and how does it audit my website's SEO?",
         "a": "FreeSEOSiteAnalyzer is an 8-in-1 SEO and AI-readiness scanner. You paste a URL and within ~30 seconds we audit your page across classic SEO, technical SEO, Google Ads landing-page quality, AEO (Answer Engine Optimization for ChatGPT, Perplexity, Gemini), and GEO (Generative Engine Optimization) — then we tell you exactly what's broken and what to fix."
       },
