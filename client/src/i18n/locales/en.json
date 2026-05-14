@@ -196,11 +196,15 @@
       "getPro": "Get Pro Report"
     },
     "accessCode": {
-      "title": "Your Access Code",
-      "description": "Save this code — you'll need it to use your remaining scans when you return.",
-      "tierScans": "{{tier}} tier · {{count}} scans available",
-      "copy": "Copy Access Code",
-      "hint": "Enter this code in the \"Have an access code?\" field when you return to use your remaining scans."
+      "title": "Payment Successful",
+      "description": "We sent a verification email to {{email}}. Please verify your email to unlock your {{tier}} access and {{count}} scans.",
+      "checkEmail": "Check your inbox and click the verification link to activate your access.",
+      "close": "Got it, I'll check my email"
+    },
+    "verifiedBanner": {
+      "title": "Email Verified & Access Activated!",
+      "description": "Your {{tier}} access is now active. You have {{count}} scans available — start your first analysis below.",
+      "dismiss": "Dismiss"
     },
     "upgradeEmail": {
       "title": "Enter Your Email",

@@ -732,11 +732,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const session = createEmailSession(entry.email);
       const params = new URLSearchParams({
+        verified: "1",
         session,
         code: entry.code,
         email: entry.email,
       });
-      return res.redirect(`/verify-email?${params.toString()}`);
+      return res.redirect(`/?${params.toString()}`);
     } catch (error: any) {
       console.error("[verification] verify-email error:", error);
       return res.redirect(`/verify-email?error=server_error`);
@@ -953,12 +954,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const paidTier = getPaidTier(sessionId);
 
       if (isDev && paidTier !== 'free') {
-        const devFallbackCode = await createAccessCode(getEmail(sessionId) || 'dev@test.com', tier, `session-${sessionId}`);
+        const devEmail = getEmail(sessionId) || 'dev@test.com';
+        const devFallbackCode = await createAccessCode(devEmail, tier, `session-${sessionId}`);
         return res.json({
           accessCode: devFallbackCode.code,
           tier: devFallbackCode.tier,
           scansRemaining: devFallbackCode.scansRemaining,
           scansTotal: devFallbackCode.scansTotal,
+          email: devEmail,
         });
       }
 
@@ -985,6 +988,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         tier: accessCodeEntry.tier,
         scansRemaining: accessCodeEntry.scansRemaining,
         scansTotal: accessCodeEntry.scansTotal,
+        email: accessCodeEntry.email || accessCodeEntry.claimedByEmail || '',
       });
     } catch (error: any) {
       res.status(400).json({ message: error.message });

@@ -196,11 +196,15 @@
       "getPro": "Preuzmi Pro izvještaj"
     },
     "accessCode": {
-      "title": "Vaš pristupni kôd",
-      "description": "Spremite ovaj kôd — trebat će vam za korištenje preostalih skeniranja kad se vratite.",
-      "tierScans": "{{tier}} razina · {{count}} skeniranja dostupno",
-      "copy": "Kopiraj pristupni kôd",
-      "hint": "Unesite ovaj kôd u polje \"Imate pristupni kôd?\" kad se vratite za korištenje preostalih skeniranja."
+      "title": "Plaćanje uspješno",
+      "description": "Poslali smo e-mail za verifikaciju na {{email}}. Potvrdite e-mail za otključavanje {{tier}} pristupa i {{count}} skeniranja.",
+      "checkEmail": "Provjerite inbox i kliknite na poveznicu za verifikaciju kako biste aktivirali pristup.",
+      "close": "Razumijem, provjerit ću e-mail"
+    },
+    "verifiedBanner": {
+      "title": "E-mail potvrđen i pristup aktiviran!",
+      "description": "Vaš {{tier}} pristup je aktivan. Imate {{count}} skeniranja dostupno — pokrenite prvu analizu ispod.",
+      "dismiss": "Zatvori"
     },
     "upgradeEmail": {
       "title": "Unesite email",

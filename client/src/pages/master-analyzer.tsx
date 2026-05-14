@@ -3750,7 +3750,8 @@ export default function MasterAnalyzerPage() {
   });
   const [showAccessCodeDisplay, setShowAccessCodeDisplay] = useState(false);
   const [generatedAccessCode, setGeneratedAccessCode] = useState<string>('');
-  const [pendingCodeData, setPendingCodeData] = useState<{ tier: string; scansRemaining: number; scansTotal: number } | null>(null);
+  const [pendingCodeData, setPendingCodeData] = useState<{ tier: string; scansRemaining: number; scansTotal: number; email: string } | null>(null);
+  const [verificationSuccess, setVerificationSuccess] = useState<{ email: string; scansRemaining: number; tier: string } | null>(null);
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('seo-analyzer-theme');
@@ -3807,7 +3808,7 @@ export default function MasterAnalyzerPage() {
         const data = await response.json();
         if (data.accessCode) {
           setGeneratedAccessCode(data.accessCode);
-          setPendingCodeData({ tier: data.tier, scansRemaining: data.scansRemaining, scansTotal: data.scansTotal });
+          setPendingCodeData({ tier: data.tier, scansRemaining: data.scansRemaining, scansTotal: data.scansTotal, email: data.email || '' });
           setShowAccessCodeDisplay(true);
           return;
         }
@@ -3829,6 +3830,35 @@ export default function MasterAnalyzerPage() {
     if (payment === 'success' && session && tier && (tier === 'basic' || tier === 'pro')) {
       fetchAccessCodeWithRetry(session, tier);
       window.history.replaceState({}, '', '/');
+    }
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const verified = params.get('verified');
+    const session = params.get('session');
+    const code = params.get('code');
+    const email = params.get('email');
+
+    if (verified === '1' && session && code && email) {
+      window.history.replaceState({}, '', '/');
+      try {
+        localStorage.setItem('seo-analyzer-email-session', JSON.stringify({ session, email: email.toLowerCase(), code: code.toUpperCase() }));
+      } catch {}
+      apiRequest("POST", "/api/redeem-code", { code, emailSessionToken: session })
+        .then(r => r.json())
+        .then(data => {
+          if (data.valid) {
+            setActiveAccessCode({ code: code.toUpperCase(), tier: data.tier, scansRemaining: data.scansRemaining, scansTotal: data.scansTotal });
+            setPaidTier(data.tier);
+            setVerificationSuccess({ email, scansRemaining: data.scansRemaining, tier: data.tier });
+          } else {
+            setVerificationSuccess({ email, scansRemaining: 0, tier: '' });
+          }
+        })
+        .catch(() => {
+          setVerificationSuccess({ email, scansRemaining: 0, tier: '' });
+        });
     }
   }, []);
 
@@ -4293,6 +4323,23 @@ export default function MasterAnalyzerPage() {
               </form>
             </Form>
 
+            {verificationSuccess && (
+              <div className="mt-4 p-4 rounded-lg border border-green-200 dark:border-green-800 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/40 dark:to-emerald-950/40 flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 shrink-0 mt-0.5" />
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-green-800 dark:text-green-200">{t('modals.verifiedBanner.title')}</p>
+                  <p className="text-sm text-green-700 dark:text-green-300 mt-0.5">
+                    {verificationSuccess.scansRemaining > 0
+                      ? t('modals.verifiedBanner.description', { tier: verificationSuccess.tier === 'pro' ? 'Pro' : 'Basic', count: verificationSuccess.scansRemaining })
+                      : verificationSuccess.email}
+                  </p>
+                </div>
+                <Button variant="ghost" size="sm" className="text-green-700 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900/40 h-7 px-2 text-xs shrink-0" onClick={() => setVerificationSuccess(null)}>
+                  {t('modals.verifiedBanner.dismiss')}
+                </Button>
+              </div>
+            )}
+
             <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
               {activeAccessCode ? (
                 <div className="flex items-center gap-3">
@@ -4582,32 +4629,25 @@ export default function MasterAnalyzerPage() {
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
-                <TicketCheck className="w-5 h-5 text-purple-500" />
+                <CheckCircle2 className="w-5 h-5 text-green-500" />
                 {t('modals.accessCode.title')}
               </DialogTitle>
               <DialogDescription>
-                {t('modals.accessCode.description')}
+                {t('modals.accessCode.description', {
+                  email: pendingCodeData?.email || '',
+                  tier: pendingCodeData?.tier === 'pro' ? 'Pro' : 'Basic',
+                  count: pendingCodeData?.scansRemaining ?? 0,
+                })}
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4">
-              <div className="p-4 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/40 dark:to-blue-950/40 rounded-lg border-2 border-purple-200 dark:border-purple-800 text-center">
-                <p className="text-2xl font-mono font-bold text-purple-700 dark:text-purple-300 tracking-wider">{generatedAccessCode}</p>
+              <div className="p-4 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950/40 dark:to-blue-950/40 rounded-lg border border-green-200 dark:border-green-800 flex items-start gap-3">
+                <Mail className="w-5 h-5 text-green-600 dark:text-green-400 shrink-0 mt-0.5" />
+                <p className="text-sm text-green-800 dark:text-green-200">{t('modals.accessCode.checkEmail')}</p>
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
-                <span>{t('modals.accessCode.tierScans', { tier: pendingCodeData?.tier === 'pro' ? 'Pro' : 'Basic', count: pendingCodeData?.scansRemaining })}</span>
-              </div>
-              <Button
-                onClick={() => {
-                  navigator.clipboard.writeText(generatedAccessCode);
-                  toast({ title: t('toast.copied'), description: t('toast.codeCopied') });
-                }}
-                variant="outline"
-                className="w-full"
-              >
-                <Copy className="w-4 h-4 mr-2" />{t('modals.accessCode.copy')}
+              <Button onClick={() => setShowAccessCodeDisplay(false)} className="w-full">
+                {t('modals.accessCode.close')}
               </Button>
-              <p className="text-[10px] text-muted-foreground text-center">{t('modals.accessCode.hint')}</p>
             </div>
           </DialogContent>
         </Dialog>
