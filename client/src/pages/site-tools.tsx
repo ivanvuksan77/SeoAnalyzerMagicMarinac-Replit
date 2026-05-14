@@ -745,7 +745,7 @@ export default function SiteToolsPage() {
               <Search className="text-primary-foreground w-4 h-4" />
             </div>
             <div className="flex flex-col leading-tight">
-              <h1 className="text-2xl font-bold text-foreground">FreeSEOSiteAnalyzer</h1>
+              <h1 className="text-xl font-bold text-foreground">FreeSEOSiteAnalyzer</h1>
               <span className="text-[11px] font-medium tracking-wide text-muted-foreground">Scan. Snap. Fix What Matters.</span>
             </div>
           </div>
