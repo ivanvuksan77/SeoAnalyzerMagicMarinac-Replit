@@ -3,6 +3,7 @@ import { randomUUID } from "crypto";
 interface AnalysisSession {
   data: any;
   email: string | null;
+  lang: "en" | "hr";
   paidTier: "free" | "basic" | "pro";
   pendingOrderId: string | null;
   pendingTier: "basic" | "pro" | null;
@@ -34,12 +35,25 @@ export function storeAnalysis(data: any): string {
   analysisStore.set(sessionId, {
     data,
     email: null,
+    lang: "en",
     paidTier: "free",
     pendingOrderId: null,
     pendingTier: null,
     createdAt: new Date(),
   });
   return sessionId;
+}
+
+export function storeLang(sessionId: string, lang: "en" | "hr"): void {
+  const session = analysisStore.get(sessionId);
+  if (session) {
+    session.lang = lang;
+  }
+}
+
+export function getLang(sessionId: string): "en" | "hr" {
+  const session = analysisStore.get(sessionId);
+  return session ? session.lang : "en";
 }
 
 export function getAnalysis(sessionId: string): any | null {

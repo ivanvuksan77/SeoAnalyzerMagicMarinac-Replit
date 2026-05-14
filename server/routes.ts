@@ -10,7 +10,7 @@ import { aeoAnalyzer } from "./services/aeoAnalyzer";
 import { siteTools } from "./services/siteTools";
 import { geoAnalyzer } from "./services/geoAnalyzer";
 import { rateLimiter } from "./services/rateLimiter";
-import { storeAnalysis, getAnalysis, markPaid, getPaidTier, storeEmail, getEmail, setPendingPayment, getPendingOrderId, findSessionByPendingOrderId } from "./services/analysisStore";
+import { storeAnalysis, getAnalysis, markPaid, getPaidTier, storeEmail, getEmail, storeLang, getLang, setPendingPayment, getPendingOrderId, findSessionByPendingOrderId } from "./services/analysisStore";
 import { isMyPOSConfigured, createMyPOSCheckoutForm, verifyMyPOSNotification } from "./services/mypos";
 import { isMailchimpConfigured, addSubscriber } from "./services/mailchimp";
 import { createAccessCode, redeemAccessCode, useOneScan, getAccessCodeInfo, isAdminCode, findAccessCodeByPaymentId, savePaymentRecord, loadAccessCodesFromFirestore, markAccessCodeVerified } from "./services/accessCodeStore";
@@ -573,6 +573,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           url: data.url,
           tier: effectiveTier as 'free' | 'basic' | 'pro',
           downloadLink,
+          lang,
         });
         markPdfEmailSent({ sessionId, tier: effectiveTier as 'free' | 'basic' | 'pro', lang });
         res.json({ success: true, sentTo: email, tier: effectiveTier, expiresAt, downloadLink });
@@ -755,9 +756,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         tzOffsetMinutes: requestReceivedAt.getTimezoneOffset(),
         nodeVersion: process.version,
       });
-      const { sessionId, tier, email, firstName, lastName, phone, country, city, zipCode, address } = z.object({
+      const { sessionId, tier, lang: checkoutLang, email, firstName, lastName, phone, country, city, zipCode, address } = z.object({
         sessionId: z.string(),
         tier: z.enum(['basic', 'pro']),
+        lang: z.enum(['en', 'hr']).default('en'),
         email: z.string().email("Valid email is required for paid checkout"),
         firstName: z.string().trim().min(1, "First name is required"),
         lastName: z.string().trim().min(1, "Last name is required"),
@@ -785,6 +787,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       storeEmail(sessionId, email);
+      storeLang(sessionId, checkoutLang);
 
       if (!isMyPOSConfigured()) {
         const isDev = process.env.NODE_ENV !== 'production';
@@ -912,7 +915,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             // Send the verification magic-link so the buyer can prove email
             // ownership and unlock their scans / PDF.
             try {
-              const lang = (paymentData as any).lang === "hr" ? "hr" : "en";
+              const lang = getLang(sessionId);
               const tokenEntry = await createVerificationToken(accessCode.code, customerEmail, lang);
               const configuredBaseUrl = (process.env.PUBLIC_BASE_URL || process.env.APP_BASE_URL || "").trim().replace(/\/+$/, "");
               const baseUrl = configuredBaseUrl || `${req.protocol}://${req.get("host")}`;
@@ -1062,9 +1065,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/llms.txt", (_req, res) => {
     const body =
-      `# SiteSnap\n` +
+      `# FreeSEOSiteAnalyzer\n` +
       `> Free website analyzer for SEO, AEO, GEO and Google Ads landing-page experience. Slogan: Scan. Snap. Fix What Matters.\n\n` +
-      `SiteSnap runs four audits in one click and returns copy-paste fixes for the issues that hurt your ranking, AI citations and Google Ads Quality Score.\n\n` +
+      `FreeSEOSiteAnalyzer runs four audits in one click and returns copy-paste fixes for the issues that hurt your ranking, AI citations and Google Ads Quality Score.\n\n` +
       `## Pricing\n` +
       `- Free: overall score plus the top issues.\n` +
       `- Basic — €19 one-time: full audit data, no fix instructions.\n` +

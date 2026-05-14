@@ -84,6 +84,7 @@ export default function CheckoutPage() {
       const response = await apiRequest("POST", "/api/create-checkout", {
         sessionId,
         tier: selectedTier,
+        lang: i18n.language === 'hr' ? 'hr' : 'en',
         email: customerForm.email.trim(),
         firstName: customerForm.firstName.trim(),
         lastName: customerForm.lastName.trim(),

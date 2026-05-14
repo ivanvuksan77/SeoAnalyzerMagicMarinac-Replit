@@ -1,6 +1,6 @@
 {
   "header": {
-    "title": "SiteSnap",
+    "title": "FreeSEOSiteAnalyzer",
     "toggleDark": "Toggle dark mode",
     "toggleLang": "Switch language",
     "languageEnglish": "English",
@@ -84,10 +84,12 @@
     "basicDesc": "Full technical breakdown",
     "basicCredits": "5 scan credits · Never expire",
     "basicReport": "Basic Report",
+    "downloadBasicReport": "Download Basic Report",
     "proPrice": "€29",
     "proDesc": "Full report with advanced recommendations",
     "proCredits": "10 scan credits · Never expire",
     "proReport": "Pro Report",
+    "downloadProReport": "Download Pro Report",
     "devPreview": "Dev Preview:"
   },
   "sections": {
@@ -167,6 +169,24 @@
       "emailPlaceholder": "you@example.com",
       "sending": "Sending...",
       "download": "Send Free Report",
+      "privacy": "We respect your privacy. Unsubscribe anytime."
+    },
+    "basicReport": {
+      "title": "Get Your Basic SEO Report",
+      "description": "Enter your email to receive your Basic SEO report with full technical breakdown and all detailed checks across 8 tools.",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "you@example.com",
+      "sending": "Sending...",
+      "download": "Send Basic Report",
+      "privacy": "We respect your privacy. Unsubscribe anytime."
+    },
+    "proReport": {
+      "title": "Get Your Pro SEO Report",
+      "description": "Enter your email to receive your Pro SEO report with complete fix instructions, step-by-step recommendations, and code snippets.",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "you@example.com",
+      "sending": "Sending...",
+      "download": "Send Pro Report",
       "privacy": "We respect your privacy. Unsubscribe anytime."
     },
     "pricing": {
@@ -354,7 +374,7 @@
   },
   "footer": {
     "madeIn": "Made in",
-    "copyrightPrefix": "© {{year}} SiteSnap. Made in",
+    "copyrightPrefix": "© {{year}} FreeSEOSiteAnalyzer. Made in",
     "companyName": "MagićMarinac",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
@@ -1023,7 +1043,7 @@
     }
   },
   "comparisonTable": {
-    "heading": "Choose your SiteSnap plan",
+    "heading": "Choose your FreeSEOSiteAnalyzer plan",
     "subheading": "Free shows you the score. Basic unlocks all the data. Pro hands you the fixes.",
     "note": "No signup · One-time payment, no subscription · Moneyback guarantee",
     "tiers": {
@@ -1079,30 +1099,30 @@
   "faq": {
     "eyebrow": "FAQ",
     "heading": "Everything you need to know before you scan",
-    "subheading": "Straight answers about what SiteSnap checks, what you get at each tier, and how the fixes work.",
+    "subheading": "Straight answers about what FreeSEOSiteAnalyzer checks, what you get at each tier, and how the fixes work.",
     "items": {
       "whatIsSitesnap": {
-        "q": "What is SiteSnap and how does it audit my website's SEO?",
-        "a": "SiteSnap is an 8-in-1 SEO and AI-readiness scanner. You paste a URL and within ~30 seconds we audit your page across classic SEO, technical SEO, Google Ads landing-page quality, AEO (Answer Engine Optimization for ChatGPT, Perplexity, Gemini), and GEO (Generative Engine Optimization) — then we tell you exactly what's broken and what to fix."
+        "q": "What is FreeSEOSiteAnalyzer and how does it audit my website's SEO?",
+        "a": "FreeSEOSiteAnalyzer is an 8-in-1 SEO and AI-readiness scanner. You paste a URL and within ~30 seconds we audit your page across classic SEO, technical SEO, Google Ads landing-page quality, AEO (Answer Engine Optimization for ChatGPT, Perplexity, Gemini), and GEO (Generative Engine Optimization) — then we tell you exactly what's broken and what to fix."
       },
       "whatChecked": {
-        "q": "What does a full SEO audit check — and what does SiteSnap analyze on my page?",
+        "q": "What does a full SEO audit check — and what does FreeSEOSiteAnalyzer analyze on my page?",
         "a": "Every scan runs all eight pillars: on-page SEO (title, meta, headings, content), technical SEO (status codes, robots, sitemap, crawlability), Core Web Vitals & performance, mobile-friendliness, structured data (JSON-LD / schema.org), Google Ads landing-page quality plus an ad-copy quality rater for your headlines and descriptions, AEO readiness for AI answer engines, and GEO readiness for generative search."
       },
       "adCopyRater": {
         "q": "How do I improve my Google Ads Quality Score and ad rank?",
-        "a": "Paste your Google Ads headlines and descriptions into SiteSnap and we rate ad-copy quality the way Google does: keyword relevance, intent match, clarity, character-budget efficiency, CTA strength, and how well your copy aligns with the landing page it points to. You get a per-asset score and concrete rewrites that lift Quality Score, Ad Rank, and CTR — and lower your cost per click."
+        "a": "Paste your Google Ads headlines and descriptions into FreeSEOSiteAnalyzer and we rate ad-copy quality the way Google does: keyword relevance, intent match, clarity, character-budget efficiency, CTA strength, and how well your copy aligns with the landing page it points to. You get a per-asset score and concrete rewrites that lift Quality Score, Ad Rank, and CTR — and lower your cost per click."
       },
       "howLong": {
-        "q": "How long does an SEO audit take with SiteSnap?",
+        "q": "How long does an SEO audit take with FreeSEOSiteAnalyzer?",
         "a": "Most scans complete in 20–40 seconds. You'll see live progress as each pillar runs, and the full report appears as soon as the last check finishes — no waiting for an email."
       },
       "freeVsPaid": {
         "q": "Is there a free SEO audit tool that shows real issues, not just a teaser?",
-        "a": "Yes — the free SiteSnap scan gives you the overall score, score per pillar, and the top 3 issues per section, so you actually see where you stand. Basic (€19) unlocks every finding plus a full PDF report and a competitor comparison. Pro (€29) adds copy-paste fixes and step-by-step technical guides for every issue."
+        "a": "Yes — the free FreeSEOSiteAnalyzer scan gives you the overall score, score per pillar, and the top 3 issues per section, so you actually see where you stand. Basic (€19) unlocks every finding plus a full PDF report and a competitor comparison. Pro (€29) adds copy-paste fixes and step-by-step technical guides for every issue."
       },
       "basicVsPro": {
-        "q": "Should I buy SiteSnap Basic or Pro to fix my SEO?",
+        "q": "Should I buy FreeSEOSiteAnalyzer Basic or Pro to fix my SEO?",
         "a": "Basic is the full data report — all issues, all findings, full PDF, 3 scans. Pro is Basic plus the actual solutions: copy-paste meta tags, JSON-LD blocks, robots/sitemap snippets, and step-by-step instructions for every problem we find. If you want to fix things yourself or hand a clear task list to a developer, pick Pro. Pro also includes 10 scans so you can re-test after each fix."
       },
       "aiReady": {
@@ -1110,19 +1130,19 @@
         "a": "Our AEO and GEO pillars check exactly the signals AI answer engines use to cite a page: clear question-and-answer structure, factual freshness, schema.org markup, llms.txt, semantic HTML, and quotable content blocks. You'll see a separate AI-readiness score and the specific changes that improve your odds of being cited by ChatGPT, Perplexity, Gemini, and Google's AI Overviews."
       },
       "whoFor": {
-        "q": "Who should use SiteSnap — marketers, developers, or agencies?",
-        "a": "Marketers, founders, freelancers, developers, and agencies all use SiteSnap. Marketers and founders get a fast, honest read on Google rankings, Google Ads quality, and AI-engine visibility. Developers get copy-paste meta, schema, robots, and HTML snippets they can drop straight into the codebase. Agencies use the PDF report as a client-ready deliverable — no need to learn ten tools or commission a manual audit."
+        "q": "Who should use FreeSEOSiteAnalyzer — marketers, developers, or agencies?",
+        "a": "Marketers, founders, freelancers, developers, and agencies all use FreeSEOSiteAnalyzer. Marketers and founders get a fast, honest read on Google rankings, Google Ads quality, and AI-engine visibility. Developers get copy-paste meta, schema, robots, and HTML snippets they can drop straight into the codebase. Agencies use the PDF report as a client-ready deliverable — no need to learn ten tools or commission a manual audit."
       },
       "needSignup": {
         "q": "Can I run an SEO audit without signing up or creating an account?",
         "a": "Yes. Free scans require nothing — no email, no account, no card. Basic and Pro are one-time payments with no subscription, no recurring charges, and no account to manage. Your report is delivered by email and stays accessible from the link."
       },
       "refund": {
-        "q": "Does SiteSnap offer a money-back guarantee on the SEO report?",
+        "q": "Does FreeSEOSiteAnalyzer offer a money-back guarantee on the SEO report?",
         "a": "Yes. Both Basic and Pro come with a moneyback guarantee. If the report doesn't give you actionable insight, contact support and we refund you. One-time payment, no subscription, no fine print."
       },
       "howFixes": {
-        "q": "How do I fix SEO issues fast — does SiteSnap give me ready-to-paste code?",
+        "q": "How do I fix SEO issues fast — does FreeSEOSiteAnalyzer give me ready-to-paste code?",
         "a": "Yes. For every issue we find, Pro includes a ready-to-paste solution: the exact title tag, meta description, JSON-LD block, robots directive, image alt text, or HTML snippet your developer (or you) can drop straight into the site. Each fix comes with a short step-by-step explaining where it goes and why it matters."
       }
     }
@@ -1141,47 +1161,47 @@
   },
   "seo": {
     "home": {
-      "title": "SiteSnap — Free SEO, AEO, GEO & Google Ads Analyzer | Scan. Snap. Fix.",
+      "title": "FreeSEOSiteAnalyzer — Free SEO, AEO, GEO & Google Ads Analyzer | Scan. Snap. Fix.",
       "description": "Free website analyzer that scores SEO, AEO, GEO and Google Ads landing-page experience in one click — and gives you copy-paste fixes you can ship today."
     },
     "checkout": {
-      "title": "Checkout — Unlock Pro Fixes | SiteSnap",
-      "description": "Secure checkout for SiteSnap Basic (€19) or Pro (€29). Get full audit data and copy-paste SEO, AEO, GEO and Ads fixes."
+      "title": "Checkout — Unlock Pro Fixes | FreeSEOSiteAnalyzer",
+      "description": "Secure checkout for FreeSEOSiteAnalyzer Basic (€19) or Pro (€29). Get full audit data and copy-paste SEO, AEO, GEO and Ads fixes."
     },
     "privacy": {
-      "title": "Privacy Policy | SiteSnap",
-      "description": "How SiteSnap collects, processes and protects your data when you scan websites with our SEO, AEO, GEO and Google Ads analyzer."
+      "title": "Privacy Policy | FreeSEOSiteAnalyzer",
+      "description": "How FreeSEOSiteAnalyzer collects, processes and protects your data when you scan websites with our SEO, AEO, GEO and Google Ads analyzer."
     },
     "terms": {
-      "title": "Terms of Service | SiteSnap",
-      "description": "The terms that govern your use of SiteSnap's website analyzer, scoring tools and copy-paste fix reports."
+      "title": "Terms of Service | FreeSEOSiteAnalyzer",
+      "description": "The terms that govern your use of FreeSEOSiteAnalyzer's website analyzer, scoring tools and copy-paste fix reports."
     },
     "refund": {
-      "title": "Refund & Cancellation Policy | SiteSnap",
-      "description": "SiteSnap's refund and cancellation rules for Basic (€19) and Pro (€29) one-time scan reports."
+      "title": "Refund & Cancellation Policy | FreeSEOSiteAnalyzer",
+      "description": "FreeSEOSiteAnalyzer's refund and cancellation rules for Basic (€19) and Pro (€29) one-time scan reports."
     },
     "delivery": {
-      "title": "Delivery & Fulfillment | SiteSnap",
-      "description": "How SiteSnap delivers your paid scan report and Pro fix instructions after purchase — instant access plus email PDF."
+      "title": "Delivery & Fulfillment | FreeSEOSiteAnalyzer",
+      "description": "How FreeSEOSiteAnalyzer delivers your paid scan report and Pro fix instructions after purchase — instant access plus email PDF."
     },
     "verify": {
-      "title": "Verify Email | SiteSnap",
-      "description": "Confirm your email to unlock your SiteSnap report and fix instructions."
+      "title": "Verify Email | FreeSEOSiteAnalyzer",
+      "description": "Confirm your email to unlock your FreeSEOSiteAnalyzer report and fix instructions."
     },
     "ads": {
-      "title": "Google Ads Landing Page Analyzer | SiteSnap",
+      "title": "Google Ads Landing Page Analyzer | FreeSEOSiteAnalyzer",
       "description": "Score your Google Ads landing-page experience: TTFB, CDN, cache, redirects, mobile UX and ad-copy quality with copy-paste fixes."
     },
     "aeo": {
-      "title": "AEO / AI SEO Analyzer for ChatGPT & Perplexity | SiteSnap",
+      "title": "AEO / AI SEO Analyzer for ChatGPT & Perplexity | FreeSEOSiteAnalyzer",
       "description": "Check how ready your site is for AI search engines: structured data, citation likelihood, ChatGPT/Perplexity preview and content gaps."
     },
     "dashboard": {
-      "title": "SiteSnap Dashboard — Run an SEO, AEO & Ads Audit",
-      "description": "Run SiteSnap's full website audit: SEO, AEO, GEO and Google Ads landing-page experience in one click with copy-paste fixes."
+      "title": "FreeSEOSiteAnalyzer Dashboard — Run an SEO, AEO & Ads Audit",
+      "description": "Run FreeSEOSiteAnalyzer's full website audit: SEO, AEO, GEO and Google Ads landing-page experience in one click with copy-paste fixes."
     },
     "siteTools": {
-      "title": "Site Tools — Broken Links, Images, Sitemap & Robots | SiteSnap",
+      "title": "Site Tools — Broken Links, Images, Sitemap & Robots | FreeSEOSiteAnalyzer",
       "description": "Free site-wide tools: broken-link checker, image optimization, internal linking, sitemap and robots.txt validation."
     }
   }

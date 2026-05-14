@@ -52,7 +52,7 @@ export async function generatePdfReport(analysis: SeoAnalysis): Promise<Buffer> 
         size: 'A4',
         info: {
           Title: `SEO Analysis Report - ${analysis.url}`,
-          Author: 'SiteSnap',
+          Author: 'FreeSEOSiteAnalyzer',
           Subject: 'Website SEO Performance Analysis',
           Keywords: 'SEO, Analysis, Website Optimization, Performance'
         }
@@ -80,7 +80,7 @@ export async function generatePdfReport(analysis: SeoAnalysis): Promise<Buffer> 
       doc.fillColor('white')
          .fontSize(24)
          .font('BodyBold')
-         .text('SiteSnap', 75, 20);
+         .text('FreeSEOSiteAnalyzer', 75, 20);
       
       doc.fontSize(12)
          .font('Body')
@@ -532,7 +532,7 @@ function addFooter(doc: InstanceType<typeof PDFDocument>, url: string) {
   doc.fillColor(colors.mutedForeground)
      .fontSize(9)
      .font('Body')
-     .text(`SiteSnap • ${url}`, 40, footerY + 10)
+     .text(`FreeSEOSiteAnalyzer • ${url}`, 40, footerY + 10)
      .text(`Generated ${new Date().toLocaleDateString()}`, { align: 'right' });
 }
 
@@ -655,7 +655,7 @@ function addMasterFooter(doc: InstanceType<typeof PDFDocument>, _url: string, pa
     doc.fillColor(colors.mutedForeground)
        .fontSize(8)
        .font('Body')
-       .text(`SiteSnap`, 40, footerY, { lineBreak: false, continued: false });
+       .text(`FreeSEOSiteAnalyzer`, 40, footerY, { lineBreak: false, continued: false });
     doc.y = footerY;
     doc.fillColor(colors.mutedForeground)
        .fontSize(8)
@@ -1957,7 +1957,7 @@ export async function generateMasterPdfReport(data: MasterResult, tier: 'free' |
         bufferPages: true,
         info: {
           Title: `Master SEO Report - ${data.url}`,
-          Author: 'SiteSnap',
+          Author: 'FreeSEOSiteAnalyzer',
           Subject: L.metaSubject,
           Keywords: 'SEO, AEO, Ads, Analysis, Optimization'
         }

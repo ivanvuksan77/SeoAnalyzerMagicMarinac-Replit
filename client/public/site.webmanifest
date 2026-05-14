@@ -1,6 +1,6 @@
 {
-  "name": "SiteSnap",
-  "short_name": "SiteSnap",
+  "name": "FreeSEOSiteAnalyzer",
+  "short_name": "FreeSEOSiteAnalyzer",
   "description": "Free SEO, AEO, GEO and Google Ads analyzer with copy-paste fixes.",
   "start_url": "/",
   "display": "standalone",

@@ -165,7 +165,7 @@ function ScoreCircle({ score, label, color }: { score: number; label: string; co
   );
 }
 
-function OverallDashboard({ data, onDownloadPdf, sessionId, paidTier }: { data: MasterResult; onDownloadPdf: (tier?: 'free' | 'basic' | 'pro') => void; sessionId?: string; paidTier: string }) {
+function OverallDashboard({ data, onDownloadPdf, sessionId, paidTier, emailCaptured }: { data: MasterResult; onDownloadPdf: (tier?: 'free' | 'basic' | 'pro') => void; sessionId?: string; paidTier: string; emailCaptured: boolean }) {
   const { t } = useTranslation();
   const scores: { label: string; score: number; icon: any; color: string }[] = [];
 
@@ -191,11 +191,14 @@ function OverallDashboard({ data, onDownloadPdf, sessionId, paidTier }: { data: 
   const overallColor = avgScore >= 80 ? "#10b981" : avgScore >= 50 ? "#f59e0b" : "#ef4444";
   const overallLabel = avgScore >= 80 ? t('dashboard.excellent') : avgScore >= 60 ? t('dashboard.good') : avgScore >= 40 ? t('dashboard.needsWork') : t('dashboard.critical');
   const isFreeTier = paidTier === 'free';
+  const isBasicTier = paidTier === 'basic';
   const isProTier = paidTier === 'pro';
   const showFreePlan = isFreeTier;
-  const showBasicPlan = true;
+  const showBasicPlan = !isProTier;
   const plansGridClass = isFreeTier
     ? "grid grid-cols-1 lg:grid-cols-3 gap-3"
+    : isProTier
+    ? "grid grid-cols-1 max-w-xs mx-auto gap-3"
     : "grid grid-cols-1 lg:grid-cols-2 gap-3";
 
   return (
@@ -247,8 +250,8 @@ function OverallDashboard({ data, onDownloadPdf, sessionId, paidTier }: { data: 
                 <p className="text-xs text-muted-foreground mt-1">{t('dashboard.basicDesc')}</p>
                 <p className="text-[10px] text-blue-600/70 dark:text-blue-400/70 mt-0.5 font-medium">{t('dashboard.basicCredits')}</p>
                 <Button onClick={() => onDownloadPdf('basic')} size="sm" className="mt-3 w-full bg-blue-600 hover:bg-blue-700">
-                  <CreditCard className="w-4 h-4 mr-1" />
-                  {t('dashboard.basicReport')}
+                  {isBasicTier && emailCaptured ? <Download className="w-4 h-4 mr-1" /> : <CreditCard className="w-4 h-4 mr-1" />}
+                  {isBasicTier && emailCaptured ? t('dashboard.downloadBasicReport') : t('dashboard.basicReport')}
                 </Button>
               </CardContent>
             </Card>
@@ -262,8 +265,8 @@ function OverallDashboard({ data, onDownloadPdf, sessionId, paidTier }: { data: 
                 <p className="text-xs text-muted-foreground mt-1">{t('dashboard.proDesc')}</p>
                 <p className="text-[10px] text-purple-600/70 dark:text-purple-400/70 mt-0.5 font-medium">{t('dashboard.proCredits')}</p>
                 <Button onClick={() => onDownloadPdf('pro')} size="sm" className="mt-3 w-full bg-purple-600 hover:bg-purple-700">
-                  <Star className="w-4 h-4 mr-1" />
-                  {t('dashboard.proReport')}
+                  {isProTier && emailCaptured ? <Download className="w-4 h-4 mr-1" /> : <Star className="w-4 h-4 mr-1" />}
+                  {isProTier && emailCaptured ? t('dashboard.downloadProReport') : t('dashboard.proReport')}
                 </Button>
               </CardContent>
             </Card>
@@ -4471,7 +4474,7 @@ export default function MasterAnalyzerPage() {
 
         {!analyzeMutation.isPending && result && (
           <div className="animate-in slide-in-from-bottom-4 duration-500" data-testid="master-results">
-            <OverallDashboard data={result} onDownloadPdf={handleDownloadPdf} sessionId={result.sessionId} paidTier={paidTier} />
+            <OverallDashboard data={result} onDownloadPdf={handleDownloadPdf} sessionId={result.sessionId} paidTier={paidTier} emailCaptured={emailCaptured} />
 
             <SectionCard title={t('sections.seoAudit')} icon={Search} score={result.seo.data?.overallScore ?? null} error={result.seo.error} testId="master-seo" color="#3b82f6"
               summaryContent={result.seo.data && <SeoSummary data={result.seo.data} />}>
@@ -4534,36 +4537,43 @@ export default function MasterAnalyzerPage() {
 
         <UpgradeCta />
 
-        <Dialog open={showEmailModal} onOpenChange={setShowEmailModal}>
-          <DialogContent className="sm:max-w-md">
-            <DialogHeader>
-              <DialogTitle className="flex items-center gap-2">
-                <Mail className="w-5 h-5 text-green-500" />
-                {t('modals.freeReport.title')}
-              </DialogTitle>
-              <DialogDescription>
-                {t('modals.freeReport.description')}
-              </DialogDescription>
-            </DialogHeader>
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              const formData = new FormData(e.target as HTMLFormElement);
-              const email = formData.get('email') as string;
-              if (email) handleEmailSubmit(email);
-            }} className="space-y-4">
-              <div>
-                <Label htmlFor="capture-email">{t('modals.freeReport.emailLabel')}</Label>
-                <Input id="capture-email" name="email" type="email" placeholder={t('modals.freeReport.emailPlaceholder')} required className="mt-1" />
-              </div>
-              <div className="flex gap-2">
-                <Button type="submit" disabled={emailSubmitting} className="flex-1 bg-green-600 hover:bg-green-700">
-                  {emailSubmitting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />{t('modals.freeReport.sending')}</> : <><Download className="w-4 h-4 mr-2" />{t('modals.freeReport.download')}</>}
-                </Button>
-              </div>
-              <p className="text-xs text-muted-foreground text-center">{t('modals.freeReport.privacy')}</p>
-            </form>
-          </DialogContent>
-        </Dialog>
+        {(() => {
+          const emailModalNs = pendingPdfTier === 'pro' ? 'modals.proReport' : pendingPdfTier === 'basic' ? 'modals.basicReport' : 'modals.freeReport';
+          const emailModalIconColor = pendingPdfTier === 'pro' ? 'text-purple-500' : pendingPdfTier === 'basic' ? 'text-blue-500' : 'text-green-500';
+          const emailModalBtnClass = pendingPdfTier === 'pro' ? 'bg-purple-600 hover:bg-purple-700' : pendingPdfTier === 'basic' ? 'bg-blue-600 hover:bg-blue-700' : 'bg-green-600 hover:bg-green-700';
+          return (
+            <Dialog open={showEmailModal} onOpenChange={setShowEmailModal}>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="flex items-center gap-2">
+                    <Mail className={`w-5 h-5 ${emailModalIconColor}`} />
+                    {t(`${emailModalNs}.title`)}
+                  </DialogTitle>
+                  <DialogDescription>
+                    {t(`${emailModalNs}.description`)}
+                  </DialogDescription>
+                </DialogHeader>
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.target as HTMLFormElement);
+                  const email = formData.get('email') as string;
+                  if (email) handleEmailSubmit(email);
+                }} className="space-y-4">
+                  <div>
+                    <Label htmlFor="capture-email">{t(`${emailModalNs}.emailLabel`)}</Label>
+                    <Input id="capture-email" name="email" type="email" placeholder={t(`${emailModalNs}.emailPlaceholder`)} required className="mt-1" />
+                  </div>
+                  <div className="flex gap-2">
+                    <Button type="submit" disabled={emailSubmitting} className={`flex-1 ${emailModalBtnClass}`}>
+                      {emailSubmitting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />{t(`${emailModalNs}.sending`)}</> : <><Download className="w-4 h-4 mr-2" />{t(`${emailModalNs}.download`)}</>}
+                    </Button>
+                  </div>
+                  <p className="text-xs text-muted-foreground text-center">{t(`${emailModalNs}.privacy`)}</p>
+                </form>
+              </DialogContent>
+            </Dialog>
+          );
+        })()}
 
         <Dialog open={showPricingModal} onOpenChange={(open) => { setShowPricingModal(open); if (!open) setPricingModalTier(null); }}>
           <DialogContent className="sm:max-w-2xl">
