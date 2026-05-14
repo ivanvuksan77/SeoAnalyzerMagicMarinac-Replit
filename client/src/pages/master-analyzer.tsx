@@ -251,7 +251,7 @@ function OverallDashboard({ data, onDownloadPdf, sessionId, paidTier, emailCaptu
                 <p className="text-[10px] text-blue-600/70 dark:text-blue-400/70 mt-0.5 font-medium">{t('dashboard.basicCredits')}</p>
                 <Button onClick={() => onDownloadPdf('basic')} size="sm" className="mt-3 w-full bg-blue-600 hover:bg-blue-700">
                   {isBasicTier && emailCaptured ? <Download className="w-4 h-4 mr-1" /> : <CreditCard className="w-4 h-4 mr-1" />}
-                  {isBasicTier && emailCaptured ? t('dashboard.downloadBasicReport') : t('dashboard.basicReport')}
+                  {t('dashboard.basicReport')}
                 </Button>
               </CardContent>
             </Card>
@@ -266,7 +266,7 @@ function OverallDashboard({ data, onDownloadPdf, sessionId, paidTier, emailCaptu
                 <p className="text-[10px] text-purple-600/70 dark:text-purple-400/70 mt-0.5 font-medium">{t('dashboard.proCredits')}</p>
                 <Button onClick={() => onDownloadPdf('pro')} size="sm" className="mt-3 w-full bg-purple-600 hover:bg-purple-700">
                   {isProTier && emailCaptured ? <Download className="w-4 h-4 mr-1" /> : <Star className="w-4 h-4 mr-1" />}
-                  {isProTier && emailCaptured ? t('dashboard.downloadProReport') : t('dashboard.proReport')}
+                  {t('dashboard.proReport')}
                 </Button>
               </CardContent>
             </Card>
