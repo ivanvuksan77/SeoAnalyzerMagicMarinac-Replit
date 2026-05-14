@@ -3750,6 +3750,7 @@ export default function MasterAnalyzerPage() {
   });
   const [showAccessCodeDisplay, setShowAccessCodeDisplay] = useState(false);
   const [generatedAccessCode, setGeneratedAccessCode] = useState<string>('');
+  const [pendingCodeData, setPendingCodeData] = useState<{ tier: string; scansRemaining: number; scansTotal: number } | null>(null);
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('seo-analyzer-theme');
@@ -3806,8 +3807,7 @@ export default function MasterAnalyzerPage() {
         const data = await response.json();
         if (data.accessCode) {
           setGeneratedAccessCode(data.accessCode);
-          setActiveAccessCode({ code: data.accessCode, tier: data.tier, scansRemaining: data.scansRemaining, scansTotal: data.scansTotal });
-          setPaidTier(data.tier);
+          setPendingCodeData({ tier: data.tier, scansRemaining: data.scansRemaining, scansTotal: data.scansTotal });
           setShowAccessCodeDisplay(true);
           return;
         }
@@ -4595,7 +4595,7 @@ export default function MasterAnalyzerPage() {
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
-                <span>{t('modals.accessCode.tierScans', { tier: activeAccessCode?.tier === 'pro' ? 'Pro' : 'Basic', count: activeAccessCode?.scansRemaining })}</span>
+                <span>{t('modals.accessCode.tierScans', { tier: pendingCodeData?.tier === 'pro' ? 'Pro' : 'Basic', count: pendingCodeData?.scansRemaining })}</span>
               </div>
               <Button
                 onClick={() => {
