@@ -97,7 +97,7 @@ export function Pro() {
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest opacity-90">
-              <Crown size={11} /> SiteSnap · Pro Report · €29
+              <Crown size={11} /> FreeSEOSiteAnalyzer · Pro Report · €29
             </div>
             <div className="text-lg font-bold mt-0.5">example.com</div>
             <div className="text-[10px] opacity-90 mt-0.5">Generated 02 May 2026 · Full data + prioritized fix instructions</div>

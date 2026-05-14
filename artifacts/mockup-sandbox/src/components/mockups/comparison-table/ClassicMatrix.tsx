@@ -60,7 +60,7 @@ export function ClassicMatrix() {
           <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 mb-3 bg-blue-50 ring-1 ring-blue-200 text-blue-700 text-[11px] font-semibold uppercase tracking-wider">
             <Sparkles className="w-3 h-3" /> Compare plans
           </div>
-          <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Pick the right SiteSnap report</h2>
+          <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Pick the right FreeSEOSiteAnalyzer report</h2>
           <p className="mt-2 text-sm text-slate-500">Same scan engine. Different report depth — only Pro includes copy-paste fixes.</p>
         </div>
 

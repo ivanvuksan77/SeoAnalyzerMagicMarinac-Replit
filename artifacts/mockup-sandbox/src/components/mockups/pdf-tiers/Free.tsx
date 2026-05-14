@@ -59,7 +59,7 @@ export function Free() {
       <div className="rounded-xl p-4 mb-4" style={{ background: "linear-gradient(135deg,#16a34a 0%,#0ea5e9 100%)", color: "white" }}>
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-[10px] uppercase tracking-widest opacity-90">SiteSnap · Free Report</div>
+            <div className="text-[10px] uppercase tracking-widest opacity-90">FreeSEOSiteAnalyzer · Free Report</div>
             <div className="text-lg font-bold mt-0.5">example.com</div>
             <div className="text-[10px] opacity-90 mt-0.5">Generated 02 May 2026 · 8 tools analyzed</div>
           </div>

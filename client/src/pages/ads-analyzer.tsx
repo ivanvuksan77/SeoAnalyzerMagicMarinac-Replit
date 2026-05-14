@@ -83,13 +83,13 @@ export default function AdsAnalyzerPage() {
               <Search className="text-primary-foreground w-4 h-4" />
             </div>
             <div className="flex flex-col leading-tight">
-              <h1 className="text-2xl font-bold text-foreground">SiteSnap</h1>
+              <h1 className="text-2xl font-bold text-foreground">FreeSEOSiteAnalyzer</h1>
               <span className="text-[11px] font-medium tracking-wide text-muted-foreground">Scan. Snap. Fix What Matters.</span>
             </div>
           </div>
           <nav className="hidden md:flex items-center space-x-6">
             <Link href="/master-analyzer" className="text-muted-foreground hover:text-foreground transition-colors">Master Analyzer</Link>
-            <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">SiteSnap</Link>
+            <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">FreeSEOSiteAnalyzer</Link>
             <Link href="/ads-analyzer" className="text-foreground font-medium transition-colors">Ads Landing Page</Link>
             <Link href="/aeo-analyzer" className="text-muted-foreground hover:text-foreground transition-colors">AEO / AI SEO</Link>
             <Link href="/site-tools" className="text-muted-foreground hover:text-foreground transition-colors">Site Tools</Link>
@@ -184,7 +184,7 @@ export default function AdsAnalyzerPage() {
                 <div className="w-6 h-6 bg-primary rounded flex items-center justify-center">
                   <Search className="text-primary-foreground w-3 h-3" />
                 </div>
-                <span className="text-muted-foreground">© 2024 SiteSnap. All rights reserved.</span>
+                <span className="text-muted-foreground">© 2024 FreeSEOSiteAnalyzer. All rights reserved.</span>
               </div>
               <div className="flex items-center space-x-6 text-sm">
                 <a href="#" className="text-muted-foreground hover:text-foreground">Privacy Policy</a>

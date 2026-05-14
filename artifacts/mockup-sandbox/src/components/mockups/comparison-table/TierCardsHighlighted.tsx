@@ -33,7 +33,7 @@ export function TierCardsHighlighted() {
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white px-8 py-10 font-sans">
       <div className="max-w-[1080px] mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Choose your SiteSnap plan</h2>
+          <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Choose your FreeSEOSiteAnalyzer plan</h2>
           <p className="mt-2 text-sm text-slate-500">Free shows you the score. Basic unlocks all the data. Pro hands you the fixes.</p>
         </div>
 

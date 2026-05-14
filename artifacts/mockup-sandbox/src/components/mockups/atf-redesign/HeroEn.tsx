@@ -5,7 +5,7 @@ export function HeroEn() {
   return (
     <Hero
       lang="en"
-      brand="SiteSnap"
+      brand="FreeSEOSiteAnalyzer"
       eyebrow="Built for Google Ads + organic SEO"
       h1Lead="Fix Your Google Ranking"
       h1Accent="Issues — Fast"

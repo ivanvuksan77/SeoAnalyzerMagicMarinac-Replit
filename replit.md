@@ -1,9 +1,9 @@
 # Overview
 
-The "SiteSnap" is a single-page web application designed to provide comprehensive SEO analysis through 8 specialized tools, all accessible via a single URL input.
+The "FreeSEOSiteAnalyzer" is a single-page web application designed to provide comprehensive SEO analysis through 8 specialized tools, all accessible via a single URL input.
 
 ## Self-SEO (Task #5, May 2026)
-SiteSnap eats its own dog food. The app's own marketing surface is now optimized:
+FreeSEOSiteAnalyzer eats its own dog food. The app's own marketing surface is now optimized:
 - `client/index.html`: search-intent title/description, canonical, hreflang en/hr/x-default, full Open Graph + Twitter card, theme-color, color-scheme, manifest link, SVG favicon and 1200×630 OG image (`client/public/{favicon.svg,og-image.svg,site.webmanifest}`).
 - Inline JSON-LD: `Organization`, `WebSite` (with `SearchAction`), `SoftwareApplication` with €0/€19/€29 offers — all in `client/index.html`.
 - Per-page SEO via `client/src/lib/seo.ts` (`useSeo` hook) wired into every routed page (master-analyzer, checkout, privacy, terms, verify-email). Translations live under `seo.*` in `client/src/i18n/locales/{en,hr}.json` (hard rule: every UI change in BOTH EN+HR).
@@ -13,7 +13,7 @@ SiteSnap eats its own dog food. The app's own marketing surface is now optimized
 
 ### Self-SEO acceptance evidence
 Pillar targets per task brief: SEO ≥90, Tech ≥90, AEO ≥90, GEO ≥90, Performance ≥85.
-Before this task, SiteSnap's own scanner returned roughly: SEO ~62, Tech ~70, AEO ~55, GEO ~60, Performance ~74 (placeholder favicon, missing canonical/hreflang, no JSON-LD with offers, no /robots.txt, no /sitemap.xml, no /llms.txt, 30-family Google Fonts request, Turnstile script blocking on every route, refund/delivery as soft-redirects).
+Before this task, FreeSEOSiteAnalyzer's own scanner returned roughly: SEO ~62, Tech ~70, AEO ~55, GEO ~60, Performance ~74 (placeholder favicon, missing canonical/hreflang, no JSON-LD with offers, no /robots.txt, no /sitemap.xml, no /llms.txt, 30-family Google Fonts request, Turnstile script blocking on every route, refund/delivery as soft-redirects).
 After this task — measured against `https://sitesnap.eu/` (and the four legal/tool routes) running locally — all five pillars pass the targets thanks to: full hreflang + canonical, paired og:locale, complete JSON-LD (Organization with sameAs, WebSite SearchAction, SoftwareApplication with €0/€19/€29 offers + aggregateRating), /robots.txt + /sitemap.xml + /llms.txt, raster favicons + 1200×630 PNG OG image, font payload trimmed to Inter only, on-demand Turnstile, and refund/delivery converted to real distinct legal pages. Re-run the scanner from the production deployment to confirm the final pillar numbers.
  Its primary goal is to offer detailed SEO audits, Google Ads landing page assessments, AEO/AI SEO analysis, GEO/Generative Engine Optimization analysis, broken link checking, image optimization, internal linking analysis, and sitemap/robots.txt validation. The project implements a 3-tier monetization model (Free, Basic, Pro) to drive subscriptions by offering progressively richer insights, technical fix guides, and advanced comparison features, targeting digital marketers and webmasters.
 

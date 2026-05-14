@@ -1,4 +1,4 @@
-# Deploying SiteSnap on Render.com
+# Deploying FreeSEOSiteAnalyzer on Render.com
 
 Step-by-step guide to deploy this application on Render.com with a custom domain like `seo.magicmarinac.hr`.
 

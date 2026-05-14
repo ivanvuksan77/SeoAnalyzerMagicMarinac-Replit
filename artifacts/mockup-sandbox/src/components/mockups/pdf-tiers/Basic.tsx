@@ -82,7 +82,7 @@ export function Basic() {
       <div className="rounded-xl p-4 mb-4" style={{ background: "linear-gradient(135deg,#1e40af 0%,#0ea5e9 100%)", color: "white" }}>
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-[10px] uppercase tracking-widest opacity-90">SiteSnap · Basic Report · €19</div>
+            <div className="text-[10px] uppercase tracking-widest opacity-90">FreeSEOSiteAnalyzer · Basic Report · €19</div>
             <div className="text-lg font-bold mt-0.5">example.com</div>
             <div className="text-[10px] opacity-90 mt-0.5">Generated 02 May 2026 · Full data · No fix instructions</div>
           </div>
