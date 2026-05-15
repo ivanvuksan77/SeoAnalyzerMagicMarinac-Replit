@@ -29,7 +29,6 @@ export default function CheckoutPage() {
   const { toast } = useToast();
   const [, setLocation] = useLocation();
   const [submitting, setSubmitting] = useState(false);
-  const [termsAccepted, setTermsAccepted] = useState(false);
   const [customerForm, setCustomerForm] = useState<CheckoutCustomerForm>({
     email: "",
     firstName: "",
@@ -297,22 +296,11 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
-                <label className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <input
-                    type="checkbox"
-                    className="mt-0.5"
-                    checked={termsAccepted}
-                    onChange={(e) => setTermsAccepted(e.target.checked)}
-                  />
-                  <span>{t("modals.orderSummary.termsConsent")}</span>
-                </label>
-
                 <div className="flex flex-wrap gap-2">
                   <Button
                     onClick={handleProceed}
                     disabled={
                       submitting ||
-                      !termsAccepted ||
                       !customerForm.email.trim() ||
                       !customerForm.firstName.trim() ||
                       !customerForm.lastName.trim()
