@@ -789,6 +789,7 @@
       "schemaMarkupDescription": "JSON-LD kod spreman za kopiranje, generiran iz sadržaja vaše stranice.",
       "alreadyPresent": "Već prisutno",
       "contentGapFinder": "Pronalaženje praznina u sadržaju",
+      "contentGapDescription": "Provjerava je li sadržaj vaše stranice strukturiran za AI pretraživanje. Uspoređuje naslov, H1, meta opis i tekst stranice kako bi otkrilo neusklađene naslove, implicitne sposobnosti, nedostatak konkretnih činjenica i nedostatak strojno čitljivih oznaka — najčešće razloge zbog kojih AI motori preskaču ili pogrešno klasificiraju stranicu.",
       "semanticAlignment": "Semantičko poravnanje",
       "detectedTopics": "Otkrivene teme",
       "semanticFindings": "Provjere semantičke pokrivenosti",

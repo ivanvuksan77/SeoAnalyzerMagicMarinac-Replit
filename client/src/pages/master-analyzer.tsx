@@ -2379,10 +2379,15 @@ function AeoContentGapCard({ gaps }: { gaps: ContentGapsAnalysis }) {
   return (
     <Card className="rounded-xl border border-border shadow-sm" data-testid="content-gaps">
       <CardContent className="p-6">
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-2 mb-2">
           <Brain className="w-5 h-5 text-primary" />
           <h3 className="text-lg font-bold text-foreground">{t('master.aeo.contentGapFinder')}</h3>
         </div>
+
+        <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
+          {t('master.aeo.contentGapDescription')}
+        </p>
+
         <div className="flex items-center gap-3 mb-4">
           <div className="flex-1">
             <div className="flex items-center justify-between text-sm mb-1">

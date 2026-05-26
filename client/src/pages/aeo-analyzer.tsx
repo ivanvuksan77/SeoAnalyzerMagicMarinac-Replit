@@ -486,10 +486,14 @@ function ContentGapFinderCard({ gaps }: { gaps: ContentGapsAnalysis }) {
   return (
     <Card className="rounded-xl border border-border shadow-sm" data-testid="content-gaps">
       <CardContent className="p-6">
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-2 mb-2">
           <Brain className="w-5 h-5 text-primary" />
           <h3 className="text-lg font-bold text-foreground">Content Gap Finder</h3>
         </div>
+
+        <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
+          Checks whether your page content is structured for AI retrieval. It compares your title, H1, meta description, and body copy to detect misaligned headlines, implicit-only capabilities, missing concrete facts, and lack of machine-readable markup — the most common reasons AI engines skip or misclassify a page.
+        </p>
 
         <div className="flex items-center gap-3 mb-4">
           <div className="flex-1">

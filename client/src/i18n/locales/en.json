@@ -789,6 +789,7 @@
       "schemaMarkupDescription": "Ready-to-copy JSON-LD code generated from your page content.",
       "alreadyPresent": "Already Present",
       "contentGapFinder": "Content Gap Finder",
+      "contentGapDescription": "Checks whether your page content is structured for AI retrieval. It compares your title, H1, meta description, and body copy to detect misaligned headlines, implicit-only capabilities, missing concrete facts, and lack of machine-readable markup — the most common reasons AI engines skip or misclassify a page.",
       "semanticAlignment": "Semantic Alignment",
       "detectedTopics": "Detected Topics",
       "semanticFindings": "Semantic Coverage Checks",
