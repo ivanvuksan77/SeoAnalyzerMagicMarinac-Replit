@@ -789,10 +789,10 @@
       "schemaMarkupDescription": "Ready-to-copy JSON-LD code generated from your page content.",
       "alreadyPresent": "Already Present",
       "contentGapFinder": "Content Gap Finder",
-      "topicCoverage": "Topic Coverage",
+      "semanticAlignment": "Semantic Alignment",
       "detectedTopics": "Detected Topics",
-      "missingQuestions": "Missing Questions AI Looks For",
-      "contentCoversQuestions": "Excellent! Your content covers all common question patterns.",
+      "semanticFindings": "Semantic Coverage Checks",
+      "noSemanticFindings": "No significant semantic gaps detected. Content positioning appears coherent.",
       "recommendations": "AEO Recommendations"
     },
     "geo": {

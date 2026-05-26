@@ -339,17 +339,15 @@ export interface AiSearchPreview {
   extractionDetails: string;
 }
 
-export interface ContentGap {
-  question: string;
-  type: "what" | "how" | "why" | "comparison" | "best" | "cost";
-  relevance: "High" | "Medium";
-  reason: string;
+export interface SemanticFinding {
+  label: string;
+  status: "pass" | "warning" | "fail";
+  detail: string;
 }
 
 export interface ContentGapsAnalysis {
   topicKeywords: string[];
-  existingQuestions: string[];
-  missingQuestions: ContentGap[];
+  findings: SemanticFinding[];
   coverageScore: number;
   coverageDetails: string;
 }

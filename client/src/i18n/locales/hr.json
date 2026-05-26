@@ -789,10 +789,10 @@
       "schemaMarkupDescription": "JSON-LD kod spreman za kopiranje, generiran iz sadržaja vaše stranice.",
       "alreadyPresent": "Već prisutno",
       "contentGapFinder": "Pronalaženje praznina u sadržaju",
-      "topicCoverage": "Pokrivenost tema",
+      "semanticAlignment": "Semantičko poravnanje",
       "detectedTopics": "Otkrivene teme",
-      "missingQuestions": "Nedostajuća pitanja koja AI očekuje",
-      "contentCoversQuestions": "Odlično! Vaš sadržaj pokriva sve uobičajene obrasce pitanja.",
+      "semanticFindings": "Provjere semantičke pokrivenosti",
+      "noSemanticFindings": "Nisu otkrivene značajne semantičke praznine. Pozicioniranje sadržaja izgleda koherentno.",
       "recommendations": "AEO preporuke"
     },
     "geo": {

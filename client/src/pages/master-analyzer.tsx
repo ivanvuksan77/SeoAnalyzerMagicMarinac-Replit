@@ -2375,19 +2375,18 @@ function AeoSchemaGeneratorCard({ suggestions }: { suggestions: SchemaSuggestion
 
 function AeoContentGapCard({ gaps }: { gaps: ContentGapsAnalysis }) {
   const { t } = useTranslation();
-  const typeIcons: Record<string, typeof HelpCircle> = { what: HelpCircle, how: Wrench, why: Brain, comparison: BarChart3, best: Trophy, cost: TrendingUp };
 
   return (
     <Card className="rounded-xl border border-border shadow-sm" data-testid="content-gaps">
       <CardContent className="p-6">
         <div className="flex items-center gap-2 mb-4">
-          <HelpCircle className="w-5 h-5 text-primary" />
+          <Brain className="w-5 h-5 text-primary" />
           <h3 className="text-lg font-bold text-foreground">{t('master.aeo.contentGapFinder')}</h3>
         </div>
         <div className="flex items-center gap-3 mb-4">
           <div className="flex-1">
             <div className="flex items-center justify-between text-sm mb-1">
-              <span className="text-muted-foreground">{t('master.aeo.topicCoverage')}</span>
+              <span className="text-muted-foreground">{t('master.aeo.semanticAlignment')}</span>
               <span className="font-semibold text-foreground">{gaps.coverageScore}%</span>
             </div>
             <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -2406,30 +2405,37 @@ function AeoContentGapCard({ gaps }: { gaps: ContentGapsAnalysis }) {
             </div>
           </div>
         )}
-        {gaps.missingQuestions.length > 0 && (
+        {gaps.findings.length > 0 && (
           <div>
-            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">{t('master.aeo.missingQuestions')}</p>
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">{t('master.aeo.semanticFindings')}</p>
             <div className="space-y-2">
-              {gaps.missingQuestions.map((gap, i) => {
-                const GapIcon = typeIcons[gap.type] || HelpCircle;
+              {gaps.findings.map((finding, i) => {
+                const FindingIcon = finding.status === "pass" ? CheckCircle2 : finding.status === "fail" ? XCircle : AlertTriangle;
+                const iconClass = finding.status === "pass" ? "text-green-500" : finding.status === "fail" ? "text-red-500" : "text-yellow-500";
+                const pillClass = finding.status === "pass"
+                  ? "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300"
+                  : finding.status === "fail"
+                  ? "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300"
+                  : "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300";
+                const pillLabel = finding.status === "pass" ? t('common.pass') : finding.status === "fail" ? t('common.fail') : t('common.warning');
                 return (
                   <div key={i} className="flex items-start gap-2 p-2 rounded-lg border border-border">
-                    <GapIcon className="w-4 h-4 text-muted-foreground mt-0.5 flex-shrink-0" />
+                    <FindingIcon className={`w-4 h-4 ${iconClass} mt-0.5 flex-shrink-0`} />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-foreground">{gap.question}</p>
-                      <p className="text-xs text-muted-foreground">{gap.reason}</p>
+                      <p className="text-sm font-medium text-foreground">{finding.label}</p>
+                      <p className="text-xs text-muted-foreground">{finding.detail}</p>
                     </div>
-                    <span className={`px-1.5 py-0.5 rounded text-xs font-medium flex-shrink-0 ${gap.relevance === "High" ? "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300" : "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300"}`}>{gap.relevance}</span>
+                    <span className={`px-1.5 py-0.5 rounded text-xs font-medium flex-shrink-0 ${pillClass}`}>{pillLabel}</span>
                   </div>
                 );
               })}
             </div>
           </div>
         )}
-        {gaps.missingQuestions.length === 0 && (
-          <div className="flex items-center gap-2 p-3 bg-green-50 dark:bg-green-950 rounded-lg border border-green-200 dark:border-green-800">
-            <CheckCircle2 className="w-5 h-5 text-green-600" />
-            <span className="text-sm text-green-800 dark:text-green-200">{t('master.aeo.contentCoversQuestions')}</span>
+        {gaps.findings.length === 0 && (
+          <div className="flex items-center gap-2 p-3 bg-muted/50 rounded-lg border border-border">
+            <CheckCircle2 className="w-5 h-5 text-muted-foreground" />
+            <span className="text-sm text-muted-foreground">{t('master.aeo.noSemanticFindings')}</span>
           </div>
         )}
       </CardContent>

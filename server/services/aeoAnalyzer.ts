@@ -1262,95 +1262,224 @@ class AeoAnalyzer {
   }
 
   private analyzeContentGaps($: cheerio.CheerioAPI, cf: ContentFormatAnalysis): ContentGapsAnalysis {
-    const topicKeywords: string[] = [];
+    // ── 1. Multi-source signal extraction ────────────────────────────────────
     const h1 = $("h1").first().text().trim();
     const metaTitle = $("title").text().trim();
-    const metaDesc = $('meta[name="description"]').attr("content") || "";
 
-    const sourceText = `${h1} ${metaTitle} ${metaDesc}`.toLowerCase();
-    const stopWords = new Set(["the", "a", "an", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "do", "does", "did", "will", "would", "could", "should", "may", "might", "shall", "can", "to", "of", "in", "for", "on", "with", "at", "by", "from", "as", "into", "through", "during", "before", "after", "above", "below", "between", "out", "off", "over", "under", "again", "further", "then", "once", "and", "but", "or", "nor", "not", "so", "yet", "both", "either", "neither", "each", "every", "all", "any", "few", "more", "most", "other", "some", "such", "no", "only", "own", "same", "than", "too", "very", "just", "because", "about", "up", "it", "its", "this", "that", "these", "those", "your", "our", "their", "my", "his", "her", "i", "you", "we", "they", "he", "she", "what", "which", "who", "whom", "how", "when", "where", "why", "|", "-", "–", "—", ""]);
-    const words = sourceText.replace(/[^a-z0-9\s-]/g, " ").split(/\s+/).filter(w => w.length > 2 && !stopWords.has(w));
+    const h2s: string[] = [];
+    $("h2").each((_, el) => h2s.push($(el).text().trim()));
+    const h3s: string[] = [];
+    $("h3").each((_, el) => h3s.push($(el).text().trim()));
+    const navText: string[] = [];
+    $("nav a, header a").each((_, el) => navText.push($(el).text().trim()));
 
-    const wordFreq: Record<string, number> = {};
-    for (const w of words) {
-      wordFreq[w] = (wordFreq[w] || 0) + 1;
+    const bodyText = extractMainContent($);
+    const bodyLower = bodyText.toLowerCase();
+
+    // ── 2. Extended stop words (EN + HR) ──────────────────────────────────────
+    const stopWords = new Set([
+      "the","a","an","is","are","was","were","be","been","being","have","has","had",
+      "do","does","did","will","would","could","should","may","might","shall","can",
+      "to","of","in","for","on","with","at","by","from","as","into","through","during",
+      "before","after","above","below","between","out","off","over","under","again",
+      "further","then","once","and","but","or","nor","not","so","yet","both","either",
+      "neither","each","every","all","any","few","more","most","other","some","such",
+      "no","only","own","same","than","too","very","just","because","about","up",
+      "it","its","this","that","these","those","your","our","their","my","his","her",
+      "i","you","we","they","he","she","what","which","who","whom","how","when",
+      "where","why","also","here","there","get","use","need","make","take","come",
+      "vaš","naš","koje","koji","što","kao","ili","za","na","od","do","je","su",
+      "da","se","uz","te","sa","po","iz","kad","ako","ali","sve","svim","svaki",
+      "kroz","prema","između","zbog","biti","ima","koja","ovaj","ova","ovo","svi",
+      "može","mogu","nisu","nije","bile","bili","bio","bila","nego","niti","već",
+    ]);
+
+    // ── 3. Tokenizer — min 4 chars, Unicode-aware, no pure digits ─────────────
+    const tokenize = (text: string): string[] =>
+      text.toLowerCase()
+        .replace(/[^a-z0-9\s\u00c0-\u024f]/gi, " ")
+        .split(/\s+/)
+        .filter(w => w.length >= 4 && !stopWords.has(w) && !/^\d+$/.test(w));
+
+    // ── 4. Tokenize each source (strip site name from title) ──────────────────
+    const cleanTitle = metaTitle.replace(/[|\-–—].*$/, "").trim();
+    const titleTokens = tokenize(cleanTitle);
+    const h1Tokens = tokenize(h1);
+    const h2Tokens = h2s.flatMap(tokenize);
+    const h3Tokens = h3s.flatMap(tokenize);
+    const navTokens = navText.flatMap(tokenize);
+    const bodyTokens = tokenize(bodyText.slice(0, 2000));
+
+    // ── 5. Full-body frequency map ─────────────────────────────────────────────
+    const bodyFreq: Record<string, number> = {};
+    tokenize(bodyText).forEach(w => { bodyFreq[w] = (bodyFreq[w] || 0) + 1; });
+
+    // ── 6. Validated topic keywords — appear in headings AND body ─────────────
+    const headingTermSet = new Set([...titleTokens, ...h1Tokens, ...h2Tokens, ...h3Tokens]);
+    const topicKeywords: string[] = [];
+    for (const term of headingTermSet) {
+      if ((bodyFreq[term] ?? 0) >= 2) topicKeywords.push(term);
     }
-    const sorted = Object.entries(wordFreq).sort((a, b) => b[1] - a[1]);
-    for (const [word] of sorted.slice(0, 8)) {
-      topicKeywords.push(word);
-    }
+    Object.entries(bodyFreq)
+      .filter(([w, c]) => c >= 3 && !headingTermSet.has(w))
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 4)
+      .forEach(([w]) => topicKeywords.push(w));
+    const finalTopicKeywords = [...new Set(topicKeywords)].slice(0, 10);
 
-    const bigrams: string[] = [];
-    for (let i = 0; i < words.length - 1; i++) {
-      if (!stopWords.has(words[i]) && !stopWords.has(words[i + 1])) {
-        bigrams.push(`${words[i]} ${words[i + 1]}`);
-      }
-    }
-    const bigramFreq: Record<string, number> = {};
-    for (const b of bigrams) {
-      bigramFreq[b] = (bigramFreq[b] || 0) + 1;
-    }
-    const topBigrams = Object.entries(bigramFreq).sort((a, b) => b[1] - a[1]).slice(0, 4);
-    for (const [bigram] of topBigrams) {
-      if (!topicKeywords.includes(bigram)) topicKeywords.push(bigram);
-    }
+    // ── 7. Implementation / service term detection ─────────────────────────────
+    const implementationIndicators = new Set([
+      "design","development","website","application","platform","software","integration",
+      "ecommerce","marketing","campaign","advertising","analytics","consulting","strategy",
+      "audit","management","solution","agency","automation","branding","hosting","coding",
+      "wordpress","react","angular","mobile","apps","support","training","reporting",
+      "dizajn","razvoj","stranica","aplikacija","optimizacija","oglašavanje",
+      "konzultacija","strategija","rješenje","agencija","podrška","automatizacija",
+      "analitika","upravljanje","integracija","platforme",
+    ]);
 
-    const existingQuestions = cf.questionHeadings.slice(0, 10);
-    const allHeadings: string[] = [];
-    $("h1, h2, h3, h4").each((_, el) => { allHeadings.push($(el).text().trim().toLowerCase()); });
-    const bodyText = extractMainContent($).toLowerCase();
+    const allBodyAndHeadingTokens = new Set([...h2Tokens, ...h3Tokens, ...bodyTokens]);
+    const distinctServiceTerms = new Set(
+      [...allBodyAndHeadingTokens].filter(t => implementationIndicators.has(t))
+    );
 
-    const questionTemplates: { template: (topic: string) => string; type: "what" | "how" | "why" | "comparison" | "best" | "cost"; relevance: "High" | "Medium" }[] = [
-      { template: (t) => `What is ${t}?`, type: "what", relevance: "High" },
-      { template: (t) => `How does ${t} work?`, type: "how", relevance: "High" },
-      { template: (t) => `Why is ${t} important?`, type: "why", relevance: "High" },
-      { template: (t) => `What are the benefits of ${t}?`, type: "what", relevance: "High" },
-      { template: (t) => `How much does ${t} cost?`, type: "cost", relevance: "Medium" },
-      { template: (t) => `What is the best ${t}?`, type: "best", relevance: "Medium" },
-      { template: (t) => `How to choose ${t}?`, type: "how", relevance: "Medium" },
-      { template: (t) => `${t} vs alternatives?`, type: "comparison", relevance: "Medium" },
-      { template: (t) => `What are common ${t} mistakes?`, type: "what", relevance: "Medium" },
-      { template: (t) => `How to get started with ${t}?`, type: "how", relevance: "High" },
-    ];
+    // ── 8. Nav terms not described in body ────────────────────────────────────
+    const navServiceTerms = navTokens.filter(t => implementationIndicators.has(t));
+    const navServicesNotInBody = navServiceTerms.filter(t => !bodyLower.includes(t));
 
-    const missingQuestions: ContentGapsAnalysis["missingQuestions"] = [];
-    const primaryTopic = topicKeywords.length > 0
-      ? (topBigrams.length > 0 ? topBigrams[0][0] : topicKeywords[0])
-      : "your topic";
+    // ── 9. H1 ↔ title semantic alignment ─────────────────────────────────────
+    const h1TitleOverlap = h1Tokens.filter(t => titleTokens.includes(t)).length;
+    const hasMismatch =
+      h1Tokens.length >= 2 && titleTokens.length >= 2 && h1TitleOverlap === 0;
 
-    for (const tpl of questionTemplates) {
-      const question = tpl.template(primaryTopic);
-      const questionLower = question.toLowerCase();
-      const topicWords = primaryTopic.split(" ");
-      const alreadyCovered = allHeadings.some(h => {
-        const hWords = h.split(/\s+/);
-        return topicWords.every(tw => hWords.some(hw => hw.includes(tw))) &&
-          (tpl.type === "what" ? h.includes("what") : tpl.type === "how" ? h.includes("how") : tpl.type === "why" ? h.includes("why") : tpl.type === "cost" ? (h.includes("cost") || h.includes("price") || h.includes("pricing")) : tpl.type === "best" ? h.includes("best") : tpl.type === "comparison" ? (h.includes("vs") || h.includes("comparison") || h.includes("compare")) : false);
-      });
-      const bodyMentions = tpl.type === "cost" ? (bodyText.includes("price") || bodyText.includes("cost") || bodyText.includes("pricing")) :
-        tpl.type === "best" ? bodyText.includes("best " + primaryTopic) :
-          tpl.type === "comparison" ? (bodyText.includes(" vs ") || bodyText.includes("compared to") || bodyText.includes("alternative")) : false;
+    // ── 10. Factual clarity signals ───────────────────────────────────────────
+    const hasFactuals =
+      /\b\d{4}\b|\b\d+[%+]\b|\b\d+\s*(years?|clients?|projects?|cases?)\b/i.test(bodyText) ||
+      /\b(since|founded|established|over \d+)\b/i.test(bodyText);
 
-      if (!alreadyCovered && !bodyMentions) {
-        missingQuestions.push({
-          question,
-          type: tpl.type,
-          relevance: tpl.relevance,
-          reason: `Users commonly search for "${questionLower}" — adding this section improves AI citation potential.`,
+    // ── 11. Semantic alignment score (0–100) ──────────────────────────────────
+    let alignmentScore = 50;
+    if (distinctServiceTerms.size >= 3) alignmentScore += 20;
+    else if (distinctServiceTerms.size >= 1) alignmentScore += 8;
+    else alignmentScore -= 15;
+    if (!hasMismatch && h1.length > 0 && metaTitle.length > 0) alignmentScore += 12;
+    else if (hasMismatch) alignmentScore -= 15;
+    if (hasFactuals) alignmentScore += 10;
+    if (cf.directAnswerParagraphs > 0) alignmentScore += 8;
+    alignmentScore = Math.min(100, Math.max(0, alignmentScore));
+
+    // ── 12. Generate semantic findings ────────────────────────────────────────
+    const findings: ContentGapsAnalysis["findings"] = [];
+
+    // Check 1: Positioning breadth vs. body specificity
+    if (h1.length > 0) {
+      const isBroadPositioning =
+        h1Tokens.length <= 3 ||
+        h1Tokens.some(t =>
+          ["partner","transformation","digital","solutions","services","agency",
+            "expert","excellence","results","success","growth","impact"].includes(t)
+        );
+      if (isBroadPositioning) {
+        if (distinctServiceTerms.size >= 3) {
+          findings.push({
+            label: "Positioning coherence",
+            status: "pass",
+            detail: `Broad strategic positioning is consistently supported by ${distinctServiceTerms.size} distinct implementation-focused services detected in the page content (${[...distinctServiceTerms].slice(0, 3).join(", ")}).`,
+          });
+        } else if (distinctServiceTerms.size >= 1) {
+          findings.push({
+            label: "Positioning coherence",
+            status: "warning",
+            detail: `Broad positioning headline is only partially supported by specific implementation services in the body. Strengthening explicit service descriptions improves AI retrieval clarity.`,
+          });
+        } else {
+          findings.push({
+            label: "Positioning coherence",
+            status: "fail",
+            detail: `The positioning headline makes claims that the body content does not substantiate with specific services or capabilities. AI engines may struggle to classify this page accurately.`,
+          });
+        }
+      } else if (distinctServiceTerms.size >= 2) {
+        findings.push({
+          label: "Positioning coherence",
+          status: "pass",
+          detail: `Specific headline positioning is supported by matching implementation-focused content in the page body.`,
         });
       }
     }
 
-    const totalPossible = questionTemplates.length;
-    const covered = totalPossible - missingQuestions.length;
-    const coverageScore = Math.round((covered / totalPossible) * 100);
-    const coverageDetails = `Your content covers ${covered} of ${totalPossible} common question patterns for "${primaryTopic}". ${missingQuestions.length === 0 ? "Excellent topic coverage!" : `${missingQuestions.length} content gap(s) found that AI engines commonly look for.`}`;
+    // Check 2: H1 ↔ title semantic alignment
+    if (h1.length > 0 && metaTitle.length > 0) {
+      if (hasMismatch) {
+        findings.push({
+          label: "H1 and title tag alignment",
+          status: "fail",
+          detail: `The H1 ("${h1.slice(0, 80)}${h1.length > 80 ? "…" : ""}") and the page title appear to address different topics. AI engines use both signals together — misalignment reduces citation confidence.`,
+        });
+      } else if (h1TitleOverlap > 0) {
+        findings.push({
+          label: "H1 and title tag alignment",
+          status: "pass",
+          detail: `The H1 and title tag share semantic terms, reinforcing a consistent topical signal for AI retrieval systems.`,
+        });
+      }
+    }
+
+    // Check 3: Implicit vs. explicit capability
+    if (navServicesNotInBody.length >= 2) {
+      findings.push({
+        label: "Implicit capabilities",
+        status: "warning",
+        detail: `${navServicesNotInBody.length} service terms appear in the navigation but are not described in the page body. AI engines prioritize explicitly described capabilities over navigation labels alone.`,
+      });
+    }
+
+    // Check 4: Factual specificity
+    if (bodyText.split(/\s+/).length > 100) {
+      if (hasFactuals) {
+        findings.push({
+          label: "Factual specificity",
+          status: "pass",
+          detail: `Concrete factual signals (numbers, years, or specific deliverables) are present, which improves AI retrieval confidence and entity clarity.`,
+        });
+      } else {
+        findings.push({
+          label: "Factual specificity",
+          status: "warning",
+          detail: `No statistics, year references, project counts, or specific deliverables were detected. Adding concrete figures (e.g. "10+ years", "50+ projects") significantly improves AI retrieval confidence.`,
+        });
+      }
+    }
+
+    // Check 5: Machine-readable content structure
+    if (cf.directAnswerParagraphs === 0 && cf.faqSections === 0) {
+      findings.push({
+        label: "Machine-readable structure",
+        status: "warning",
+        detail: `No definition-style paragraphs or FAQ sections detected. AI engines extract answers from clearly structured, self-contained text blocks. Adding concise explanatory paragraphs improves citation potential.`,
+      });
+    }
+
+    // ── 13. Summary sentence ──────────────────────────────────────────────────
+    const failCount = findings.filter(f => f.status === "fail").length;
+    const warnCount = findings.filter(f => f.status === "warning").length;
+    const passCount = findings.filter(f => f.status === "pass").length;
+
+    let coverageDetails: string;
+    if (findings.length === 0) {
+      coverageDetails = "Semantic analysis completed. Content structure appears coherent.";
+    } else if (failCount > 0) {
+      coverageDetails = `Semantic analysis found ${failCount} critical alignment ${failCount === 1 ? "issue" : "issues"} and ${warnCount} ${warnCount === 1 ? "area" : "areas"} for improvement.`;
+    } else if (warnCount > 0) {
+      coverageDetails = `Semantic analysis found ${warnCount} ${warnCount === 1 ? "area" : "areas"} where AI retrieval clarity could be strengthened.`;
+    } else {
+      coverageDetails = `Semantic analysis passed ${passCount} coherence ${passCount === 1 ? "check" : "checks"}. Content positioning is well-aligned for AI retrieval.`;
+    }
 
     return {
-      topicKeywords: topicKeywords.slice(0, 8),
-      existingQuestions,
-      missingQuestions: missingQuestions.slice(0, 8),
-      coverageScore,
+      topicKeywords: finalTopicKeywords,
+      findings,
+      coverageScore: alignmentScore,
       coverageDetails,
     };
   }
