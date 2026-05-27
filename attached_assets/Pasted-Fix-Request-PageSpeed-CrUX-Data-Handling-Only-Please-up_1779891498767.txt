@@ -1,0 +1,104 @@
+Fix Request — PageSpeed / CrUX Data Handling Only
+
+Please update only the logic for detecting and displaying PageSpeed Insights / CrUX real-user field data in Landing page experience tab.
+
+The current analyzer correctly detects server speed, Cloudflare CDN, cache health and delivery status. Do not change those parts.
+
+The issue is specifically how the analyzer determines whether real-user CrUX data is available. Check vern.hr for testing purpose it shows data directly on Google Page Speed insights but our analisator does not show the data as it could not retrieve it - can you fix.
+Required Fix
+
+The analyzer must distinguish between these states:
+
+    URL-level CrUX data available
+
+    Origin-level CrUX data available
+
+    No CrUX data available
+
+    PageSpeed Insights API error
+
+    PageSpeed Insights API rate limit / HTTP 429
+
+These should not be merged into a single “No real data” message.
+Correct Logic
+
+After calling the PageSpeed Insights API:
+1. First check URL-level field data
+
+Check:
+
+loadingExperience.metrics
+
+If it exists and contains metrics, display it as:
+
+URL-level Chrome UX Report field data
+
+2. If URL-level data is missing, check origin-level field data
+
+Check:
+
+originLoadingExperience.metrics
+
+If it exists and contains metrics, display it as:
+
+Origin-level Chrome UX Report field data
+
+Do not show “No real data” in this case.
+
+Many sites do not have enough data for a specific URL but do have enough data at origin/domain level.
+3. Only show “No CrUX data” if both are missing
+
+Only display a no-data message if BOTH are missing or empty:
+
+loadingExperience.metrics
+originLoadingExperience.metrics
+
+Suggested message:
+
+Insufficient Chrome UX Report traffic data is currently available for this URL or origin.
+
+Supporting text:
+
+CrUX field data depends on real-world Chrome visitor volume over time. This does not necessarily indicate a website quality issue.
+
+HTTP Errors Must Be Separate
+
+If the PageSpeed API returns HTTP 429, show:
+
+PageSpeed Insights request limit reached. Try again later or enable caching/API key usage.
+
+Do NOT show:
+
+No CrUX data available
+
+If the API request fails for another reason, show:
+
+PageSpeed Insights data could not be retrieved.
+
+Do Not Penalize Missing CrUX Data
+
+Missing CrUX data should not reduce the landing page score, check if it does or not.
+
+Reason:
+
+CrUX availability depends on real-user Chrome traffic volume, not directly on page quality.
+
+The analyzer may show this as informational, but it should not mark it as a failed check.
+Recommended Implementation Detail
+
+Use a helper like:
+
+function getCruxStatus(psiResponse, httpStatus) {
+  if (httpStatus === 429) return 'RATE_LIMITED';
+  if (!psiResponse) return 'API_ERROR';
+
+  const urlMetrics = psiResponse.loadingExperience?.metrics;
+  const originMetrics = psiResponse.originLoadingExperience?.metrics;
+
+  if (urlMetrics && Object.keys(urlMetrics).length > 0) return 'URL_FIELD_DATA';
+  if (originMetrics && Object.keys(originMetrics).length > 0) return 'ORIGIN_FIELD_DATA';
+
+  return 'NO_FIELD_DATA';
+}
+
+Then render a different UI state for each result.

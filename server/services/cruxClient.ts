@@ -63,11 +63,12 @@ export async function fetchCruxFieldData(url: string): Promise<CruxFieldData> {
     clearTimeout(timer);
 
     if (!res.ok) {
-      return emptyResult("none", `PSI HTTP ${res.status}`);
+      const code = res.status === 429 ? "RATE_LIMITED" : `HTTP_ERROR_${res.status}`;
+      return emptyResult("none", code);
     }
     const json: any = await res.json();
     if (json?.error) {
-      return emptyResult("none", json.error.message || "PSI error");
+      return emptyResult("none", "API_ERROR");
     }
 
     const urlExp = json.loadingExperience;
@@ -78,10 +79,10 @@ export async function fetchCruxFieldData(url: string): Promise<CruxFieldData> {
     if (originExp && originExp.metrics && Object.keys(originExp.metrics).length > 0) {
       return { source: "origin", ...extractMetrics(originExp), fetchedAt: Date.now() };
     }
-    return emptyResult("none", "No CrUX field data available for this URL or origin");
+    return emptyResult("none", "NO_FIELD_DATA");
   } catch (err: any) {
     clearTimeout(timer);
-    const msg = err?.name === "AbortError" ? "PSI request timed out" : err?.message || "PSI request failed";
-    return emptyResult("none", msg);
+    const code = err?.name === "AbortError" ? "TIMEOUT" : "REQUEST_FAILED";
+    return emptyResult("none", code);
   }
 }

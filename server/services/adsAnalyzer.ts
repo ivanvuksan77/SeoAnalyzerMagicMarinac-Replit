@@ -1078,23 +1078,48 @@ class AdsLandingPageAnalyzer {
 
   private addFieldDataChecks(checks: AdsCheck[], fieldData: CruxFieldData) {
     if (fieldData.source === "none") {
-      checks.push({
-        name: "Real-User Field Data (CrUX)",
-        status: "WARNING",
-        details:
-          fieldData.error && fieldData.error.includes("No CrUX")
-            ? "Google has no real-user field data for this URL or origin. Google Ads falls back to lab data and historical signals — your Landing Page Experience rating may be slow to update."
-            : `CrUX field data could not be retrieved (${fieldData.error || "unknown reason"}).`,
-        category: "performance",
-        impact:
-          "Google Ads' Landing Page Experience uses real-user Core Web Vitals from Chrome (CrUX). Pages without enough traffic to generate field data are rated using less responsive fallback signals.",
-        recommendation:
-          "Drive consistent traffic to this URL (organic + paid) so it accumulates enough Chrome user data for CrUX. Until then, focus on lab-measured Core Web Vitals on a real mid-tier mobile device.",
-        fixType: "page-level",
-        technicalFix:
-          "STEP 1 — Verify CrUX status manually:\nhttps://pagespeed.web.dev/analysis?url=" +
-          "<your-url>\nIf the 'Discover what your real users are experiencing' section is empty, you have no URL-level CrUX.\n\nSTEP 2 — Drive traffic. CrUX needs roughly 28 days of consistent Chrome user visits to populate. Until then Google Ads uses origin-level CrUX (whole-domain average) as a fallback. If your homepage is slow on real devices, this landing page inherits that.\n\nSTEP 3 — Test on a real mid-tier Android over throttled 4G (Chrome DevTools → Performance → Slow 4G + 4× CPU). Aim for LCP < 2.5s, CLS < 0.1, INP < 200ms.",
-      });
+      const err = fieldData.error || "";
+
+      if (err === "RATE_LIMITED") {
+        checks.push({
+          name: "Real-User Field Data (CrUX)",
+          status: "PASS",
+          details: "PageSpeed Insights request limit reached. CrUX field data could not be retrieved at this time.",
+          category: "performance",
+          impact: "This is a temporary API quota issue, not a reflection of your page quality.",
+          recommendation: "Try again later. Adding a PAGESPEED_API_KEY environment variable gives a higher quota and avoids this limit.",
+          fixType: "page-level",
+        });
+      } else if (err === "NO_FIELD_DATA") {
+        checks.push({
+          name: "Real-User Field Data (CrUX)",
+          status: "PASS",
+          details: "Insufficient Chrome UX Report traffic data is currently available for this URL or origin.",
+          category: "performance",
+          impact: "CrUX field data depends on real-world Chrome visitor volume over time. This does not necessarily indicate a website quality issue. Google Ads falls back to lab data and historical signals until enough real-user data accumulates.",
+          recommendation: "Drive consistent organic and paid traffic to this URL so it accumulates enough Chrome user data for CrUX (roughly 28 days of visits). Until then, optimise lab-measured Core Web Vitals on a real mid-tier mobile device.",
+          fixType: "page-level",
+          technicalFix:
+            "STEP 1 — Verify CrUX status manually:\nhttps://pagespeed.web.dev/analysis?url=<your-url>\nIf the 'Discover what your real users are experiencing' section is empty, you have no URL-level CrUX.\n\nSTEP 2 — Drive traffic. CrUX needs roughly 28 days of consistent Chrome user visits to populate. Until then Google Ads uses origin-level CrUX (whole-domain average) as a fallback. If your homepage is slow on real devices, this landing page inherits that.\n\nSTEP 3 — Test on a real mid-tier Android over throttled 4G (Chrome DevTools → Performance → Slow 4G + 4× CPU). Aim for LCP < 2.5s, CLS < 0.1, INP < 200ms.",
+        });
+      } else {
+        // TIMEOUT, REQUEST_FAILED, HTTP_ERROR_*, API_ERROR
+        const humanMsg =
+          err === "TIMEOUT"
+            ? "PageSpeed Insights request timed out."
+            : err.startsWith("HTTP_ERROR_")
+            ? `PageSpeed Insights returned HTTP ${err.replace("HTTP_ERROR_", "")}.`
+            : "PageSpeed Insights data could not be retrieved.";
+        checks.push({
+          name: "Real-User Field Data (CrUX)",
+          status: "PASS",
+          details: humanMsg,
+          category: "performance",
+          impact: "This is a temporary retrieval issue, not a reflection of your page quality.",
+          recommendation: "Re-run the analysis to try again. If the problem persists, verify that the URL is publicly accessible.",
+          fixType: "page-level",
+        });
+      }
       return;
     }
 
@@ -1176,7 +1201,9 @@ class AdsLandingPageAnalyzer {
   private getQualityScoreImpact(rating: AdsRating, score: number, fieldData?: CruxFieldData): string {
     const fieldNote = fieldData
       ? fieldData.source === "none"
-        ? " ⚠ Note: Google has no real-user field data (CrUX) for this URL — your rating may be based on origin-level fallback or historical signals, which update slowly."
+        ? fieldData.error === "NO_FIELD_DATA"
+          ? " Note: No Chrome UX Report field data is available for this URL yet — your rating is based on lab signals."
+          : ""
         : fieldData.overall === "SLOW"
         ? ` ⚠ Real-user field data (${fieldData.source === "url" ? "URL-level" : "origin-level"} CrUX) shows this page is SLOW for actual visitors — this is the strongest negative LPE signal regardless of lab score.`
         : fieldData.overall === "AVERAGE"
