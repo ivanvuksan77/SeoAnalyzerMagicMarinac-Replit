@@ -512,16 +512,6 @@ function ContentGapFinderCard({ gaps }: { gaps: ContentGapsAnalysis }) {
 
         <p className="text-sm text-muted-foreground mb-3">{gaps.coverageDetails}</p>
 
-        {gaps.topicKeywords.length > 0 && (
-          <div className="mb-4">
-            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Detected Topics</p>
-            <div className="flex flex-wrap gap-1.5">
-              {gaps.topicKeywords.map((kw, i) => (
-                <span key={i} className="px-2 py-0.5 rounded bg-primary/10 text-primary text-xs font-medium">{kw}</span>
-              ))}
-            </div>
-          </div>
-        )}
 
         {gaps.findings.length > 0 && (
           <div>
