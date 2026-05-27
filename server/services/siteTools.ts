@@ -13,27 +13,32 @@ import {
 
 const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 
-const SOCIAL_MEDIA_DOMAINS = new Set([
-  "instagram.com", "www.instagram.com",
-  "facebook.com", "www.facebook.com", "m.facebook.com",
-  "twitter.com", "www.twitter.com", "x.com", "www.x.com",
-  "tiktok.com", "www.tiktok.com",
-  "linkedin.com", "www.linkedin.com",
-  "pinterest.com", "www.pinterest.com",
-  "snapchat.com", "www.snapchat.com",
-  "reddit.com", "www.reddit.com",
-  "tumblr.com", "www.tumblr.com",
-  "threads.net", "www.threads.net",
-  "youtube.com", "www.youtube.com",
-  "youtu.be",
+// Base domains only — isSocialMediaUrl checks exact match AND all subdomains via endsWith
+const SOCIAL_MEDIA_BASE_DOMAINS = [
+  "instagram.com",
+  "facebook.com", "fb.com", "fb.me", "m.me",
+  "twitter.com", "x.com", "t.co",
+  "tiktok.com",
+  "linkedin.com", "lnkd.in",
+  "pinterest.com",
+  "snapchat.com",
+  "reddit.com",
+  "tumblr.com",
+  "threads.net",
+  "youtube.com", "youtu.be",
+  "vimeo.com",
+  "spotify.com",
   "wa.me",
   "t.me",
-]);
+  "telegram.org",
+  "discord.com", "discord.gg",
+  "twitch.tv",
+];
 
 function isSocialMediaUrl(url: string): boolean {
   try {
-    const parsed = new URL(url);
-    return SOCIAL_MEDIA_DOMAINS.has(parsed.hostname);
+    const hostname = new URL(url).hostname.toLowerCase();
+    return SOCIAL_MEDIA_BASE_DOMAINS.some(d => hostname === d || hostname.endsWith(`.${d}`));
   } catch {
     return false;
   }
