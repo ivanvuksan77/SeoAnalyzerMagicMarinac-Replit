@@ -5,7 +5,7 @@ export function HeroHr() {
   return (
     <Hero
       lang="hr"
-      brand="FreeSEOSiteAnalyzer"
+      brand="FreeSiteAnalyzer"
       eyebrow="Za Google Ads i organski SEO"
       h1Lead="Riješite probleme s Google"
       h1Accent="rangiranjem — brzo"

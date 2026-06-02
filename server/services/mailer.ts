@@ -36,8 +36,8 @@ export async function sendVerificationEmail(params: {
   const lang = params.lang === "hr" ? "hr" : "en";
   const subject =
     lang === "hr"
-      ? "Potvrdite svoju e-mail adresu — FreeSEOSiteAnalyzer"
-      : "Verify your email — FreeSEOSiteAnalyzer";
+      ? "Potvrdite svoju e-mail adresu — FreeSiteAnalyzer"
+      : "Verify your email — FreeSiteAnalyzer";
 
   const text =
     lang === "hr"
@@ -49,11 +49,11 @@ export async function sendVerificationEmail(params: {
           ``,
           params.verificationLink,
           ``,
-          `Klikom na ovu poveznicu vaš će pristupni kôd biti aktiviran i bit ćete automatski vraćeni na FreeSEOSiteAnalyzer gdje možete odmah početi koristiti svoja skeniranja.`,
+          `Klikom na ovu poveznicu vaš će pristupni kôd biti aktiviran i bit ćete automatski vraćeni na FreeSiteAnalyzer gdje možete odmah početi koristiti svoja skeniranja.`,
           ``,
           `Poveznica vrijedi 30 minuta. Ako je niste vi zatražili, slobodno ignorirajte ovu poruku.`,
           ``,
-          `— Tim FreeSEOSiteAnalyzer`,
+          `— Tim FreeSiteAnalyzer`,
         ].join("\n")
       : [
           `Hi,`,
@@ -63,11 +63,11 @@ export async function sendVerificationEmail(params: {
           ``,
           params.verificationLink,
           ``,
-          `Clicking this link will activate your access code and bring you straight back to FreeSEOSiteAnalyzer where you can start using your scans immediately.`,
+          `Clicking this link will activate your access code and bring you straight back to FreeSiteAnalyzer where you can start using your scans immediately.`,
           ``,
           `The link expires in 30 minutes. If you didn't request this, you can safely ignore this email.`,
           ``,
-          `— The FreeSEOSiteAnalyzer team`,
+          `— The FreeSiteAnalyzer team`,
         ].join("\n");
 
   const transporter = createTransport();

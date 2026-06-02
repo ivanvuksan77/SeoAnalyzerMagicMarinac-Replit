@@ -1,6 +1,6 @@
 {
-  "name": "FreeSEOSiteAnalyzer",
-  "short_name": "FreeSEOSiteAnalyzer",
+  "name": "FreeSiteAnalyzer",
+  "short_name": "FreeSiteAnalyzer",
   "description": "Free SEO, AEO, GEO and Google Ads analyzer with copy-paste fixes.",
   "start_url": "/",
   "display": "standalone",

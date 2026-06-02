@@ -1,4 +1,4 @@
-# Deploying FreeSEOSiteAnalyzer on Hetzner Cloud VPS
+# Deploying FreeSiteAnalyzer on Hetzner Cloud VPS
 
 Step-by-step guide to deploy this application on a Hetzner Cloud server with a custom domain like `seo.magicmarinac.hr`.
 

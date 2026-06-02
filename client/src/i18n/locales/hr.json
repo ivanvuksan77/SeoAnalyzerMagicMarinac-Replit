@@ -1,6 +1,6 @@
 {
   "header": {
-    "title": "FreeSEOSiteAnalyzer",
+    "title": "FreeSiteAnalyzer",
     "toggleDark": "Promijeni temu",
     "toggleLang": "Promijeni jezik",
     "languageEnglish": "Engleski",
@@ -374,7 +374,7 @@
   },
   "footer": {
     "madeIn": "Napravljeno u",
-    "copyrightPrefix": "© {{year}} FreeSEOSiteAnalyzer. Made in",
+    "copyrightPrefix": "© {{year}} FreeSiteAnalyzer. Made in",
     "companyName": "MagićMarinac",
     "privacy": "Pravila privatnosti",
     "terms": "Uvjeti korištenja",
@@ -382,7 +382,7 @@
   },
   "legalPages": {
     "common": {
-      "backHome": "Natrag na FreeSEOSiteAnalyzer",
+      "backHome": "Natrag na FreeSiteAnalyzer",
       "companyIdentityTitle": "Podaci o tvrtki i kontakt",
       "relatedPoliciesTitle": "Povezane politike"
     },
@@ -1044,7 +1044,7 @@
     }
   },
   "comparisonTable": {
-    "heading": "Odaberite svoj FreeSEOSiteAnalyzer plan",
+    "heading": "Odaberite svoj FreeSiteAnalyzer plan",
     "subheading": "Free pokazuje ocjenu. Basic otključava sve podatke. Pro vam predaje gotova rješenja.",
     "note": "Bez registracije · Jednokratna kupnja, bez pretplate · Jamstvo povrata novca",
     "tiers": {
@@ -1100,30 +1100,30 @@
   "faq": {
     "eyebrow": "Česta pitanja",
     "heading": "Sve što trebate znati prije nego što skenirate",
-    "subheading": "Jasni odgovori o tome što FreeSEOSiteAnalyzer provjerava, što dobivate na svakoj razini i kako rješenja funkcioniraju.",
+    "subheading": "Jasni odgovori o tome što FreeSiteAnalyzer provjerava, što dobivate na svakoj razini i kako rješenja funkcioniraju.",
     "items": {
-      "whatIsFreeSEOSiteAnalyzer": {
-        "q": "Što je FreeSEOSiteAnalyzer i kako analizira SEO moje web stranice?",
-        "a": "FreeSEOSiteAnalyzer je 8-u-1 skener za SEO i spremnost za AI. Zalijepite URL i u oko 30 sekundi analiziramo stranicu kroz klasični SEO, tehnički SEO, kvalitetu odredišne stranice za Google Ads, AEO (optimizaciju za ChatGPT, Perplexity, Gemini) i GEO (optimizaciju za generativnu tražilicu) — i točno vam kažemo što je pokvareno i što popraviti."
+      "whatIsFreeSiteAnalyzer": {
+        "q": "Što je FreeSiteAnalyzer i kako analizira SEO moje web stranice?",
+        "a": "FreeSiteAnalyzer je 8-u-1 skener za SEO i spremnost za AI. Zalijepite URL i u oko 30 sekundi analiziramo stranicu kroz klasični SEO, tehnički SEO, kvalitetu odredišne stranice za Google Ads, AEO (optimizaciju za ChatGPT, Perplexity, Gemini) i GEO (optimizaciju za generativnu tražilicu) — i točno vam kažemo što je pokvareno i što popraviti."
       },
       "whatChecked": {
-        "q": "Što obuhvaća kompletna SEO analiza — što FreeSEOSiteAnalyzer provjerava na stranici?",
+        "q": "Što obuhvaća kompletna SEO analiza — što FreeSiteAnalyzer provjerava na stranici?",
         "a": "Svako skeniranje izvodi svih osam stupova: on-page SEO (naslov, meta, headinzi, sadržaj), tehnički SEO (status kodovi, robots, sitemap, crawlability), Core Web Vitals i performanse, prilagodljivost mobitelima, strukturirani podaci (JSON-LD / schema.org), kvaliteta Google Ads odredišnih stranica plus ocjena kvalitete oglasnog teksta za vaše naslove i opise, AEO spremnost za AI tražilice i GEO spremnost za generativnu pretragu."
       },
       "adCopyRater": {
         "q": "Kako poboljšati Google Ads Quality Score i poziciju oglasa (Ad Rank)?",
-        "a": "Zalijepite Google Ads naslove i opise u FreeSEOSiteAnalyzer i mi ocjenjujemo kvalitetu oglasnog teksta na način na koji to čini Google: relevantnost ključnih riječi, podudaranje s namjerom, jasnoću, učinkovito korištenje broja znakova, snagu CTA-a i koliko se tekst poklapa s odredišnom stranicom. Dobit ćete ocjenu po elementu i konkretne prijedloge prepravki koje dižu Quality Score, Ad Rank i CTR — i smanjuju cijenu po kliku."
+        "a": "Zalijepite Google Ads naslove i opise u FreeSiteAnalyzer i mi ocjenjujemo kvalitetu oglasnog teksta na način na koji to čini Google: relevantnost ključnih riječi, podudaranje s namjerom, jasnoću, učinkovito korištenje broja znakova, snagu CTA-a i koliko se tekst poklapa s odredišnom stranicom. Dobit ćete ocjenu po elementu i konkretne prijedloge prepravki koje dižu Quality Score, Ad Rank i CTR — i smanjuju cijenu po kliku."
       },
       "howLong": {
-        "q": "Koliko traje SEO analiza sa FreeSEOSiteAnalyzer-om?",
+        "q": "Koliko traje SEO analiza sa FreeSiteAnalyzer-om?",
         "a": "Većina skeniranja završi za 20–40 sekundi. Vidjet ćete tijek uživo dok svaki stup radi, a cijeli izvještaj pojavljuje se čim se završi posljednja provjera — bez čekanja e-maila."
       },
       "freeVsPaid": {
         "q": "Postoji li besplatan alat za SEO analizu koji pokazuje stvarne probleme, a ne samo najavu?",
-        "a": "Da — besplatno FreeSEOSiteAnalyzer skeniranje daje vam ukupnu ocjenu, ocjenu po stupu i 3 najveća problema po sekciji, tako da stvarno vidite gdje stojite. Basic (€19) otključava svaki nalaz uz cjeloviti PDF izvještaj i usporedbu s konkurencijom. Pro (€29) dodaje gotova rješenja i upute korak po korak za svaki problem."
+        "a": "Da — besplatno FreeSiteAnalyzer skeniranje daje vam ukupnu ocjenu, ocjenu po stupu i 3 najveća problema po sekciji, tako da stvarno vidite gdje stojite. Basic (€19) otključava svaki nalaz uz cjeloviti PDF izvještaj i usporedbu s konkurencijom. Pro (€29) dodaje gotova rješenja i upute korak po korak za svaki problem."
       },
       "basicVsPro": {
-        "q": "Trebam li kupiti FreeSEOSiteAnalyzer Basic ili Pro za popravak SEO-a?",
+        "q": "Trebam li kupiti FreeSiteAnalyzer Basic ili Pro za popravak SEO-a?",
         "a": "Basic je cjeloviti izvještaj s podacima — svi problemi, svi nalazi, cijeli PDF, 3 skeniranja. Pro je Basic plus stvarna rješenja: gotove meta oznake, JSON-LD blokovi, robots/sitemap isječci i upute korak po korak za svaki problem koji pronađemo. Ako želite sami popravljati ili predati developeru jasnu listu zadataka, odaberite Pro. Pro uključuje i 10 skeniranja kako biste mogli ponovno testirati nakon svakog popravka."
       },
       "aiReady": {
@@ -1131,19 +1131,19 @@
         "a": "Naši AEO i GEO stupovi provjeravaju upravo one signale koje AI tražilice koriste za citiranje stranice: jasnu strukturu pitanja i odgovora, svježinu činjenica, schema.org označavanje, llms.txt, semantički HTML i sadržaj pogodan za citiranje. Dobit ćete zaseban rezultat AI spremnosti i konkretne promjene koje povećavaju šanse da vas citiraju ChatGPT, Perplexity, Gemini i Google AI pregledi."
       },
       "whoFor": {
-        "q": "Tko bi trebao koristiti FreeSEOSiteAnalyzer — marketingaši, developeri ili agencije?",
-        "a": "Marketingaši, osnivači, freelanceri, developeri i agencije — svi koriste FreeSEOSiteAnalyzer. Marketingaši i osnivači dobivaju brzu i poštenu sliku kako stranica radi u Google pretrazi, u ocjeni kvalitete Google Adsa i u AI tražilicama. Developeri dobivaju gotove meta oznake, schema, robots i HTML isječke koje mogu odmah ubaciti u kod. Agencije koriste PDF izvještaj kao isporuku spremnu za klijenta — bez učenja deset različitih alata ili ručne revizije."
+        "q": "Tko bi trebao koristiti FreeSiteAnalyzer — marketingaši, developeri ili agencije?",
+        "a": "Marketingaši, osnivači, freelanceri, developeri i agencije — svi koriste FreeSiteAnalyzer. Marketingaši i osnivači dobivaju brzu i poštenu sliku kako stranica radi u Google pretrazi, u ocjeni kvalitete Google Adsa i u AI tražilicama. Developeri dobivaju gotove meta oznake, schema, robots i HTML isječke koje mogu odmah ubaciti u kod. Agencije koriste PDF izvještaj kao isporuku spremnu za klijenta — bez učenja deset različitih alata ili ručne revizije."
       },
       "needSignup": {
         "q": "Mogu li pokrenuti SEO analizu bez registracije ili otvaranja računa?",
         "a": "Da. Besplatna skeniranja ne traže ništa — bez e-maila, bez računa, bez kartice. Basic i Pro su jednokratna plaćanja — bez pretplate, bez ponavljajućih troškova, bez računa za upravljanje. Izvještaj dobivate e-mailom i ostaje dostupan putem linka."
       },
       "refund": {
-        "q": "Nudi li FreeSEOSiteAnalyzer jamstvo povrata novca za SEO izvještaj?",
+        "q": "Nudi li FreeSiteAnalyzer jamstvo povrata novca za SEO izvještaj?",
         "a": "Da. I Basic i Pro dolaze s jamstvom povrata novca. Ako vam izvještaj ne donese konkretne uvide, kontaktirajte podršku i vraćamo vam novac. Jednokratno plaćanje, bez pretplate, bez sitnih slova."
       },
       "howFixes": {
-        "q": "Kako brzo popraviti SEO probleme — daje li FreeSEOSiteAnalyzer gotov kod?",
+        "q": "Kako brzo popraviti SEO probleme — daje li FreeSiteAnalyzer gotov kod?",
         "a": "Da. Za svaki problem koji pronađemo, Pro uključuje gotovo rješenje: točan title tag, meta description, JSON-LD blok, robots direktivu, image alt tekst ili HTML isječak koji vaš developer (ili vi) može odmah ubaciti u stranicu. Uz svako rješenje ide kratki vodič korak po korak — gdje ide i zašto je važno."
       }
     }
@@ -1162,47 +1162,47 @@
   },
   "seo": {
     "home": {
-      "title": "FreeSEOSiteAnalyzer — Besplatni SEO, AEO, GEO i Google Ads analizator | Skeniraj. Snimi. Popravi.",
+      "title": "FreeSiteAnalyzer — Besplatni SEO, AEO, GEO i Google Ads analizator | Skeniraj. Snimi. Popravi.",
       "description": "Besplatni alat koji u jednom kliku ocjenjuje SEO, AEO, GEO i Google Ads landing iskustvo — i daje gotove popravke koje možete primijeniti odmah."
     },
     "checkout": {
-      "title": "Naplata — Otključajte Pro popravke | FreeSEOSiteAnalyzer",
-      "description": "Sigurna naplata za FreeSEOSiteAnalyzer Basic (€19) ili Pro (€29). Dobijte sve podatke i gotove popravke za SEO, AEO, GEO i Google Ads."
+      "title": "Naplata — Otključajte Pro popravke | FreeSiteAnalyzer",
+      "description": "Sigurna naplata za FreeSiteAnalyzer Basic (€19) ili Pro (€29). Dobijte sve podatke i gotove popravke za SEO, AEO, GEO i Google Ads."
     },
     "privacy": {
-      "title": "Politika privatnosti | FreeSEOSiteAnalyzer",
-      "description": "Kako FreeSEOSiteAnalyzer prikuplja, obrađuje i štiti vaše podatke kada skenirate web-stranice našim SEO, AEO, GEO i Google Ads alatom."
+      "title": "Politika privatnosti | FreeSiteAnalyzer",
+      "description": "Kako FreeSiteAnalyzer prikuplja, obrađuje i štiti vaše podatke kada skenirate web-stranice našim SEO, AEO, GEO i Google Ads alatom."
     },
     "terms": {
-      "title": "Uvjeti korištenja | FreeSEOSiteAnalyzer",
-      "description": "Uvjeti koji uređuju korištenje FreeSEOSiteAnalyzer analizatora, alata za bodovanje i izvještaja s popravcima."
+      "title": "Uvjeti korištenja | FreeSiteAnalyzer",
+      "description": "Uvjeti koji uređuju korištenje FreeSiteAnalyzer analizatora, alata za bodovanje i izvještaja s popravcima."
     },
     "refund": {
-      "title": "Politika povrata i otkaza | FreeSEOSiteAnalyzer",
-      "description": "FreeSEOSiteAnalyzer pravila za povrat i otkaz za jednokratne Basic (€19) i Pro (€29) izvještaje."
+      "title": "Politika povrata i otkaza | FreeSiteAnalyzer",
+      "description": "FreeSiteAnalyzer pravila za povrat i otkaz za jednokratne Basic (€19) i Pro (€29) izvještaje."
     },
     "delivery": {
-      "title": "Isporuka i ispunjenje | FreeSEOSiteAnalyzer",
-      "description": "Kako FreeSEOSiteAnalyzer nakon plaćanja isporučuje izvještaj i Pro upute za popravke — trenutni pristup uz PDF na e-poštu."
+      "title": "Isporuka i ispunjenje | FreeSiteAnalyzer",
+      "description": "Kako FreeSiteAnalyzer nakon plaćanja isporučuje izvještaj i Pro upute za popravke — trenutni pristup uz PDF na e-poštu."
     },
     "verify": {
-      "title": "Potvrda e-pošte | FreeSEOSiteAnalyzer",
-      "description": "Potvrdite svoju e-poštu kako biste otključali FreeSEOSiteAnalyzer izvještaj i upute za popravke."
+      "title": "Potvrda e-pošte | FreeSiteAnalyzer",
+      "description": "Potvrdite svoju e-poštu kako biste otključali FreeSiteAnalyzer izvještaj i upute za popravke."
     },
     "ads": {
-      "title": "Analizator odredišne stranice Google Adsa | FreeSEOSiteAnalyzer",
+      "title": "Analizator odredišne stranice Google Adsa | FreeSiteAnalyzer",
       "description": "Ocijenite iskustvo odredišne stranice Google Adsa: TTFB, CDN, predmemorija, preusmjeravanja, mobilni UX i kvaliteta oglasnog teksta s gotovim rješenjima."
     },
     "aeo": {
-      "title": "AEO / AI SEO analizator za ChatGPT i Perplexity | FreeSEOSiteAnalyzer",
+      "title": "AEO / AI SEO analizator za ChatGPT i Perplexity | FreeSiteAnalyzer",
       "description": "Provjerite spremnost stranice za AI tražilice: strukturirani podaci, vjerojatnost citiranja, pregled za ChatGPT/Perplexity i nedostaci sadržaja."
     },
     "dashboard": {
-      "title": "FreeSEOSiteAnalyzer nadzorna ploča — pokrenite SEO, AEO i Ads audit",
-      "description": "Pokrenite potpuni FreeSEOSiteAnalyzer audit: SEO, AEO, GEO i iskustvo odredišne stranice Google Adsa u jednom kliku s gotovim rješenjima."
+      "title": "FreeSiteAnalyzer nadzorna ploča — pokrenite SEO, AEO i Ads audit",
+      "description": "Pokrenite potpuni FreeSiteAnalyzer audit: SEO, AEO, GEO i iskustvo odredišne stranice Google Adsa u jednom kliku s gotovim rješenjima."
     },
     "siteTools": {
-      "title": "Alati za stranicu — pokvarene veze, slike, sitemap i robots | FreeSEOSiteAnalyzer",
+      "title": "Alati za stranicu — pokvarene veze, slike, sitemap i robots | FreeSiteAnalyzer",
       "description": "Besplatni alati za cijelu stranicu: provjera pokvarenih veza, optimizacija slika, interno povezivanje, sitemap i robots.txt validacija."
     }
   }

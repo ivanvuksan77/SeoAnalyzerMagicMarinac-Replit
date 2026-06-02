@@ -1065,9 +1065,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/llms.txt", (_req, res) => {
     const body =
-      `# FreeSEOSiteAnalyzer\n` +
+      `# FreeSiteAnalyzer\n` +
       `> Free website analyzer for SEO, AEO, GEO and Google Ads landing-page experience. Slogan: Scan. Snap. Fix What Matters.\n\n` +
-      `FreeSEOSiteAnalyzer runs four audits in one click and returns copy-paste fixes for the issues that hurt your ranking, AI citations and Google Ads Quality Score.\n\n` +
+      `FreeSiteAnalyzer runs four audits in one click and returns copy-paste fixes for the issues that hurt your ranking, AI citations and Google Ads Quality Score.\n\n` +
       `## Pricing\n` +
       `- Free: overall score plus the top issues.\n` +
       `- Basic — €19 one-time: full audit data, no fix instructions.\n` +

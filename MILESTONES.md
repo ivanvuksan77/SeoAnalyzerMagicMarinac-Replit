@@ -1,4 +1,4 @@
-# FreeSEOSiteAnalyzer — Product Milestones
+# FreeSiteAnalyzer — Product Milestones
 
 Living roadmap. Items are ordered by ROI, not chronology — pick the smallest unblocking
 milestone next, ship it, re-evaluate. Keep this file in lockstep with `replit.md`

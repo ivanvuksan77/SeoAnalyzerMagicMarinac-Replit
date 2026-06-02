@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/accordion";
 
 const FAQ_KEYS = [
-  "whatIsFreeSEOSiteAnalyzer",
+  "whatIsFreeSiteAnalyzer",
   "whatChecked",
   "adCopyRater",
   "howLong",
