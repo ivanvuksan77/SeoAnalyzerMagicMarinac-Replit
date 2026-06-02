@@ -4418,7 +4418,7 @@ export default function MasterAnalyzerPage() {
                             className="h-8 w-40 text-xs font-mono bg-white dark:bg-background"
                             data-testid="input-access-code"
                           />
-                          <Button size="sm" variant="outline" onClick={handleRedeemCode} disabled={codeRedeeming || !accessCode.trim()} className="h-8 text-xs bg-emerald-50 dark:bg-emerald-500/15 hover:bg-emerald-100 dark:hover:bg-emerald-900 text-emerald-700 dark:text-emerald-300 hover:text-emerald-800 dark:hover:text-emerald-300 border-emerald-200" data-testid="button-redeem-activate">
+                          <Button size="sm" variant="outline" onClick={handleRedeemCode} disabled={codeRedeeming || !accessCode.trim()} className="h-8 text-xs bg-emerald-50 dark:bg-emerald-500/15 hover:bg-emerald-100 dark:hover:bg-emerald-900 text-emerald-700 dark:text-emerald-300 hover:text-emerald-800 dark:hover:text-emerald-300 border-emerald-200 dark:border-emerald-800" data-testid="button-redeem-activate">
                             {codeRedeeming ? <Loader2 className="w-3 h-3 animate-spin" /> : t('accessCode.activate')}
                           </Button>
                           <Button size="sm" variant="ghost" onClick={() => { setShowAccessCodeInput(false); setAccessCode(''); setRedeemEmail(''); }} className="h-8 text-xs text-muted-foreground" data-testid="button-redeem-cancel">
