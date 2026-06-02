@@ -4407,7 +4407,7 @@ export default function MasterAnalyzerPage() {
                             value={redeemEmail}
                             onChange={(e) => setRedeemEmail(e.target.value)}
                             onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleRedeemCode(); } }}
-                            className="h-8 w-48 text-xs"
+                            className="h-8 w-48 text-xs bg-white"
                             data-testid="input-redeem-email"
                           />
                           <Input
@@ -4415,7 +4415,7 @@ export default function MasterAnalyzerPage() {
                             value={accessCode}
                             onChange={(e) => setAccessCode(e.target.value.toUpperCase())}
                             onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleRedeemCode(); } }}
-                            className="h-8 w-40 text-xs font-mono"
+                            className="h-8 w-40 text-xs font-mono bg-white"
                             data-testid="input-access-code"
                           />
                           <Button size="sm" variant="outline" onClick={handleRedeemCode} disabled={codeRedeeming || !accessCode.trim()} className="h-8 text-xs bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100 hover:text-emerald-800" data-testid="button-redeem-activate">
