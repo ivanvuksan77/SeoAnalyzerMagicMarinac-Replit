@@ -980,56 +980,56 @@
     "mismatchDescription": "Ovaj pristupni kôd je registriran na drugu e-mail adresu."
   },
   "usp": {
-    "heading": "Što stvarno čini razliku u modernom SEO-u",
-    "subheading": "Ne provjeravamo samo meta oznake. Bodujemo četiri stupa koji odlučuju hoćete li rangirati, konvertirati i biti pronađeni od strane AI-a.",
+    "heading": "Što stvarno utječe na vidljivost u modernoj AI pretrazi",
+    "subheading": "Ne provjeravamo samo meta tagove. Analiziramo ključne signale koji odlučuju može li vaša stranica biti pronađena, razumljiva i preporučena — u Googleu, AI Overview rezultatima, ChatGPTu, Perplexityju i plaćenim kampanjama.",
     "cards": {
-      "seo": {
-        "pillar": "01",
-        "title": "SEO Audit",
-        "desc": "Dubinska tehnička i on-page analiza koja pronalazi ono što Google stvarno kažnjava.",
-        "bullets": [
-          "Core Web Vitals + Lighthouse ocjena",
-          "Meta, naslovi, schema i canonical provjere",
-          "Crawlability, sitemap i robots.txt",
-          "Backlinkovi i indeksacija"
-        ],
-        "stat": "+38% prosj. rast rangiranja"
-      },
-      "ads": {
-        "pillar": "02",
-        "title": "Google Ads",
-        "desc": "Analiziramo vaše Google Ads landing stranice i ocjenjujemo kvalitetu oglasnog teksta — zalijepite naslove i opise i odmah vidite kako ih Google čita.",
-        "bullets": [
-          "Ocjena kvalitete oglasnog teksta (naslovi + opisi)",
-          "Relevantnost landing stranice za namjeru oglasa",
-          "Brzina i Core Web Vitals na LP-u",
-          "Kvaliteta forme, CTA-a i signala povjerenja"
-        ],
-        "stat": "Zatvorite rupe na LP-u, podignite ROAS"
-      },
       "ai": {
-        "pillar": "03",
+        "pillar": "01",
         "title": "AI optimizacija",
-        "desc": "Budite pronađeni u ChatGPT-u, Perplexityju i Google AI pregledima — ne samo u klasičnoj pretrazi.",
+        "desc": "Provjerite koliko je vaša stranica spremna za novu eru pretrage — AI Overviews, ChatGPT, Perplexity i generativne rezultate.",
         "bullets": [
-          "GEO (Generative Engine Optimization) ocjena",
-          "Strukturirani podaci za AI crawlere",
-          "Mapiranje entiteta i tematskog autoriteta",
-          "Sadržaj prilagođen LLM modelima"
+          "AEO / GEO / AIO analiza vidljivosti",
+          "Provjera može li AI razumjeti temu, uslugu i kontekst stranice",
+          "Analiza entiteta, topical authorityja i sadržajnih praznina",
+          "Smjernice za sadržaj prilagođen LLM modelima"
         ],
         "stat": "Promet otporan na budućnost"
+      },
+      "seo": {
+        "pillar": "02",
+        "title": "SEO Audit",
+        "desc": "Klasični SEO je i dalje temelj. Dubinska tehnička i on-page analiza.",
+        "bullets": [
+          "Tehnička i on-page SEO analiza",
+          "Core Web Vitals i Lighthouse provjera",
+          "Meta tagovi, naslovi, schema i canonical oznake",
+          "Crawlability, sitemap, robots.txt i indeksiranje"
+        ],
+        "stat": "Provjerite osnove za vidljivost."
+      },
+      "ads": {
+        "pillar": "03",
+        "title": "Google Ads Landing Page",
+        "desc": "Analiziramo landing page iz perspektive plaćenog prometa: relevantnost, brzinu, povjerenje, CTA elemente i usklađenost s oglasom.",
+        "bullets": [
+          "Procjena relevantnosti landing stranice prema namjeri oglasa",
+          "Analiza Google Ads naslova i opisa oglasa",
+          "Brzina stranice i Core Web Vitals",
+          "CTA, forma, trust signali i konverzijski elementi"
+        ],
+        "stat": "Zatvorite rupe na LP-u, podignite ROAS"
       },
       "fixes": {
         "pillar": "04",
         "title": "Pro popravci i rješenja",
-        "desc": "Ne pronalazimo samo probleme — Pro izvještaj donosi gotov kod i rješenja korak po korak.",
+        "desc": "Ne završavamo samo na dijagnozi. Pro izvještaj uključuje praktične primjere, predloške i smjernice koje možete prilagoditi svojoj stranici, temi i ciljevima.",
         "bullets": [
-          "Gotovi HTML / meta / schema isječci",
-          "Konfiguracije servera i .htaccess",
-          "Prioritetna lista popravaka (utjecaj × trud)",
-          "Očekivana ocjena prije / poslije"
+          "Primjeri HTML, meta i schema struktura",
+          "Poboljšanje sadržaja i AI čitljivosti",
+          "Tehničke smjernice i očekivana ocjena prije / poslije",
+          "Prioritetna lista popravaka"
         ],
-        "stat": "Spremno za developere"
+        "stat": "Od analize do jasnog plana što promijeniti — bez nagađanja gdje početi."
       }
     },
     "tiers": {
@@ -1038,29 +1038,28 @@
       "pro": "Pro",
       "proOnly": "Samo Pro",
       "footnote": {
-        "shared": "Više podataka u Basic · Gotov kod u Pro",
-        "proExclusive": "Dostupno samo u Pro planu"
+        "shared": "Analiza u Free · Više podataka u Basic · Rješenje problema u Pro",
+        "proExclusive": "Dostupno u Pro planu"
       }
     }
   },
   "comparisonTable": {
-    "heading": "Odaberite svoj FreeSiteAnalyzer plan",
+    "heading": "Odaberite svoj FreeSiteAnalyzer izvještaj",
     "subheading": "Free pokazuje ocjenu. Basic otključava sve podatke. Pro vam predaje gotova rješenja.",
     "note": "Bez registracije · Jednokratna kupnja, bez pretplate · Jamstvo povrata novca",
     "tiers": {
       "free": {
         "badge": "Free",
         "price": "€0",
-        "priceSuffix": "/ skeniranje",
-        "tagline": "Ocjena + ključni problemi. Bez registracije.",
+        "priceSuffix": "/ 3 skeniranja",
+        "tagline": "Ocjena + ključni problemi.",
         "cta": "Pokreni besplatno",
         "features": [
           "8-u-1 SEO analiza",
-          "Analiza Google Ads odredišne stranice",
-          "Ocjena kvalitete oglasnog teksta (naslovi + opisi)",
           "AEO / AI SEO spremnost",
           "GEO provjera spremnosti",
-          "Ukupna ocjena po stupu",
+          "Analiza Google Ads odredišne stranice",
+          "Ocjena kvalitete oglasnog teksta (naslovi + opisi)",
           "Top 3 problema po sekciji",
           "Dostava e-mailom"
         ]
@@ -1070,29 +1069,26 @@
         "price": "€19",
         "priceSuffix": "jednokratno",
         "tagline": "Potpuni izvještaj — bez rješenja.",
-        "cta": "Uzmi Basic",
+        "cta": "Kupi Basic",
         "features": [
           "Sve iz Free, plus:",
           "Potpune liste problema (svi nalazi)",
           "Cjeloviti PDF izvještaj",
-          "3 skeniranja uključena",
-          "Usporedba s URL-om konkurenta",
-          "Jamstvo povrata novca"
+          "5 skeniranja uključeno",
+          "Usporedba s URL-om konkurenta"
         ]
       },
       "pro": {
         "badge": "Pro",
         "price": "€29",
         "priceSuffix": "jednokratno",
-        "tagline": "Svi podaci + gotov kod za rješenja.",
-        "cta": "Uzmi Pro",
+        "tagline": "Svi podaci + rješenja.",
+        "cta": "Kupi Pro",
         "features": [
           "Sve iz Basic, plus:",
-          "Gotov kod za svaki problem",
+          "Primjeri rješenja",
           "Tehničke upute korak po korak",
-          "10 skeniranja uključeno",
-          "Prioritetna dostava e-mailom",
-          "Provjera ponovno nakon svakog popravka"
+          "10 skeniranja uključeno"
         ]
       }
     }

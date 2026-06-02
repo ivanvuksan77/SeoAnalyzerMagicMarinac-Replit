@@ -35,6 +35,21 @@ export function UspSection() {
 
   const pillars: Pillar[] = [
     {
+      id: "ai",
+      pillar: t("usp.cards.ai.pillar"),
+      title: t("usp.cards.ai.title"),
+      desc: t("usp.cards.ai.desc"),
+      bullets: t("usp.cards.ai.bullets", { returnObjects: true }) as string[],
+      stat: t("usp.cards.ai.stat"),
+      Icon: Brain,
+      StatIcon: Sparkles,
+      color: "text-violet-600 dark:text-violet-400",
+      iconBg: "bg-violet-50 dark:bg-violet-950/40",
+      iconRing: "ring-violet-100 dark:ring-violet-900/60",
+      tiers: ["free", "basic", "pro"],
+      proExclusive: false,
+    },
+    {
       id: "seo",
       pillar: t("usp.cards.seo.pillar"),
       title: t("usp.cards.seo.title"),
@@ -61,21 +76,6 @@ export function UspSection() {
       color: "text-orange-500 dark:text-orange-400",
       iconBg: "bg-orange-50 dark:bg-orange-950/40",
       iconRing: "ring-orange-100 dark:ring-orange-900/60",
-      tiers: ["free", "basic", "pro"],
-      proExclusive: false,
-    },
-    {
-      id: "ai",
-      pillar: t("usp.cards.ai.pillar"),
-      title: t("usp.cards.ai.title"),
-      desc: t("usp.cards.ai.desc"),
-      bullets: t("usp.cards.ai.bullets", { returnObjects: true }) as string[],
-      stat: t("usp.cards.ai.stat"),
-      Icon: Brain,
-      StatIcon: Sparkles,
-      color: "text-violet-600 dark:text-violet-400",
-      iconBg: "bg-violet-50 dark:bg-violet-950/40",
-      iconRing: "ring-violet-100 dark:ring-violet-900/60",
       tiers: ["free", "basic", "pro"],
       proExclusive: false,
     },
@@ -182,7 +182,7 @@ export function UspSection() {
                             included
                               ? isPro
                                 ? "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-300 ring-1 ring-amber-300/70 dark:ring-amber-400/40"
-                                : "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-emerald-50 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-200 dark:ring-emerald-500/30"
+                                : "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ring-1 ring-border"
                               : "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-muted/60 text-muted-foreground/60 ring-1 ring-border line-through decoration-muted-foreground/40"
                           }
                           data-testid={`tier-${p.id}-${tier}-${included ? "in" : "out"}`}

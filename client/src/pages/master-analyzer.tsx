@@ -4492,16 +4492,6 @@ export default function MasterAnalyzerPage() {
           <div className="animate-in slide-in-from-bottom-4 duration-500" data-testid="master-results">
             <OverallDashboard data={result} onDownloadPdf={handleDownloadPdf} sessionId={result.sessionId} paidTier={paidTier} emailCaptured={emailCaptured} />
 
-            <SectionCard title={t('sections.seoAudit')} icon={Search} score={result.seo.data?.overallScore ?? null} error={result.seo.error} testId="master-seo" color="#3b82f6"
-              summaryContent={result.seo.data && <SeoSummary data={result.seo.data} />}>
-              {result.seo.data && <SeoSection data={result.seo.data} url={result.url} paidTier={paidTier} onUpgrade={openPricingModal} />}
-            </SectionCard>
-
-            <SectionCard title={t('sections.googleAds')} icon={Zap} score={result.ads.data?.score ?? null} error={result.ads.error} testId="master-ads" color="#f59e0b"
-              summaryContent={result.ads.data && <AdsSummary data={result.ads.data} />}>
-              {result.ads.data && <AdsSection data={result.ads.data} url={result.url} paidTier={paidTier} onUpgrade={openPricingModal} />}
-            </SectionCard>
-
             <SectionCard title={t('sections.aeo')} icon={Brain} score={result.aeo.data ? (result.aeo.data.results as AeoAnalysisResults).score : null} error={result.aeo.error} testId="master-aeo" color="#8b5cf6"
               summaryContent={result.aeo.data && <AeoSummary data={result.aeo.data} />}>
               {result.aeo.data && <AeoSection data={result.aeo.data} url={result.url} paidTier={paidTier} onUpgrade={openPricingModal} />}
@@ -4510,6 +4500,16 @@ export default function MasterAnalyzerPage() {
             <SectionCard title={t('sections.geo')} icon={Atom} score={result.geo.data ? (result.geo.data.results as GeoAnalysisResults).score : null} error={result.geo.error} testId="master-geo" color="#14b8a6"
               summaryContent={result.geo.data && <GeoSummary data={result.geo.data} />}>
               {result.geo.data && <GeoSection data={result.geo.data} url={result.url} paidTier={paidTier} onUpgrade={openPricingModal} />}
+            </SectionCard>
+            
+            <SectionCard title={t('sections.seoAudit')} icon={Search} score={result.seo.data?.overallScore ?? null} error={result.seo.error} testId="master-seo" color="#3b82f6"
+              summaryContent={result.seo.data && <SeoSummary data={result.seo.data} />}>
+              {result.seo.data && <SeoSection data={result.seo.data} url={result.url} paidTier={paidTier} onUpgrade={openPricingModal} />}
+            </SectionCard>
+
+            <SectionCard title={t('sections.googleAds')} icon={Zap} score={result.ads.data?.score ?? null} error={result.ads.error} testId="master-ads" color="#f59e0b"
+              summaryContent={result.ads.data && <AdsSummary data={result.ads.data} />}>
+              {result.ads.data && <AdsSection data={result.ads.data} url={result.url} paidTier={paidTier} onUpgrade={openPricingModal} />}
             </SectionCard>
 
             <SectionCard title={t('sections.brokenLinks')} icon={LinkIcon} score={result.brokenLinks.data?.score ?? null} error={result.brokenLinks.error} testId="master-broken-links" color="#ef4444"
