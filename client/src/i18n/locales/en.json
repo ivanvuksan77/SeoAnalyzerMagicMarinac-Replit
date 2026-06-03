@@ -119,7 +119,7 @@
     "issuesFound": "{{count}} issues found",
     "moreHidden": "+ {{count}} more issues hidden — unlock to see all"
   },
-  "seo": {
+  "seoAudit": {
     "overallScore": "Overall SEO Score",
     "technical": "Technical",
     "performance": "Performance",

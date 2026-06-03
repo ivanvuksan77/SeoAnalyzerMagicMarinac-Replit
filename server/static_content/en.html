@@ -1,0 +1,4407 @@
+<header
+  data-replit-metadata="client/src/pages/master-analyzer.tsx:4261:6"
+  data-component-name="header"
+  class="bg-card border-b border-border shadow-sm"
+>
+  <div
+    data-replit-metadata="client/src/pages/master-analyzer.tsx:4262:8"
+    data-component-name="div"
+    class="container mx-auto px-4 py-4"
+  >
+    <div
+      data-replit-metadata="client/src/pages/master-analyzer.tsx:4263:10"
+      data-component-name="div"
+      class="flex items-center justify-between"
+    >
+      <div
+        data-replit-metadata="client/src/pages/master-analyzer.tsx:4264:12"
+        data-component-name="div"
+        class="flex items-center space-x-3"
+      >
+        <div
+          data-replit-metadata="client/src/pages/master-analyzer.tsx:4265:14"
+          data-component-name="div"
+          class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-search text-primary-foreground w-4 h-4"
+            data-replit-metadata="client/src/pages/master-analyzer.tsx:4266:16"
+            data-component-name="Search"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+        </div>
+        <div
+          data-replit-metadata="client/src/pages/master-analyzer.tsx:4268:14"
+          data-component-name="div"
+          class="flex flex-col leading-tight"
+        >
+          <h1
+            data-replit-metadata="client/src/pages/master-analyzer.tsx:4269:16"
+            data-component-name="h1"
+            class="text-xl font-bold text-foreground"
+          >
+            FreeSiteAnalyzer
+          </h1>
+          <span
+            data-replit-metadata="client/src/pages/master-analyzer.tsx:4270:16"
+            data-component-name="span"
+            class="text-[11px] font-medium tracking-wide text-muted-foreground"
+            data-testid="text-header-slogan"
+            >Scan. Snap. Fix What Matters.</span
+          >
+        </div>
+      </div>
+      <div
+        data-replit-metadata="client/src/pages/master-analyzer.tsx:4273:12"
+        data-component-name="div"
+        class="flex items-center gap-1"
+      >
+        <button
+          data-replit-metadata="client/src/pages/master-analyzer.tsx:4276:18"
+          data-component-name="Button"
+          class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 px-2 rounded-full gap-1.5"
+          aria-label="Switch language"
+          data-testid="button-language"
+          type="button"
+          id="radix-:r0:"
+          aria-haspopup="menu"
+          aria-expanded="false"
+          data-state="closed"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-languages w-4 h-4"
+            data-replit-metadata="client/src/pages/master-analyzer.tsx:4283:20"
+            data-component-name="Languages"
+          >
+            <path d="m5 8 6 6"></path>
+            <path d="m4 14 6-6 2-3"></path>
+            <path d="M2 5h12"></path>
+            <path d="M7 2h1"></path>
+            <path d="m22 22-5-10-5 10"></path>
+            <path d="M14 18h6"></path>
+          </svg>
+          <span
+            data-replit-metadata="client/src/pages/master-analyzer.tsx:4284:20"
+            data-component-name="span"
+            class="text-xs font-semibold uppercase"
+            >EN</span
+          >
+        </button>
+        <button
+          data-replit-metadata="client/src/pages/master-analyzer.tsx:4300:14"
+          data-component-name="Button"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground w-9 h-9 rounded-full"
+          aria-label="Toggle dark mode"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-moon w-4 h-4"
+            data-replit-metadata="client/src/pages/master-analyzer.tsx:4307:58"
+            data-component-name="Moon"
+          >
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section
+  data-replit-metadata="client/src/components/hero-section.tsx:32:4"
+  data-component-name="section"
+  class="relative overflow-hidden"
+>
+  <div
+    data-replit-metadata="client/src/components/hero-section.tsx:34:6"
+    data-component-name="div"
+    class="absolute inset-0 bg-gradient-to-b from-blue-50/60 via-background to-background dark:from-blue-950/30 dark:via-background pointer-events-none"
+  ></div>
+  <div
+    data-replit-metadata="client/src/components/hero-section.tsx:35:6"
+    data-component-name="div"
+    class="absolute -top-40 -right-32 w-[520px] h-[520px] rounded-full bg-blue-400/20 dark:bg-blue-500/20 blur-3xl pointer-events-none"
+  ></div>
+  <div
+    data-replit-metadata="client/src/components/hero-section.tsx:36:6"
+    data-component-name="div"
+    class="absolute -bottom-32 -left-32 w-[380px] h-[380px] rounded-full bg-blue-400/15 dark:bg-blue-500/15 blur-3xl pointer-events-none"
+  ></div>
+  <div
+    data-replit-metadata="client/src/components/hero-section.tsx:38:6"
+    data-component-name="div"
+    class="relative container mx-auto px-4 pt-12 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center"
+  >
+    <div
+      data-replit-metadata="client/src/components/hero-section.tsx:40:8"
+      data-component-name="div"
+    >
+      <div
+        data-replit-metadata="client/src/components/hero-section.tsx:41:10"
+        data-component-name="div"
+        class="mb-6 text-primary"
+        data-testid="hero-eyebrow"
+      >
+        <span
+          data-replit-metadata="client/src/components/hero-section.tsx:45:12"
+          data-component-name="span"
+          class="text-sm font-semibold"
+          >AI Search Optimization / AEO / GEO / SEO</span
+        >
+      </div>
+      <h1
+        data-replit-metadata="client/src/components/hero-section.tsx:50:10"
+        data-component-name="h1"
+        class="text-4xl md:text-5xl lg:text-[52px] leading-[1.05] font-bold mb-5 text-foreground"
+        data-testid="text-hero-title"
+        style="letter-spacing: -0.035em"
+      >
+        Is your website optimized for AI search?
+        <span
+          data-replit-metadata="client/src/components/hero-section.tsx:56:12"
+          data-component-name="span"
+          class="text-primary"
+          >Stay visible in the new era of search.</span
+        >
+      </h1>
+      <p
+        data-replit-metadata="client/src/components/hero-section.tsx:59:10"
+        data-component-name="p"
+        class="text-base md:text-[17px] leading-relaxed text-muted-foreground mb-8 max-w-[540px]"
+        data-testid="text-hero-sub"
+      >
+        Search is changing. Google, ChatGPT, Perplexity and other AI tools no
+        longer show only a list of links — they generate direct answers and
+        recommendations. That means classic SEO is no longer enough. Your
+        website needs to be easy for both search engines and AI models to find,
+        understand and recommend.
+      </p>
+      <button
+        data-replit-metadata="client/src/components/hero-section.tsx:66:10"
+        data-component-name="Button"
+        class="inline-flex items-center justify-center whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md h-14 px-7 text-base font-semibold gap-2 shadow-lg shadow-primary/30 hover:shadow-primary/40 hover:scale-[1.02] transition-transform group"
+        data-testid="button-hero-cta"
+      >
+        Run a free analysis
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-arrow-right w-5 h-5 transition-transform group-hover:translate-x-1"
+          data-replit-metadata="client/src/components/hero-section.tsx:73:12"
+          data-component-name="ArrowRight"
+        >
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </button>
+      <div
+        data-replit-metadata="client/src/components/hero-section.tsx:79:10"
+        data-component-name="div"
+        class="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground"
+      >
+        <span
+          data-replit-metadata="client/src/components/hero-section.tsx:189:4"
+          data-component-name="span"
+          class="inline-flex items-center gap-1.5"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-circle-check w-4 h-4 text-emerald-500"
+            data-replit-metadata="client/src/components/hero-section.tsx:190:6"
+            data-component-name="CheckCircle2"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
+          Free · No registration required
+        </span>
+        <span
+          data-replit-metadata="client/src/components/hero-section.tsx:189:4"
+          data-component-name="span"
+          class="inline-flex items-center gap-1.5"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-circle-check w-4 h-4 text-emerald-500"
+            data-replit-metadata="client/src/components/hero-section.tsx:190:6"
+            data-component-name="CheckCircle2"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
+          Results in 30 seconds
+        </span>
+        <span
+          data-replit-metadata="client/src/components/hero-section.tsx:189:4"
+          data-component-name="span"
+          class="inline-flex items-center gap-1.5"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-circle-check w-4 h-4 text-emerald-500"
+            data-replit-metadata="client/src/components/hero-section.tsx:190:6"
+            data-component-name="CheckCircle2"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
+          AI SEO / AEO / GEO / SEO in one report
+        </span>
+      </div>
+    </div>
+    <div
+      data-replit-metadata="client/src/components/hero-section.tsx:87:8"
+      data-component-name="div"
+      class="relative"
+    >
+      <div
+        data-replit-metadata="client/src/components/hero-section.tsx:88:10"
+        data-component-name="div"
+        class="relative max-w-[560px] mx-auto lg:ml-auto"
+      >
+        <div
+          data-replit-metadata="client/src/components/hero-section.tsx:90:12"
+          data-component-name="div"
+          class="pdf-preview-back absolute top-6 -right-4 w-[92%] h-[94%] rounded-2xl bg-card opacity-50 dark:opacity-30 shadow-2xl rotate-3"
+        ></div>
+        <div
+          data-replit-metadata="client/src/components/hero-section.tsx:93:12"
+          data-component-name="div"
+          class="relative bg-card rounded-2xl shadow-2xl overflow-hidden -rotate-[1.5deg] border border-border"
+        >
+          <div
+            data-replit-metadata="client/src/components/hero-section.tsx:95:14"
+            data-component-name="div"
+            class="px-5 pt-4 pb-4 text-white"
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--primary) 0%,
+                color-mix(in srgb, var(--primary) 80%, #000) 100%
+              );
+            "
+          >
+            <div
+              data-replit-metadata="client/src/components/hero-section.tsx:102:16"
+              data-component-name="div"
+              class="flex items-center justify-between"
+            >
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:103:18"
+                data-component-name="div"
+              >
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:104:20"
+                  data-component-name="div"
+                  class="flex items-center gap-1.5 text-[9px] font-bold tracking-widest opacity-90"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-crown w-3 h-3"
+                    data-replit-metadata="client/src/components/hero-section.tsx:105:22"
+                    data-component-name="Crown"
+                  >
+                    <path
+                      d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"
+                    ></path>
+                    <path d="M5 21h14"></path>
+                  </svg>
+                  PRO REPORT · €29
+                </div>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:108:20"
+                  data-component-name="div"
+                  class="text-lg font-extrabold mt-1 leading-tight"
+                >
+                  yourdomain.com
+                </div>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:111:20"
+                  data-component-name="div"
+                  class="text-[10px] opacity-85 mt-0.5"
+                >
+                  Full data + prioritized fix instructions
+                </div>
+              </div>
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:115:18"
+                data-component-name="div"
+                class="text-right"
+              >
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:116:20"
+                  data-component-name="div"
+                  class="text-[9px] uppercase opacity-80 tracking-wider"
+                >
+                  OVERALL
+                </div>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:119:20"
+                  data-component-name="div"
+                  class="text-3xl font-black leading-none mt-0.5"
+                >
+                  66<span
+                    data-replit-metadata="client/src/components/hero-section.tsx:120:24"
+                    data-component-name="span"
+                    class="text-sm opacity-80"
+                    >/100</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            data-replit-metadata="client/src/components/hero-section.tsx:127:14"
+            data-component-name="div"
+            class="px-5 py-4 border-b border-border flex items-center justify-between"
+          >
+            <div
+              data-replit-metadata="client/src/components/hero-section.tsx:211:4"
+              data-component-name="div"
+              class="flex flex-col items-center min-w-[56px]"
+            >
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:212:6"
+                data-component-name="div"
+                class="relative w-12 h-12"
+              >
+                <svg
+                  data-replit-metadata="client/src/components/hero-section.tsx:213:8"
+                  data-component-name="svg"
+                  width="48"
+                  height="48"
+                  viewBox="0 0 48 48"
+                >
+                  <circle
+                    data-replit-metadata="client/src/components/hero-section.tsx:214:10"
+                    data-component-name="circle"
+                    cx="24"
+                    cy="24"
+                    r="18"
+                    class="stroke-muted"
+                    stroke-width="4"
+                    fill="none"
+                  ></circle>
+                  <circle
+                    data-replit-metadata="client/src/components/hero-section.tsx:222:10"
+                    data-component-name="circle"
+                    cx="24"
+                    cy="24"
+                    r="18"
+                    stroke="#3b82f6"
+                    stroke-width="4"
+                    fill="none"
+                    stroke-dasharray="89.34689506809372 113.09733552923255"
+                    stroke-linecap="round"
+                    transform="rotate(-90 24 24)"
+                  ></circle>
+                </svg>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:234:8"
+                  data-component-name="div"
+                  class="absolute inset-0 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-search w-3.5 h-3.5"
+                    data-replit-metadata="client/src/components/hero-section.tsx:235:10"
+                    data-component-name="Icon"
+                    style="color: rgb(59, 130, 246)"
+                  >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                  </svg>
+                </div>
+              </div>
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:238:6"
+                data-component-name="div"
+                class="text-[10px] font-bold mt-1 text-foreground/85"
+              >
+                79
+              </div>
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:239:6"
+                data-component-name="div"
+                class="text-[9px] mt-0.5 text-muted-foreground"
+              >
+                SEO
+              </div>
+            </div>
+            <div
+              data-replit-metadata="client/src/components/hero-section.tsx:211:4"
+              data-component-name="div"
+              class="flex flex-col items-center min-w-[56px]"
+            >
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:212:6"
+                data-component-name="div"
+                class="relative w-12 h-12"
+              >
+                <svg
+                  data-replit-metadata="client/src/components/hero-section.tsx:213:8"
+                  data-component-name="svg"
+                  width="48"
+                  height="48"
+                  viewBox="0 0 48 48"
+                >
+                  <circle
+                    data-replit-metadata="client/src/components/hero-section.tsx:214:10"
+                    data-component-name="circle"
+                    cx="24"
+                    cy="24"
+                    r="18"
+                    class="stroke-muted"
+                    stroke-width="4"
+                    fill="none"
+                  ></circle>
+                  <circle
+                    data-replit-metadata="client/src/components/hero-section.tsx:222:10"
+                    data-component-name="circle"
+                    cx="24"
+                    cy="24"
+                    r="18"
+                    stroke="#f59e0b"
+                    stroke-width="4"
+                    fill="none"
+                    stroke-dasharray="72.38229473870884 113.09733552923255"
+                    stroke-linecap="round"
+                    transform="rotate(-90 24 24)"
+                  ></circle>
+                </svg>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:234:8"
+                  data-component-name="div"
+                  class="absolute inset-0 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-megaphone w-3.5 h-3.5"
+                    data-replit-metadata="client/src/components/hero-section.tsx:235:10"
+                    data-component-name="Icon"
+                    style="color: rgb(245, 158, 11)"
+                  >
+                    <path d="m3 11 18-5v12L3 14v-3z"></path>
+                    <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path>
+                  </svg>
+                </div>
+              </div>
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:238:6"
+                data-component-name="div"
+                class="text-[10px] font-bold mt-1 text-foreground/85"
+              >
+                64
+              </div>
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:239:6"
+                data-component-name="div"
+                class="text-[9px] mt-0.5 text-muted-foreground"
+              >
+                Ads LP
+              </div>
+            </div>
+            <div
+              data-replit-metadata="client/src/components/hero-section.tsx:211:4"
+              data-component-name="div"
+              class="flex flex-col items-center min-w-[56px]"
+            >
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:212:6"
+                data-component-name="div"
+                class="relative w-12 h-12"
+              >
+                <svg
+                  data-replit-metadata="client/src/components/hero-section.tsx:213:8"
+                  data-component-name="svg"
+                  width="48"
+                  height="48"
+                  viewBox="0 0 48 48"
+                >
+                  <circle
+                    data-replit-metadata="client/src/components/hero-section.tsx:214:10"
+                    data-component-name="circle"
+                    cx="24"
+                    cy="24"
+                    r="18"
+                    class="stroke-muted"
+                    stroke-width="4"
+                    fill="none"
+                  ></circle>
+                  <circle
+                    data-replit-metadata="client/src/components/hero-section.tsx:222:10"
+                    data-component-name="circle"
+                    cx="24"
+                    cy="24"
+                    r="18"
+                    stroke="#8b5cf6"
+                    stroke-width="4"
+                    fill="none"
+                    stroke-dasharray="65.59645460695488 113.09733552923255"
+                    stroke-linecap="round"
+                    transform="rotate(-90 24 24)"
+                  ></circle>
+                </svg>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:234:8"
+                  data-component-name="div"
+                  class="absolute inset-0 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-brain w-3.5 h-3.5"
+                    data-replit-metadata="client/src/components/hero-section.tsx:235:10"
+                    data-component-name="Icon"
+                    style="color: rgb(139, 92, 246)"
+                  >
+                    <path
+                      d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"
+                    ></path>
+                    <path
+                      d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"
+                    ></path>
+                    <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path>
+                    <path d="M17.599 6.5a3 3 0 0 0 .399-1.375"></path>
+                    <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"></path>
+                    <path d="M3.477 10.896a4 4 0 0 1 .585-.396"></path>
+                    <path d="M19.938 10.5a4 4 0 0 1 .585.396"></path>
+                    <path d="M6 18a4 4 0 0 1-1.967-.516"></path>
+                    <path d="M19.967 17.484A4 4 0 0 1 18 18"></path>
+                  </svg>
+                </div>
+              </div>
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:238:6"
+                data-component-name="div"
+                class="text-[10px] font-bold mt-1 text-foreground/85"
+              >
+                58
+              </div>
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:239:6"
+                data-component-name="div"
+                class="text-[9px] mt-0.5 text-muted-foreground"
+              >
+                AEO
+              </div>
+            </div>
+            <div
+              data-replit-metadata="client/src/components/hero-section.tsx:211:4"
+              data-component-name="div"
+              class="flex flex-col items-center min-w-[56px]"
+            >
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:212:6"
+                data-component-name="div"
+                class="relative w-12 h-12"
+              >
+                <svg
+                  data-replit-metadata="client/src/components/hero-section.tsx:213:8"
+                  data-component-name="svg"
+                  width="48"
+                  height="48"
+                  viewBox="0 0 48 48"
+                >
+                  <circle
+                    data-replit-metadata="client/src/components/hero-section.tsx:214:10"
+                    data-component-name="circle"
+                    cx="24"
+                    cy="24"
+                    r="18"
+                    class="stroke-muted"
+                    stroke-width="4"
+                    fill="none"
+                  ></circle>
+                  <circle
+                    data-replit-metadata="client/src/components/hero-section.tsx:222:10"
+                    data-component-name="circle"
+                    cx="24"
+                    cy="24"
+                    r="18"
+                    stroke="#14b8a6"
+                    stroke-width="4"
+                    fill="none"
+                    stroke-dasharray="57.6796411199086 113.09733552923255"
+                    stroke-linecap="round"
+                    transform="rotate(-90 24 24)"
+                  ></circle>
+                </svg>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:234:8"
+                  data-component-name="div"
+                  class="absolute inset-0 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-gauge w-3.5 h-3.5"
+                    data-replit-metadata="client/src/components/hero-section.tsx:235:10"
+                    data-component-name="Icon"
+                    style="color: rgb(20, 184, 166)"
+                  >
+                    <path d="m12 14 4-4"></path>
+                    <path d="M3.34 19a10 10 0 1 1 17.32 0"></path>
+                  </svg>
+                </div>
+              </div>
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:238:6"
+                data-component-name="div"
+                class="text-[10px] font-bold mt-1 text-foreground/85"
+              >
+                51
+              </div>
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:239:6"
+                data-component-name="div"
+                class="text-[9px] mt-0.5 text-muted-foreground"
+              >
+                Speed
+              </div>
+            </div>
+          </div>
+          <div
+            data-replit-metadata="client/src/components/hero-section.tsx:135:14"
+            data-component-name="div"
+            class="px-5 py-4"
+          >
+            <div
+              data-replit-metadata="client/src/components/hero-section.tsx:136:16"
+              data-component-name="div"
+              class="flex items-center justify-between mb-3"
+            >
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:137:18"
+                data-component-name="div"
+                class="text-[11px] font-bold tracking-wide uppercase text-foreground/80"
+              >
+                Top issues found
+              </div>
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:140:18"
+                data-component-name="div"
+                class="text-[10px] font-medium text-muted-foreground"
+              >
+                4
+              </div>
+            </div>
+            <div
+              data-replit-metadata="client/src/components/hero-section.tsx:144:16"
+              data-component-name="div"
+              class="space-y-2"
+            >
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:260:4"
+                data-component-name="div"
+                class="flex items-center gap-3 py-1"
+              >
+                <span
+                  data-replit-metadata="client/src/components/hero-section.tsx:262:6"
+                  data-component-name="span"
+                  class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-red-100 text-red-700 dark:bg-red-950/60 dark:text-red-300"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-circle-x w-2.5 h-2.5"
+                    data-replit-metadata="client/src/components/hero-section.tsx:263:10"
+                    data-component-name="XCircle"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="m15 9-6 6"></path>
+                    <path d="m9 9 6 6"></path>
+                  </svg>
+                  FAIL
+                </span>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:272:6"
+                  data-component-name="div"
+                  class="flex-1 min-w-0 text-[12px] font-semibold text-foreground/90 truncate"
+                >
+                  Meta description missing
+                </div>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:275:6"
+                  data-component-name="div"
+                  class="text-[10px] font-medium text-muted-foreground whitespace-nowrap"
+                >
+                  Homepage
+                </div>
+              </div>
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:260:4"
+                data-component-name="div"
+                class="flex items-center gap-3 py-1"
+              >
+                <span
+                  data-replit-metadata="client/src/components/hero-section.tsx:267:6"
+                  data-component-name="span"
+                  class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-circle-alert w-2.5 h-2.5"
+                    data-replit-metadata="client/src/components/hero-section.tsx:268:10"
+                    data-component-name="AlertCircle"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" x2="12" y1="8" y2="12"></line>
+                    <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                  </svg>
+                  WARN
+                </span>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:272:6"
+                  data-component-name="div"
+                  class="flex-1 min-w-0 text-[12px] font-semibold text-foreground/90 truncate"
+                >
+                  LCP 4.2s — slow
+                </div>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:275:6"
+                  data-component-name="div"
+                  class="text-[10px] font-medium text-muted-foreground whitespace-nowrap"
+                >
+                  Core Web Vitals
+                </div>
+              </div>
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:260:4"
+                data-component-name="div"
+                class="flex items-center gap-3 py-1"
+              >
+                <span
+                  data-replit-metadata="client/src/components/hero-section.tsx:262:6"
+                  data-component-name="span"
+                  class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-red-100 text-red-700 dark:bg-red-950/60 dark:text-red-300"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-circle-x w-2.5 h-2.5"
+                    data-replit-metadata="client/src/components/hero-section.tsx:263:10"
+                    data-component-name="XCircle"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="m15 9-6 6"></path>
+                    <path d="m9 9 6 6"></path>
+                  </svg>
+                  FAIL
+                </span>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:272:6"
+                  data-component-name="div"
+                  class="flex-1 min-w-0 text-[12px] font-semibold text-foreground/90 truncate"
+                >
+                  No conversion tracking
+                </div>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:275:6"
+                  data-component-name="div"
+                  class="text-[10px] font-medium text-muted-foreground whitespace-nowrap"
+                >
+                  Google Ads LP
+                </div>
+              </div>
+              <div
+                data-replit-metadata="client/src/components/hero-section.tsx:260:4"
+                data-component-name="div"
+                class="flex items-center gap-3 py-1"
+              >
+                <span
+                  data-replit-metadata="client/src/components/hero-section.tsx:267:6"
+                  data-component-name="span"
+                  class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-circle-alert w-2.5 h-2.5"
+                    data-replit-metadata="client/src/components/hero-section.tsx:268:10"
+                    data-component-name="AlertCircle"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" x2="12" y1="8" y2="12"></line>
+                    <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                  </svg>
+                  WARN
+                </span>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:272:6"
+                  data-component-name="div"
+                  class="flex-1 min-w-0 text-[12px] font-semibold text-foreground/90 truncate"
+                >
+                  12 images over 500KB
+                </div>
+                <div
+                  data-replit-metadata="client/src/components/hero-section.tsx:275:6"
+                  data-component-name="div"
+                  class="text-[10px] font-medium text-muted-foreground whitespace-nowrap"
+                >
+                  Image optimization
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            data-replit-metadata="client/src/components/hero-section.tsx:173:14"
+            data-component-name="div"
+            class="px-5 py-3 flex items-center gap-2 text-[11px] font-semibold bg-primary/10 text-primary"
+          >
+            <span
+              data-replit-metadata="client/src/components/hero-section.tsx:174:16"
+              data-component-name="span"
+              class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/20 text-[9px] tracking-wider"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-crown w-2.5 h-2.5"
+                data-replit-metadata="client/src/components/hero-section.tsx:175:18"
+                data-component-name="Crown"
+              >
+                <path
+                  d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"
+                ></path>
+                <path d="M5 21h14"></path>
+              </svg>
+              PRO
+            </span>
+            Prioritized fixes →
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div
+  data-replit-metadata="client/src/pages/master-analyzer.tsx:4316:6"
+  data-component-name="div"
+  class="container mx-auto px-4 py-8"
+>
+  <section
+    data-replit-metadata="client/src/components/usp-section.tsx:107:4"
+    data-component-name="section"
+    class="mt-20 md:mt-24 mb-12"
+    data-testid="section-usp"
+  >
+    <div
+      data-replit-metadata="client/src/components/usp-section.tsx:108:6"
+      data-component-name="div"
+      class="text-center max-w-2xl mx-auto mb-8"
+    >
+      <h2
+        data-replit-metadata="client/src/components/usp-section.tsx:109:8"
+        data-component-name="h2"
+        class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground"
+        data-testid="text-usp-heading"
+      >
+        What actually drives visibility in modern AI search
+      </h2>
+      <p
+        data-replit-metadata="client/src/components/usp-section.tsx:115:8"
+        data-component-name="p"
+        class="mt-3 text-sm md:text-base text-muted-foreground"
+        data-testid="text-usp-subheading"
+      >
+        We do not just check meta tags. We analyze the key signals that decide
+        whether your website can be found, understood and recommended — in
+        Google, AI Overviews, ChatGPT, Perplexity and paid campaigns.
+      </p>
+    </div>
+    <div
+      data-replit-metadata="client/src/components/usp-section.tsx:123:6"
+      data-component-name="div"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+    >
+      <div
+        data-replit-metadata="client/src/components/usp-section.tsx:127:12"
+        data-component-name="div"
+        class="rounded-2xl bg-card text-card-foreground shadow-md shadow-slate-200/50 dark:shadow-black/30 ring-1 ring-border overflow-hidden flex flex-col"
+        data-testid="card-usp-ai"
+      >
+        <div
+          data-replit-metadata="client/src/components/usp-section.tsx:132:14"
+          data-component-name="div"
+          class="p-6 pb-4"
+        >
+          <div
+            data-replit-metadata="client/src/components/usp-section.tsx:133:16"
+            data-component-name="div"
+            class="flex items-center gap-3"
+          >
+            <div
+              data-replit-metadata="client/src/components/usp-section.tsx:134:18"
+              data-component-name="div"
+              class="w-11 h-11 rounded-xl flex items-center justify-center ring-1 bg-violet-50 dark:bg-violet-950/40 ring-violet-100 dark:ring-violet-900/60"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-brain w-5 h-5 text-violet-600 dark:text-violet-400"
+                data-replit-metadata="client/src/components/usp-section.tsx:137:20"
+                data-component-name="Icon"
+              >
+                <path
+                  d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"
+                ></path>
+                <path
+                  d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"
+                ></path>
+                <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path>
+                <path d="M17.599 6.5a3 3 0 0 0 .399-1.375"></path>
+                <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"></path>
+                <path d="M3.477 10.896a4 4 0 0 1 .585-.396"></path>
+                <path d="M19.938 10.5a4 4 0 0 1 .585.396"></path>
+                <path d="M6 18a4 4 0 0 1-1.967-.516"></path>
+                <path d="M19.967 17.484A4 4 0 0 1 18 18"></path>
+              </svg>
+            </div>
+            <div
+              data-replit-metadata="client/src/components/usp-section.tsx:139:18"
+              data-component-name="div"
+            >
+              <div
+                data-replit-metadata="client/src/components/usp-section.tsx:140:20"
+                data-component-name="div"
+                class="text-[10px] uppercase tracking-widest font-semibold text-muted-foreground"
+              >
+                01
+              </div>
+              <h3
+                data-replit-metadata="client/src/components/usp-section.tsx:143:20"
+                data-component-name="h3"
+                class="text-lg font-bold leading-tight text-violet-600 dark:text-violet-400"
+              >
+                AI Optimization
+              </h3>
+            </div>
+          </div>
+          <p
+            data-replit-metadata="client/src/components/usp-section.tsx:148:16"
+            data-component-name="p"
+            class="mt-3 text-[13px] leading-relaxed text-muted-foreground"
+          >
+            Check how ready your website is for the new era of search — AI
+            Overviews, ChatGPT, Perplexity and generative search results.
+          </p>
+        </div>
+        <div
+          data-replit-metadata="client/src/components/usp-section.tsx:153:14"
+          data-component-name="div"
+          class="h-px bg-border mx-6"
+        ></div>
+        <ul
+          data-replit-metadata="client/src/components/usp-section.tsx:155:14"
+          data-component-name="ul"
+          class="p-6 space-y-2.5 text-sm flex-1"
+        >
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-violet-600 dark:text-violet-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >AEO / GEO / AIO visibility analysis</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-violet-600 dark:text-violet-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Checks whether AI can understand your topic, service and
+              context</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-violet-600 dark:text-violet-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Entity, topical authority and content gap analysis</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-violet-600 dark:text-violet-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Guidance for content adapted to LLMs and AI search systems</span
+            >
+          </li>
+        </ul>
+        <div
+          data-replit-metadata="client/src/components/usp-section.tsx:167:14"
+          data-component-name="div"
+          class="px-6 pb-5 pt-1 space-y-3"
+        >
+          <div
+            data-replit-metadata="client/src/components/usp-section.tsx:168:16"
+            data-component-name="div"
+            class="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-600 dark:text-violet-400"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-sparkles w-4 h-4"
+              data-replit-metadata="client/src/components/usp-section.tsx:169:18"
+              data-component-name="StatIcon"
+            >
+              <path
+                d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"
+              ></path>
+              <path d="M20 3v4"></path>
+              <path d="M22 5h-4"></path>
+              <path d="M4 17v2"></path>
+              <path d="M5 18H3"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:170:18"
+              data-component-name="span"
+              >Future-proof your traffic.</span
+            >
+          </div>
+          <div
+            data-replit-metadata="client/src/components/usp-section.tsx:173:16"
+            data-component-name="div"
+            class="border-t border-border pt-3"
+          >
+            <div
+              data-replit-metadata="client/src/components/usp-section.tsx:174:18"
+              data-component-name="div"
+              class="flex flex-wrap items-center gap-1.5"
+              data-testid="tiers-ai"
+            >
+              <span
+                data-replit-metadata="client/src/components/usp-section.tsx:179:24"
+                data-component-name="span"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ring-1 ring-border"
+                data-testid="tier-ai-free-in"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check w-3 h-3"
+                  data-replit-metadata="client/src/components/usp-section.tsx:190:39"
+                  data-component-name="CheckCircle2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                Free
+              </span>
+              <span
+                data-replit-metadata="client/src/components/usp-section.tsx:179:24"
+                data-component-name="span"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ring-1 ring-border"
+                data-testid="tier-ai-basic-in"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check w-3 h-3"
+                  data-replit-metadata="client/src/components/usp-section.tsx:190:39"
+                  data-component-name="CheckCircle2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                Basic
+              </span>
+              <span
+                data-replit-metadata="client/src/components/usp-section.tsx:179:24"
+                data-component-name="span"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-300 ring-1 ring-amber-300/70 dark:ring-amber-400/40"
+                data-testid="tier-ai-pro-in"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check w-3 h-3"
+                  data-replit-metadata="client/src/components/usp-section.tsx:190:39"
+                  data-component-name="CheckCircle2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                Pro
+              </span>
+            </div>
+            <p
+              data-replit-metadata="client/src/components/usp-section.tsx:196:18"
+              data-component-name="p"
+              class="mt-2 text-[11px] leading-snug text-muted-foreground"
+            >
+              Included in Free · More data in Basic · Problem-solving in Pro
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        data-replit-metadata="client/src/components/usp-section.tsx:127:12"
+        data-component-name="div"
+        class="rounded-2xl bg-card text-card-foreground shadow-md shadow-slate-200/50 dark:shadow-black/30 ring-1 ring-border overflow-hidden flex flex-col"
+        data-testid="card-usp-seo"
+      >
+        <div
+          data-replit-metadata="client/src/components/usp-section.tsx:132:14"
+          data-component-name="div"
+          class="p-6 pb-4"
+        >
+          <div
+            data-replit-metadata="client/src/components/usp-section.tsx:133:16"
+            data-component-name="div"
+            class="flex items-center gap-3"
+          >
+            <div
+              data-replit-metadata="client/src/components/usp-section.tsx:134:18"
+              data-component-name="div"
+              class="w-11 h-11 rounded-xl flex items-center justify-center ring-1 bg-blue-50 dark:bg-blue-950/40 ring-blue-100 dark:ring-blue-900/60"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-search w-5 h-5 text-blue-600 dark:text-blue-400"
+                data-replit-metadata="client/src/components/usp-section.tsx:137:20"
+                data-component-name="Icon"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </svg>
+            </div>
+            <div
+              data-replit-metadata="client/src/components/usp-section.tsx:139:18"
+              data-component-name="div"
+            >
+              <div
+                data-replit-metadata="client/src/components/usp-section.tsx:140:20"
+                data-component-name="div"
+                class="text-[10px] uppercase tracking-widest font-semibold text-muted-foreground"
+              >
+                02
+              </div>
+              <h3
+                data-replit-metadata="client/src/components/usp-section.tsx:143:20"
+                data-component-name="h3"
+                class="text-lg font-bold leading-tight text-blue-600 dark:text-blue-400"
+              >
+                SEO Audit
+              </h3>
+            </div>
+          </div>
+          <p
+            data-replit-metadata="client/src/components/usp-section.tsx:148:16"
+            data-component-name="p"
+            class="mt-3 text-[13px] leading-relaxed text-muted-foreground"
+          >
+            Classic SEO is still the foundation. Get a deeper technical and
+            on-page analysis of your website.
+          </p>
+        </div>
+        <div
+          data-replit-metadata="client/src/components/usp-section.tsx:153:14"
+          data-component-name="div"
+          class="h-px bg-border mx-6"
+        ></div>
+        <ul
+          data-replit-metadata="client/src/components/usp-section.tsx:155:14"
+          data-component-name="ul"
+          class="p-6 space-y-2.5 text-sm flex-1"
+        >
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-blue-600 dark:text-blue-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Technical and on-page SEO analysis</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-blue-600 dark:text-blue-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Core Web Vitals and Lighthouse check</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-blue-600 dark:text-blue-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Meta tags, headings, schema and canonical checks</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-blue-600 dark:text-blue-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Crawlability, sitemap, robots.txt and indexing checks</span
+            >
+          </li>
+        </ul>
+        <div
+          data-replit-metadata="client/src/components/usp-section.tsx:167:14"
+          data-component-name="div"
+          class="px-6 pb-5 pt-1 space-y-3"
+        >
+          <div
+            data-replit-metadata="client/src/components/usp-section.tsx:168:16"
+            data-component-name="div"
+            class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-trending-up w-4 h-4"
+              data-replit-metadata="client/src/components/usp-section.tsx:169:18"
+              data-component-name="StatIcon"
+            >
+              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+              <polyline points="16 7 22 7 22 13"></polyline>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:170:18"
+              data-component-name="span"
+              >Check the foundations of your visibility.</span
+            >
+          </div>
+          <div
+            data-replit-metadata="client/src/components/usp-section.tsx:173:16"
+            data-component-name="div"
+            class="border-t border-border pt-3"
+          >
+            <div
+              data-replit-metadata="client/src/components/usp-section.tsx:174:18"
+              data-component-name="div"
+              class="flex flex-wrap items-center gap-1.5"
+              data-testid="tiers-seo"
+            >
+              <span
+                data-replit-metadata="client/src/components/usp-section.tsx:179:24"
+                data-component-name="span"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ring-1 ring-border"
+                data-testid="tier-seo-free-in"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check w-3 h-3"
+                  data-replit-metadata="client/src/components/usp-section.tsx:190:39"
+                  data-component-name="CheckCircle2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                Free
+              </span>
+              <span
+                data-replit-metadata="client/src/components/usp-section.tsx:179:24"
+                data-component-name="span"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ring-1 ring-border"
+                data-testid="tier-seo-basic-in"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check w-3 h-3"
+                  data-replit-metadata="client/src/components/usp-section.tsx:190:39"
+                  data-component-name="CheckCircle2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                Basic
+              </span>
+              <span
+                data-replit-metadata="client/src/components/usp-section.tsx:179:24"
+                data-component-name="span"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-300 ring-1 ring-amber-300/70 dark:ring-amber-400/40"
+                data-testid="tier-seo-pro-in"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check w-3 h-3"
+                  data-replit-metadata="client/src/components/usp-section.tsx:190:39"
+                  data-component-name="CheckCircle2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                Pro
+              </span>
+            </div>
+            <p
+              data-replit-metadata="client/src/components/usp-section.tsx:196:18"
+              data-component-name="p"
+              class="mt-2 text-[11px] leading-snug text-muted-foreground"
+            >
+              Included in Free · More data in Basic · Problem-solving in Pro
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        data-replit-metadata="client/src/components/usp-section.tsx:127:12"
+        data-component-name="div"
+        class="rounded-2xl bg-card text-card-foreground shadow-md shadow-slate-200/50 dark:shadow-black/30 ring-1 ring-border overflow-hidden flex flex-col"
+        data-testid="card-usp-ads"
+      >
+        <div
+          data-replit-metadata="client/src/components/usp-section.tsx:132:14"
+          data-component-name="div"
+          class="p-6 pb-4"
+        >
+          <div
+            data-replit-metadata="client/src/components/usp-section.tsx:133:16"
+            data-component-name="div"
+            class="flex items-center gap-3"
+          >
+            <div
+              data-replit-metadata="client/src/components/usp-section.tsx:134:18"
+              data-component-name="div"
+              class="w-11 h-11 rounded-xl flex items-center justify-center ring-1 bg-orange-50 dark:bg-orange-950/40 ring-orange-100 dark:ring-orange-900/60"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-megaphone w-5 h-5 text-orange-500 dark:text-orange-400"
+                data-replit-metadata="client/src/components/usp-section.tsx:137:20"
+                data-component-name="Icon"
+              >
+                <path d="m3 11 18-5v12L3 14v-3z"></path>
+                <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path>
+              </svg>
+            </div>
+            <div
+              data-replit-metadata="client/src/components/usp-section.tsx:139:18"
+              data-component-name="div"
+            >
+              <div
+                data-replit-metadata="client/src/components/usp-section.tsx:140:20"
+                data-component-name="div"
+                class="text-[10px] uppercase tracking-widest font-semibold text-muted-foreground"
+              >
+                03
+              </div>
+              <h3
+                data-replit-metadata="client/src/components/usp-section.tsx:143:20"
+                data-component-name="h3"
+                class="text-lg font-bold leading-tight text-orange-500 dark:text-orange-400"
+              >
+                Google Ads Landing Page
+              </h3>
+            </div>
+          </div>
+          <p
+            data-replit-metadata="client/src/components/usp-section.tsx:148:16"
+            data-component-name="p"
+            class="mt-3 text-[13px] leading-relaxed text-muted-foreground"
+          >
+            We analyze your landing page from the perspective of paid traffic:
+            relevance, speed, trust, CTA elements and alignment with your ad.
+          </p>
+        </div>
+        <div
+          data-replit-metadata="client/src/components/usp-section.tsx:153:14"
+          data-component-name="div"
+          class="h-px bg-border mx-6"
+        ></div>
+        <ul
+          data-replit-metadata="client/src/components/usp-section.tsx:155:14"
+          data-component-name="ul"
+          class="p-6 space-y-2.5 text-sm flex-1"
+        >
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-orange-500 dark:text-orange-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Landing page relevance based on ad intent</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-orange-500 dark:text-orange-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Google Ads headline and description analysis</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-orange-500 dark:text-orange-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Page speed and Core Web Vitals</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-orange-500 dark:text-orange-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >CTA, form, trust signals and conversion elements</span
+            >
+          </li>
+        </ul>
+        <div
+          data-replit-metadata="client/src/components/usp-section.tsx:167:14"
+          data-component-name="div"
+          class="px-6 pb-5 pt-1 space-y-3"
+        >
+          <div
+            data-replit-metadata="client/src/components/usp-section.tsx:168:16"
+            data-component-name="div"
+            class="inline-flex items-center gap-1.5 text-xs font-semibold text-orange-500 dark:text-orange-400"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-dollar-sign w-4 h-4"
+              data-replit-metadata="client/src/components/usp-section.tsx:169:18"
+              data-component-name="StatIcon"
+            >
+              <line x1="12" x2="12" y1="2" y2="22"></line>
+              <path
+                d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+              ></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:170:18"
+              data-component-name="span"
+              >Close the leaks and improve ROAS.</span
+            >
+          </div>
+          <div
+            data-replit-metadata="client/src/components/usp-section.tsx:173:16"
+            data-component-name="div"
+            class="border-t border-border pt-3"
+          >
+            <div
+              data-replit-metadata="client/src/components/usp-section.tsx:174:18"
+              data-component-name="div"
+              class="flex flex-wrap items-center gap-1.5"
+              data-testid="tiers-ads"
+            >
+              <span
+                data-replit-metadata="client/src/components/usp-section.tsx:179:24"
+                data-component-name="span"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ring-1 ring-border"
+                data-testid="tier-ads-free-in"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check w-3 h-3"
+                  data-replit-metadata="client/src/components/usp-section.tsx:190:39"
+                  data-component-name="CheckCircle2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                Free
+              </span>
+              <span
+                data-replit-metadata="client/src/components/usp-section.tsx:179:24"
+                data-component-name="span"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ring-1 ring-border"
+                data-testid="tier-ads-basic-in"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check w-3 h-3"
+                  data-replit-metadata="client/src/components/usp-section.tsx:190:39"
+                  data-component-name="CheckCircle2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                Basic
+              </span>
+              <span
+                data-replit-metadata="client/src/components/usp-section.tsx:179:24"
+                data-component-name="span"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-300 ring-1 ring-amber-300/70 dark:ring-amber-400/40"
+                data-testid="tier-ads-pro-in"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check w-3 h-3"
+                  data-replit-metadata="client/src/components/usp-section.tsx:190:39"
+                  data-component-name="CheckCircle2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                Pro
+              </span>
+            </div>
+            <p
+              data-replit-metadata="client/src/components/usp-section.tsx:196:18"
+              data-component-name="p"
+              class="mt-2 text-[11px] leading-snug text-muted-foreground"
+            >
+              Included in Free · More data in Basic · Problem-solving in Pro
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        data-replit-metadata="client/src/components/usp-section.tsx:127:12"
+        data-component-name="div"
+        class="rounded-2xl bg-card text-card-foreground shadow-md shadow-slate-200/50 dark:shadow-black/30 ring-1 ring-border overflow-hidden flex flex-col"
+        data-testid="card-usp-fixes"
+      >
+        <div
+          data-replit-metadata="client/src/components/usp-section.tsx:132:14"
+          data-component-name="div"
+          class="p-6 pb-4"
+        >
+          <div
+            data-replit-metadata="client/src/components/usp-section.tsx:133:16"
+            data-component-name="div"
+            class="flex items-center gap-3"
+          >
+            <div
+              data-replit-metadata="client/src/components/usp-section.tsx:134:18"
+              data-component-name="div"
+              class="w-11 h-11 rounded-xl flex items-center justify-center ring-1 bg-emerald-50 dark:bg-emerald-950/40 ring-emerald-100 dark:ring-emerald-900/60"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-wrench w-5 h-5 text-emerald-600 dark:text-emerald-400"
+                data-replit-metadata="client/src/components/usp-section.tsx:137:20"
+                data-component-name="Icon"
+              >
+                <path
+                  d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                ></path>
+              </svg>
+            </div>
+            <div
+              data-replit-metadata="client/src/components/usp-section.tsx:139:18"
+              data-component-name="div"
+            >
+              <div
+                data-replit-metadata="client/src/components/usp-section.tsx:140:20"
+                data-component-name="div"
+                class="text-[10px] uppercase tracking-widest font-semibold text-muted-foreground"
+              >
+                04
+              </div>
+              <h3
+                data-replit-metadata="client/src/components/usp-section.tsx:143:20"
+                data-component-name="h3"
+                class="text-lg font-bold leading-tight text-emerald-600 dark:text-emerald-400"
+              >
+                Pro Fixes &amp; Solutions
+              </h3>
+            </div>
+          </div>
+          <p
+            data-replit-metadata="client/src/components/usp-section.tsx:148:16"
+            data-component-name="p"
+            class="mt-3 text-[13px] leading-relaxed text-muted-foreground"
+          >
+            We do not stop at diagnosis. The Pro report includes practical
+            examples, templates and guidance that you can adapt to your website,
+            topic and goals.
+          </p>
+        </div>
+        <div
+          data-replit-metadata="client/src/components/usp-section.tsx:153:14"
+          data-component-name="div"
+          class="h-px bg-border mx-6"
+        ></div>
+        <ul
+          data-replit-metadata="client/src/components/usp-section.tsx:155:14"
+          data-component-name="ul"
+          class="p-6 space-y-2.5 text-sm flex-1"
+        >
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-emerald-600 dark:text-emerald-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Examples of HTML, meta and schema structures</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-emerald-600 dark:text-emerald-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Content improvements for better AI readability</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-emerald-600 dark:text-emerald-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Technical guidance and expected before / after score
+              direction</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/usp-section.tsx:157:16"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-4 h-4 mt-0.5 text-emerald-600 dark:text-emerald-400 shrink-0"
+              data-replit-metadata="client/src/components/usp-section.tsx:158:20"
+              data-component-name="CheckCircle2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:162:20"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Prioritized fix list</span
+            >
+          </li>
+        </ul>
+        <div
+          data-replit-metadata="client/src/components/usp-section.tsx:167:14"
+          data-component-name="div"
+          class="px-6 pb-5 pt-1 space-y-3"
+        >
+          <div
+            data-replit-metadata="client/src/components/usp-section.tsx:168:16"
+            data-component-name="div"
+            class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-code-xml w-4 h-4"
+              data-replit-metadata="client/src/components/usp-section.tsx:169:18"
+              data-component-name="StatIcon"
+            >
+              <path d="m18 16 4-4-4-4"></path>
+              <path d="m6 8-4 4 4 4"></path>
+              <path d="m14.5 4-5 16"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/usp-section.tsx:170:18"
+              data-component-name="span"
+              >From analysis to a clear improvement plan.</span
+            >
+          </div>
+          <div
+            data-replit-metadata="client/src/components/usp-section.tsx:173:16"
+            data-component-name="div"
+            class="border-t border-border pt-3"
+          >
+            <div
+              data-replit-metadata="client/src/components/usp-section.tsx:174:18"
+              data-component-name="div"
+              class="flex flex-wrap items-center gap-1.5"
+              data-testid="tiers-fixes"
+            >
+              <span
+                data-replit-metadata="client/src/components/usp-section.tsx:179:24"
+                data-component-name="span"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-muted/60 text-muted-foreground/60 ring-1 ring-border line-through decoration-muted-foreground/40"
+                data-testid="tier-fixes-free-out"
+                >Free</span
+              ><span
+                data-replit-metadata="client/src/components/usp-section.tsx:179:24"
+                data-component-name="span"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-muted/60 text-muted-foreground/60 ring-1 ring-border line-through decoration-muted-foreground/40"
+                data-testid="tier-fixes-basic-out"
+                >Basic</span
+              >
+              <span
+                data-replit-metadata="client/src/components/usp-section.tsx:179:24"
+                data-component-name="span"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-300 ring-1 ring-amber-300/70 dark:ring-amber-400/40"
+                data-testid="tier-fixes-pro-in"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check w-3 h-3"
+                  data-replit-metadata="client/src/components/usp-section.tsx:190:39"
+                  data-component-name="CheckCircle2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                Pro
+              </span>
+            </div>
+            <p
+              data-replit-metadata="client/src/components/usp-section.tsx:196:18"
+              data-component-name="p"
+              class="mt-2 text-[11px] leading-snug text-muted-foreground"
+            >
+              Available in the Pro plan
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    data-replit-metadata="client/src/components/comparison-table.tsx:51:4"
+    data-component-name="section"
+    class="my-16"
+    data-testid="section-comparison-table"
+  >
+    <div
+      data-replit-metadata="client/src/components/comparison-table.tsx:52:6"
+      data-component-name="div"
+      class="text-center mb-10"
+    >
+      <h2
+        data-replit-metadata="client/src/components/comparison-table.tsx:53:8"
+        data-component-name="h2"
+        class="text-3xl md:text-4xl font-bold tracking-tight text-foreground"
+        data-testid="text-comparison-heading"
+      >
+        Choose your FreeSiteAnalyzer report
+      </h2>
+      <p
+        data-replit-metadata="client/src/components/comparison-table.tsx:59:8"
+        data-component-name="p"
+        class="mt-3 text-sm md:text-base text-muted-foreground max-w-2xl mx-auto"
+      >
+        Free shows your score. Basic unlocks all data. Pro gives you practical
+        guidance and ready-to-adapt solutions.
+      </p>
+    </div>
+    <div
+      data-replit-metadata="client/src/components/comparison-table.tsx:64:6"
+      data-component-name="div"
+      class="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch"
+    >
+      <div
+        data-replit-metadata="client/src/components/comparison-table.tsx:70:12"
+        data-component-name="div"
+        class="rounded-2xl bg-card ring-1 ring-border shadow-sm p-6 flex flex-col"
+        data-testid="card-comparison-free"
+      >
+        <div
+          data-replit-metadata="client/src/components/comparison-table.tsx:75:14"
+          data-component-name="div"
+          class="flex items-center gap-2 mb-3"
+        >
+          <div
+            data-replit-metadata="client/src/components/comparison-table.tsx:76:16"
+            data-component-name="div"
+            class="w-9 h-9 rounded-lg flex items-center justify-center bg-slate-100 dark:bg-slate-800"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-file-text w-4 h-4 text-slate-600 dark:text-slate-300"
+              data-replit-metadata="client/src/components/comparison-table.tsx:77:18"
+              data-component-name="Icon"
+            >
+              <path
+                d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"
+              ></path>
+              <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+              <path d="M10 9H8"></path>
+              <path d="M16 13H8"></path>
+              <path d="M16 17H8"></path>
+            </svg>
+          </div>
+          <span
+            data-replit-metadata="client/src/components/comparison-table.tsx:79:16"
+            data-component-name="span"
+            class="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+            >Free</span
+          >
+        </div>
+        <div
+          data-replit-metadata="client/src/components/comparison-table.tsx:84:14"
+          data-component-name="div"
+          class="flex items-baseline gap-1.5"
+        >
+          <span
+            data-replit-metadata="client/src/components/comparison-table.tsx:85:16"
+            data-component-name="span"
+            class="text-4xl font-bold text-foreground tabular-nums"
+            >€0</span
+          ><span
+            data-replit-metadata="client/src/components/comparison-table.tsx:88:16"
+            data-component-name="span"
+            class="text-sm text-muted-foreground"
+            >/ 3 scans</span
+          >
+        </div>
+        <p
+          data-replit-metadata="client/src/components/comparison-table.tsx:92:14"
+          data-component-name="p"
+          class="mt-2 text-[13px] text-muted-foreground"
+        >
+          Score + key issues.
+        </p>
+        <ul
+          data-replit-metadata="client/src/components/comparison-table.tsx:96:14"
+          data-component-name="ul"
+          class="mt-5 space-y-2.5 text-sm flex-1"
+        >
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-emerald-500"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-foreground/90"
+              >8-in-1 SEO analysis</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-emerald-500"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-foreground/90"
+              >AEO / AI SEO readiness</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-emerald-500"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-foreground/90"
+              >GEO readiness check</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-emerald-500"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Google Ads landing page analysis</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-emerald-500"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Ad copy quality score: headlines + descriptions</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-emerald-500"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Top 3 issues per section</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-emerald-500"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-foreground/90"
+              >E-mail delivery</span
+            >
+          </li>
+        </ul>
+        <button
+          data-replit-metadata="client/src/components/comparison-table.tsx:121:14"
+          data-component-name="Button"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 px-4 py-2 mt-6 w-full h-11 font-semibold gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-900 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-100"
+          data-testid="button-comparison-free"
+        >
+          Run for free
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-arrow-right w-4 h-4"
+            data-replit-metadata="client/src/components/comparison-table.tsx:127:16"
+            data-component-name="ArrowRight"
+          >
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+      <div
+        data-replit-metadata="client/src/components/comparison-table.tsx:70:12"
+        data-component-name="div"
+        class="rounded-2xl bg-card ring-1 ring-border shadow-sm p-6 flex flex-col"
+        data-testid="card-comparison-basic"
+      >
+        <div
+          data-replit-metadata="client/src/components/comparison-table.tsx:75:14"
+          data-component-name="div"
+          class="flex items-center gap-2 mb-3"
+        >
+          <div
+            data-replit-metadata="client/src/components/comparison-table.tsx:76:16"
+            data-component-name="div"
+            class="w-9 h-9 rounded-lg flex items-center justify-center bg-blue-50 dark:bg-blue-950/40"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-zap w-4 h-4 text-blue-600 dark:text-blue-400"
+              data-replit-metadata="client/src/components/comparison-table.tsx:77:18"
+              data-component-name="Icon"
+            >
+              <path
+                d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"
+              ></path>
+            </svg>
+          </div>
+          <span
+            data-replit-metadata="client/src/components/comparison-table.tsx:79:16"
+            data-component-name="span"
+            class="text-[11px] font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400"
+            >Basic</span
+          >
+        </div>
+        <div
+          data-replit-metadata="client/src/components/comparison-table.tsx:84:14"
+          data-component-name="div"
+          class="flex items-baseline gap-1.5"
+        >
+          <span
+            data-replit-metadata="client/src/components/comparison-table.tsx:85:16"
+            data-component-name="span"
+            class="text-4xl font-bold text-foreground tabular-nums"
+            >€19</span
+          ><span
+            data-replit-metadata="client/src/components/comparison-table.tsx:88:16"
+            data-component-name="span"
+            class="text-sm text-muted-foreground"
+            >one-time payment</span
+          >
+        </div>
+        <p
+          data-replit-metadata="client/src/components/comparison-table.tsx:92:14"
+          data-component-name="p"
+          class="mt-2 text-[13px] text-muted-foreground"
+        >
+          Full report — without solutions.
+        </p>
+        <ul
+          data-replit-metadata="client/src/components/comparison-table.tsx:96:14"
+          data-component-name="ul"
+          class="mt-5 space-y-2.5 text-sm flex-1"
+        >
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-muted-foreground/50"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-muted-foreground italic"
+              >Everything in Free, plus:</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-blue-500"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Full issue lists: all findings</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-blue-500"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Complete PDF report</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-blue-500"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-foreground/90"
+              >5 scans included</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-blue-500"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Competitor URL comparison</span
+            >
+          </li>
+        </ul>
+        <button
+          data-replit-metadata="client/src/components/comparison-table.tsx:121:14"
+          data-component-name="Button"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 px-4 py-2 mt-6 w-full h-11 font-semibold gap-1.5 bg-blue-600 hover:bg-blue-700 text-white"
+          data-testid="button-comparison-basic"
+        >
+          Buy Basic
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-arrow-right w-4 h-4"
+            data-replit-metadata="client/src/components/comparison-table.tsx:127:16"
+            data-component-name="ArrowRight"
+          >
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+      <div
+        data-replit-metadata="client/src/components/comparison-table.tsx:70:12"
+        data-component-name="div"
+        class="rounded-2xl bg-card ring-1 ring-border shadow-sm p-6 flex flex-col"
+        data-testid="card-comparison-pro"
+      >
+        <div
+          data-replit-metadata="client/src/components/comparison-table.tsx:75:14"
+          data-component-name="div"
+          class="flex items-center gap-2 mb-3"
+        >
+          <div
+            data-replit-metadata="client/src/components/comparison-table.tsx:76:16"
+            data-component-name="div"
+            class="w-9 h-9 rounded-lg flex items-center justify-center bg-amber-50 dark:bg-amber-950/40"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-wrench w-4 h-4 text-amber-700 dark:text-amber-400"
+              data-replit-metadata="client/src/components/comparison-table.tsx:77:18"
+              data-component-name="Icon"
+            >
+              <path
+                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+              ></path>
+            </svg>
+          </div>
+          <span
+            data-replit-metadata="client/src/components/comparison-table.tsx:79:16"
+            data-component-name="span"
+            class="text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400"
+            >Pro</span
+          >
+        </div>
+        <div
+          data-replit-metadata="client/src/components/comparison-table.tsx:84:14"
+          data-component-name="div"
+          class="flex items-baseline gap-1.5"
+        >
+          <span
+            data-replit-metadata="client/src/components/comparison-table.tsx:85:16"
+            data-component-name="span"
+            class="text-4xl font-bold text-foreground tabular-nums"
+            >€29</span
+          ><span
+            data-replit-metadata="client/src/components/comparison-table.tsx:88:16"
+            data-component-name="span"
+            class="text-sm text-muted-foreground"
+            >one-time payment</span
+          >
+        </div>
+        <p
+          data-replit-metadata="client/src/components/comparison-table.tsx:92:14"
+          data-component-name="p"
+          class="mt-2 text-[13px] text-muted-foreground"
+        >
+          All data + practical solutions.
+        </p>
+        <ul
+          data-replit-metadata="client/src/components/comparison-table.tsx:96:14"
+          data-component-name="ul"
+          class="mt-5 space-y-2.5 text-sm flex-1"
+        >
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-muted-foreground/50"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-muted-foreground italic"
+              >Everything in Basic, plus:</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-amber-600"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Example solutions</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-amber-600"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-foreground/90"
+              >Step-by-step technical guidance</span
+            >
+          </li>
+          <li
+            data-replit-metadata="client/src/components/comparison-table.tsx:100:20"
+            data-component-name="li"
+            class="flex items-start gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-check w-4 h-4 mt-0.5 shrink-0 text-amber-600"
+              data-replit-metadata="client/src/components/comparison-table.tsx:101:22"
+              data-component-name="Check"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span
+              data-replit-metadata="client/src/components/comparison-table.tsx:107:22"
+              data-component-name="span"
+              class="text-foreground/90"
+              >10 scans included</span
+            >
+          </li>
+        </ul>
+        <button
+          data-replit-metadata="client/src/components/comparison-table.tsx:121:14"
+          data-component-name="Button"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 px-4 py-2 mt-6 w-full h-11 font-semibold gap-1.5 bg-amber-500 hover:bg-amber-600 text-white"
+          data-testid="button-comparison-pro"
+        >
+          Buy Pro
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-arrow-right w-4 h-4"
+            data-replit-metadata="client/src/components/comparison-table.tsx:127:16"
+            data-component-name="ArrowRight"
+          >
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <p
+      data-replit-metadata="client/src/components/comparison-table.tsx:134:6"
+      data-component-name="p"
+      class="text-center text-xs text-muted-foreground mt-6"
+    >
+      No signup · One-time payment, no subscription · Moneyback guarantee
+    </p>
+  </section>
+  <section
+    data-replit-metadata="client/src/components/faq-section.tsx:47:4"
+    data-component-name="section"
+    class="mt-20 md:mt-24 mb-12"
+    data-testid="section-faq"
+  >
+    <div
+      data-replit-metadata="client/src/components/faq-section.tsx:48:6"
+      data-component-name="div"
+      class="text-center max-w-2xl mx-auto mb-8"
+    >
+      <div
+        data-replit-metadata="client/src/components/faq-section.tsx:49:8"
+        data-component-name="div"
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium mb-3"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-circle-help w-3.5 h-3.5"
+          data-replit-metadata="client/src/components/faq-section.tsx:50:10"
+          data-component-name="HelpCircle"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <path d="M12 17h.01"></path>
+        </svg>
+        FAQ
+      </div>
+      <h2
+        data-replit-metadata="client/src/components/faq-section.tsx:53:8"
+        data-component-name="h2"
+        class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground"
+        data-testid="text-faq-heading"
+      >
+        Everything you need to know before you scan
+      </h2>
+      <p
+        data-replit-metadata="client/src/components/faq-section.tsx:59:8"
+        data-component-name="p"
+        class="mt-3 text-sm md:text-base text-muted-foreground"
+        data-testid="text-faq-subheading"
+      >
+        Straight answers about what FreeSiteAnalyzer checks, what you get at
+        each tier, and how the fixes work.
+      </p>
+    </div>
+    <div
+      data-replit-metadata="client/src/components/faq-section.tsx:67:6"
+      data-component-name="div"
+      class="max-w-3xl mx-auto rounded-2xl bg-card text-card-foreground shadow-md shadow-slate-200/50 dark:shadow-black/30 ring-1 ring-border p-2 md:p-4"
+    >
+      <div
+        data-replit-metadata="client/src/components/faq-section.tsx:68:8"
+        data-component-name="Accordion"
+        class="w-full"
+        data-orientation="vertical"
+      >
+        <div
+          data-state="closed"
+          data-orientation="vertical"
+          data-replit-metadata="client/src/components/faq-section.tsx:70:10"
+          data-component-name="AccordionItem"
+          class="border-b"
+          data-testid="faq-item-whatIsFreeSiteAnalyzer"
+        >
+          <h3
+            data-orientation="vertical"
+            data-state="closed"
+            data-replit-metadata="client/src/components/ui/accordion.tsx:25"
+            data-component-name="AccordionPrimitive.Header"
+            class="flex"
+          >
+            <button
+              type="button"
+              aria-controls="radix-:r4:"
+              aria-expanded="false"
+              data-state="closed"
+              data-orientation="vertical"
+              id="radix-:r3:"
+              data-replit-metadata="client/src/components/faq-section.tsx:76:14"
+              data-component-name="AccordionTrigger"
+              class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]&gt;svg]:rotate-180 text-left text-base md:text-lg font-semibold hover-elevate active-elevate-2 px-3 md:px-4 rounded-md"
+              data-testid="faq-trigger-whatIsFreeSiteAnalyzer"
+              data-radix-collection-item=""
+            >
+              What is FreeSiteAnalyzer and how does it audit my website's SEO?
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                data-replit-metadata="client/src/components/ui/accordion.tsx:35:6"
+                data-component-name="ChevronDown"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+          </h3>
+          <div
+            data-state="closed"
+            id="radix-:r4:"
+            hidden=""
+            role="region"
+            aria-labelledby="radix-:r3:"
+            data-orientation="vertical"
+            data-replit-metadata="client/src/components/faq-section.tsx:82:14"
+            data-component-name="AccordionContent"
+            class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+            data-testid="faq-content-whatIsFreeSiteAnalyzer"
+            style="
+              --radix-accordion-content-height: var(
+                --radix-collapsible-content-height
+              );
+              --radix-accordion-content-width: var(
+                --radix-collapsible-content-width
+              );
+            "
+          ></div>
+        </div>
+        <div
+          data-state="closed"
+          data-orientation="vertical"
+          data-replit-metadata="client/src/components/faq-section.tsx:70:10"
+          data-component-name="AccordionItem"
+          class="border-b"
+          data-testid="faq-item-whatChecked"
+        >
+          <h3
+            data-orientation="vertical"
+            data-state="closed"
+            data-replit-metadata="client/src/components/ui/accordion.tsx:25"
+            data-component-name="AccordionPrimitive.Header"
+            class="flex"
+          >
+            <button
+              type="button"
+              aria-controls="radix-:r6:"
+              aria-expanded="false"
+              data-state="closed"
+              data-orientation="vertical"
+              id="radix-:r5:"
+              data-replit-metadata="client/src/components/faq-section.tsx:76:14"
+              data-component-name="AccordionTrigger"
+              class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]&gt;svg]:rotate-180 text-left text-base md:text-lg font-semibold hover-elevate active-elevate-2 px-3 md:px-4 rounded-md"
+              data-testid="faq-trigger-whatChecked"
+              data-radix-collection-item=""
+            >
+              What does a full SEO audit check — and what does FreeSiteAnalyzer
+              analyze on my page?
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                data-replit-metadata="client/src/components/ui/accordion.tsx:35:6"
+                data-component-name="ChevronDown"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+          </h3>
+          <div
+            data-state="closed"
+            id="radix-:r6:"
+            hidden=""
+            role="region"
+            aria-labelledby="radix-:r5:"
+            data-orientation="vertical"
+            data-replit-metadata="client/src/components/faq-section.tsx:82:14"
+            data-component-name="AccordionContent"
+            class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+            data-testid="faq-content-whatChecked"
+            style="
+              --radix-accordion-content-height: var(
+                --radix-collapsible-content-height
+              );
+              --radix-accordion-content-width: var(
+                --radix-collapsible-content-width
+              );
+            "
+          ></div>
+        </div>
+        <div
+          data-state="closed"
+          data-orientation="vertical"
+          data-replit-metadata="client/src/components/faq-section.tsx:70:10"
+          data-component-name="AccordionItem"
+          class="border-b"
+          data-testid="faq-item-adCopyRater"
+        >
+          <h3
+            data-orientation="vertical"
+            data-state="closed"
+            data-replit-metadata="client/src/components/ui/accordion.tsx:25"
+            data-component-name="AccordionPrimitive.Header"
+            class="flex"
+          >
+            <button
+              type="button"
+              aria-controls="radix-:r8:"
+              aria-expanded="false"
+              data-state="closed"
+              data-orientation="vertical"
+              id="radix-:r7:"
+              data-replit-metadata="client/src/components/faq-section.tsx:76:14"
+              data-component-name="AccordionTrigger"
+              class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]&gt;svg]:rotate-180 text-left text-base md:text-lg font-semibold hover-elevate active-elevate-2 px-3 md:px-4 rounded-md"
+              data-testid="faq-trigger-adCopyRater"
+              data-radix-collection-item=""
+            >
+              How do I improve my Google Ads Quality Score and ad rank?
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                data-replit-metadata="client/src/components/ui/accordion.tsx:35:6"
+                data-component-name="ChevronDown"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+          </h3>
+          <div
+            data-state="closed"
+            id="radix-:r8:"
+            hidden=""
+            role="region"
+            aria-labelledby="radix-:r7:"
+            data-orientation="vertical"
+            data-replit-metadata="client/src/components/faq-section.tsx:82:14"
+            data-component-name="AccordionContent"
+            class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+            data-testid="faq-content-adCopyRater"
+            style="
+              --radix-accordion-content-height: var(
+                --radix-collapsible-content-height
+              );
+              --radix-accordion-content-width: var(
+                --radix-collapsible-content-width
+              );
+            "
+          ></div>
+        </div>
+        <div
+          data-state="closed"
+          data-orientation="vertical"
+          data-replit-metadata="client/src/components/faq-section.tsx:70:10"
+          data-component-name="AccordionItem"
+          class="border-b"
+          data-testid="faq-item-howLong"
+        >
+          <h3
+            data-orientation="vertical"
+            data-state="closed"
+            data-replit-metadata="client/src/components/ui/accordion.tsx:25"
+            data-component-name="AccordionPrimitive.Header"
+            class="flex"
+          >
+            <button
+              type="button"
+              aria-controls="radix-:ra:"
+              aria-expanded="false"
+              data-state="closed"
+              data-orientation="vertical"
+              id="radix-:r9:"
+              data-replit-metadata="client/src/components/faq-section.tsx:76:14"
+              data-component-name="AccordionTrigger"
+              class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]&gt;svg]:rotate-180 text-left text-base md:text-lg font-semibold hover-elevate active-elevate-2 px-3 md:px-4 rounded-md"
+              data-testid="faq-trigger-howLong"
+              data-radix-collection-item=""
+            >
+              How long does an SEO audit take with FreeSiteAnalyzer?
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                data-replit-metadata="client/src/components/ui/accordion.tsx:35:6"
+                data-component-name="ChevronDown"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+          </h3>
+          <div
+            data-state="closed"
+            id="radix-:ra:"
+            hidden=""
+            role="region"
+            aria-labelledby="radix-:r9:"
+            data-orientation="vertical"
+            data-replit-metadata="client/src/components/faq-section.tsx:82:14"
+            data-component-name="AccordionContent"
+            class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+            data-testid="faq-content-howLong"
+            style="
+              --radix-accordion-content-height: var(
+                --radix-collapsible-content-height
+              );
+              --radix-accordion-content-width: var(
+                --radix-collapsible-content-width
+              );
+            "
+          ></div>
+        </div>
+        <div
+          data-state="closed"
+          data-orientation="vertical"
+          data-replit-metadata="client/src/components/faq-section.tsx:70:10"
+          data-component-name="AccordionItem"
+          class="border-b"
+          data-testid="faq-item-freeVsPaid"
+        >
+          <h3
+            data-orientation="vertical"
+            data-state="closed"
+            data-replit-metadata="client/src/components/ui/accordion.tsx:25"
+            data-component-name="AccordionPrimitive.Header"
+            class="flex"
+          >
+            <button
+              type="button"
+              aria-controls="radix-:rc:"
+              aria-expanded="false"
+              data-state="closed"
+              data-orientation="vertical"
+              id="radix-:rb:"
+              data-replit-metadata="client/src/components/faq-section.tsx:76:14"
+              data-component-name="AccordionTrigger"
+              class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]&gt;svg]:rotate-180 text-left text-base md:text-lg font-semibold hover-elevate active-elevate-2 px-3 md:px-4 rounded-md"
+              data-testid="faq-trigger-freeVsPaid"
+              data-radix-collection-item=""
+            >
+              Is there a free SEO audit tool that shows real issues, not just a
+              teaser?
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                data-replit-metadata="client/src/components/ui/accordion.tsx:35:6"
+                data-component-name="ChevronDown"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+          </h3>
+          <div
+            data-state="closed"
+            id="radix-:rc:"
+            hidden=""
+            role="region"
+            aria-labelledby="radix-:rb:"
+            data-orientation="vertical"
+            data-replit-metadata="client/src/components/faq-section.tsx:82:14"
+            data-component-name="AccordionContent"
+            class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+            data-testid="faq-content-freeVsPaid"
+            style="
+              --radix-accordion-content-height: var(
+                --radix-collapsible-content-height
+              );
+              --radix-accordion-content-width: var(
+                --radix-collapsible-content-width
+              );
+            "
+          ></div>
+        </div>
+        <div
+          data-state="closed"
+          data-orientation="vertical"
+          data-replit-metadata="client/src/components/faq-section.tsx:70:10"
+          data-component-name="AccordionItem"
+          class="border-b"
+          data-testid="faq-item-basicVsPro"
+        >
+          <h3
+            data-orientation="vertical"
+            data-state="closed"
+            data-replit-metadata="client/src/components/ui/accordion.tsx:25"
+            data-component-name="AccordionPrimitive.Header"
+            class="flex"
+          >
+            <button
+              type="button"
+              aria-controls="radix-:re:"
+              aria-expanded="false"
+              data-state="closed"
+              data-orientation="vertical"
+              id="radix-:rd:"
+              data-replit-metadata="client/src/components/faq-section.tsx:76:14"
+              data-component-name="AccordionTrigger"
+              class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]&gt;svg]:rotate-180 text-left text-base md:text-lg font-semibold hover-elevate active-elevate-2 px-3 md:px-4 rounded-md"
+              data-testid="faq-trigger-basicVsPro"
+              data-radix-collection-item=""
+            >
+              Should I buy FreeSiteAnalyzer Basic or Pro to fix my SEO?
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                data-replit-metadata="client/src/components/ui/accordion.tsx:35:6"
+                data-component-name="ChevronDown"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+          </h3>
+          <div
+            data-state="closed"
+            id="radix-:re:"
+            hidden=""
+            role="region"
+            aria-labelledby="radix-:rd:"
+            data-orientation="vertical"
+            data-replit-metadata="client/src/components/faq-section.tsx:82:14"
+            data-component-name="AccordionContent"
+            class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+            data-testid="faq-content-basicVsPro"
+            style="
+              --radix-accordion-content-height: var(
+                --radix-collapsible-content-height
+              );
+              --radix-accordion-content-width: var(
+                --radix-collapsible-content-width
+              );
+            "
+          ></div>
+        </div>
+        <div
+          data-state="closed"
+          data-orientation="vertical"
+          data-replit-metadata="client/src/components/faq-section.tsx:70:10"
+          data-component-name="AccordionItem"
+          class="border-b"
+          data-testid="faq-item-aiReady"
+        >
+          <h3
+            data-orientation="vertical"
+            data-state="closed"
+            data-replit-metadata="client/src/components/ui/accordion.tsx:25"
+            data-component-name="AccordionPrimitive.Header"
+            class="flex"
+          >
+            <button
+              type="button"
+              aria-controls="radix-:rg:"
+              aria-expanded="false"
+              data-state="closed"
+              data-orientation="vertical"
+              id="radix-:rf:"
+              data-replit-metadata="client/src/components/faq-section.tsx:76:14"
+              data-component-name="AccordionTrigger"
+              class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]&gt;svg]:rotate-180 text-left text-base md:text-lg font-semibold hover-elevate active-elevate-2 px-3 md:px-4 rounded-md"
+              data-testid="faq-trigger-aiReady"
+              data-radix-collection-item=""
+            >
+              How do I rank in ChatGPT, Perplexity and Google AI Overviews?
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                data-replit-metadata="client/src/components/ui/accordion.tsx:35:6"
+                data-component-name="ChevronDown"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+          </h3>
+          <div
+            data-state="closed"
+            id="radix-:rg:"
+            hidden=""
+            role="region"
+            aria-labelledby="radix-:rf:"
+            data-orientation="vertical"
+            data-replit-metadata="client/src/components/faq-section.tsx:82:14"
+            data-component-name="AccordionContent"
+            class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+            data-testid="faq-content-aiReady"
+            style="
+              --radix-accordion-content-height: var(
+                --radix-collapsible-content-height
+              );
+              --radix-accordion-content-width: var(
+                --radix-collapsible-content-width
+              );
+            "
+          ></div>
+        </div>
+        <div
+          data-state="closed"
+          data-orientation="vertical"
+          data-replit-metadata="client/src/components/faq-section.tsx:70:10"
+          data-component-name="AccordionItem"
+          class="border-b"
+          data-testid="faq-item-whoFor"
+        >
+          <h3
+            data-orientation="vertical"
+            data-state="closed"
+            data-replit-metadata="client/src/components/ui/accordion.tsx:25"
+            data-component-name="AccordionPrimitive.Header"
+            class="flex"
+          >
+            <button
+              type="button"
+              aria-controls="radix-:ri:"
+              aria-expanded="false"
+              data-state="closed"
+              data-orientation="vertical"
+              id="radix-:rh:"
+              data-replit-metadata="client/src/components/faq-section.tsx:76:14"
+              data-component-name="AccordionTrigger"
+              class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]&gt;svg]:rotate-180 text-left text-base md:text-lg font-semibold hover-elevate active-elevate-2 px-3 md:px-4 rounded-md"
+              data-testid="faq-trigger-whoFor"
+              data-radix-collection-item=""
+            >
+              Who should use FreeSiteAnalyzer — marketers, developers, or
+              agencies?
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                data-replit-metadata="client/src/components/ui/accordion.tsx:35:6"
+                data-component-name="ChevronDown"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+          </h3>
+          <div
+            data-state="closed"
+            id="radix-:ri:"
+            hidden=""
+            role="region"
+            aria-labelledby="radix-:rh:"
+            data-orientation="vertical"
+            data-replit-metadata="client/src/components/faq-section.tsx:82:14"
+            data-component-name="AccordionContent"
+            class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+            data-testid="faq-content-whoFor"
+            style="
+              --radix-accordion-content-height: var(
+                --radix-collapsible-content-height
+              );
+              --radix-accordion-content-width: var(
+                --radix-collapsible-content-width
+              );
+            "
+          ></div>
+        </div>
+        <div
+          data-state="closed"
+          data-orientation="vertical"
+          data-replit-metadata="client/src/components/faq-section.tsx:70:10"
+          data-component-name="AccordionItem"
+          class="border-b"
+          data-testid="faq-item-needSignup"
+        >
+          <h3
+            data-orientation="vertical"
+            data-state="closed"
+            data-replit-metadata="client/src/components/ui/accordion.tsx:25"
+            data-component-name="AccordionPrimitive.Header"
+            class="flex"
+          >
+            <button
+              type="button"
+              aria-controls="radix-:rk:"
+              aria-expanded="false"
+              data-state="closed"
+              data-orientation="vertical"
+              id="radix-:rj:"
+              data-replit-metadata="client/src/components/faq-section.tsx:76:14"
+              data-component-name="AccordionTrigger"
+              class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]&gt;svg]:rotate-180 text-left text-base md:text-lg font-semibold hover-elevate active-elevate-2 px-3 md:px-4 rounded-md"
+              data-testid="faq-trigger-needSignup"
+              data-radix-collection-item=""
+            >
+              Can I run an SEO audit without signing up or creating an account?
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                data-replit-metadata="client/src/components/ui/accordion.tsx:35:6"
+                data-component-name="ChevronDown"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+          </h3>
+          <div
+            data-state="closed"
+            id="radix-:rk:"
+            hidden=""
+            role="region"
+            aria-labelledby="radix-:rj:"
+            data-orientation="vertical"
+            data-replit-metadata="client/src/components/faq-section.tsx:82:14"
+            data-component-name="AccordionContent"
+            class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+            data-testid="faq-content-needSignup"
+            style="
+              --radix-accordion-content-height: var(
+                --radix-collapsible-content-height
+              );
+              --radix-accordion-content-width: var(
+                --radix-collapsible-content-width
+              );
+            "
+          ></div>
+        </div>
+        <div
+          data-state="closed"
+          data-orientation="vertical"
+          data-replit-metadata="client/src/components/faq-section.tsx:70:10"
+          data-component-name="AccordionItem"
+          class="border-b"
+          data-testid="faq-item-refund"
+        >
+          <h3
+            data-orientation="vertical"
+            data-state="closed"
+            data-replit-metadata="client/src/components/ui/accordion.tsx:25"
+            data-component-name="AccordionPrimitive.Header"
+            class="flex"
+          >
+            <button
+              type="button"
+              aria-controls="radix-:rm:"
+              aria-expanded="false"
+              data-state="closed"
+              data-orientation="vertical"
+              id="radix-:rl:"
+              data-replit-metadata="client/src/components/faq-section.tsx:76:14"
+              data-component-name="AccordionTrigger"
+              class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]&gt;svg]:rotate-180 text-left text-base md:text-lg font-semibold hover-elevate active-elevate-2 px-3 md:px-4 rounded-md"
+              data-testid="faq-trigger-refund"
+              data-radix-collection-item=""
+            >
+              Does FreeSiteAnalyzer offer a money-back guarantee on the SEO
+              report?
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                data-replit-metadata="client/src/components/ui/accordion.tsx:35:6"
+                data-component-name="ChevronDown"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+          </h3>
+          <div
+            data-state="closed"
+            id="radix-:rm:"
+            hidden=""
+            role="region"
+            aria-labelledby="radix-:rl:"
+            data-orientation="vertical"
+            data-replit-metadata="client/src/components/faq-section.tsx:82:14"
+            data-component-name="AccordionContent"
+            class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+            data-testid="faq-content-refund"
+            style="
+              --radix-accordion-content-height: var(
+                --radix-collapsible-content-height
+              );
+              --radix-accordion-content-width: var(
+                --radix-collapsible-content-width
+              );
+            "
+          ></div>
+        </div>
+        <div
+          data-state="closed"
+          data-orientation="vertical"
+          data-replit-metadata="client/src/components/faq-section.tsx:70:10"
+          data-component-name="AccordionItem"
+          class="border-b-0"
+          data-testid="faq-item-howFixes"
+        >
+          <h3
+            data-orientation="vertical"
+            data-state="closed"
+            data-replit-metadata="client/src/components/ui/accordion.tsx:25"
+            data-component-name="AccordionPrimitive.Header"
+            class="flex"
+          >
+            <button
+              type="button"
+              aria-controls="radix-:ro:"
+              aria-expanded="false"
+              data-state="closed"
+              data-orientation="vertical"
+              id="radix-:rn:"
+              data-replit-metadata="client/src/components/faq-section.tsx:76:14"
+              data-component-name="AccordionTrigger"
+              class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]&gt;svg]:rotate-180 text-left text-base md:text-lg font-semibold hover-elevate active-elevate-2 px-3 md:px-4 rounded-md"
+              data-testid="faq-trigger-howFixes"
+              data-radix-collection-item=""
+            >
+              How do I fix SEO issues fast — does FreeSiteAnalyzer give me
+              ready-to-paste code?
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                data-replit-metadata="client/src/components/ui/accordion.tsx:35:6"
+                data-component-name="ChevronDown"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+          </h3>
+          <div
+            data-state="closed"
+            id="radix-:ro:"
+            hidden=""
+            role="region"
+            aria-labelledby="radix-:rn:"
+            data-orientation="vertical"
+            data-replit-metadata="client/src/components/faq-section.tsx:82:14"
+            data-component-name="AccordionContent"
+            class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+            data-testid="faq-content-howFixes"
+            style="
+              --radix-accordion-content-height: var(
+                --radix-collapsible-content-height
+              );
+              --radix-accordion-content-width: var(
+                --radix-collapsible-content-width
+              );
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+    <script
+      data-replit-metadata="client/src/components/faq-section.tsx:93:6"
+      data-component-name="script"
+      type="application/ld+json"
+    >
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is FreeSiteAnalyzer and how does it audit my website's SEO?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "FreeSiteAnalyzer is an 8-in-1 SEO and AI-readiness scanner. You paste a URL and within ~30 seconds we audit your page across classic SEO, technical SEO, Google Ads landing-page quality, AEO (Answer Engine Optimization for ChatGPT, Perplexity, Gemini), and GEO (Generative Engine Optimization) — then we tell you exactly what's broken and what to fix."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does a full SEO audit check — and what does FreeSiteAnalyzer analyze on my page?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Every scan runs all eight pillars: on-page SEO (title, meta, headings, content), technical SEO (status codes, robots, sitemap, crawlability), Core Web Vitals & performance, mobile-friendliness, structured data (JSON-LD / schema.org), Google Ads landing-page quality plus an ad-copy quality rater for your headlines and descriptions, AEO readiness for AI answer engines, and GEO readiness for generative search."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I improve my Google Ads Quality Score and ad rank?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Paste your Google Ads headlines and descriptions into FreeSiteAnalyzer and we rate ad-copy quality the way Google does: keyword relevance, intent match, clarity, character-budget efficiency, CTA strength, and how well your copy aligns with the landing page it points to. You get a per-asset score and concrete rewrites that lift Quality Score, Ad Rank, and CTR — and lower your cost per click."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does an SEO audit take with FreeSiteAnalyzer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most scans complete in 20–40 seconds. You'll see live progress as each pillar runs, and the full report appears as soon as the last check finishes — no waiting for an email."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a free SEO audit tool that shows real issues, not just a teaser?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes — the free FreeSiteAnalyzer scan gives you the overall score, score per pillar, and the top 3 issues per section, so you actually see where you stand. Basic (€19) unlocks every finding plus a full PDF report and a competitor comparison. Pro (€29) adds copy-paste fixes and step-by-step technical guides for every issue."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Should I buy FreeSiteAnalyzer Basic or Pro to fix my SEO?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Basic is the full data report — all issues, all findings, full PDF, 3 scans. Pro is Basic plus the actual solutions: copy-paste meta tags, JSON-LD blocks, robots/sitemap snippets, and step-by-step instructions for every problem we find. If you want to fix things yourself or hand a clear task list to a developer, pick Pro. Pro also includes 10 scans so you can re-test after each fix."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I rank in ChatGPT, Perplexity and Google AI Overviews?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Our AEO and GEO pillars check exactly the signals AI answer engines use to cite a page: clear question-and-answer structure, factual freshness, schema.org markup, llms.txt, semantic HTML, and quotable content blocks. You'll see a separate AI-readiness score and the specific changes that improve your odds of being cited by ChatGPT, Perplexity, Gemini, and Google's AI Overviews."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who should use FreeSiteAnalyzer — marketers, developers, or agencies?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Marketers, founders, freelancers, developers, and agencies all use FreeSiteAnalyzer. Marketers and founders get a fast, honest read on Google rankings, Google Ads quality, and AI-engine visibility. Developers get copy-paste meta, schema, robots, and HTML snippets they can drop straight into the codebase. Agencies use the PDF report as a client-ready deliverable — no need to learn ten tools or commission a manual audit."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I run an SEO audit without signing up or creating an account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Free scans require nothing — no email, no account, no card. Basic and Pro are one-time payments with no subscription, no recurring charges, and no account to manage. Your report is delivered by email and stays accessible from the link."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does FreeSiteAnalyzer offer a money-back guarantee on the SEO report?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Both Basic and Pro come with a moneyback guarantee. If the report doesn't give you actionable insight, contact support and we refund you. One-time payment, no subscription, no fine print."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I fix SEO issues fast — does FreeSiteAnalyzer give me ready-to-paste code?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. For every issue we find, Pro includes a ready-to-paste solution: the exact title tag, meta description, JSON-LD block, robots directive, image alt text, or HTML snippet your developer (or you) can drop straight into the site. Each fix comes with a short step-by-step explaining where it goes and why it matters."
+            }
+          }
+        ]
+      }
+    </script>
+  </section>
+  <section
+    data-replit-metadata="client/src/components/upgrade-cta.tsx:27:4"
+    data-component-name="section"
+    class="my-16"
+    data-testid="section-upgrade-cta"
+  >
+    <div
+      data-replit-metadata="client/src/components/upgrade-cta.tsx:28:6"
+      data-component-name="div"
+      class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-blue-600 to-indigo-700 dark:from-blue-700 dark:via-blue-800 dark:to-indigo-900 text-white shadow-2xl shadow-blue-500/30"
+    >
+      <div
+        data-replit-metadata="client/src/components/upgrade-cta.tsx:29:8"
+        data-component-name="div"
+        class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-white/10 blur-3xl pointer-events-none"
+      ></div>
+      <div
+        data-replit-metadata="client/src/components/upgrade-cta.tsx:30:8"
+        data-component-name="div"
+        class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-indigo-300/20 blur-3xl pointer-events-none"
+      ></div>
+      <div
+        data-replit-metadata="client/src/components/upgrade-cta.tsx:32:8"
+        data-component-name="div"
+        class="relative px-6 md:px-12 py-12 md:py-14 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 items-center"
+      >
+        <div
+          data-replit-metadata="client/src/components/upgrade-cta.tsx:33:10"
+          data-component-name="div"
+        >
+          <div
+            data-replit-metadata="client/src/components/upgrade-cta.tsx:34:12"
+            data-component-name="div"
+            class="mb-5"
+          >
+            <span
+              data-replit-metadata="client/src/components/upgrade-cta.tsx:35:14"
+              data-component-name="span"
+              class="text-sm font-semibold text-blue-50/95"
+              >Free scan → Pro report</span
+            >
+          </div>
+          <h2
+            data-replit-metadata="client/src/components/upgrade-cta.tsx:40:12"
+            data-component-name="h2"
+            class="text-3xl md:text-4xl lg:text-[40px] leading-[1.1] font-bold tracking-tight"
+            data-testid="text-upgrade-cta-title"
+          >
+            Start your free scan. Upgrade to Pro for the full fix list.
+          </h2>
+          <p
+            data-replit-metadata="client/src/components/upgrade-cta.tsx:47:12"
+            data-component-name="p"
+            class="mt-4 text-blue-50/95 text-base md:text-[17px] leading-relaxed max-w-2xl"
+            data-testid="text-upgrade-cta-desc"
+          >
+            Run a free scan in under 30 seconds — you'll see your overall score
+            and the top issues. Upgrade to Pro €29 to unlock the complete PDF
+            report, 10 scans, and copy-paste fixes for every problem we find.
+          </p>
+          <button
+            data-replit-metadata="client/src/components/upgrade-cta.tsx:54:12"
+            data-component-name="Button"
+            class="inline-flex items-center justify-center whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 rounded-md mt-8 h-14 px-7 text-base font-semibold gap-2 bg-white text-blue-700 hover:bg-blue-50 hover:scale-[1.02] transition-transform group shadow-xl shadow-black/20"
+            data-testid="button-upgrade-cta"
+          >
+            Start scanning
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-arrow-right w-5 h-5 transition-transform group-hover:translate-x-1"
+              data-replit-metadata="client/src/components/upgrade-cta.tsx:61:14"
+              data-component-name="ArrowRight"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </button>
+          <p
+            data-replit-metadata="client/src/components/upgrade-cta.tsx:67:12"
+            data-component-name="p"
+            class="mt-3 text-xs text-blue-100/80"
+          >
+            No signup · One-time payment, no subscription · Moneyback guarantee
+          </p>
+        </div>
+        <ul
+          data-replit-metadata="client/src/components/upgrade-cta.tsx:72:10"
+          data-component-name="ul"
+          class="space-y-3"
+        >
+          <li
+            data-replit-metadata="client/src/components/upgrade-cta.tsx:74:12"
+            data-component-name="li"
+            class="flex items-start gap-3 rounded-xl bg-white/10 backdrop-blur ring-1 ring-white/20 px-4 py-3"
+          >
+            <div
+              data-replit-metadata="client/src/components/upgrade-cta.tsx:78:16"
+              data-component-name="div"
+              class="w-9 h-9 rounded-lg bg-white/15 flex items-center justify-center shrink-0 ring-1 ring-white/30"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-file-text w-4.5 h-4.5"
+                data-replit-metadata="client/src/components/upgrade-cta.tsx:79:18"
+                data-component-name="Icon"
+              >
+                <path
+                  d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"
+                ></path>
+                <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                <path d="M10 9H8"></path>
+                <path d="M16 13H8"></path>
+                <path d="M16 17H8"></path>
+              </svg>
+            </div>
+            <div
+              data-replit-metadata="client/src/components/upgrade-cta.tsx:81:16"
+              data-component-name="div"
+              class="flex-1 text-sm leading-snug pt-1"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-circle-check inline w-3.5 h-3.5 mr-1 -mt-0.5 text-emerald-300"
+                data-replit-metadata="client/src/components/upgrade-cta.tsx:82:18"
+                data-component-name="CheckCircle2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+              PDF report you can share with your team, client, or developer
+            </div>
+          </li>
+          <li
+            data-replit-metadata="client/src/components/upgrade-cta.tsx:74:12"
+            data-component-name="li"
+            class="flex items-start gap-3 rounded-xl bg-white/10 backdrop-blur ring-1 ring-white/20 px-4 py-3"
+          >
+            <div
+              data-replit-metadata="client/src/components/upgrade-cta.tsx:78:16"
+              data-component-name="div"
+              class="w-9 h-9 rounded-lg bg-white/15 flex items-center justify-center shrink-0 ring-1 ring-white/30"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-repeat w-4.5 h-4.5"
+                data-replit-metadata="client/src/components/upgrade-cta.tsx:79:18"
+                data-component-name="Icon"
+              >
+                <path d="m17 2 4 4-4 4"></path>
+                <path d="M3 11v-1a4 4 0 0 1 4-4h14"></path>
+                <path d="m7 22-4-4 4-4"></path>
+                <path d="M21 13v1a4 4 0 0 1-4 4H3"></path>
+              </svg>
+            </div>
+            <div
+              data-replit-metadata="client/src/components/upgrade-cta.tsx:81:16"
+              data-component-name="div"
+              class="flex-1 text-sm leading-snug pt-1"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-circle-check inline w-3.5 h-3.5 mr-1 -mt-0.5 text-emerald-300"
+                data-replit-metadata="client/src/components/upgrade-cta.tsx:82:18"
+                data-component-name="CheckCircle2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+              10 Pro scans included — re-test after every fix
+            </div>
+          </li>
+          <li
+            data-replit-metadata="client/src/components/upgrade-cta.tsx:74:12"
+            data-component-name="li"
+            class="flex items-start gap-3 rounded-xl bg-white/10 backdrop-blur ring-1 ring-white/20 px-4 py-3"
+          >
+            <div
+              data-replit-metadata="client/src/components/upgrade-cta.tsx:78:16"
+              data-component-name="div"
+              class="w-9 h-9 rounded-lg bg-white/15 flex items-center justify-center shrink-0 ring-1 ring-white/30"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-code-xml w-4.5 h-4.5"
+                data-replit-metadata="client/src/components/upgrade-cta.tsx:79:18"
+                data-component-name="Icon"
+              >
+                <path d="m18 16 4-4-4-4"></path>
+                <path d="m6 8-4 4 4 4"></path>
+                <path d="m14.5 4-5 16"></path>
+              </svg>
+            </div>
+            <div
+              data-replit-metadata="client/src/components/upgrade-cta.tsx:81:16"
+              data-component-name="div"
+              class="flex-1 text-sm leading-snug pt-1"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-circle-check inline w-3.5 h-3.5 mr-1 -mt-0.5 text-emerald-300"
+                data-replit-metadata="client/src/components/upgrade-cta.tsx:82:18"
+                data-component-name="CheckCircle2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+              Ready-to-paste code &amp; step-by-step fix instructions
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <footer
+    data-replit-metadata="client/src/pages/master-analyzer.tsx:4685:8"
+    data-component-name="footer"
+    class="bg-card border-t border-border mt-16"
+  >
+    <div
+      data-replit-metadata="client/src/pages/master-analyzer.tsx:4686:10"
+      data-component-name="div"
+      class="container mx-auto px-4 py-8"
+    >
+      <div
+        data-replit-metadata="client/src/pages/master-analyzer.tsx:4687:12"
+        data-component-name="div"
+        class="flex flex-col md:flex-row items-center justify-between"
+      >
+        <div
+          data-replit-metadata="client/src/pages/master-analyzer.tsx:4688:14"
+          data-component-name="div"
+          class="flex items-center space-x-3 mb-4 md:mb-0"
+        >
+          <div
+            data-replit-metadata="client/src/pages/master-analyzer.tsx:4689:16"
+            data-component-name="div"
+            class="w-6 h-6 bg-primary rounded flex items-center justify-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-search text-primary-foreground w-3 h-3"
+              data-replit-metadata="client/src/pages/master-analyzer.tsx:4690:18"
+              data-component-name="Search"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+          </div>
+          <span
+            data-replit-metadata="client/src/pages/master-analyzer.tsx:4692:16"
+            data-component-name="span"
+            class="text-muted-foreground"
+            >© 2026 FreeSiteAnalyzer. Made in
+            <a
+              data-replit-metadata="client/src/pages/master-analyzer.tsx:4692:122"
+              data-component-name="a"
+              href="https://magicmarinac.hr"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary hover:underline font-medium"
+              >MagićMarinac</a
+            >.</span
+          >
+        </div>
+        <div
+          data-replit-metadata="client/src/pages/master-analyzer.tsx:4694:14"
+          data-component-name="div"
+          class="flex items-center space-x-6 text-sm"
+        >
+          <a
+            data-replit-metadata="client/src/pages/master-analyzer.tsx:4695:16"
+            data-component-name="Link"
+            href="/privacy-policy"
+            class="text-muted-foreground hover:text-foreground"
+            >Privacy Policy</a
+          ><a
+            data-replit-metadata="client/src/pages/master-analyzer.tsx:4696:16"
+            data-component-name="Link"
+            href="/terms-of-service"
+            class="text-muted-foreground hover:text-foreground"
+            >Terms of Service</a
+          ><a
+            data-replit-metadata="client/src/pages/master-analyzer.tsx:4697:16"
+            data-component-name="a"
+            href="mailto:info@magicmarinac.hr"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-muted-foreground hover:text-foreground"
+            >Support</a
+          >
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
