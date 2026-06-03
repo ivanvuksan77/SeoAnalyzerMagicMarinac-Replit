@@ -12,14 +12,14 @@
     "badge": "All 8 Tools in One Click",
     "title": "Master SEO Analyzer",
     "description": "Enter a URL and run every analysis tool at once: SEO audit, Google Ads landing page experience, an ad-copy quality rater for your headlines & descriptions, AEO readiness, GEO readiness, broken links, image optimization, internal linking, and sitemap validation.",
-    "eyebrow": "Built for Google Ads + Organic SEO",
-    "lead": "Fix Your Google",
-    "accent": "Ranking Issues — Fast",
-    "sub": "Find landing page experience problems, Core Web Vitals issues, and SEO gaps — all prioritized by impact so you know exactly what to fix first.",
-    "cta": "Start Free Analysis",
-    "trust1": "Free · No signup",
+    "eyebrow": "AI Search Optimization / AEO / GEO / SEO",
+    "lead": "Is your website optimized for AI search?",
+    "accent": "Stay visible in the new era of search.",
+    "sub": "Search is changing. Google, ChatGPT, Perplexity and other AI tools no longer show only a list of links — they generate direct answers and recommendations. That means classic SEO is no longer enough. Your website needs to be easy for both search engines and AI models to find, understand and recommend.",
+    "cta": "Run a free analysis",
+    "trust1": "Free · No registration required",
     "trust2": "Results in 30 seconds",
-    "trust3": "8 tools in one report",
+    "trust3": "AI SEO / AEO / GEO / SEO in one report",
     "preview": {
       "label": "PRO REPORT · €29",
       "subtitle": "Full data + prioritized fix instructions",
@@ -88,6 +88,7 @@
     "proPrice": "€29",
     "proDesc": "Full report with advanced recommendations",
     "proCredits": "10 scan credits · Never expire",
+    "downloadProReportTitle": "Download Full Report with Advanced Recommendations",
     "proReport": "Pro Report",
     "downloadProReport": "Download Pro Report",
     "devPreview": "Dev Preview:"
@@ -980,56 +981,56 @@
     "mismatchDescription": "This access code is registered to a different email address."
   },
   "usp": {
-    "heading": "What Actually Moves the Needle in Modern SEO",
-    "subheading": "We don't just check meta tags. We score the four pillars that decide whether you rank, convert, and get found by AI.",
+    "heading": "What actually drives visibility in modern AI search",
+    "subheading": "We do not just check meta tags. We analyze the key signals that decide whether your website can be found, understood and recommended — in Google, AI Overviews, ChatGPT, Perplexity and paid campaigns.",
     "cards": {
-      "seo": {
+      "ai": {
         "pillar": "01",
-        "title": "SEO Audit",
-        "desc": "Deep technical & on-page analysis that finds what Google actually penalizes.",
+        "title": "AI Optimization",
+        "desc": "Check how ready your website is for the new era of search — AI Overviews, ChatGPT, Perplexity and generative search results.",
         "bullets": [
-          "Core Web Vitals + Lighthouse scoring",
-          "Meta, headings, schema & canonical checks",
-          "Crawlability, sitemap & robots.txt",
-          "Backlink & indexation health signals"
+          "AEO / GEO / AIO visibility analysis",
+          "Checks whether AI can understand your topic, service and context",
+          "Entity, topical authority and content gap analysis",
+          "Guidance for content adapted to LLMs and AI search systems"
         ],
-        "stat": "+38% avg. ranking lift"
+        "stat": "Future-proof your traffic."
+      },
+      "seo": {
+        "pillar": "02",
+        "title": "SEO Audit",
+        "desc": "Classic SEO is still the foundation. Get a deeper technical and on-page analysis of your website.",
+        "bullets": [
+          "Technical and on-page SEO analysis",
+          "Core Web Vitals and Lighthouse check",
+          "Meta tags, headings, schema and canonical checks",
+          "Crawlability, sitemap, robots.txt and indexing checks"
+        ],
+        "stat": "Check the foundations of your visibility."
       },
       "ads": {
-        "pillar": "02",
-        "title": "Google Ads",
-        "desc": "We audit your Google Ads landing pages and rate your ad-copy quality — paste your headlines and descriptions to see how Google reads them.",
-        "bullets": [
-          "Ad-copy quality rating (headlines + descriptions)",
-          "Landing-page relevance to ad intent",
-          "Page speed & Core Web Vitals on the LP",
-          "Form, CTA & trust-signal scoring"
-        ],
-        "stat": "Plug LP leaks, lift ROAS"
-      },
-      "ai": {
         "pillar": "03",
-        "title": "AI Optimization",
-        "desc": "Get found by ChatGPT, Perplexity & Google AI Overviews — not just classic search.",
+        "title": "Google Ads Landing Page",
+        "desc": "We analyze your landing page from the perspective of paid traffic: relevance, speed, trust, CTA elements and alignment with your ad.",
         "bullets": [
-          "GEO (Generative Engine Optimization) score",
-          "Structured data for AI crawlers",
-          "Entity & topical authority mapping",
-          "LLM-readable content rewrites"
+          "Landing page relevance based on ad intent",
+          "Google Ads headline and description analysis",
+          "Page speed and Core Web Vitals",
+          "CTA, form, trust signals and conversion elements"
         ],
-        "stat": "Future-proof traffic"
+        "stat": "Close the leaks and improve ROAS."
       },
       "fixes": {
         "pillar": "04",
         "title": "Pro Fixes & Solutions",
-        "desc": "We don't just find issues — the Pro report ships ready-to-paste code & step-by-step fixes.",
+        "desc": "We do not stop at diagnosis. The Pro report includes practical examples, templates and guidance that you can adapt to your website, topic and goals.",
         "bullets": [
-          "Copy-paste HTML / meta / schema snippets",
-          "Server & .htaccess config blocks",
-          "Prioritized fix list (impact × effort)",
-          "Before / after expected score"
+          "Examples of HTML, meta and schema structures",
+          "Content improvements for better AI readability",
+          "Technical guidance and expected before / after score direction",
+          "Prioritized fix list"
         ],
-        "stat": "Dev-ready output"
+        "stat": "From analysis to a clear improvement plan."
       }
     },
     "tiers": {
@@ -1038,61 +1039,57 @@
       "pro": "Pro",
       "proOnly": "Pro only",
       "footnote": {
-        "shared": "More data on Basic · Copy-paste fixes on Pro",
-        "proExclusive": "Available only on the Pro plan"
+        "shared": "Included in Free · More data in Basic · Problem-solving in Pro",
+        "proExclusive": "Available in the Pro plan"
       }
     }
   },
   "comparisonTable": {
-    "heading": "Choose your FreeSiteAnalyzer plan",
-    "subheading": "Free shows you the score. Basic unlocks all the data. Pro hands you the fixes.",
+    "heading": "Choose your FreeSiteAnalyzer report",
+    "subheading": "Free shows your score. Basic unlocks all data. Pro gives you practical guidance and ready-to-adapt solutions.",
     "note": "No signup · One-time payment, no subscription · Moneyback guarantee",
     "tiers": {
       "free": {
         "badge": "Free",
         "price": "€0",
-        "priceSuffix": "/ scan",
-        "tagline": "Score + top issues. No signup.",
-        "cta": "Start free",
+        "priceSuffix": "/ 3 scans",
+        "tagline": "Score + key issues.",
+        "cta": "Run for free",
         "features": [
-          "8-in-1 SEO audit",
-          "Google Ads landing-page audit",
-          "Ad-copy quality rater (headlines + descriptions)",
+          "8-in-1 SEO analysis",
           "AEO / AI SEO readiness",
           "GEO readiness check",
-          "Overall score per pillar",
+          "Google Ads landing page analysis",
+          "Ad copy quality score: headlines + descriptions",
           "Top 3 issues per section",
-          "Email delivery"
+          "E-mail delivery"
         ]
       },
       "basic": {
         "badge": "Basic",
         "price": "€19",
-        "priceSuffix": "one-time",
-        "tagline": "Full data report — no fixes.",
-        "cta": "Get Basic",
+        "priceSuffix": "one-time payment",
+        "tagline": "Full report — without solutions.",
+        "cta": "Buy Basic",
         "features": [
           "Everything in Free, plus:",
-          "Full issue lists (all findings)",
-          "Full PDF report",
-          "3 scans included",
-          "Compare to a competitor URL",
-          "Moneyback guarantee"
+          "Full issue lists: all findings",
+          "Complete PDF report",
+          "5 scans included",
+          "Competitor URL comparison"
         ]
       },
       "pro": {
         "badge": "Pro",
         "price": "€29",
-        "priceSuffix": "one-time",
-        "tagline": "Full data + copy-paste fixes.",
-        "cta": "Get Pro",
+        "priceSuffix": "one-time payment",
+        "tagline": "All data + practical solutions.",
+        "cta": "Buy Pro",
         "features": [
           "Everything in Basic, plus:",
-          "Copy-paste fix instructions",
-          "Step-by-step technical guides",
-          "10 scans included",
-          "Priority email delivery",
-          "Re-test after every fix"
+          "Example solutions",
+          "Step-by-step technical guidance",
+          "10 scans included"
         ]
       }
     }
