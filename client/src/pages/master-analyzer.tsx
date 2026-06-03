@@ -269,7 +269,7 @@ function OverallDashboard({ data, onDownloadPdf, sessionId, paidTier, emailCaptu
                 {!isProTier ? 
                   <p className="text-xs text-muted-foreground mt-1">{t('dashboard.proDesc')}</p>
                  : 
-                  <p className="text-xs text-muted-foreground mt-1">{t('dashboard.downloadProReportTitle')}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{t('dashboard.downloadProReportTitle')}</p>
                 }
                 {!isProTier && <p className="text-[10px] text-purple-600/70 dark:text-purple-400/70 mt-0.5 font-medium">{t('dashboard.proCredits')}</p>}
                 <Button onClick={() => onDownloadPdf('pro')} size="sm" className="mt-3 w-full bg-purple-600 hover:bg-purple-700">
