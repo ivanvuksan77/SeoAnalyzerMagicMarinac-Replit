@@ -119,8 +119,12 @@ async function mapWithConcurrency<T, R>(
 }
 
 class SiteToolsService {
+  private lang: string = 'en';
+  private L(en: string, hr: string): string { return this.lang === 'hr' ? hr : en; }
 
-  async checkBrokenLinks(url: string): Promise<BrokenLinksResult> {
+
+  async checkBrokenLinks(url: string, lang: string = 'en'): Promise<BrokenLinksResult> {
+    this.lang = lang;
     const response = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
     if (!response.ok) throw new Error(`Failed to fetch: ${response.status}`);
     const html = await response.text();
@@ -155,7 +159,7 @@ class SiteToolsService {
           url: link.href,
           anchorText: link.text,
           statusCode: null,
-          statusText: "Skipped - Social media platforms block automated checks",
+          statusText: this.L("Skipped - Social media platforms block automated checks", "Preskočeno - Društvene mreže blokiraju automatizirane provjere"),
           type: isInternal(link.href, url) ? "internal" : "external",
           location: link.location,
           responseTime: null,
@@ -182,7 +186,7 @@ class SiteToolsService {
         url: link.href,
         anchorText: link.text,
         statusCode: res?.status ?? null,
-        statusText: res ? (res.status >= 200 && res.status < 400 ? "OK" : res.statusText) : "Timeout/Unreachable",
+        statusText: res ? (res.status >= 200 && res.status < 400 ? "OK" : res.statusText) : this.L("Timeout/Unreachable", "Vremensko ograničenje/Nedostupno"),
         type: internal ? "internal" : "external",
         location: link.location,
         responseTime: res?.responseTime ?? null,
@@ -204,10 +208,17 @@ class SiteToolsService {
     const score = Math.max(0, Math.round(100 - brokenRatio * 500 - redirected.length * 2));
 
     let summary = "";
-    if (broken.length === 0) summary = `All ${allChecked.length} links are working. No broken links found.`;
-    else summary = `Found ${broken.length} broken link${broken.length > 1 ? "s" : ""} out of ${allChecked.length} checked. ${internalCount} internal, ${externalCount} external links.`;
-    if (socialMediaLinks.length > 0) summary += ` ${socialMediaLinks.length} social media link${socialMediaLinks.length > 1 ? "s" : ""} skipped (they block automated checks).`;
-    if (linkElements.length > maxLinks) summary += ` (Checked first ${maxLinks} of ${linkElements.length} total links.)`;
+    if (this.lang === 'hr') {
+      if (broken.length === 0) summary = `Svih ${allChecked.length} linkova funkcionira. Nisu pronađeni pokvareni linkovi.`;
+      else summary = `Pronađeno ${broken.length} pokvareni${broken.length > 1 ? "" : ""} link${broken.length > 1 ? "a" : ""} od ${allChecked.length} provjerenih. ${internalCount} internih, ${externalCount} vanjskih linkova.`;
+      if (socialMediaLinks.length > 0) summary += ` ${socialMediaLinks.length} link${socialMediaLinks.length > 1 ? "a" : ""} na društvene mreže preskočeno (blokiraju automatske provjere).`;
+      if (linkElements.length > maxLinks) summary += ` (Provjereno prvih ${maxLinks} od ukupno ${linkElements.length} linkova.)`;
+    } else {
+      if (broken.length === 0) summary = `All ${allChecked.length} links are working. No broken links found.`;
+      else summary = `Found ${broken.length} broken link${broken.length > 1 ? "s" : ""} out of ${allChecked.length} checked. ${internalCount} internal, ${externalCount} external links.`;
+      if (socialMediaLinks.length > 0) summary += ` ${socialMediaLinks.length} social media link${socialMediaLinks.length > 1 ? "s" : ""} skipped (they block automated checks).`;
+      if (linkElements.length > maxLinks) summary += ` (Checked first ${maxLinks} of ${linkElements.length} total links.)`;
+    }
 
     return {
       totalLinks: allChecked.length + socialMediaLinks.length,
@@ -224,7 +235,8 @@ class SiteToolsService {
     };
   }
 
-  async analyzeImages(url: string): Promise<ImageOptimizationResult> {
+  async analyzeImages(url: string, lang: string = 'en'): Promise<ImageOptimizationResult> {
+    this.lang = lang;
     const response = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
     if (!response.ok) throw new Error(`Failed to fetch: ${response.status}`);
     const html = await response.text();
@@ -275,12 +287,12 @@ class SiteToolsService {
         const isOversized = fileSize !== null && fileSize > 200 * 1024;
 
         const issues: string[] = [];
-        if (!hasAlt) issues.push("Missing alt text");
-        if (!hasLazyLoading) issues.push("No lazy loading");
-        if (!hasDimensions) issues.push("No explicit width/height (causes layout shift)");
-        if (!hasSrcset) issues.push("No srcset for responsive images");
-        if (!isModern && format) issues.push(`Uses ${format} instead of modern format (WebP/AVIF)`);
-        if (isOversized) issues.push(`File size ${Math.round(fileSize! / 1024)}KB exceeds 200KB`);
+        if (!hasAlt) issues.push(this.L("Missing alt text", "Nedostaje alt tekst"));
+        if (!hasLazyLoading) issues.push(this.L("No lazy loading", "Nema lazy loadinga"));
+        if (!hasDimensions) issues.push(this.L("No explicit width/height (causes layout shift)", "Nema eksplicitne širine/visine (uzrokuje pomak rasporeda)"));
+        if (!hasSrcset) issues.push(this.L("No srcset for responsive images", "Nema srcset atributa za responzivne slike"));
+        if (!isModern && format) issues.push(this.lang === 'hr' ? `Koristi ${format} umjesto modernog formata (WebP/AVIF)` : `Uses ${format} instead of modern format (WebP/AVIF)`);
+        if (isOversized) issues.push(this.lang === 'hr' ? `Veličina datoteke ${Math.round(fileSize! / 1024)}KB prelazi 200KB` : `File size ${Math.round(fileSize! / 1024)}KB exceeds 200KB`);
 
         return {
           src: img.src,
@@ -315,16 +327,27 @@ class SiteToolsService {
     }
 
     const recommendations: string[] = [];
-    if (withAlt < total) recommendations.push(`Add descriptive alt text to ${total - withAlt} image${total - withAlt > 1 ? "s" : ""} for accessibility and SEO.\n\nExample:\n<img src="photo.jpg" alt="Descriptive text about the image content">`);
-    if (withLazy < total) recommendations.push(`Add loading="lazy" to ${total - withLazy} image${total - withLazy > 1 ? "s" : ""} to improve page load speed.\n\nExample:\n<img src="photo.jpg" loading="lazy" alt="Description">\n\nNote: Don't lazy-load images that are above the fold.`);
-    if (withDimensions < total) recommendations.push(`Add explicit width and height to ${total - withDimensions} image${total - withDimensions > 1 ? "s" : ""} to prevent layout shifts (CLS).\n\nExample:\n<img src="photo.jpg" width="800" height="600" alt="Description">`);
-    if (withSrcset < total) recommendations.push(`Add srcset attribute to ${total - withSrcset} image${total - withSrcset > 1 ? "s" : ""} for responsive image delivery.\n\nExample:\n<img src="photo-800.jpg"\n     srcset="photo-400.jpg 400w, photo-800.jpg 800w, photo-1200.jpg 1200w"\n     sizes="(max-width: 600px) 400px, 800px"\n     alt="Description">`);
-    if (modernCount < total) recommendations.push(`Convert ${total - modernCount} image${total - modernCount > 1 ? "s" : ""} to WebP or AVIF format for smaller file sizes.\n\nUsing <picture> element:\n<picture>\n  <source srcset="photo.avif" type="image/avif">\n  <source srcset="photo.webp" type="image/webp">\n  <img src="photo.jpg" alt="Description">\n</picture>\n\nConvert with: cwebp photo.jpg -o photo.webp`);
-    if (oversized > 0) recommendations.push(`Compress ${oversized} oversized image${oversized > 1 ? "s" : ""} (>200KB) to improve load time.\n\nTools: TinyPNG, ImageOptim, or Squoosh.app\nTarget: <100KB for most web images\nCLI: npx @squoosh/cli --webp auto photo.jpg`);
+    if (this.lang === 'hr') {
+      if (withAlt < total) recommendations.push(`Dodajte opisni alt tekst na ${total - withAlt} slik${total - withAlt > 1 ? "e" : "u"} radi pristupačnosti i SEO-a.\n\nPrimjer:\n<img src="photo.jpg" alt="Opisni tekst o sadržaju slike">`);
+      if (withLazy < total) recommendations.push(`Dodajte loading="lazy" na ${total - withLazy} slik${total - withLazy > 1 ? "e" : "u"} za poboljšanje brzine učitavanja stranice.\n\nPrimjer:\n<img src="photo.jpg" loading="lazy" alt="Opis">\n\nNapomena: Ne primjenjujte lazy loading na slike koje su iznad reza stranice.`);
+      if (withDimensions < total) recommendations.push(`Dodajte eksplicitnu širinu i visinu na ${total - withDimensions} slik${total - withDimensions > 1 ? "e" : "u"} za sprječavanje pomaka rasporeda (CLS).\n\nPrimjer:\n<img src="photo.jpg" width="800" height="600" alt="Opis">`);
+      if (withSrcset < total) recommendations.push(`Dodajte atribut srcset na ${total - withSrcset} slik${total - withSrcset > 1 ? "e" : "u"} za responzivnu isporuku slika.\n\nPrimjer:\n<img src="photo-800.jpg"\n     srcset="photo-400.jpg 400w, photo-800.jpg 800w, photo-1200.jpg 1200w"\n     sizes="(max-width: 600px) 400px, 800px"\n     alt="Opis">`);
+      if (modernCount < total) recommendations.push(`Konvertirajte ${total - modernCount} slik${total - modernCount > 1 ? "e" : "u"} u WebP ili AVIF format za manje veličine datoteka.\n\nKorištenjem <picture> elementa:\n<picture>\n  <source srcset="photo.avif" type="image/avif">\n  <source srcset="photo.webp" type="image/webp">\n  <img src="photo.jpg" alt="Opis">\n</picture>\n\nKonvertirajte s: cwebp photo.jpg -o photo.webp`);
+      if (oversized > 0) recommendations.push(`Komprimirajte ${oversized} prevelik${oversized > 1 ? "e slike" : "u sliku"} (>200KB) za poboljšanje vremena učitavanja.\n\nAlati: TinyPNG, ImageOptim ili Squoosh.app\nCilj: <100KB za većinu web slika\nCLI: npx @squoosh/cli --webp auto photo.jpg`);
+    } else {
+      if (withAlt < total) recommendations.push(`Add descriptive alt text to ${total - withAlt} image${total - withAlt > 1 ? "s" : ""} for accessibility and SEO.\n\nExample:\n<img src="photo.jpg" alt="Descriptive text about the image content">`);
+      if (withLazy < total) recommendations.push(`Add loading="lazy" to ${total - withLazy} image${total - withLazy > 1 ? "s" : ""} to improve page load speed.\n\nExample:\n<img src="photo.jpg" loading="lazy" alt="Description">\n\nNote: Don't lazy-load images that are above the fold.`);
+      if (withDimensions < total) recommendations.push(`Add explicit width and height to ${total - withDimensions} image${total - withDimensions > 1 ? "s" : ""} to prevent layout shifts (CLS).\n\nExample:\n<img src="photo.jpg" width="800" height="600" alt="Description">`);
+      if (withSrcset < total) recommendations.push(`Add srcset attribute to ${total - withSrcset} image${total - withSrcset > 1 ? "s" : ""} for responsive image delivery.\n\nExample:\n<img src="photo-800.jpg"\n     srcset="photo-400.jpg 400w, photo-800.jpg 800w, photo-1200.jpg 1200w"\n     sizes="(max-width: 600px) 400px, 800px"\n     alt="Description">`);
+      if (modernCount < total) recommendations.push(`Convert ${total - modernCount} image${total - modernCount > 1 ? "s" : ""} to WebP or AVIF format for smaller file sizes.\n\nUsing <picture> element:\n<picture>\n  <source srcset="photo.avif" type="image/avif">\n  <source srcset="photo.webp" type="image/webp">\n  <img src="photo.jpg" alt="Description">\n</picture>\n\nConvert with: cwebp photo.jpg -o photo.webp`);
+      if (oversized > 0) recommendations.push(`Compress ${oversized} oversized image${oversized > 1 ? "s" : ""} (>200KB) to improve load time.\n\nTools: TinyPNG, ImageOptim, or Squoosh.app\nTarget: <100KB for most web images\nCLI: npx @squoosh/cli --webp auto photo.jpg`);
+    }
 
     const summary = total === 0
-      ? "No images found on this page."
-      : `Found ${total} images. ${withAlt} have alt text, ${withLazy} use lazy loading, ${modernCount} use modern formats. Score: ${score}/100.`;
+      ? this.L("No images found on this page.", "Na ovoj stranici nisu pronađene slike.")
+      : this.lang === 'hr'
+        ? `Pronađeno ${total} slika. ${withAlt} ima alt tekst, ${withLazy} koristi lazy loading, ${modernCount} koristi moderne formate. Ocjena: ${score}/100.`
+        : `Found ${total} images. ${withAlt} have alt text, ${withLazy} use lazy loading, ${modernCount} use modern formats. Score: ${score}/100.`;
 
     return {
       totalImages: total,
@@ -341,7 +364,8 @@ class SiteToolsService {
     };
   }
 
-  async analyzeInternalLinking(url: string): Promise<InternalLinkingResult> {
+  async analyzeInternalLinking(url: string, lang: string = 'en'): Promise<InternalLinkingResult> {
+    this.lang = lang;
     const response = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
     if (!response.ok) throw new Error(`Failed to fetch: ${response.status}`);
     const html = await response.text();
@@ -410,15 +434,25 @@ class SiteToolsService {
     }
 
     const recommendations: string[] = [];
-    if (generic > 0) recommendations.push(`Replace ${generic} generic anchor text${generic > 1 ? "s" : ""} ("click here", "read more") with descriptive keywords`);
-    if (nofollow > 0) recommendations.push(`Remove nofollow from ${nofollow} internal link${nofollow > 1 ? "s" : ""} to pass link equity within your site`);
-    if (uniqueUrls.size < 5) recommendations.push("Add more internal links to improve content discoverability and distribute page authority");
-    if (deep === 0 && links.length > 0) recommendations.push("Add deep links to inner pages (3+ levels deep) to improve crawl depth");
-    if (links.length > 100) recommendations.push("Consider reducing the number of internal links to prioritize the most important pages");
+    if (this.lang === 'hr') {
+      if (generic > 0) recommendations.push(`Zamijenite ${generic} generički${generic > 1 ? "h" : ""} anchor tekst${generic > 1 ? "ova" : ""} ("kliknite ovdje", "pročitajte više") opisnim ključnim riječima`);
+      if (nofollow > 0) recommendations.push(`Uklonite nofollow s ${nofollow} internog linka${nofollow > 1 ? "ova" : ""} kako biste prenijeli link equity unutar vaše stranice`);
+      if (uniqueUrls.size < 5) recommendations.push("Dodajte više internih linkova za poboljšanje pronalaženja sadržaja i raspodjelu autoriteta stranice");
+      if (deep === 0 && links.length > 0) recommendations.push("Dodajte duboke linkove na unutarnje stranice (3+ razine dubine) za poboljšanje dubine crawlanja");
+      if (links.length > 100) recommendations.push("Razmislite o smanjenju broja internih linkova kako biste prioritizirali najvažnije stranice");
+    } else {
+      if (generic > 0) recommendations.push(`Replace ${generic} generic anchor text${generic > 1 ? "s" : ""} ("click here", "read more") with descriptive keywords`);
+      if (nofollow > 0) recommendations.push(`Remove nofollow from ${nofollow} internal link${nofollow > 1 ? "s" : ""} to pass link equity within your site`);
+      if (uniqueUrls.size < 5) recommendations.push("Add more internal links to improve content discoverability and distribute page authority");
+      if (deep === 0 && links.length > 0) recommendations.push("Add deep links to inner pages (3+ levels deep) to improve crawl depth");
+      if (links.length > 100) recommendations.push("Consider reducing the number of internal links to prioritize the most important pages");
+    }
 
     const summary = links.length === 0
-      ? "No internal links found on this page."
-      : `Found ${links.length} internal links pointing to ${uniqueUrls.size} unique pages. ${descriptive} use descriptive anchor text, ${generic} use generic text.`;
+      ? this.L("No internal links found on this page.", "Na ovoj stranici nisu pronađeni interni linkovi.")
+      : this.lang === 'hr'
+        ? `Pronađeno ${links.length} internih linkova koji upućuju na ${uniqueUrls.size} jedinstvenih stranica. ${descriptive} koristi opisni anchor tekst, ${generic} koristi generički tekst.`
+        : `Found ${links.length} internal links pointing to ${uniqueUrls.size} unique pages. ${descriptive} use descriptive anchor text, ${generic} use generic text.`;
 
     return {
       totalInternalLinks: links.length,
@@ -436,7 +470,8 @@ class SiteToolsService {
     };
   }
 
-  async validateSitemapAndRobots(url: string): Promise<SitemapValidatorResult> {
+  async validateSitemapAndRobots(url: string, lang: string = 'en'): Promise<SitemapValidatorResult> {
+    this.lang = lang;
     const baseUrl = getBaseUrl(url);
 
     const robotsTxt = await this.analyzeRobotsTxt(baseUrl);
@@ -449,27 +484,48 @@ class SiteToolsService {
     const issues: string[] = [];
 
     if (!robotsTxt.exists) {
-      recommendations.push(`Create a robots.txt file in your site root:\n\nUser-agent: *\nAllow: /\n\nSitemap: https://yourdomain.com/sitemap.xml`);
-      issues.push("Missing robots.txt");
+      recommendations.push(this.L(
+        `Create a robots.txt file in your site root:\n\nUser-agent: *\nAllow: /\n\nSitemap: https://yourdomain.com/sitemap.xml`,
+        `Stvorite robots.txt datoteku u korijenu vaše stranice:\n\nUser-agent: *\nAllow: /\n\nSitemap: https://yourdomain.com/sitemap.xml`
+      ));
+      issues.push(this.L("Missing robots.txt", "Nedostaje robots.txt"));
     }
     if (robotsTxt.exists && robotsTxt.sitemapReferences.length === 0) {
-      recommendations.push(`Add a Sitemap directive to robots.txt:\n\nSitemap: https://yourdomain.com/sitemap.xml\n\nPlace this at the end of your robots.txt file.`);
+      recommendations.push(this.L(
+        `Add a Sitemap directive to robots.txt:\n\nSitemap: https://yourdomain.com/sitemap.xml\n\nPlace this at the end of your robots.txt file.`,
+        `Dodajte Sitemap direktivu u robots.txt:\n\nSitemap: https://yourdomain.com/sitemap.xml\n\nPostavite ovo na kraj vaše robots.txt datoteke.`
+      ));
     }
     if (robotsTxt.hasWildcardBlock) {
-      recommendations.push(`Review wildcard Disallow rules — they may block important content.\n\nCommon fix: Change from:\nDisallow: /\n\nTo:\nDisallow: /admin/\nDisallow: /private/\nAllow: /`);
+      recommendations.push(this.L(
+        `Review wildcard Disallow rules — they may block important content.\n\nCommon fix: Change from:\nDisallow: /\n\nTo:\nDisallow: /admin/\nDisallow: /private/\nAllow: /`,
+        `Pregledajte wildcard Disallow pravila — mogu blokirati važan sadržaj.\n\nUobičajeni popravak: Promijenite iz:\nDisallow: /\n\nU:\nDisallow: /admin/\nDisallow: /private/\nAllow: /`
+      ));
     }
     if (robotsTxt.blocksImportantPaths) {
-      recommendations.push(`Unblock important paths in robots.txt: ${robotsTxt.blockedImportantPaths.join(", ")}`);
+      recommendations.push(this.lang === 'hr'
+        ? `Odblokirajte važne putanje u robots.txt: ${robotsTxt.blockedImportantPaths.join(", ")}`
+        : `Unblock important paths in robots.txt: ${robotsTxt.blockedImportantPaths.join(", ")}`
+      );
     }
     if (!sitemap.exists) {
-      recommendations.push(`Create an XML sitemap and submit it to search engines:\n\n<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://yourdomain.com/</loc>\n    <lastmod>2024-01-01</lastmod>\n    <priority>1.0</priority>\n  </url>\n</urlset>\n\nSubmit at: Google Search Console > Sitemaps`);
-      issues.push("Missing sitemap.xml");
+      recommendations.push(this.L(
+        `Create an XML sitemap and submit it to search engines:\n\n<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://yourdomain.com/</loc>\n    <lastmod>2024-01-01</lastmod>\n    <priority>1.0</priority>\n  </url>\n</urlset>\n\nSubmit at: Google Search Console > Sitemaps`,
+        `Stvorite XML sitemap i predajte ga tražilicama:\n\n<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://yourdomain.com/</loc>\n    <lastmod>2024-01-01</lastmod>\n    <priority>1.0</priority>\n  </url>\n</urlset>\n\nPredajte na: Google Search Console > Sitemaps`
+      ));
+      issues.push(this.L("Missing sitemap.xml", "Nedostaje sitemap.xml"));
     }
     if (sitemap.exists && !sitemap.hasLastmod) {
-      recommendations.push(`Add <lastmod> dates to sitemap entries for better crawl efficiency:\n\n<url>\n  <loc>https://yourdomain.com/page</loc>\n  <lastmod>2024-06-15</lastmod>\n</url>\n\nUse ISO 8601 format (YYYY-MM-DD).`);
+      recommendations.push(this.L(
+        `Add <lastmod> dates to sitemap entries for better crawl efficiency:\n\n<url>\n  <loc>https://yourdomain.com/page</loc>\n  <lastmod>2024-06-15</lastmod>\n</url>\n\nUse ISO 8601 format (YYYY-MM-DD).`,
+        `Dodajte datume <lastmod> u unose sitemapa za bolju učinkovitost crawlanja:\n\n<url>\n  <loc>https://yourdomain.com/page</loc>\n  <lastmod>2024-06-15</lastmod>\n</url>\n\nKoristite ISO 8601 format (GGGG-MM-DD).`
+      ));
     }
     if (sitemap.exists && sitemap.urlCount === 0) {
-      recommendations.push(`Your sitemap is empty — add your page URLs to it. Each publicly accessible page should have an entry in the sitemap.`);
+      recommendations.push(this.L(
+        `Your sitemap is empty — add your page URLs to it. Each publicly accessible page should have an entry in the sitemap.`,
+        `Vaš sitemap je prazan — dodajte URL-ove vaših stranica u njega. Svaka javno dostupna stranica treba imati unos u sitemapу.`
+      ));
     }
     if (sitemap.issues.length > 0) {
       issues.push(...sitemap.issues);
@@ -488,7 +544,9 @@ class SiteToolsService {
     if (sitemap.exists && sitemap.hasLastmod) score += 10;
     if (sitemap.exists && sitemap.issues.length === 0) score += 10;
 
-    const summary = `Robots.txt: ${robotsTxt.exists ? "Found" : "Missing"}. Sitemap: ${sitemap.exists ? `Found with ${sitemap.urlCount} URLs` : "Missing"}. Score: ${score}/100.`;
+    const summary = this.lang === 'hr'
+      ? `Robots.txt: ${robotsTxt.exists ? "Pronađen" : "Nedostaje"}. Sitemap: ${sitemap.exists ? `Pronađen s ${sitemap.urlCount} URL-ova` : "Nedostaje"}. Ocjena: ${score}/100.`
+      : `Robots.txt: ${robotsTxt.exists ? "Found" : "Missing"}. Sitemap: ${sitemap.exists ? `Found with ${sitemap.urlCount} URLs` : "Missing"}. Score: ${score}/100.`;
 
     return { robotsTxt, sitemap, score, summary, recommendations };
   }
@@ -514,7 +572,7 @@ class SiteToolsService {
       return {
         exists: false, content: null, userAgents: [], disallowedPaths: [],
         allowedPaths: [], sitemapReferences: [], hasWildcardBlock: false,
-        blocksImportantPaths: false, blockedImportantPaths: [], issues: ["robots.txt not found"],
+        blocksImportantPaths: false, blockedImportantPaths: [], issues: [this.L("robots.txt not found", "robots.txt nije pronađen")],
       };
     }
 
@@ -541,8 +599,8 @@ class SiteToolsService {
     const importantPaths = ["/", "/about", "/contact", "/products", "/services", "/blog"];
     const blockedImportant = disallowed.filter((p) => importantPaths.includes(p));
 
-    if (hasWildcard) issues.push("Disallow: / blocks all crawlers - this may be intentional for staging sites");
-    if (userAgents.length === 0) issues.push("No User-agent directive found");
+    if (hasWildcard) issues.push(this.L("Disallow: / blocks all crawlers - this may be intentional for staging sites", "Disallow: / blokira sve crawlere - to može biti namjerno za staging stranice"));
+    if (userAgents.length === 0) issues.push(this.L("No User-agent directive found", "Nije pronađena User-agent direktiva"));
 
     return {
       exists: true,
@@ -576,7 +634,7 @@ class SiteToolsService {
       return {
         exists: false, url: sitemapUrl, urlCount: 0, hasLastmod: false,
         hasChangefreq: false, hasPriority: false, isSitemapIndex: false,
-        childSitemaps: [], sampleUrls: [], issues: ["Sitemap not found or invalid XML"],
+        childSitemaps: [], sampleUrls: [], issues: [this.L("Sitemap not found or invalid XML", "Sitemap nije pronađen ili XML nije valjan")],
       };
     }
 
@@ -601,9 +659,9 @@ class SiteToolsService {
     const hasChangefreq = $("url changefreq").length > 0;
     const hasPriority = $("url priority").length > 0;
 
-    if (urls.length === 0) issues.push("Sitemap contains no URLs");
-    if (urls.length > 50000) issues.push("Sitemap exceeds 50,000 URL limit - split into multiple sitemaps");
-    if (!hasLastmod) issues.push("No <lastmod> dates found - add them for better crawl efficiency");
+    if (urls.length === 0) issues.push(this.L("Sitemap contains no URLs", "Sitemap ne sadrži URL-ove"));
+    if (urls.length > 50000) issues.push(this.L("Sitemap exceeds 50,000 URL limit - split into multiple sitemaps", "Sitemap prelazi ograničenje od 50.000 URL-ova - podijelite ga na više sitemapa"));
+    if (!hasLastmod) issues.push(this.L("No <lastmod> dates found - add them for better crawl efficiency", "Nisu pronađeni datumi <lastmod> - dodajte ih za bolju učinkovitost crawlanja"));
 
     return {
       exists: true, url: sitemapUrl, urlCount: urls.length,

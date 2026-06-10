@@ -20,7 +20,11 @@ import type {
 } from "@shared/schema";
 
 class AeoAnalyzer {
-  async analyzeWebsite(url: string): Promise<InsertAeoAnalysis> {
+  private lang: string = 'en';
+  private L(en: string, hr: string): string { return this.lang === 'hr' ? hr : en; }
+
+  async analyzeWebsite(url: string, lang: string = 'en'): Promise<InsertAeoAnalysis> {
+    this.lang = lang;
     const normalizedUrl = url.startsWith("http") ? url : `https://${url}`;
 
     const html = await safeFetchHtmlWithFallback(normalizedUrl);
@@ -462,16 +466,18 @@ class AeoAnalyzer {
     const checks: AeoCheck[] = [];
 
     checks.push({
-      name: "JSON-LD Structured Data",
+      name: this.L("JSON-LD Structured Data", "JSON-LD strukturirani podaci"),
       status: sd.jsonLdPresent ? (sd.jsonLdTypes.length >= 2 ? "PASS" : "WARNING") : "FAIL",
       details: sd.jsonLdPresent
-        ? `Found ${sd.totalSchemaCount} schema(s): ${sd.jsonLdTypes.join(", ")}`
-        : "No JSON-LD structured data found on the page",
+        ? this.lang === 'hr'
+          ? `Pronađeno ${sd.totalSchemaCount} shema: ${sd.jsonLdTypes.join(", ")}`
+          : `Found ${sd.totalSchemaCount} schema(s): ${sd.jsonLdTypes.join(", ")}`
+        : this.L("No JSON-LD structured data found on the page", "Na stranici nisu pronađeni JSON-LD strukturirani podaci"),
       category: "structured-data",
-      impact: "AI systems rely heavily on structured data to understand page content, entities, and relationships. Pages with rich schema markup are significantly more likely to be cited in AI-generated answers.",
+      impact: this.L("AI systems rely heavily on structured data to understand page content, entities, and relationships. Pages with rich schema markup are significantly more likely to be cited in AI-generated answers.", "AI sustavi uvelike se oslanjaju na strukturirane podatke za razumijevanje sadržaja. Stranice s bogatim schema markupom puno je vjerojatnije da će biti citirane u AI odgovorima."),
       recommendation: sd.jsonLdPresent
-        ? "Good start. Consider adding more schema types (FAQ, HowTo, Article) to increase AI visibility."
-        : "Add JSON-LD structured data to help AI engines understand your content.",
+        ? this.L("Good start. Consider adding more schema types (FAQ, HowTo, Article) to increase AI visibility.", "Dobar početak. Razmislite o dodavanju više vrsta shema (FAQ, HowTo, Article) za veću vidljivost u AI sustavima.")
+        : this.L("Add JSON-LD structured data to help AI engines understand your content.", "Dodajte JSON-LD strukturirane podatke kako bi AI sustavi razumjeli vaš sadržaj."),
       technicalFix: !sd.jsonLdPresent || sd.jsonLdTypes.length < 2 ? [
         "STEP 1 — Add basic JSON-LD structured data to your page <head>:",
         '  <script type="application/ld+json">',
@@ -510,18 +516,18 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "FAQ Schema Markup",
+      name: this.L("FAQ Schema Markup", "FAQ schema markup"),
       status: sd.faqSchema ? "PASS" : cf.faqSections > 0 ? "WARNING" : "FAIL",
       details: sd.faqSchema
-        ? "FAQ schema markup detected — eligible for rich results and AI extraction"
+        ? this.L("FAQ schema markup detected — eligible for rich results and AI extraction", "Otkriven FAQ schema markup — prikladan za rich results i AI ekstrakciju")
         : cf.faqSections > 0
-          ? "FAQ content detected but no FAQ schema markup found"
-          : "No FAQ content or schema found on the page",
+          ? this.L("FAQ content detected but no FAQ schema markup found", "Otkriven FAQ sadržaj, ali nema FAQ schema markupa")
+          : this.L("No FAQ content or schema found on the page", "Na stranici nije pronađen FAQ sadržaj ni shema"),
       category: "structured-data",
-      impact: "FAQ schema is one of the most effective ways to get content featured in AI answers. AI systems can directly extract Q&A pairs from FAQ schema markup.",
+      impact: this.L("FAQ schema is one of the most effective ways to get content featured in AI answers. AI systems can directly extract Q&A pairs from FAQ schema markup.", "FAQ shema jedan je od najučinkovitijih načina da sadržaj bude prikazan u AI odgovorima. AI sustavi mogu izravno ekstrahirati parove pitanja i odgovora iz FAQ schema markupa."),
       recommendation: sd.faqSchema
-        ? "FAQ schema is properly implemented."
-        : "Add FAQ schema markup to help AI systems extract your Q&A content.",
+        ? this.L("FAQ schema is properly implemented.", "FAQ shema je pravilno implementirana.")
+        : this.L("Add FAQ schema markup to help AI systems extract your Q&A content.", "Dodajte FAQ schema markup kako bi AI sustavi mogli ekstrahirati vaš sadržaj pitanja i odgovora."),
       technicalFix: !sd.faqSchema ? [
         "STEP 1 — Add FAQPage schema to your page:",
         '  <script type="application/ld+json">',
@@ -564,16 +570,20 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "Question-Based Headings",
+      name: this.L("Question-Based Headings", "Naslovi u obliku pitanja"),
       status: cf.hasQuestionHeadings ? (cf.questionHeadings.length >= 3 ? "PASS" : "WARNING") : "FAIL",
       details: cf.hasQuestionHeadings
-        ? `Found ${cf.questionHeadings.length} question-format heading(s): ${cf.questionHeadings.slice(0, 3).map(q => `"${q}"`).join(", ")}`
-        : "No question-format headings found",
+        ? this.lang === 'hr'
+          ? `Pronađeno ${cf.questionHeadings.length} naslov(a) u obliku pitanja: ${cf.questionHeadings.slice(0, 3).map(q => `"${q}"`).join(", ")}`
+          : `Found ${cf.questionHeadings.length} question-format heading(s): ${cf.questionHeadings.slice(0, 3).map(q => `"${q}"`).join(", ")}`
+        : this.L("No question-format headings found", "Nisu pronađeni naslovi u obliku pitanja"),
       category: "content-format",
-      impact: "AI search engines match user queries to content. Headings formatted as questions (How to..., What is..., Why does...) directly align with how users ask AI assistants, increasing citation likelihood.",
+      impact: this.L("AI search engines match user queries to content. Headings formatted as questions (How to..., What is..., Why does...) directly align with how users ask AI assistants, increasing citation likelihood.", "AI tražilice usklađuju upite korisnika s naslovnicama. Naslovi u obliku pitanja (Kako..., Što je..., Zašto...) izravno se podudaraju s načinom na koji korisnici postavljaju pitanja AI asistentima, povećavajući vjerojatnost citiranja."),
       recommendation: cf.hasQuestionHeadings
-        ? cf.questionHeadings.length >= 3 ? "Excellent question-based heading structure." : "Add more question-format headings to cover common user queries."
-        : "Rewrite headings as questions that match how people ask AI assistants.",
+        ? cf.questionHeadings.length >= 3
+          ? this.L("Excellent question-based heading structure.", "Odlična struktura naslova u obliku pitanja.")
+          : this.L("Add more question-format headings to cover common user queries.", "Dodajte još naslova u obliku pitanja koji pokrivaju uobičajene korisničke upite.")
+        : this.L("Rewrite headings as questions that match how people ask AI assistants.", "Prepišite naslove kao pitanja koja odgovaraju načinu na koji korisnici postavljaju pitanja AI asistentima."),
       technicalFix: !cf.hasQuestionHeadings || cf.questionHeadings.length < 3 ? [
         "STEP 1 — Convert informational headings to question format:",
         "  BEFORE: <h2>Benefits of Product</h2>",
@@ -602,16 +612,18 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "Direct Answer Paragraphs",
+      name: this.L("Direct Answer Paragraphs", "Odlomci s izravnim odgovorima"),
       status: cf.directAnswerParagraphs >= 5 ? "PASS" : cf.directAnswerParagraphs > 0 ? "WARNING" : "FAIL",
       details: cf.directAnswerParagraphs > 0
-        ? `Found ${cf.directAnswerParagraphs} paragraph(s) in the ideal 40-300 character range for AI extraction`
-        : "No concise answer-format paragraphs found",
+        ? this.lang === 'hr'
+          ? `Pronađeno ${cf.directAnswerParagraphs} odlomak(a) u idealnom rasponu od 40–300 znakova za AI ekstrakciju`
+          : `Found ${cf.directAnswerParagraphs} paragraph(s) in the ideal 40-300 character range for AI extraction`
+        : this.L("No concise answer-format paragraphs found", "Nisu pronađeni sažeti odlomci u formatu izravnih odgovora"),
       category: "content-format",
-      impact: "AI systems prefer extracting concise, self-contained paragraphs (40-300 characters) as direct answers. Content that is too long or rambling is harder for AI to cite accurately.",
+      impact: this.L("AI systems prefer extracting concise, self-contained paragraphs (40-300 characters) as direct answers. Content that is too long or rambling is harder for AI to cite accurately.", "AI sustavi preferiraju ekstrahiranje sažetih, samostalnih odlomaka (40–300 znakova) kao izravnih odgovora. Predugački ili raspršeni sadržaj teže je AI sustavima precizno citirati."),
       recommendation: cf.directAnswerParagraphs >= 5
-        ? "Good density of concise answer paragraphs."
-        : "Write more concise, self-contained paragraphs that directly answer specific questions.",
+        ? this.L("Good density of concise answer paragraphs.", "Dobra gustoća sažetih odlomaka s odgovorima.")
+        : this.L("Write more concise, self-contained paragraphs that directly answer specific questions.", "Pišite sažetije, samostalne odlomke koji izravno odgovaraju na određena pitanja."),
       technicalFix: cf.directAnswerParagraphs < 5 ? [
         "STEP 1 — Write 'answer-first' paragraphs:",
         "  Lead with the answer, then elaborate. Example:",
@@ -637,14 +649,16 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "Lists and Structured Content",
+      name: this.L("Lists and Structured Content", "Popisi i strukturirani sadržaj"),
       status: cf.hasLists && cf.hasTables ? "PASS" : cf.hasLists || cf.hasTables ? "WARNING" : "FAIL",
-      details: `Lists: ${cf.hasLists ? "Yes" : "No"}, Tables: ${cf.hasTables ? "Yes" : "No"}, How-to content: ${cf.hasHowToContent ? "Yes" : "No"}`,
+      details: this.lang === 'hr'
+        ? `Popisi: ${cf.hasLists ? "Da" : "Ne"}, Tablice: ${cf.hasTables ? "Da" : "Ne"}, Upute korak-po-korak: ${cf.hasHowToContent ? "Da" : "Ne"}`
+        : `Lists: ${cf.hasLists ? "Yes" : "No"}, Tables: ${cf.hasTables ? "Yes" : "No"}, How-to content: ${cf.hasHowToContent ? "Yes" : "No"}`,
       category: "content-format",
-      impact: "AI engines frequently extract and present content from lists, tables, and step-by-step formats. These structured formats are easier for AI to parse and present in responses.",
+      impact: this.L("AI engines frequently extract and present content from lists, tables, and step-by-step formats. These structured formats are easier for AI to parse and present in responses.", "AI sustavi često ekstrahiraju i prikazuju sadržaj iz popisa, tablica i vodiča korak-po-korak. Ti strukturirani formati AI sustavima su lakši za parsiranje i prikazivanje u odgovorima."),
       recommendation: cf.hasLists && cf.hasTables
-        ? "Content uses both lists and tables — good for AI extraction."
-        : "Add more structured content formats (ordered lists, comparison tables, step-by-step guides).",
+        ? this.L("Content uses both lists and tables — good for AI extraction.", "Sadržaj koristi i popise i tablice — dobro za AI ekstrakciju.")
+        : this.L("Add more structured content formats (ordered lists, comparison tables, step-by-step guides).", "Dodajte više strukturiranih formata sadržaja (uređeni popisi, tablice za usporedbu, vodiči korak-po-korak)."),
       technicalFix: !(cf.hasLists && cf.hasTables) ? [
         "STEP 1 — Add ordered lists for processes/steps:",
         "  <ol>",
@@ -673,19 +687,19 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "Author & Expertise Signals (E-E-A-T)",
+      name: this.L("Author & Expertise Signals (E-E-A-T)", "Signali autora i stručnosti (E-E-A-T)"),
       status: auth.hasAuthorInfo && auth.hasDatePublished ? "PASS" : auth.hasAuthorInfo || auth.hasDatePublished ? "WARNING" : "FAIL",
       details: [
-        auth.hasAuthorInfo ? `Author info found: ${auth.authorDetails.slice(0, 2).join(", ")}` : "No author information",
-        auth.hasDatePublished ? "Publication date present" : "No publication date",
-        auth.hasDateModified ? "Last modified date present" : "No last modified date",
-        auth.hasAboutPage ? "About page linked" : "No about page link found",
+        auth.hasAuthorInfo ? this.L(`Author info found: ${auth.authorDetails.slice(0, 2).join(", ")}`, `Pronađeni podaci o autoru: ${auth.authorDetails.slice(0, 2).join(", ")}`) : this.L("No author information", "Nema podataka o autoru"),
+        auth.hasDatePublished ? this.L("Publication date present", "Datum objave je prisutan") : this.L("No publication date", "Nema datuma objave"),
+        auth.hasDateModified ? this.L("Last modified date present", "Datum zadnje izmjene je prisutan") : this.L("No last modified date", "Nema datuma zadnje izmjene"),
+        auth.hasAboutPage ? this.L("About page linked", "Stranica 'O nama' je povezana") : this.L("No about page link found", "Nema linka na stranicu 'O nama'"),
       ].join(" | "),
       category: "authority",
-      impact: "AI systems prioritize content from identifiable, authoritative sources. E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) signals help AI decide which sources to cite.",
+      impact: this.L("AI systems prioritize content from identifiable, authoritative sources. E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) signals help AI decide which sources to cite.", "AI sustavi daju prednost sadržaju iz prepoznatljivih, autoritativnih izvora. E-E-A-T signali (iskustvo, stručnost, autoritativnost, pouzdanost) pomažu AI sustavima odlučiti koje izvore citirati."),
       recommendation: auth.hasAuthorInfo && auth.hasDatePublished
-        ? "Author and date information properly declared."
-        : "Add clear author attribution, publication dates, and credentials to build AI trust signals.",
+        ? this.L("Author and date information properly declared.", "Podaci o autoru i datumu su pravilno deklarirani.")
+        : this.L("Add clear author attribution, publication dates, and credentials to build AI trust signals.", "Dodajte jasnu atribuciju autoru, datume objave i akreditive za izgradnju AI signala povjerenja."),
       technicalFix: !(auth.hasAuthorInfo && auth.hasDatePublished) ? [
         "STEP 1 — Add author information to your content:",
         '  <div class="author-bio" itemprop="author" itemscope itemtype="https://schema.org/Person">',
@@ -710,14 +724,16 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "Citations & Source References",
+      name: this.L("Citations & Source References", "Citati i reference izvora"),
       status: auth.hasCitations ? "PASS" : auth.externalSourceLinks >= 3 ? "WARNING" : "FAIL",
-      details: `Citations: ${auth.citationCount}, External source links: ${auth.externalSourceLinks}, Statistics present: ${auth.hasStatistics ? "Yes" : "No"}`,
+      details: this.lang === 'hr'
+        ? `Citati: ${auth.citationCount}, Vanjske poveznice na izvore: ${auth.externalSourceLinks}, Statistike prisutne: ${auth.hasStatistics ? "Da" : "Ne"}`
+        : `Citations: ${auth.citationCount}, External source links: ${auth.externalSourceLinks}, Statistics present: ${auth.hasStatistics ? "Yes" : "No"}`,
       category: "authority",
-      impact: "Content that cites authoritative sources, includes data/statistics, and references research is more likely to be treated as a trustworthy source by AI systems.",
+      impact: this.L("Content that cites authoritative sources, includes data/statistics, and references research is more likely to be treated as a trustworthy source by AI systems.", "Sadržaj koji citira autoritativne izvore, uključuje podatke/statistike i referencira istraživanja ima veću vjerojatnost da će AI sustavi tretirati kao pouzdan izvor."),
       recommendation: auth.hasCitations
-        ? "Good use of citations and references."
-        : "Add citations, data, and references to authoritative sources to increase credibility for AI systems.",
+        ? this.L("Good use of citations and references.", "Dobra upotreba citata i referenci.")
+        : this.L("Add citations, data, and references to authoritative sources to increase credibility for AI systems.", "Dodajte citate, podatke i reference na autoritativne izvore za povećanje vjerodostojnosti kod AI sustava."),
       technicalFix: !auth.hasCitations ? [
         "STEP 1 — Add inline citations to claims:",
         '  <p>According to a <a href="https://source.com/study">2025 study by Research Corp</a>,',
@@ -743,19 +759,19 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "Semantic HTML Structure",
+      name: this.L("Semantic HTML Structure", "Semantička HTML struktura"),
       status: sem.usesSemanticHtml && sem.headingHierarchyValid ? "PASS" : sem.usesSemanticHtml || sem.headingHierarchyValid ? "WARNING" : "FAIL",
       details: [
-        `Heading hierarchy: ${sem.headingHierarchyValid ? "Valid" : "Invalid"}`,
-        `Semantic elements: ${sem.semanticElements.join(", ") || "None"}`,
-        `Sections: ${sem.contentSections}`,
+        this.lang === 'hr' ? `Hijerarhija naslova: ${sem.headingHierarchyValid ? "Ispravna" : "Neispravna"}` : `Heading hierarchy: ${sem.headingHierarchyValid ? "Valid" : "Invalid"}`,
+        this.lang === 'hr' ? `Semantički elementi: ${sem.semanticElements.join(", ") || "Nema"}` : `Semantic elements: ${sem.semanticElements.join(", ") || "None"}`,
+        this.lang === 'hr' ? `Sekcije: ${sem.contentSections}` : `Sections: ${sem.contentSections}`,
         `H1: ${sem.headingCount.h1 || 0}, H2: ${sem.headingCount.h2 || 0}, H3: ${sem.headingCount.h3 || 0}`,
       ].join(" | "),
       category: "technical",
-      impact: "Semantic HTML helps AI crawlers understand content structure, identify main topics, and extract relevant sections. Proper heading hierarchy acts as an outline that AI can follow.",
+      impact: this.L("Semantic HTML helps AI crawlers understand content structure, identify main topics, and extract relevant sections. Proper heading hierarchy acts as an outline that AI can follow.", "Semantički HTML pomaže AI crawlerima razumjeti strukturu sadržaja, identificirati glavne teme i ekstrahirati relevantne sekcije. Ispravna hijerarhija naslova AI sustavima služi kao sadržaj koji mogu pratiti."),
       recommendation: sem.usesSemanticHtml && sem.headingHierarchyValid
-        ? "Excellent semantic HTML structure."
-        : "Improve HTML structure with semantic elements and proper heading hierarchy.",
+        ? this.L("Excellent semantic HTML structure.", "Odlična semantička HTML struktura.")
+        : this.L("Improve HTML structure with semantic elements and proper heading hierarchy.", "Poboljšajte HTML strukturu semantičkim elementima i ispravnom hijerarhijom naslova."),
       technicalFix: !(sem.usesSemanticHtml && sem.headingHierarchyValid) ? [
         "STEP 1 — Use semantic HTML5 elements:",
         "  <main>",
@@ -790,18 +806,20 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "Table of Contents",
+      name: this.L("Table of Contents", "Sadržaj (Table of Contents)"),
       status: sem.hasTableOfContents ? "PASS" : sem.contentSections >= 3 ? "WARNING" : "FAIL",
       details: sem.hasTableOfContents
-        ? "Table of contents detected — helps AI understand content structure"
+        ? this.L("Table of contents detected — helps AI understand content structure", "Otkriven sadržaj — pomaže AI sustavima razumjeti strukturu sadržaja")
         : sem.contentSections >= 3
-          ? `${sem.contentSections} content sections found but no table of contents`
-          : "No table of contents and limited content sections",
+          ? this.lang === 'hr'
+            ? `Pronađene ${sem.contentSections} sekcije sadržaja, ali nema popisa sadržaja`
+            : `${sem.contentSections} content sections found but no table of contents`
+          : this.L("No table of contents and limited content sections", "Nema popisa sadržaja i ograničen broj sekcija"),
       category: "technical",
-      impact: "A table of contents provides AI systems with a clear content outline, making it easier to identify and extract specific sections relevant to user queries.",
+      impact: this.L("A table of contents provides AI systems with a clear content outline, making it easier to identify and extract specific sections relevant to user queries.", "Popis sadržaja daje AI sustavima jasan pregled sadržaja, što olakšava identifikaciju i ekstrakciju specifičnih sekcija relevantnih za upite korisnika."),
       recommendation: sem.hasTableOfContents
-        ? "Table of contents properly implemented."
-        : "Add a table of contents with anchor links to improve AI content navigation.",
+        ? this.L("Table of contents properly implemented.", "Popis sadržaja je pravilno implementiran.")
+        : this.L("Add a table of contents with anchor links to improve AI content navigation.", "Dodajte popis sadržaja s anker linkovima za poboljšanje AI navigacije sadržajem."),
       technicalFix: !sem.hasTableOfContents ? [
         "STEP 1 — Add an HTML table of contents:",
         '  <nav aria-label="Table of contents">',
@@ -827,18 +845,18 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "Organization / Entity Schema",
+      name: this.L("Organization / Entity Schema", "Shema organizacije / entiteta"),
       status: sd.organizationSchema ? "PASS" : auth.hasAboutPage ? "WARNING" : "FAIL",
       details: sd.organizationSchema
-        ? "Organization/LocalBusiness schema found — entity identity established"
+        ? this.L("Organization/LocalBusiness schema found — entity identity established", "Pronađena shema Organization/LocalBusiness — identitet entiteta uspostavljen")
         : auth.hasAboutPage
-          ? "About page linked but no Organization schema found"
-          : "No organization schema or about page detected",
+          ? this.L("About page linked but no Organization schema found", "Stranica 'O nama' je povezana, ali nema sheme Organization")
+          : this.L("No organization schema or about page detected", "Nije otkrivena shema organizacije ni stranica 'O nama'"),
       category: "structured-data",
-      impact: "AI knowledge graphs build entity profiles from Organization schema. Clearly declaring your entity helps AI systems attribute content to your brand and build trust in your expertise.",
+      impact: this.L("AI knowledge graphs build entity profiles from Organization schema. Clearly declaring your entity helps AI systems attribute content to your brand and build trust in your expertise.", "AI grafovi znanja grade profile entiteta iz sheme Organization. Jasno deklariranje entiteta pomaže AI sustavima pripisati sadržaj vašem brendu i izgraditi povjerenje u vašu stručnost."),
       recommendation: sd.organizationSchema
-        ? "Organization entity properly declared."
-        : "Add Organization schema to establish your entity in AI knowledge graphs.",
+        ? this.L("Organization entity properly declared.", "Entitet organizacije je pravilno deklariran.")
+        : this.L("Add Organization schema to establish your entity in AI knowledge graphs.", "Dodajte shemu Organization za uspostavljanje vašeg entiteta u AI grafovima znanja."),
       technicalFix: !sd.organizationSchema ? [
         "STEP 1 — Add Organization schema to your homepage:",
         '  <script type="application/ld+json">',
@@ -870,16 +888,18 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "AI Crawler Accessibility",
+      name: this.L("AI Crawler Accessibility", "Dostupnost AI crawlerima"),
       status: ai.robotsTxtAllowsAi ? "PASS" : "FAIL",
       details: ai.robotsTxtAllowsAi
-        ? "All major AI crawlers are allowed access to your content"
-        : `Blocked AI crawlers: ${ai.blockedCrawlers.join(", ")}`,
+        ? this.L("All major AI crawlers are allowed access to your content", "Svim većim AI crawlerima je dozvoljen pristup vašem sadržaju")
+        : this.lang === 'hr'
+          ? `Blokirani AI crawleri: ${ai.blockedCrawlers.join(", ")}`
+          : `Blocked AI crawlers: ${ai.blockedCrawlers.join(", ")}`,
       category: "discoverability",
-      impact: "If your robots.txt blocks AI crawlers (GPTBot, Google-Extended, etc.), your content cannot be indexed or cited by those AI systems. This directly prevents AI visibility.",
+      impact: this.L("If your robots.txt blocks AI crawlers (GPTBot, Google-Extended, etc.), your content cannot be indexed or cited by those AI systems. This directly prevents AI visibility.", "Ako vaš robots.txt blokira AI crawlere (GPTBot, Google-Extended itd.), vaš sadržaj ne može biti indeksiran ili citiran od strane tih AI sustava. To izravno sprječava vidljivost u AI odgovorima."),
       recommendation: ai.robotsTxtAllowsAi
-        ? "AI crawlers have full access to your content."
-        : "Remove AI crawler blocks from robots.txt to enable AI indexing.",
+        ? this.L("AI crawlers have full access to your content.", "AI crawleri imaju potpuni pristup vašem sadržaju.")
+        : this.L("Remove AI crawler blocks from robots.txt to enable AI indexing.", "Uklonite blokade AI crawlera iz robots.txt za omogućavanje AI indeksiranja."),
       technicalFix: !ai.robotsTxtAllowsAi ? [
         "STEP 1 — Edit your robots.txt file to allow AI crawlers:",
         "  Remove or comment out these blocks:",
@@ -904,18 +924,22 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "Meta Description Quality",
+      name: this.L("Meta Description Quality", "Kvaliteta meta opisa"),
       status: ai.hasMetaDescription && ai.metaDescriptionLength >= 120 && ai.metaDescriptionLength <= 160 ? "PASS" : ai.hasMetaDescription ? "WARNING" : "FAIL",
       details: ai.hasMetaDescription
-        ? `Meta description: ${ai.metaDescriptionLength} characters (ideal: 120-160)`
-        : "No meta description found",
+        ? this.lang === 'hr'
+          ? `Meta opis: ${ai.metaDescriptionLength} znakova (idealno: 120–160)`
+          : `Meta description: ${ai.metaDescriptionLength} characters (ideal: 120-160)`
+        : this.L("No meta description found", "Meta opis nije pronađen"),
       category: "discoverability",
-      impact: "AI systems use meta descriptions as a quick content summary. A well-crafted meta description can be directly used as an AI-generated snippet about your page.",
+      impact: this.L("AI systems use meta descriptions as a quick content summary. A well-crafted meta description can be directly used as an AI-generated snippet about your page.", "AI sustavi koriste meta opise kao brzi sažetak sadržaja. Dobro napisan meta opis može biti izravno korišten kao AI-generirani isječak o vašoj stranici."),
       recommendation: ai.hasMetaDescription && ai.metaDescriptionLength >= 120 && ai.metaDescriptionLength <= 160
-        ? "Meta description is well-optimized for AI extraction."
+        ? this.L("Meta description is well-optimized for AI extraction.", "Meta opis je dobro optimiziran za AI ekstrakciju.")
         : ai.hasMetaDescription
-          ? `Adjust meta description length (currently ${ai.metaDescriptionLength} chars, ideal is 120-160).`
-          : "Add a meta description that concisely summarizes the page content.",
+          ? this.lang === 'hr'
+            ? `Prilagodite duljinu meta opisa (trenutno ${ai.metaDescriptionLength} znakova, idealno 120–160).`
+            : `Adjust meta description length (currently ${ai.metaDescriptionLength} chars, ideal is 120-160).`
+          : this.L("Add a meta description that concisely summarizes the page content.", "Dodajte meta opis koji sažeto opisuje sadržaj stranice."),
       technicalFix: !(ai.hasMetaDescription && ai.metaDescriptionLength >= 120 && ai.metaDescriptionLength <= 160) ? [
         "STEP 1 — Add or improve your meta description:",
         '  <meta name="description" content="Your concise page summary here.',
@@ -936,16 +960,16 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "Open Graph Metadata",
+      name: this.L("Open Graph Metadata", "Open Graph metapodaci"),
       status: ai.hasOpenGraph ? "PASS" : "WARNING",
       details: ai.hasOpenGraph
-        ? "Open Graph tags detected — content sharing optimized"
-        : "No Open Graph metadata found",
+        ? this.L("Open Graph tags detected — content sharing optimized", "Otkriveni Open Graph tagovi — dijeljenje sadržaja je optimizirano")
+        : this.L("No Open Graph metadata found", "Open Graph metapodaci nisu pronađeni"),
       category: "discoverability",
-      impact: "Open Graph tags help AI systems understand content title, description, and visual representation. They are used by social platforms and increasingly by AI for content previews.",
+      impact: this.L("Open Graph tags help AI systems understand content title, description, and visual representation. They are used by social platforms and increasingly by AI for content previews.", "Open Graph tagovi pomažu AI sustavima razumjeti naslov, opis i vizualni prikaz sadržaja. Koriste ih društvene platforme, a sve više i AI sustavi za preglede sadržaja."),
       recommendation: ai.hasOpenGraph
-        ? "Open Graph metadata properly configured."
-        : "Add Open Graph meta tags for better AI and social media representation.",
+        ? this.L("Open Graph metadata properly configured.", "Open Graph metapodaci su pravilno konfigurirani.")
+        : this.L("Add Open Graph meta tags for better AI and social media representation.", "Dodajte Open Graph meta tagove za bolji prikaz u AI sustavima i na društvenim mrežama."),
       technicalFix: !ai.hasOpenGraph ? [
         "STEP 1 — Add Open Graph tags to your <head>:",
         '  <meta property="og:title" content="Your Page Title" />',
@@ -965,16 +989,16 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "Canonical URL",
+      name: this.L("Canonical URL", "Kanonski URL"),
       status: ai.hasCanonicalUrl ? "PASS" : "WARNING",
       details: ai.hasCanonicalUrl
-        ? "Canonical URL declared — prevents duplicate content confusion"
-        : "No canonical URL found",
+        ? this.L("Canonical URL declared — prevents duplicate content confusion", "Kanonski URL deklariran — sprječava zabunu oko duplikatnog sadržaja")
+        : this.L("No canonical URL found", "Kanonski URL nije pronađen"),
       category: "discoverability",
-      impact: "Without a canonical URL, AI systems may encounter duplicate versions of your page and be unsure which to cite. This dilutes your content's authority.",
+      impact: this.L("Without a canonical URL, AI systems may encounter duplicate versions of your page and be unsure which to cite. This dilutes your content's authority.", "Bez kanonskog URL-a, AI sustavi mogu naići na duplikate vaše stranice i biti nesigurni koju citirati. To razrjeđuje autoritet vašeg sadržaja."),
       recommendation: ai.hasCanonicalUrl
-        ? "Canonical URL properly set."
-        : "Add a canonical URL to consolidate page authority for AI indexing.",
+        ? this.L("Canonical URL properly set.", "Kanonski URL je pravilno postavljen.")
+        : this.L("Add a canonical URL to consolidate page authority for AI indexing.", "Dodajte kanonski URL za konsolidaciju autoriteta stranice za AI indeksiranje."),
       technicalFix: !ai.hasCanonicalUrl ? [
         "STEP 1 — Add canonical URL to your <head>:",
         '  <link rel="canonical" href="https://yoursite.com/your-page/" />',
@@ -988,14 +1012,16 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "Content Depth & Comprehensiveness",
+      name: this.L("Content Depth & Comprehensiveness", "Dubina i sveobuhvatnost sadržaja"),
       status: ai.wordCount >= 800 ? "PASS" : ai.wordCount >= 300 ? "WARNING" : "FAIL",
-      details: `Word count: ${ai.wordCount} | Content depth score: ${cf.contentDepthScore}/100 | Definitions: ${cf.hasDefinitions ? "Yes" : "No"}`,
+      details: this.lang === 'hr'
+        ? `Broj riječi: ${ai.wordCount} | Ocjena dubine sadržaja: ${cf.contentDepthScore}/100 | Definicije: ${cf.hasDefinitions ? "Da" : "Ne"}`
+        : `Word count: ${ai.wordCount} | Content depth score: ${cf.contentDepthScore}/100 | Definitions: ${cf.hasDefinitions ? "Yes" : "No"}`,
       category: "content-format",
-      impact: "AI systems prefer comprehensive, in-depth content that thoroughly covers a topic. Thin content is less likely to be cited as it may not fully answer user queries.",
+      impact: this.L("AI systems prefer comprehensive, in-depth content that thoroughly covers a topic. Thin content is less likely to be cited as it may not fully answer user queries.", "AI sustavi preferiraju sveobuhvatan, detaljan sadržaj koji temeljito pokriva temu. Tanak sadržaj manje je vjerojatno da će biti citiran jer možda ne odgovara u potpunosti na upite korisnika."),
       recommendation: ai.wordCount >= 800
-        ? "Content has sufficient depth for AI citation."
-        : "Expand content depth — aim for 800+ words with comprehensive topic coverage.",
+        ? this.L("Content has sufficient depth for AI citation.", "Sadržaj ima dovoljno dubine za AI citiranje.")
+        : this.L("Expand content depth — aim for 800+ words with comprehensive topic coverage.", "Produbite sadržaj — ciljajte 800+ riječi s sveobuhvatnim pokrivanjem teme."),
       technicalFix: ai.wordCount < 800 ? [
         "STEP 1 — Expand content to cover the topic comprehensively:",
         "  Aim for 800-2000 words for most topics.",
@@ -1018,16 +1044,16 @@ class AeoAnalyzer {
     });
 
     checks.push({
-      name: "Language Declaration",
+      name: this.L("Language Declaration", "Deklaracija jezika"),
       status: ai.languageDeclared ? "PASS" : "WARNING",
       details: ai.languageDeclared
-        ? "Language attribute declared on <html> tag"
-        : "No lang attribute found on <html> tag",
+        ? this.L("Language attribute declared on <html> tag", "Atribut jezika deklariran na <html> tagu")
+        : this.L("No lang attribute found on <html> tag", "Nije pronađen atribut lang na <html> tagu"),
       category: "technical",
-      impact: "Language declaration helps AI systems correctly process, translate, and serve your content to users in the appropriate language context.",
+      impact: this.L("Language declaration helps AI systems correctly process, translate, and serve your content to users in the appropriate language context.", "Deklaracija jezika pomaže AI sustavima ispravno obraditi, prevesti i poslužiti vaš sadržaj korisnicima u odgovarajućem jezičnom kontekstu."),
       recommendation: ai.languageDeclared
-        ? "Language properly declared."
-        : "Add a lang attribute to your <html> tag.",
+        ? this.L("Language properly declared.", "Jezik je pravilno deklariran.")
+        : this.L("Add a lang attribute to your <html> tag.", "Dodajte atribut lang na vaš <html> tag."),
       technicalFix: !ai.languageDeclared ? [
         "STEP 1 — Add lang attribute to your <html> tag:",
         '  <html lang="en">  (for English)',
@@ -1694,126 +1720,128 @@ class AeoAnalyzer {
 
     if (!sd.jsonLdPresent) {
       recommendations.push({
-        title: "Add JSON-LD Structured Data",
-        description: "Your page lacks structured data, which is critical for AI engines to understand your content. Add at minimum WebPage and Organization schema.",
+        title: this.L("Add JSON-LD Structured Data", "Dodajte JSON-LD strukturirane podatke"),
+        description: this.L("Your page lacks structured data, which is critical for AI engines to understand your content. Add at minimum WebPage and Organization schema.", "Vašoj stranici nedostaju strukturirani podaci, koji su ključni za razumijevanje sadržaja od strane AI sustava. Dodajte barem WebPage i Organization shemu."),
         priority: "Critical",
-        category: "Structured Data",
-        impact: "AI systems are 2-3x more likely to cite content with structured data markup.",
+        category: this.L("Structured Data", "Strukturirani podaci"),
+        impact: this.L("AI systems are 2-3x more likely to cite content with structured data markup.", "AI sustavi 2–3 puta češće citiraju sadržaj s markup strukturiranih podataka."),
         actionItems: [
-          "Add JSON-LD WebPage schema to every page",
-          "Add Organization schema to your homepage",
-          "Add Article schema to blog/content pages",
-          "Use Google's Rich Results Test to validate markup",
+          this.L("Add JSON-LD WebPage schema to every page", "Dodajte JSON-LD WebPage shemu na svaku stranicu"),
+          this.L("Add Organization schema to your homepage", "Dodajte shemu Organization na početnu stranicu"),
+          this.L("Add Article schema to blog/content pages", "Dodajte Article shemu na blog/sadržajne stranice"),
+          this.L("Use Google's Rich Results Test to validate markup", "Koristite Google-ov Rich Results Test za validaciju markup-a"),
         ],
       });
     }
 
     if (!sd.faqSchema && !cf.hasQuestionHeadings) {
       recommendations.push({
-        title: "Create Question-Based Content Format",
-        description: "Your content doesn't use question-format headings or FAQ sections, which are the primary way AI systems match content to user queries.",
+        title: this.L("Create Question-Based Content Format", "Stvorite format sadržaja temeljen na pitanjima"),
+        description: this.L("Your content doesn't use question-format headings or FAQ sections, which are the primary way AI systems match content to user queries.", "Vaš sadržaj ne koristi naslove u obliku pitanja ni FAQ sekcije, koje su primarni način na koji AI sustavi usklađuju sadržaj s upitima korisnika."),
         priority: "Critical",
-        category: "Content Format",
-        impact: "Question-based content is significantly more likely to be extracted and cited by AI answer engines.",
+        category: this.L("Content Format", "Format sadržaja"),
+        impact: this.L("Question-based content is significantly more likely to be extracted and cited by AI answer engines.", "Sadržaj temeljen na pitanjima znatno je vjerojatnije da će biti ekstrahiran i citiran od strane AI sustava za odgovore."),
         actionItems: [
-          "Rewrite at least 3-5 headings as questions (What is..., How to..., Why does...)",
-          "Follow each question heading with a concise 1-3 sentence answer",
-          "Add an FAQ section with 5-10 common questions",
-          "Add FAQPage schema markup to the FAQ section",
+          this.L("Rewrite at least 3-5 headings as questions (What is..., How to..., Why does...)", "Prepišite najmanje 3–5 naslova kao pitanja (Što je..., Kako..., Zašto...)"),
+          this.L("Follow each question heading with a concise 1-3 sentence answer", "Slijedite svaki naslov-pitanje sažetim odgovorom od 1–3 rečenice"),
+          this.L("Add an FAQ section with 5-10 common questions", "Dodajte FAQ sekciju s 5–10 uobičajenih pitanja"),
+          this.L("Add FAQPage schema markup to the FAQ section", "Dodajte FAQPage schema markup u FAQ sekciju"),
         ],
       });
     }
 
     if (!auth.hasAuthorInfo) {
       recommendations.push({
-        title: "Establish Author Authority (E-E-A-T)",
-        description: "No author information found. AI systems prioritize content from identifiable, credible authors with demonstrable expertise.",
+        title: this.L("Establish Author Authority (E-E-A-T)", "Uspostavite autoritet autora (E-E-A-T)"),
+        description: this.L("No author information found. AI systems prioritize content from identifiable, credible authors with demonstrable expertise.", "Nisu pronađeni podaci o autoru. AI sustavi daju prednost sadržaju od prepoznatljivih, vjerodostojnih autora s dokazanom stručnošću."),
         priority: "High",
-        category: "Authority",
-        impact: "Content with clear author attribution and expertise signals receives higher trust scores from AI systems.",
+        category: this.L("Authority", "Autoritet"),
+        impact: this.L("Content with clear author attribution and expertise signals receives higher trust scores from AI systems.", "Sadržaj s jasnom atribucijom autoru i signalima stručnosti dobiva više ocjene povjerenja od AI sustava."),
         actionItems: [
-          "Add author name, bio, and credentials to content pages",
-          "Include author photo and links to professional profiles",
-          "Add Person schema for author in JSON-LD",
-          "Link to an About page with full team/company information",
+          this.L("Add author name, bio, and credentials to content pages", "Dodajte ime autora, biografiju i akreditive na stranice s sadržajem"),
+          this.L("Include author photo and links to professional profiles", "Uključite foto autora i linkove na profesionalne profile"),
+          this.L("Add Person schema for author in JSON-LD", "Dodajte Person shemu za autora u JSON-LD"),
+          this.L("Link to an About page with full team/company information", "Povežite se na stranicu 'O nama' s potpunim informacijama o timu/tvrtki"),
         ],
       });
     }
 
     if (!sem.headingHierarchyValid) {
       recommendations.push({
-        title: "Fix Heading Hierarchy",
-        description: "Your heading structure has gaps or issues. AI systems use heading hierarchy as a content outline to understand topic structure.",
+        title: this.L("Fix Heading Hierarchy", "Popravite hijerarhiju naslova"),
+        description: this.L("Your heading structure has gaps or issues. AI systems use heading hierarchy as a content outline to understand topic structure.", "Vaša struktura naslova ima nedostatke ili probleme. AI sustavi koriste hijerarhiju naslova kao sadržaj dokumenta za razumijevanje strukture teme."),
         priority: "High",
-        category: "Semantic Structure",
-        impact: "Proper heading hierarchy helps AI parse content structure and extract relevant sections more accurately.",
+        category: this.L("Semantic Structure", "Semantička struktura"),
+        impact: this.L("Proper heading hierarchy helps AI parse content structure and extract relevant sections more accurately.", "Ispravna hijerarhija naslova pomaže AI sustavima preciznije parsirati strukturu sadržaja i ekstrahirati relevantne sekcije."),
         actionItems: [
-          "Ensure exactly one H1 per page",
-          "Follow H1 → H2 → H3 hierarchy without skipping levels",
-          "Use headings to create a logical content outline",
-          "Each major section should start with an H2",
+          this.L("Ensure exactly one H1 per page", "Osigurajte točno jedan H1 po stranici"),
+          this.L("Follow H1 → H2 → H3 hierarchy without skipping levels", "Slijedite hijerarhiju H1 → H2 → H3 bez preskakanja razina"),
+          this.L("Use headings to create a logical content outline", "Koristite naslove za stvaranje logičnog sadržaja dokumenta"),
+          this.L("Each major section should start with an H2", "Svaka glavna sekcija treba počinjati s H2"),
         ],
       });
     }
 
     if (!ai.robotsTxtAllowsAi) {
       recommendations.push({
-        title: "Unblock AI Crawlers",
-        description: `Your robots.txt is blocking AI crawlers: ${ai.blockedCrawlers.join(", ")}. This prevents your content from being indexed by these AI systems.`,
+        title: this.L("Unblock AI Crawlers", "Odblokirajte AI crawlere"),
+        description: this.lang === 'hr'
+          ? `Vaš robots.txt blokira AI crawlere: ${ai.blockedCrawlers.join(", ")}. To sprječava indeksiranje vašeg sadržaja od strane tih AI sustava.`
+          : `Your robots.txt is blocking AI crawlers: ${ai.blockedCrawlers.join(", ")}. This prevents your content from being indexed by these AI systems.`,
         priority: "Critical",
-        category: "AI Accessibility",
-        impact: "Blocked crawlers = zero visibility in those AI platforms. This is the highest-impact issue to fix.",
+        category: this.L("AI Accessibility", "Dostupnost AI sustavima"),
+        impact: this.L("Blocked crawlers = zero visibility in those AI platforms. This is the highest-impact issue to fix.", "Blokirani crawleri = nulta vidljivost na tim AI platformama. Ovo je problem s najvećim utjecajem koji treba riješiti."),
         actionItems: [
-          "Review robots.txt and remove AI crawler blocks",
-          "Consider allowing GPTBot, Google-Extended, and PerplexityBot",
-          "Use selective Allow/Disallow rules if needed",
+          this.L("Review robots.txt and remove AI crawler blocks", "Pregledajte robots.txt i uklonite blokade AI crawlera"),
+          this.L("Consider allowing GPTBot, Google-Extended, and PerplexityBot", "Razmislite o dozvoljavanju GPTBot, Google-Extended i PerplexityBot"),
+          this.L("Use selective Allow/Disallow rules if needed", "Koristite selektivna Allow/Disallow pravila ako je potrebno"),
         ],
       });
     }
 
     if (!auth.hasCitations && auth.externalSourceLinks < 3) {
       recommendations.push({
-        title: "Add Citations and Source References",
-        description: "Your content lacks citations, references, and source links. AI systems value content that demonstrates research-backed credibility.",
+        title: this.L("Add Citations and Source References", "Dodajte citate i reference izvora"),
+        description: this.L("Your content lacks citations, references, and source links. AI systems value content that demonstrates research-backed credibility.", "Vašem sadržaju nedostaju citati, reference i poveznice na izvore. AI sustavi cijene sadržaj koji demonstrira vjerodostojnost temeljenu na istraživanju."),
         priority: "Medium",
-        category: "Authority",
-        impact: "Cited content is perceived as more trustworthy and authoritative by AI evaluation systems.",
+        category: this.L("Authority", "Autoritet"),
+        impact: this.L("Cited content is perceived as more trustworthy and authoritative by AI evaluation systems.", "Citirani sadržaj AI sustavi percipiraju kao pouzdaniji i autoritativniji."),
         actionItems: [
-          "Link to authoritative external sources for key claims",
-          "Include specific data, statistics, and research references",
-          "Add a Sources/References section at the end of articles",
-          "Use <cite> and <blockquote> HTML elements for formal citations",
+          this.L("Link to authoritative external sources for key claims", "Povežite se na autoritativne vanjske izvore za ključne tvrdnje"),
+          this.L("Include specific data, statistics, and research references", "Uključite specifične podatke, statistike i reference na istraživanja"),
+          this.L("Add a Sources/References section at the end of articles", "Dodajte sekciju Izvori/Reference na kraju članaka"),
+          this.L("Use <cite> and <blockquote> HTML elements for formal citations", "Koristite HTML elemente <cite> i <blockquote> za formalne citate"),
         ],
       });
     }
 
     if (cf.directAnswerParagraphs < 3) {
       recommendations.push({
-        title: "Write More Direct-Answer Content",
-        description: "Your content lacks concise, extractable answer paragraphs. AI systems prefer content they can quote directly in responses.",
+        title: this.L("Write More Direct-Answer Content", "Pišite više sadržaja s izravnim odgovorima"),
+        description: this.L("Your content lacks concise, extractable answer paragraphs. AI systems prefer content they can quote directly in responses.", "Vašem sadržaju nedostaju sažeti, ekstraktabilni odlomci s odgovorima. AI sustavi preferiraju sadržaj koji mogu izravno citirati u odgovorima."),
         priority: "Medium",
-        category: "Content Format",
-        impact: "Concise answer paragraphs (40-300 chars) are the building blocks AI uses to construct responses.",
+        category: this.L("Content Format", "Format sadržaja"),
+        impact: this.L("Concise answer paragraphs (40-300 chars) are the building blocks AI uses to construct responses.", "Sažeti odlomci s odgovorima (40–300 znakova) su građevni blokovi koje AI koristi za konstruiranje odgovora."),
         actionItems: [
-          "Start key paragraphs with a direct, self-contained answer",
-          "Use the inverted pyramid style: answer first, details after",
-          "Aim for 5+ answer-ready paragraphs per page",
-          "Avoid starting paragraphs with pronouns (it, this, they)",
+          this.L("Start key paragraphs with a direct, self-contained answer", "Počnite ključne odlomke izravnim, samostalnim odgovorom"),
+          this.L("Use the inverted pyramid style: answer first, details after", "Koristite stil obrnutog piramide: odgovor prvo, detalji poslije"),
+          this.L("Aim for 5+ answer-ready paragraphs per page", "Ciljajte 5+ odlomaka spremnih za odgovor po stranici"),
+          this.L("Avoid starting paragraphs with pronouns (it, this, they)", "Izbjegavajte početak odlomaka zamjenicama (to, ovaj, oni)"),
         ],
       });
     }
 
     if (!sem.hasTableOfContents && sem.contentSections >= 3) {
       recommendations.push({
-        title: "Add Table of Contents",
-        description: "Your content has multiple sections but no table of contents. A TOC helps AI systems understand content scope and navigate to relevant sections.",
+        title: this.L("Add Table of Contents", "Dodajte popis sadržaja"),
+        description: this.L("Your content has multiple sections but no table of contents. A TOC helps AI systems understand content scope and navigate to relevant sections.", "Vaš sadržaj ima više sekcija, ali nema popisa sadržaja. Popis sadržaja pomaže AI sustavima razumjeti opseg sadržaja i navigirati do relevantnih sekcija."),
         priority: "Low",
-        category: "Semantic Structure",
-        impact: "A TOC acts as a content summary that AI can use to quickly identify relevant sections for user queries.",
+        category: this.L("Semantic Structure", "Semantička struktura"),
+        impact: this.L("A TOC acts as a content summary that AI can use to quickly identify relevant sections for user queries.", "Popis sadržaja djeluje kao sažetak koji AI može koristiti za brzu identifikaciju relevantnih sekcija za korisničke upite."),
         actionItems: [
-          "Add a table of contents with anchor links at the top of long content",
-          "Use an ordered list with links to each H2 section",
-          "WordPress: Install Easy Table of Contents plugin",
+          this.L("Add a table of contents with anchor links at the top of long content", "Dodajte popis sadržaja s anker linkovima na vrhu dugog sadržaja"),
+          this.L("Use an ordered list with links to each H2 section", "Koristite uređeni popis s linkovima na svaku H2 sekciju"),
+          this.L("WordPress: Install Easy Table of Contents plugin", "WordPress: Instalirajte dodatak Easy Table of Contents"),
         ],
       });
     }

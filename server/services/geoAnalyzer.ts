@@ -15,7 +15,11 @@ import type {
 import { extractMainContent, extractParagraphs, countSyllables, isContentWord, computeReadabilityScore } from "./contentExtractor";
 
 class GeoAnalyzer {
-  async analyzeWebsite(url: string): Promise<InsertGeoAnalysis> {
+  private lang: string = 'en';
+  private L(en: string, hr: string): string { return this.lang === 'hr' ? hr : en; }
+
+  async analyzeWebsite(url: string, lang: string = 'en'): Promise<InsertGeoAnalysis> {
+    this.lang = lang;
     const normalizedUrl = url.startsWith("http") ? url : `https://${url}`;
 
     const html = await safeFetchHtmlWithFallback(normalizedUrl);
@@ -463,14 +467,16 @@ class GeoAnalyzer {
     const checks: GeoCheck[] = [];
 
     checks.push({
-      name: "Author Credentials",
+      name: this.L("Author Credentials", "Akreditivi autora"),
       status: sa.hasAuthorCredentials ? "PASS" : "FAIL",
       details: sa.hasAuthorCredentials
-        ? `Author identified: ${sa.authorDetails.slice(0, 2).join(', ')}`
-        : "No author credentials found on the page",
+        ? this.lang === 'hr'
+          ? `Autor identificiran: ${sa.authorDetails.slice(0, 2).join(', ')}`
+          : `Author identified: ${sa.authorDetails.slice(0, 2).join(', ')}`
+        : this.L("No author credentials found on the page", "Na stranici nisu pronađeni akreditivi autora"),
       category: "source-authority",
       impact: "High",
-      recommendation: sa.hasAuthorCredentials ? "Author credentials are present." : "Add author name, bio, and credentials to establish E-E-A-T.",
+      recommendation: sa.hasAuthorCredentials ? this.L("Author credentials are present.", "Akreditivi autora su prisutni.") : this.L("Add author name, bio, and credentials to establish E-E-A-T.", "Dodajte ime autora, biografiju i akreditive za uspostavljanje E-E-A-T."),
       technicalFix: !sa.hasAuthorCredentials ? [
         "STEP 1 — Add a visible author byline near the top of every article:",
         '  <div class="author-byline" itemprop="author" itemscope itemtype="https://schema.org/Person">',
@@ -495,12 +501,14 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "External Citations",
+      name: this.L("External Citations", "Vanjske reference"),
       status: sa.citationCount >= 3 ? "PASS" : sa.citationCount > 0 ? "WARNING" : "FAIL",
-      details: `Found ${sa.citationCount} external source citations`,
+      details: this.lang === 'hr'
+        ? `Pronađeno ${sa.citationCount} vanjskih referenci na izvore`
+        : `Found ${sa.citationCount} external source citations`,
       category: "source-authority",
       impact: "High",
-      recommendation: sa.citationCount >= 3 ? "Good citation practice." : "Add references to authoritative external sources to boost credibility.",
+      recommendation: sa.citationCount >= 3 ? this.L("Good citation practice.", "Dobra praksa citiranja.") : this.L("Add references to authoritative external sources to boost credibility.", "Dodajte reference na autoritativne vanjske izvore za povećanje vjerodostojnosti."),
       technicalFix: sa.citationCount < 3 ? [
         `CURRENT: ${sa.citationCount} external citation${sa.citationCount === 1 ? "" : "s"}. TARGET: at least 3 high-authority citations per long-form piece.`,
         "",
@@ -523,14 +531,16 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "Expert Quotes & Sources",
+      name: this.L("Expert Quotes & Sources", "Citati stručnjaka i izvori"),
       status: sa.hasExpertQuotes ? "PASS" : "FAIL",
       details: sa.hasExpertQuotes
-        ? `Found ${sa.expertQuoteCount} expert references or quotes`
-        : "No expert quotes or attribution found",
+        ? this.lang === 'hr'
+          ? `Pronađeno ${sa.expertQuoteCount} referenci ili citata stručnjaka`
+          : `Found ${sa.expertQuoteCount} expert references or quotes`
+        : this.L("No expert quotes or attribution found", "Nisu pronađeni citati stručnjaka ni atribucija"),
       category: "source-authority",
       impact: "Medium",
-      recommendation: sa.hasExpertQuotes ? "Expert sourcing is present." : "Include expert quotes, data from studies, or professional attribution.",
+      recommendation: sa.hasExpertQuotes ? this.L("Expert sourcing is present.", "Sourcing stručnjaka je prisutan.") : this.L("Include expert quotes, data from studies, or professional attribution.", "Uključite citate stručnjaka, podatke iz studija ili profesionalnu atribuciju."),
       technicalFix: !sa.hasExpertQuotes ? [
         "STEP 1 — Pick 2–3 claims in your article that would benefit from expert authority (best practices, predictions, contested points). For each, find a relevant expert: an industry leader, a published academic, a senior in-house specialist, or a frequently cited source.",
         "",
@@ -551,14 +561,14 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "Original Research",
+      name: this.L("Original Research", "Originalno istraživanje"),
       status: sa.hasOriginalResearch ? "PASS" : "WARNING",
       details: sa.hasOriginalResearch
-        ? "Content references original research or proprietary data"
-        : "No original research or proprietary data detected",
+        ? this.L("Content references original research or proprietary data", "Sadržaj referencira originalno istraživanje ili vlastite podatke")
+        : this.L("No original research or proprietary data detected", "Nije otkriveno originalno istraživanje ni vlastiti podaci"),
       category: "source-authority",
       impact: "High",
-      recommendation: sa.hasOriginalResearch ? "Original data referenced." : "Include original data, surveys, or proprietary findings to differentiate.",
+      recommendation: sa.hasOriginalResearch ? this.L("Original data referenced.", "Originalni podaci su referirani.") : this.L("Include original data, surveys, or proprietary findings to differentiate.", "Uključite vlastite podatke, ankete ili originalne nalaze za diferencijaciju."),
       technicalFix: !sa.hasOriginalResearch ? [
         "Original research is the single biggest differentiator in AI citations — generative engines preferentially cite the *primary source* of any data point.",
         "",
@@ -582,12 +592,14 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "Content Readability",
+      name: this.L("Content Readability", "Čitljivost sadržaja"),
       status: cf.readabilityScore >= 50 ? "PASS" : cf.readabilityScore >= 30 ? "WARNING" : "FAIL",
-      details: `Readability score: ${cf.readabilityScore}/100, avg sentence length: ${cf.averageSentenceLength} words`,
+      details: this.lang === 'hr'
+        ? `Ocjena čitljivosti: ${cf.readabilityScore}/100, prosj. duljina rečenice: ${cf.averageSentenceLength} riječi`
+        : `Readability score: ${cf.readabilityScore}/100, avg sentence length: ${cf.averageSentenceLength} words`,
       category: "content-fluency",
       impact: "Medium",
-      recommendation: cf.readabilityScore >= 50 ? "Content is readable." : "Simplify sentences and use clearer language for AI extraction.",
+      recommendation: cf.readabilityScore >= 50 ? this.L("Content is readable.", "Sadržaj je čitljiv.") : this.L("Simplify sentences and use clearer language for AI extraction.", "Pojednostavite rečenice i koristite jasniji jezik za AI ekstrakciju."),
       technicalFix: cf.readabilityScore < 50 ? [
         `CURRENT: readability ${cf.readabilityScore}/100, avg sentence length ${cf.averageSentenceLength} words. TARGET: 50+ score, 15–20 word sentences.`,
         "",
@@ -609,12 +621,14 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "AI Summarizability",
+      name: this.L("AI Summarizability", "Sažimljivost za AI"),
       status: cf.summarizabilityScore >= 60 ? "PASS" : cf.summarizabilityScore >= 30 ? "WARNING" : "FAIL",
-      details: `Summarizability: ${cf.summarizabilityScore}/100, ${cf.topSummarySnippets.length} extractable snippets`,
+      details: this.lang === 'hr'
+        ? `Sažimljivost: ${cf.summarizabilityScore}/100, ${cf.topSummarySnippets.length} ekstraktabilnih isječaka`
+        : `Summarizability: ${cf.summarizabilityScore}/100, ${cf.topSummarySnippets.length} extractable snippets`,
       category: "content-fluency",
       impact: "High",
-      recommendation: cf.summarizabilityScore >= 60 ? "Content is easily summarizable." : "Write concise, self-contained paragraphs that AI can quote directly.",
+      recommendation: cf.summarizabilityScore >= 60 ? this.L("Content is easily summarizable.", "Sadržaj se lako može sažeti.") : this.L("Write concise, self-contained paragraphs that AI can quote directly.", "Pišite sažete, samostalne odlomke koje AI može izravno citirati."),
       technicalFix: cf.summarizabilityScore < 60 ? [
         `CURRENT: summarizability ${cf.summarizabilityScore}/100. TARGET: 60+ — meaning paragraphs are self-contained and quote-ready.`,
         "",
@@ -640,12 +654,14 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "Paragraph Clarity",
+      name: this.L("Paragraph Clarity", "Jasnoća odlomaka"),
       status: cf.paragraphClarity >= 60 ? "PASS" : cf.paragraphClarity >= 30 ? "WARNING" : "FAIL",
-      details: `${cf.paragraphClarity}% of paragraphs are well-sized (10-80 words)`,
+      details: this.lang === 'hr'
+        ? `${cf.paragraphClarity}% odlomaka je dobro veličine (10–80 riječi)`
+        : `${cf.paragraphClarity}% of paragraphs are well-sized (10-80 words)`,
       category: "content-fluency",
       impact: "Medium",
-      recommendation: cf.paragraphClarity >= 60 ? "Good paragraph structure." : "Aim for paragraphs of 2-4 sentences that each convey one clear idea.",
+      recommendation: cf.paragraphClarity >= 60 ? this.L("Good paragraph structure.", "Dobra struktura odlomaka.") : this.L("Aim for paragraphs of 2-4 sentences that each convey one clear idea.", "Ciljajte odlomke od 2–4 rečenice koje svaka prenose jednu jasnu ideju."),
       technicalFix: cf.paragraphClarity < 60 ? [
         `CURRENT: ${cf.paragraphClarity}% of paragraphs are well-sized. TARGET: 60%+ in the 10–80 word band.`,
         "",
@@ -662,14 +678,16 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "Statistics & Data",
+      name: this.L("Statistics & Data", "Statistike i podaci"),
       status: uv.hasStatistics ? "PASS" : "FAIL",
       details: uv.hasStatistics
-        ? `Found ${uv.statisticsCount} data points/statistics`
-        : "No statistics or quantitative data found",
+        ? this.lang === 'hr'
+          ? `Pronađeno ${uv.statisticsCount} podatkovnih točaka/statistika`
+          : `Found ${uv.statisticsCount} data points/statistics`
+        : this.L("No statistics or quantitative data found", "Nisu pronađene statistike ni kvantitativni podaci"),
       category: "unique-value",
       impact: "High",
-      recommendation: uv.hasStatistics ? "Statistical data present." : "Add specific numbers, percentages, and data to make content more citable.",
+      recommendation: uv.hasStatistics ? this.L("Statistical data present.", "Statistički podaci su prisutni.") : this.L("Add specific numbers, percentages, and data to make content more citable.", "Dodajte specifične brojeve, postotke i podatke kako bi sadržaj bio lakše citiran."),
       technicalFix: !uv.hasStatistics ? [
         "Pages with concrete numbers get cited 3–5× more often by AI engines than those with only general claims.",
         "",
@@ -690,14 +708,16 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "Original Data & Research",
+      name: this.L("Original Data & Research", "Originalni podaci i istraživanje"),
       status: uv.hasOriginalData ? "PASS" : "WARNING",
       details: uv.hasOriginalData
-        ? `Original data present with ${uv.dataPoints.length} identifiable data elements`
-        : "No original data or proprietary research detected",
+        ? this.lang === 'hr'
+          ? `Originalni podaci prisutni s ${uv.dataPoints.length} prepoznatljivih podatkovnih elemenata`
+          : `Original data present with ${uv.dataPoints.length} identifiable data elements`
+        : this.L("No original data or proprietary research detected", "Nisu otkriveni originalni podaci ni vlastito istraživanje"),
       category: "unique-value",
       impact: "High",
-      recommendation: uv.hasOriginalData ? "Original data found." : "Include proprietary data, survey results, or unique findings.",
+      recommendation: uv.hasOriginalData ? this.L("Original data found.", "Originalni podaci su pronađeni.") : this.L("Include proprietary data, survey results, or unique findings.", "Uključite vlastite podatke, rezultate anketa ili jedinstvene nalaze."),
       technicalFix: !uv.hasOriginalData ? [
         "STEP 1 — Take stock of the proprietary data you can publish: aggregated customer survey responses, anonymized analytics (CTR, conversion rate by segment), benchmark studies of your category, A/B-test outcomes, support-ticket trends.",
         "",
@@ -717,12 +737,14 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "Unique Insights & Experience",
+      name: this.L("Unique Insights & Experience", "Jedinstveni uvidi i iskustvo"),
       status: uv.hasUniqueInsights || uv.firstPersonExperience ? "PASS" : "WARNING",
-      details: `${uv.hasUniqueInsights ? 'Unique insights present' : 'No unique insights'}. ${uv.firstPersonExperience ? 'First-person experience shared.' : ''}`.trim(),
+      details: this.lang === 'hr'
+        ? `${uv.hasUniqueInsights ? 'Jedinstveni uvidi prisutni' : 'Nema jedinstvenih uvida'}. ${uv.firstPersonExperience ? 'Podijeljeno osobno iskustvo.' : ''}`.trim()
+        : `${uv.hasUniqueInsights ? 'Unique insights present' : 'No unique insights'}. ${uv.firstPersonExperience ? 'First-person experience shared.' : ''}`.trim(),
       category: "unique-value",
       impact: "Medium",
-      recommendation: uv.hasUniqueInsights ? "Unique perspective present." : "Share personal experience, unique perspectives, or proprietary insights.",
+      recommendation: uv.hasUniqueInsights ? this.L("Unique perspective present.", "Jedinstvena perspektiva je prisutna.") : this.L("Share personal experience, unique perspectives, or proprietary insights.", "Podijelite osobno iskustvo, jedinstvene perspektive ili vlastite uvide."),
       technicalFix: !(uv.hasUniqueInsights || uv.firstPersonExperience) ? [
         'Google\'s E-E-A-T framework added an extra E for "Experience" specifically because AI overviews reward first-hand accounts.',
         "",
@@ -745,14 +767,14 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "Case Studies",
+      name: this.L("Case Studies", "Studije slučaja"),
       status: uv.caseStudyPresent ? "PASS" : "WARNING",
       details: uv.caseStudyPresent
-        ? "Case study or real-world example found"
-        : "No case studies or concrete examples detected",
+        ? this.L("Case study or real-world example found", "Pronađena studija slučaja ili primjer iz stvarnog života")
+        : this.L("No case studies or concrete examples detected", "Nisu otkrivene studije slučaja ni konkretni primjeri"),
       category: "unique-value",
       impact: "Medium",
-      recommendation: uv.caseStudyPresent ? "Case study content present." : "Add case studies or real-world examples to demonstrate practical value.",
+      recommendation: uv.caseStudyPresent ? this.L("Case study content present.", "Sadržaj studije slučaja je prisutan.") : this.L("Add case studies or real-world examples to demonstrate practical value.", "Dodajte studije slučaja ili primjere iz stvarnog života za demonstraciju praktične vrijednosti."),
       technicalFix: !uv.caseStudyPresent ? [
         "STEP 1 — Pick 2–3 strongest customer wins and write each as a focused case study (600–1,000 words). Use this proven structure:",
         "  • Client + industry + size",
@@ -775,12 +797,14 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "Entity Coverage in Headings",
+      name: this.L("Entity Coverage in Headings", "Pokrivenost entiteta u naslovima"),
       status: eo.entityCoverage >= 50 ? "PASS" : eo.entityCoverage >= 25 ? "WARNING" : "FAIL",
-      details: `${eo.entityCoverage}% of primary entities appear in headings`,
+      details: this.lang === 'hr'
+        ? `${eo.entityCoverage}% primarnih entiteta pojavljuje se u naslovima`
+        : `${eo.entityCoverage}% of primary entities appear in headings`,
       category: "entity-optimization",
       impact: "Medium",
-      recommendation: eo.entityCoverage >= 50 ? "Good entity coverage." : "Include primary topic entities in your H2/H3 headings.",
+      recommendation: eo.entityCoverage >= 50 ? this.L("Good entity coverage.", "Dobra pokrivenost entiteta.") : this.L("Include primary topic entities in your H2/H3 headings.", "Uključite primarne entitete teme u vaše H2/H3 naslove."),
       technicalFix: eo.entityCoverage < 50 ? [
         `CURRENT: ${eo.entityCoverage}% entity coverage in headings. TARGET: 50%+ — primary topic entities should appear in H2/H3 text.`,
         "",
@@ -801,12 +825,14 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "Topical Depth",
+      name: this.L("Topical Depth", "Tematska dubina"),
       status: eo.topicalDepthScore >= 60 ? "PASS" : eo.topicalDepthScore >= 30 ? "WARNING" : "FAIL",
-      details: `Topical depth: ${eo.topicalDepthScore}/100 with ${eo.primaryEntities.length} primary entities`,
+      details: this.lang === 'hr'
+        ? `Tematska dubina: ${eo.topicalDepthScore}/100 s ${eo.primaryEntities.length} primarnih entiteta`
+        : `Topical depth: ${eo.topicalDepthScore}/100 with ${eo.primaryEntities.length} primary entities`,
       category: "entity-optimization",
       impact: "High",
-      recommendation: eo.topicalDepthScore >= 60 ? "Good topical coverage." : "Expand content to cover more subtopics and related entities.",
+      recommendation: eo.topicalDepthScore >= 60 ? this.L("Good topical coverage.", "Dobra tematska pokrivenost.") : this.L("Expand content to cover more subtopics and related entities.", "Proširite sadržaj da pokriva više podtema i srodnih entiteta."),
       technicalFix: eo.topicalDepthScore < 60 ? [
         `CURRENT: topical depth ${eo.topicalDepthScore}/100. TARGET: 60+. AI engines prefer pages that cover a topic comprehensively over thin pages that only address part of it.`,
         "",
@@ -824,12 +850,14 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "Multi-Format Content",
+      name: this.L("Multi-Format Content", "Sadržaj u više formata"),
       status: mf.contentFormats.length >= 4 ? "PASS" : mf.contentFormats.length >= 2 ? "WARNING" : "FAIL",
-      details: `${mf.contentFormats.length} content format(s): ${mf.contentFormats.join(', ')}`,
+      details: this.lang === 'hr'
+        ? `${mf.contentFormats.length} format(a) sadržaja: ${mf.contentFormats.join(', ')}`
+        : `${mf.contentFormats.length} content format(s): ${mf.contentFormats.join(', ')}`,
       category: "multi-format",
       impact: "Medium",
-      recommendation: mf.contentFormats.length >= 4 ? "Good format variety." : "Add images, tables, lists, and videos for richer AI indexing.",
+      recommendation: mf.contentFormats.length >= 4 ? this.L("Good format variety.", "Dobra raznolikost formata.") : this.L("Add images, tables, lists, and videos for richer AI indexing.", "Dodajte slike, tablice, popise i videozapise za bogatije AI indeksiranje."),
       technicalFix: mf.contentFormats.length < 4 ? [
         `CURRENT: ${mf.contentFormats.length} format(s) — ${mf.contentFormats.join(', ') || 'text only'}. TARGET: 4+ formats per long-form page.`,
         "",
@@ -856,12 +884,14 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "Visual Content",
+      name: this.L("Visual Content", "Vizualni sadržaj"),
       status: mf.imageCount >= 3 ? "PASS" : mf.imageCount > 0 ? "WARNING" : "FAIL",
-      details: `${mf.imageCount} image(s), ${mf.videoCount} video(s)`,
+      details: this.lang === 'hr'
+        ? `${mf.imageCount} slika, ${mf.videoCount} videozapis(a)`
+        : `${mf.imageCount} image(s), ${mf.videoCount} video(s)`,
       category: "multi-format",
       impact: "Medium",
-      recommendation: mf.imageCount >= 3 ? "Good visual content." : "Add more images with descriptive alt text and consider embedding videos.",
+      recommendation: mf.imageCount >= 3 ? this.L("Good visual content.", "Dobar vizualni sadržaj.") : this.L("Add more images with descriptive alt text and consider embedding videos.", "Dodajte više slika s opisnim alt tekstom i razmislite o ugrađivanju videozapisa."),
       technicalFix: mf.imageCount < 3 ? [
         `CURRENT: ${mf.imageCount} image${mf.imageCount === 1 ? "" : "s"}, ${mf.videoCount} video${mf.videoCount === 1 ? "" : "s"}. TARGET: at least 3 contextual images per long-form page.`,
         "",
@@ -890,14 +920,16 @@ class GeoAnalyzer {
     });
 
     checks.push({
-      name: "Structured Data Tables",
+      name: this.L("Structured Data Tables", "Tablice strukturiranih podataka"),
       status: mf.hasTables ? "PASS" : "WARNING",
       details: mf.hasTables
-        ? `${mf.tableCount} data table(s) found`
-        : "No data tables found for structured presentation",
+        ? this.lang === 'hr'
+          ? `Pronađeno ${mf.tableCount} tablica s podacima`
+          : `${mf.tableCount} data table(s) found`
+        : this.L("No data tables found for structured presentation", "Nisu pronađene tablice s podacima za strukturirani prikaz"),
       category: "multi-format",
       impact: "Medium",
-      recommendation: mf.hasTables ? "Tables present for data." : "Use HTML tables for comparisons, specifications, or data that AI can extract.",
+      recommendation: mf.hasTables ? this.L("Tables present for data.", "Tablice su prisutne za podatke.") : this.L("Use HTML tables for comparisons, specifications, or data that AI can extract.", "Koristite HTML tablice za usporedbe, specifikacije ili podatke koje AI može ekstrahirati."),
       technicalFix: !mf.hasTables ? [
         "Tables are one of the highest-value formats for AI engines — generative answers often cite individual rows verbatim.",
         "",
@@ -939,7 +971,7 @@ class GeoAnalyzer {
 
     failChecks.forEach(c => {
       recs.push({
-        title: `Fix: ${c.name}`,
+        title: this.lang === 'hr' ? `Popravite: ${c.name}` : `Fix: ${c.name}`,
         description: c.recommendation,
         priority: c.impact === 'High' ? 'Critical' : 'High',
         category: c.category,
@@ -948,7 +980,7 @@ class GeoAnalyzer {
 
     warnChecks.forEach(c => {
       recs.push({
-        title: `Improve: ${c.name}`,
+        title: this.lang === 'hr' ? `Poboljšajte: ${c.name}` : `Improve: ${c.name}`,
         description: c.recommendation,
         priority: 'Medium',
         category: c.category,
@@ -957,8 +989,8 @@ class GeoAnalyzer {
 
     if (!sa.hasOriginalResearch && !uv.hasOriginalData) {
       recs.push({
-        title: "Add Original Research or Data",
-        description: "Generative engines strongly favor content with unique data, surveys, or original research. This is the #1 differentiator for GEO.",
+        title: this.L("Add Original Research or Data", "Dodajte originalno istraživanje ili podatke"),
+        description: this.L("Generative engines strongly favor content with unique data, surveys, or original research. This is the #1 differentiator for GEO.", "Generativni sustavi snažno preferiraju sadržaj s jedinstvenim podacima, anketama ili originalnim istraživanjem. Ovo je #1 diferencijator za GEO."),
         priority: "Critical",
         category: "unique-value",
       });
@@ -966,8 +998,8 @@ class GeoAnalyzer {
 
     if (cf.summarizabilityScore < 50) {
       recs.push({
-        title: "Improve Content Summarizability",
-        description: "Write short, self-contained paragraphs that directly answer questions. AI engines prefer content they can extract and quote verbatim.",
+        title: this.L("Improve Content Summarizability", "Poboljšajte sažimljivost sadržaja"),
+        description: this.L("Write short, self-contained paragraphs that directly answer questions. AI engines prefer content they can extract and quote verbatim.", "Pišite kratke, samostalne odlomke koji izravno odgovaraju na pitanja. AI sustavi preferiraju sadržaj koji mogu ekstrahirati i doslovno citirati."),
         priority: "High",
         category: "content-fluency",
       });
@@ -975,8 +1007,8 @@ class GeoAnalyzer {
 
     if (mf.contentFormats.length < 3) {
       recs.push({
-        title: "Diversify Content Formats",
-        description: "Add tables, lists, images with alt text, and videos. Multi-format content is more likely to be referenced by different generative engines.",
+        title: this.L("Diversify Content Formats", "Diverzificirajte formate sadržaja"),
+        description: this.L("Add tables, lists, images with alt text, and videos. Multi-format content is more likely to be referenced by different generative engines.", "Dodajte tablice, popise, slike s alt tekstom i videozapise. Sadržaj u više formata vjerojatnije će biti referenciran od strane različitih generativnih sustava."),
         priority: "Medium",
         category: "multi-format",
       });

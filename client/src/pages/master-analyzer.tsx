@@ -4035,7 +4035,7 @@ export default function MasterAnalyzerPage() {
 
   const analyzeMutation = useMutation({
     mutationFn: async (data: { url: string; turnstileToken?: string }) => {
-      const payload: any = { url: data.url };
+      const payload: any = { url: data.url, lang: i18n.language === 'hr' ? 'hr' : 'en' };
       if (activeAccessCode) {
         payload.accessCode = activeAccessCode.code;
         try {

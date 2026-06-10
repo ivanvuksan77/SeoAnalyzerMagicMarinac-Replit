@@ -352,10 +352,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Master Analyzer - runs all tools in parallel, with rate limiting
   app.post("/api/master-analyze", async (req, res) => {
     try {
-      const { url, accessCode, turnstileToken } = z.object({
+      const { url, accessCode, turnstileToken, lang } = z.object({
         url: z.string().transform(normalizeUrl).pipe(z.string().url("Please enter a valid URL")),
         accessCode: z.string().optional(),
         turnstileToken: z.string().optional(),
+        lang: z.enum(['en', 'hr']).optional().default('en'),
       }).parse(req.body);
 
       const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
@@ -446,14 +447,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const results = await Promise.allSettled([
-        seoAnalyzer.analyzeWebsite(url),
-        adsAnalyzer.analyzeLandingPage(url),
-        aeoAnalyzer.analyzeWebsite(url),
-        geoAnalyzer.analyzeWebsite(url),
-        siteTools.checkBrokenLinks(url),
-        siteTools.analyzeImages(url),
-        siteTools.analyzeInternalLinking(url),
-        siteTools.validateSitemapAndRobots(url),
+        seoAnalyzer.analyzeWebsite(url, lang),
+        adsAnalyzer.analyzeLandingPage(url, lang),
+        aeoAnalyzer.analyzeWebsite(url, lang),
+        geoAnalyzer.analyzeWebsite(url, lang),
+        siteTools.checkBrokenLinks(url, lang),
+        siteTools.analyzeImages(url, lang),
+        siteTools.analyzeInternalLinking(url, lang),
+        siteTools.validateSitemapAndRobots(url, lang),
       ]);
 
       const extract = <T>(r: PromiseSettledResult<T>): { data: T | null; error: string | null; errorCode: string | null } =>

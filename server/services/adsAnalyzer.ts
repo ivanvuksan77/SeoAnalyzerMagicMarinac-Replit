@@ -22,7 +22,11 @@ const DESKTOP_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 const GOOGLEBOT_UA = "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)";
 
 class AdsLandingPageAnalyzer {
-  async analyzeLandingPage(url: string): Promise<InsertAdsAnalysis> {
+  private lang: string = 'en';
+  private L(en: string, hr: string): string { return this.lang === 'hr' ? hr : en; }
+
+  async analyzeLandingPage(url: string, lang: string = 'en'): Promise<InsertAdsAnalysis> {
+    this.lang = lang;
     const checks: AdsCheck[] = [];
 
     const [ttfb, cdn, cache, redirects, hosting, mobileUx, fieldData] = await Promise.all([
@@ -460,16 +464,18 @@ class AdsLandingPageAnalyzer {
     checks.push({
       name: "TTFB — Clean URL",
       status: ttfb.cleanUrl < 400 ? "PASS" : ttfb.cleanUrl < 800 ? "WARNING" : "FAIL",
-      details: `${ttfb.cleanUrl}ms response time for clean URL`,
+      details: this.lang === 'hr'
+        ? `${ttfb.cleanUrl}ms je brzina odgovora za čisti URL`
+        : `${ttfb.cleanUrl}ms response time for clean URL`,
       category: "performance",
       impact: ttfb.cleanUrl > 800
-        ? "Google Ads bot sees slow initial response — directly lowers Landing Page Experience rating"
+        ? this.L("Google Ads bot sees slow initial response — directly lowers Landing Page Experience rating", "Google Ads bot vidi spor početni odgovor — izravno snižava ocjenu iskustva odredišne stranice")
         : ttfb.cleanUrl > 400
-          ? "Borderline response time — may affect rating under load"
-          : "Fast server response — positive signal for Ads quality",
+          ? this.L("Borderline response time — may affect rating under load", "Granično vrijeme odgovora — može utjecati na ocjenu pod opterećenjem")
+          : this.L("Fast server response — positive signal for Ads quality", "Brz odgovor poslužitelja — pozitivan signal za kvalitetu Ads"),
       recommendation: ttfb.cleanUrl > 400
-        ? "Add edge caching or upgrade to a faster hosting provider to reduce TTFB below 400ms"
-        : "No action needed",
+        ? this.L("Add edge caching or upgrade to a faster hosting provider to reduce TTFB below 400ms", "Dodajte rubno predmemoriranje ili poboljšajte konfiguraciju poslužitelja da smanjite TTFB ispod 400 ms")
+        : this.L("No action needed", "Nije potrebna akcija"),
       fixType: "infrastructure",
       technicalFix: ttfb.cleanUrl > 400 ? [
         "STEP 1 — Enable server-side caching:",
@@ -501,14 +507,16 @@ class AdsLandingPageAnalyzer {
     checks.push({
       name: "TTFB — With Ads Parameters",
       status: ttfb.withAdsParams < 500 ? "PASS" : ttfb.withAdsParams < 1000 ? "WARNING" : "FAIL",
-      details: `${ttfb.withAdsParams}ms response time with gclid & utm parameters (${ttfb.delta > 0 ? "+" : ""}${ttfb.delta}ms vs clean URL)`,
+      details: this.lang === 'hr'
+        ? `${ttfb.withAdsParams}ms je brzina odgovora s parametrima gclid i utm (${ttfb.delta > 0 ? "+" : ""}${ttfb.delta}ms u usporedbi s čistim URL-om)`
+        : `${ttfb.withAdsParams}ms response time with gclid & utm parameters (${ttfb.delta > 0 ? "+" : ""}${ttfb.delta}ms vs clean URL)`,
       category: "performance",
       impact: ttfb.penalized
-        ? "Ads traffic gets slower response than organic — Google directly measures this for Quality Score"
-        : "Ads traffic performs similarly to clean requests — no penalty detected",
+        ? this.L("Ads traffic gets slower response than organic — Google directly measures this for Quality Score", "Ads promet dobiva sporiji odgovor od organskog — Google izravno mjeri ovo za Quality Score")
+        : this.L("Ads traffic performs similarly to clean requests — no penalty detected", "Ads promet se ponaša slično kao čisti zahtjevi — nije otkrivena kazna"),
       recommendation: ttfb.penalized
-        ? "Configure CDN to ignore gclid/utm query parameters for cache key computation. Ensure server-side tracking doesn't add processing overhead"
-        : "No action needed",
+        ? this.L("Configure CDN to ignore gclid/utm query parameters for cache key computation. Ensure server-side tracking doesn't add processing overhead", "Konfigurirajte CDN da ignorira parametre gclid/utm za izračun ključa predmemorije. Osigurajte da serversko praćenje ne dodaje procesno opterećenje")
+        : this.L("No action needed", "Nije potrebna akcija"),
       fixType: "infrastructure",
       technicalFix: ttfb.penalized ? [
         "STEP 1 — Strip tracking params from cache key:",
@@ -611,22 +619,24 @@ class AdsLandingPageAnalyzer {
     }
 
     checks.push({
-      name: "CDN & Edge Caching",
+      name: this.L("CDN & Edge Caching", "CDN i rubno predmemoriranje"),
       status: cdn.detected && cdn.edgeCaching ? "PASS" : cdn.detected ? "WARNING" : "FAIL",
       details: cdn.detected
-        ? `${cdn.provider} detected${cdn.edgeCaching ? " with edge caching active" : " but edge caching not active"}`
-        : "No CDN detected — page served directly from origin server",
+        ? this.lang === 'hr'
+          ? `${cdn.provider} otkriven${cdn.edgeCaching ? " s aktivnim rubnim predmemoriranjem" : " ali rubno predmemoriranje nije aktivno"}`
+          : `${cdn.provider} detected${cdn.edgeCaching ? " with edge caching active" : " but edge caching not active"}`
+        : this.L("No CDN detected — page served directly from origin server", "CDN nije otkriven — stranica se poslužuje izravno s izvornog poslužitelja"),
       category: "delivery",
       impact: !cdn.detected
-        ? "Without CDN, every Ads click hits your origin server. Google's bot crawls from multiple locations — slow responses from distant locations lower your rating"
+        ? this.L("Without CDN, every Ads click hits your origin server. Google's bot crawls from multiple locations — slow responses from distant locations lower your rating", "Bez CDN-a, svaki klik na Ads pogađa vaš izvorni poslužitelj. Googleov bot pretražuje s više lokacija — spori odgovori s udaljenih lokacija snižavaju vašu ocjenu")
         : !cdn.edgeCaching
-          ? "CDN present but not caching content — Ads traffic still hits origin for every request"
-          : "Edge caching active — Ads traffic served quickly from nearest edge node",
+          ? this.L("CDN present but not caching content — Ads traffic still hits origin for every request", "CDN je prisutan ali ne predmemorira sadržaj — Ads promet i dalje pogađa izvor za svaki zahtjev")
+          : this.L("Edge caching active — Ads traffic served quickly from nearest edge node", "Rubno predmemoriranje aktivno — Ads promet se brzo poslužuje s najbližeg rubnog čvora"),
       recommendation: !cdn.detected
-        ? "Deploy a CDN (Cloudflare, CloudFront, or Fastly). Configure edge caching for your landing page with at least 1-hour TTL"
+        ? this.L("Deploy a CDN (Cloudflare, CloudFront, or Fastly). Configure edge caching for your landing page with at least 1-hour TTL", "Implementirajte CDN (Cloudflare, CloudFront ili Fastly). Konfigurirajte rubno predmemoriranje za vašu odredišnu stranicu s TTL-om od najmanje 1 sat")
         : !cdn.edgeCaching
-          ? "Configure your CDN to cache landing page HTML at the edge. Set appropriate Cache-Control headers (e.g., public, max-age=3600)"
-          : "No action needed",
+          ? this.L("Configure your CDN to cache landing page HTML at the edge. Set appropriate Cache-Control headers (e.g., public, max-age=3600)", "Konfigurirajte CDN da predmemorira HTML odredišne stranice na rubu. Postavite odgovarajuće Cache-Control zaglavlja (npr. public, max-age=3600)")
+          : this.L("No action needed", "Nije potrebna akcija"),
       fixType: "infrastructure",
       technicalFix,
     });
@@ -634,18 +644,18 @@ class AdsLandingPageAnalyzer {
 
   private addCacheChecks(checks: AdsCheck[], cache: CacheAnalysis): void {
     checks.push({
-      name: "Cache Fragmentation — User-Agent Vary",
+      name: this.L("Cache Fragmentation — User-Agent Vary", "Fragmentacija predmemorije — User-Agent Vary"),
       status: cache.variesByUserAgent ? "WARNING" : "PASS",
       details: cache.variesByUserAgent
-        ? "Cache varies by User-Agent header — creates separate cache entries for each browser type"
-        : "Cache does not vary by User-Agent — good for Ads traffic consistency",
+        ? this.L("Cache varies by User-Agent header — creates separate cache entries for each browser type", "Predmemorija varira prema User-Agent zaglavlju — stvara zasebne unose za svaki tip preglednika")
+        : this.L("Cache does not vary by User-Agent — good for Ads traffic consistency", "Predmemorija ne varira prema User-Agentu — dobro za konzistentnost Ads prometa"),
       category: "caching",
       impact: cache.variesByUserAgent
-        ? "Google Ads bot uses a unique User-Agent — it always gets a cache MISS, hitting your slow origin server"
-        : "Consistent cache behavior across user agents",
+        ? this.L("Google Ads bot uses a unique User-Agent — it always gets a cache MISS, hitting your slow origin server", "Google Ads bot koristi jedinstven User-Agent — uvijek dobiva MISS predmemorije i pogađa spori izvorni poslužitelj")
+        : this.L("Consistent cache behavior across user agents", "Konzistentno ponašanje predmemorije za sve korisničke agente"),
       recommendation: cache.variesByUserAgent
-        ? "Remove User-Agent from Vary header. Use Vary: Accept-Encoding only. Handle device detection at the application level, not the cache level"
-        : "No action needed",
+        ? this.L("Remove User-Agent from Vary header. Use Vary: Accept-Encoding only. Handle device detection at the application level, not the cache level", "Uklonite User-Agent iz Vary zaglavlja. Koristite samo Vary: Accept-Encoding. Upravljajte detekcijom uređaja na razini aplikacije, ne predmemorije")
+        : this.L("No action needed", "Nije potrebna akcija"),
       fixType: "infrastructure",
       technicalFix: cache.variesByUserAgent ? [
         "WHY THIS HAPPENS: Your server or framework sends 'Vary: User-Agent' in response headers.",
@@ -676,18 +686,18 @@ class AdsLandingPageAnalyzer {
     });
 
     checks.push({
-      name: "Cache Fragmentation — Query String Busting",
+      name: this.L("Cache Fragmentation — Query String Busting", "Fragmentacija predmemorije — Query String"),
       status: cache.queryStringBusting ? "FAIL" : "PASS",
       details: cache.queryStringBusting
-        ? "Adding gclid/utm parameters causes cache misses — every Ads click bypasses cache"
-        : "Query parameters do not fragment cache — Ads traffic can benefit from cached responses",
+        ? this.L("Adding gclid/utm parameters causes cache misses — every Ads click bypasses cache", "Dodavanje parametara gclid/utm uzrokuje promašaje predmemorije — svaki klik na Ads zaobilazi predmemoriju")
+        : this.L("Query parameters do not fragment cache — Ads traffic can benefit from cached responses", "Parametri upita ne fragmentiraju predmemoriju — Ads promet može iskoristiti predmemorirane odgovore"),
       category: "caching",
       impact: cache.queryStringBusting
-        ? "Every Google Ads click generates a unique URL with gclid parameter. If your cache treats each as unique, Ads traffic NEVER gets a cached response"
-        : "Cache properly handles Ads tracking parameters",
+        ? this.L("Every Google Ads click generates a unique URL with gclid parameter. If your cache treats each as unique, Ads traffic NEVER gets a cached response", "Svaki klik na Google Ads generira jedinstven URL s parametrom gclid. Ako predmemorija tretira svaki kao jedinstven, Ads promet NIKAD ne dobiva predmemorirani odgovor")
+        : this.L("Cache properly handles Ads tracking parameters", "Predmemorija ispravno obrađuje Ads parametre praćenja"),
       recommendation: cache.queryStringBusting
-        ? "Configure CDN to exclude gclid, utm_source, utm_medium, utm_campaign, utm_content, utm_term from cache key. In Cloudflare: Page Rules > Cache Level: Ignore Query String"
-        : "No action needed",
+        ? this.L("Configure CDN to exclude gclid, utm_source, utm_medium, utm_campaign, utm_content, utm_term from cache key. In Cloudflare: Page Rules > Cache Level: Ignore Query String", "Konfigurirajte CDN da isključi gclid, utm_source, utm_medium, utm_campaign iz ključa predmemorije. U Cloudflareu: Page Rules > Cache Level: Ignore Query String")
+        : this.L("No action needed", "Nije potrebna akcija"),
       fixType: "infrastructure",
       technicalFix: cache.queryStringBusting ? [
         "WHY THIS HAPPENS: Your CDN/cache treats each unique URL (including query string) as a different page.",
@@ -733,20 +743,26 @@ class AdsLandingPageAnalyzer {
 
   private addRedirectChecks(checks: AdsCheck[], redirects: RedirectChain): void {
     checks.push({
-      name: "Redirect Chain",
+      name: this.L("Redirect Chain", "Lanac preusmjeravanja"),
       status: redirects.hops === 0 ? "PASS" : redirects.hops === 1 ? "WARNING" : "FAIL",
       details: redirects.hops === 0
-        ? "No redirects — page served directly"
-        : `${redirects.hops} redirect${redirects.hops > 1 ? "s" : ""} detected (${redirects.totalLatency}ms total latency): ${redirects.chain.join(" → ")}`,
+        ? this.L("No redirects — page served directly", "Nema preusmjeravanja — stranica se poslužuje izravno")
+        : this.lang === 'hr'
+          ? `Otkriveno ${redirects.hops} preusmjeravanje${redirects.hops > 1 ? "a" : ""} (${redirects.totalLatency}ms ukupno kašnjenje): ${redirects.chain.join(" → ")}`
+          : `${redirects.hops} redirect${redirects.hops > 1 ? "s" : ""} detected (${redirects.totalLatency}ms total latency): ${redirects.chain.join(" → ")}`,
       category: "delivery",
       impact: redirects.hops > 1
-        ? `Each redirect adds ${Math.round(redirects.totalLatency / redirects.hops)}ms+ latency. Multi-hop chains are a strong negative signal for Landing Page Experience`
+        ? this.lang === 'hr'
+          ? `Svako preusmjeravanje dodaje ${Math.round(redirects.totalLatency / redirects.hops)}ms+ kašnjenja. Lanci s više preskoka negativan su signal za iskustvo odredišne stranice`
+          : `Each redirect adds ${Math.round(redirects.totalLatency / redirects.hops)}ms+ latency. Multi-hop chains are a strong negative signal for Landing Page Experience`
         : redirects.hops === 1
-          ? "Single redirect adds unnecessary latency — Google measures time from click to visible content"
-          : "Direct delivery — fastest possible path from Ads click to content",
+          ? this.L("Single redirect adds unnecessary latency — Google measures time from click to visible content", "Jedno preusmjeravanje dodaje nepotrebno kašnjenje — Google mjeri vrijeme od klika do vidljivog sadržaja")
+          : this.L("Direct delivery — fastest possible path from Ads click to content", "Izravna isporuka — najbrži mogući put od klika na Ads do sadržaja"),
       recommendation: redirects.hops > 0
-        ? `Update your Google Ads destination URL to the final URL: ${redirects.chain[redirects.chain.length - 1]}. Eliminate intermediate redirects`
-        : "No action needed",
+        ? this.lang === 'hr'
+          ? `Ažurirajte odredišni URL Google Ads kampanje na konačni URL: ${redirects.chain[redirects.chain.length - 1]}. Uklonite međuredirekte`
+          : `Update your Google Ads destination URL to the final URL: ${redirects.chain[redirects.chain.length - 1]}. Eliminate intermediate redirects`
+        : this.L("No action needed", "Nije potrebna akcija"),
       fixType: redirects.hops > 0 ? "page-level" : "infrastructure",
       technicalFix: redirects.hops > 0 ? [
         `CURRENT REDIRECT CHAIN (${redirects.hops} hop${redirects.hops > 1 ? "s" : ""}, ${redirects.totalLatency}ms):`,
@@ -836,24 +852,30 @@ class AdsLandingPageAnalyzer {
     }
 
     checks.push({
-      name: "Hosting Infrastructure",
+      name: this.L("Hosting Infrastructure", "Infrastruktura hostinga"),
       status: hosting.isLikelyShared ? "FAIL" : hosting.coldCacheRisk ? "WARNING" : "PASS",
       details: hosting.isLikelyShared
-        ? `Shared hosting indicators: ${hosting.sharedHostingSignals.join("; ")}`
+        ? this.lang === 'hr'
+          ? `Pokazatelji dijeljenog hostinga: ${hosting.sharedHostingSignals.join("; ")}`
+          : `Shared hosting indicators: ${hosting.sharedHostingSignals.join("; ")}`
         : hosting.sharedHostingSignals.length > 0
-          ? `Minor concerns: ${hosting.sharedHostingSignals.join("; ")}`
-          : `Server: ${hosting.serverSignature || "Unknown"} — no shared hosting indicators`,
+          ? this.lang === 'hr'
+            ? `Manja upozorenja: ${hosting.sharedHostingSignals.join("; ")}`
+            : `Minor concerns: ${hosting.sharedHostingSignals.join("; ")}`
+          : this.lang === 'hr'
+            ? `Poslužitelj: ${hosting.serverSignature || "Nepoznat"} — bez pokazatelja dijeljenog hostinga`
+            : `Server: ${hosting.serverSignature || "Unknown"} — no shared hosting indicators`,
       category: "delivery",
       impact: hosting.isLikelyShared
-        ? "Shared hosting means your page competes for CPU/RAM with other sites. During Ads campaigns, traffic spikes cause cold-cache delays and timeouts"
+        ? this.L("Shared hosting means your page competes for CPU/RAM with other sites. During Ads campaigns, traffic spikes cause cold-cache delays and timeouts", "Dijeljeni hosting znači da vaša stranica dijeli CPU/RAM s drugim web-mjestima. Tijekom Ads kampanja, nagli porasti prometa uzrokuju kašnjenja i pauze")
         : hosting.coldCacheRisk
-          ? "Some hosting characteristics may cause slow responses under Ads traffic load"
-          : "Hosting infrastructure appears adequate for Ads traffic",
+          ? this.L("Some hosting characteristics may cause slow responses under Ads traffic load", "Neke karakteristike hostinga mogu uzrokovati spore odgovore pod opterećenjem Ads prometa")
+          : this.L("Hosting infrastructure appears adequate for Ads traffic", "Infrastruktura hostinga čini se adekvatnom za Ads promet"),
       recommendation: hosting.isLikelyShared
-        ? "Add a CDN layer (Cloudflare free tier) and enable server-side caching on your current host to handle Ads traffic spikes without slowdowns"
+        ? this.L("Add a CDN layer (Cloudflare free tier) and enable server-side caching on your current host to handle Ads traffic spikes without slowdowns", "Dodajte CDN sloj (Cloudflare besplatni plan) i omogućite predmemoriranje na poslužitelju za upravljanje naglim porastima Ads prometa")
         : hosting.coldCacheRisk
-          ? "Add server-side caching (Redis/Varnish) or CDN edge caching to handle Ads traffic spikes"
-          : "No action needed",
+          ? this.L("Add server-side caching (Redis/Varnish) or CDN edge caching to handle Ads traffic spikes", "Dodajte predmemoriranje na poslužitelju (Redis/Varnish) ili CDN rubno predmemoriranje za upravljanje Ads prometom")
+          : this.L("No action needed", "Nije potrebna akcija"),
       fixType: "infrastructure",
       technicalFix,
     });
@@ -861,18 +883,18 @@ class AdsLandingPageAnalyzer {
 
   private addMobileUxChecks(checks: AdsCheck[], mobileUx: MobileUxAnalysis): void {
     checks.push({
-      name: "Keyword-to-Content Relevance (Above Fold)",
+      name: this.L("Keyword-to-Content Relevance (Above Fold)", "Relevantnost ključnih riječi (Above Fold)"),
       status: mobileUx.keywordInAboveFold ? "PASS" : "FAIL",
       details: mobileUx.keywordInAboveFold
-        ? "Page title keywords found in above-the-fold content — message match is strong"
-        : "Page title keywords NOT found in visible above-fold content — visitors see a disconnect between ad and landing page",
+        ? this.L("Page title keywords found in above-the-fold content — message match is strong", "Ključne riječi naslova pronađene u vidljivom sadržaju — podudaranje poruke je snažno")
+        : this.L("Page title keywords NOT found in visible above-fold content — visitors see a disconnect between ad and landing page", "Ključne riječi naslova NISU pronađene u vidljivom sadržaju — posjetitelji vide nesukladnost između oglasa i odredišne stranice"),
       category: "ux",
       impact: !mobileUx.keywordInAboveFold
-        ? "Google checks if the landing page content matches the ad's keywords. Poor message match directly lowers Quality Score"
-        : "Strong message match — positive signal for Ad Relevance and Landing Page Experience",
+        ? this.L("Google checks if the landing page content matches the ad's keywords. Poor message match directly lowers Quality Score", "Google provjerava podudara li se sadržaj odredišne stranice s ključnim riječima oglasa. Loše podudaranje poruke izravno snižava Quality Score")
+        : this.L("Strong message match — positive signal for Ad Relevance and Landing Page Experience", "Snažno podudaranje poruke — pozitivan signal za relevantnost oglasa i iskustvo odredišne stranice"),
       recommendation: !mobileUx.keywordInAboveFold
-        ? "Add your primary ad keyword in the H1 heading and first paragraph. Ensure the above-fold content directly addresses what the ad promises"
-        : "No action needed",
+        ? this.L("Add your primary ad keyword in the H1 heading and first paragraph. Ensure the above-fold content directly addresses what the ad promises", "Dodajte primarnu ključnu riječ oglasa u H1 naslov i prvi odlomak. Osigurajte da vidljivi sadržaj izravno odgovara obećanju oglasa")
+        : this.L("No action needed", "Nije potrebna akcija"),
       fixType: "page-level",
       technicalFix: !mobileUx.keywordInAboveFold ? [
         "WHAT GOOGLE LOOKS FOR: The exact keywords from your ad headline should appear",
@@ -907,20 +929,24 @@ class AdsLandingPageAnalyzer {
     });
 
     checks.push({
-      name: "CTA Visibility Without Scroll",
+      name: this.L("CTA Visibility Without Scroll", "Vidljivost CTA-a bez pomicanja"),
       status: mobileUx.ctaVisibleAboveFold ? "PASS" : mobileUx.ctaElements.length > 0 ? "WARNING" : "FAIL",
       details: mobileUx.ctaVisibleAboveFold
-        ? `CTA visible above fold: "${mobileUx.ctaElements[0] || "detected"}"`
+        ? this.lang === 'hr'
+          ? `CTA vidljiv iznad ruba: "${mobileUx.ctaElements[0] || "otkriven"}"`
+          : `CTA visible above fold: "${mobileUx.ctaElements[0] || "detected"}"`
         : mobileUx.ctaElements.length > 0
-          ? `CTAs found but may require scrolling: ${mobileUx.ctaElements.slice(0, 3).join(", ")}`
-          : "No clear CTA found on the page",
+          ? this.lang === 'hr'
+            ? `Pronađeni CTA-ovi ali mogu zahtijevati pomicanje: ${mobileUx.ctaElements.slice(0, 3).join(", ")}`
+            : `CTAs found but may require scrolling: ${mobileUx.ctaElements.slice(0, 3).join(", ")}`
+          : this.L("No clear CTA found on the page", "Na stranici nije pronađen jasan CTA"),
       category: "ux",
       impact: !mobileUx.ctaVisibleAboveFold
-        ? "Ads traffic expects immediate action path. If users must scroll to find the CTA, bounce rates increase and Google detects poor engagement"
-        : "CTA immediately visible — reduces bounce rate from Ads traffic",
+        ? this.L("Ads traffic expects immediate action path. If users must scroll to find the CTA, bounce rates increase and Google detects poor engagement", "Ads promet očekuje izravan put do akcije. Ako korisnici moraju pomicati stranicu da pronađu CTA, stope odbijanja rastu i Google otkriva loše angažiranje")
+        : this.L("CTA immediately visible — reduces bounce rate from Ads traffic", "CTA odmah vidljiv — smanjuje stopu odbijanja Ads prometa"),
       recommendation: !mobileUx.ctaVisibleAboveFold
-        ? "Place your primary CTA (button or form) in the hero section, visible without scrolling on mobile. Use contrasting colors and clear action text"
-        : "No action needed",
+        ? this.L("Place your primary CTA (button or form) in the hero section, visible without scrolling on mobile. Use contrasting colors and clear action text", "Postavite primarni CTA (gumb ili obrazac) u hero sekciju, vidljiv bez pomicanja na mobilnim uređajima. Koristite kontrastne boje i jasan tekst akcije")
+        : this.L("No action needed", "Nije potrebna akcija"),
       fixType: "page-level",
       technicalFix: !mobileUx.ctaVisibleAboveFold ? [
         "STEP 1 — Place a clear CTA button in the hero section:",
@@ -970,18 +996,20 @@ class AdsLandingPageAnalyzer {
 
     const layoutIssues = mobileUx.layoutShiftRisks.filter(r => !r.includes("No major"));
     checks.push({
-      name: "Layout Stability (CLS Risk)",
+      name: this.L("Layout Stability (CLS Risk)", "Stabilnost izgleda (CLS rizik)"),
       status: layoutIssues.length === 0 ? "PASS" : layoutIssues.length <= 2 ? "WARNING" : "FAIL",
       details: layoutIssues.length === 0
-        ? "No major layout shift risks detected"
-        : `${layoutIssues.length} layout shift risk${layoutIssues.length > 1 ? "s" : ""}: ${layoutIssues.join("; ")}`,
+        ? this.L("No major layout shift risks detected", "Nisu otkriveni značajni rizici pomaka izgleda")
+        : this.lang === 'hr'
+          ? `${layoutIssues.length} rizik${layoutIssues.length > 1 ? "a" : ""} pomaka izgleda: ${layoutIssues.join("; ")}`
+          : `${layoutIssues.length} layout shift risk${layoutIssues.length > 1 ? "s" : ""}: ${layoutIssues.join("; ")}`,
       category: "ux",
       impact: layoutIssues.length > 0
-        ? "Layout shifts frustrate users and cause mis-clicks. Google measures CLS as part of Core Web Vitals — directly impacts Landing Page Experience"
-        : "Stable layout — good user experience for Ads visitors",
+        ? this.L("Layout shifts frustrate users and cause mis-clicks. Google measures CLS as part of Core Web Vitals — directly impacts Landing Page Experience", "Pomaci izgleda frustriraju korisnike i uzrokuju pogrešne klikove. Google mjeri CLS kao dio Core Web Vitals — izravno utječe na iskustvo odredišne stranice")
+        : this.L("Stable layout — good user experience for Ads visitors", "Stabilan izgled — dobro korisničko iskustvo za posjetitelje koji dolaze putem Ads-a"),
       recommendation: layoutIssues.length > 0
-        ? "Add explicit width and height attributes to all images and iframes. Preload web fonts. Reserve space for dynamic content and ads"
-        : "No action needed",
+        ? this.L("Add explicit width and height attributes to all images and iframes. Preload web fonts. Reserve space for dynamic content and ads", "Dodajte eksplicitne atribute width i height svim slikama i iframeovima. Prethodno učitajte web fontove. Rezervirajte prostor za dinamični sadržaj i oglase")
+        : this.L("No action needed", "Nije potrebna akcija"),
       fixType: "page-level",
       technicalFix: layoutIssues.length > 0 ? [
         "DETECTED ISSUES: " + layoutIssues.join(" | "),
@@ -1072,22 +1100,22 @@ class AdsLandingPageAnalyzer {
 
       if (err === "RATE_LIMITED") {
         checks.push({
-          name: "Real-User Field Data (CrUX)",
+          name: this.L("Real-User Field Data (CrUX)", "Podaci stvarnih korisnika (CrUX)"),
           status: "PASS",
-          details: "PageSpeed Insights request limit reached. CrUX field data could not be retrieved at this time.",
+          details: this.L("PageSpeed Insights request limit reached. CrUX field data could not be retrieved at this time.", "Dostignut limit zahtjeva PageSpeed Insights. CrUX podaci trenutno ne mogu biti dohvaćeni."),
           category: "performance",
-          impact: "This is a temporary API quota issue, not a reflection of your page quality.",
-          recommendation: "Try again later. Adding a PAGESPEED_API_KEY environment variable gives a higher quota and avoids this limit.",
+          impact: this.L("This is a temporary API quota issue, not a reflection of your page quality.", "Ovo je privremeni problem s API kvotom, a ne odraz kvalitete vaše stranice."),
+          recommendation: this.L("Try again later. Adding a PAGESPEED_API_KEY environment variable gives a higher quota and avoids this limit.", "Pokušajte ponovo kasnije. Dodavanje PAGESPEED_API_KEY okružne varijable daje veću kvotu."),
           fixType: "page-level",
         });
       } else if (err === "NO_FIELD_DATA") {
         checks.push({
-          name: "Real-User Field Data (CrUX)",
+          name: this.L("Real-User Field Data (CrUX)", "Podaci stvarnih korisnika (CrUX)"),
           status: "PASS",
-          details: "Insufficient Chrome UX Report traffic data is currently available for this URL or origin.",
+          details: this.L("Insufficient Chrome UX Report traffic data is currently available for this URL or origin.", "Trenutno nema dovoljno podataka Chrome UX Reporta za ovaj URL ili domenu."),
           category: "performance",
-          impact: "CrUX field data depends on real-world Chrome visitor volume over time. This does not necessarily indicate a website quality issue. Google Ads falls back to lab data and historical signals until enough real-user data accumulates.",
-          recommendation: "Drive consistent organic and paid traffic to this URL so it accumulates enough Chrome user data for CrUX (roughly 28 days of visits). Until then, optimise lab-measured Core Web Vitals on a real mid-tier mobile device.",
+          impact: this.L("CrUX field data depends on real-world Chrome visitor volume over time. This does not necessarily indicate a website quality issue. Google Ads falls back to lab data and historical signals until enough real-user data accumulates.", "CrUX podaci ovise o stvarnom broju Chrome posjetitelja. To ne mora nužno ukazivati na problem s kvalitetom stranice. Google Ads koristi laboratorijske podatke dok se ne nakupe dovoljni stvarni podaci."),
+          recommendation: this.L("Drive consistent organic and paid traffic to this URL so it accumulates enough Chrome user data for CrUX (roughly 28 days of visits). Until then, optimise lab-measured Core Web Vitals on a real mid-tier mobile device.", "Dovedite konzistentan organski i plaćeni promet na ovaj URL kako bi se nakupili CrUX podaci (otprilike 28 dana posjeta). Do tada optimizirajte Core Web Vitals izmjerene u laboratorijskim uvjetima."),
           fixType: "page-level",
           technicalFix:
             "STEP 1 — Verify CrUX status manually:\nhttps://pagespeed.web.dev/analysis?url=<your-url>\nIf the 'Discover what your real users are experiencing' section is empty, you have no URL-level CrUX.\n\nSTEP 2 — Drive traffic. CrUX needs roughly 28 days of consistent Chrome user visits to populate. Until then Google Ads uses origin-level CrUX (whole-domain average) as a fallback. If your homepage is slow on real devices, this landing page inherits that.\n\nSTEP 3 — Test on a real mid-tier Android over throttled 4G (Chrome DevTools → Performance → Slow 4G + 4× CPU). Aim for LCP < 2.5s, CLS < 0.1, INP < 200ms.",
@@ -1101,12 +1129,12 @@ class AdsLandingPageAnalyzer {
             ? `PageSpeed Insights returned HTTP ${err.replace("HTTP_ERROR_", "")}.`
             : "PageSpeed Insights data could not be retrieved.";
         checks.push({
-          name: "Real-User Field Data (CrUX)",
+          name: this.L("Real-User Field Data (CrUX)", "Podaci stvarnih korisnika (CrUX)"),
           status: "PASS",
           details: humanMsg,
           category: "performance",
-          impact: "This is a temporary retrieval issue, not a reflection of your page quality.",
-          recommendation: "Re-run the analysis to try again. If the problem persists, verify that the URL is publicly accessible.",
+          impact: this.L("This is a temporary retrieval issue, not a reflection of your page quality.", "Ovo je privremeni problem s dohvatom, a ne odraz kvalitete vaše stranice."),
+          recommendation: this.L("Re-run the analysis to try again. If the problem persists, verify that the URL is publicly accessible.", "Pokrenite analizu ponovo. Ako se problem nastavi, provjerite je li URL javno dostupan."),
           fixType: "page-level",
         });
       }
@@ -1123,16 +1151,20 @@ class AdsLandingPageAnalyzer {
       const status: AdsCheck["status"] =
         fieldData.lcp.category === "FAST" ? "PASS" : fieldData.lcp.category === "AVERAGE" ? "WARNING" : "FAIL";
       checks.push({
-        name: "Largest Contentful Paint (field)",
+        name: this.L("Largest Contentful Paint (field)", "Najveće prikazivanje sadržaja — stvarni podaci"),
         status,
-        details: `Real-user p75 LCP: ${(lcpMs / 1000).toFixed(2)}s — ${fieldData.lcp.category}. Source: ${sourceLabel}.`,
+        details: this.lang === 'hr'
+          ? `Stvarni korisnici p75 LCP: ${(lcpMs / 1000).toFixed(2)}s — ${fieldData.lcp.category}. Izvor: ${sourceLabel}.`
+          : `Real-user p75 LCP: ${(lcpMs / 1000).toFixed(2)}s — ${fieldData.lcp.category}. Source: ${sourceLabel}.`,
         category: "performance",
-        impact:
+        impact: this.L(
           "LCP is the single biggest Core Web Vital signal Google Ads uses for Landing Page Experience. p75 LCP > 2.5s on mobile is a primary cause of 'Below average' ratings.",
+          "LCP je najvažniji Core Web Vitals signal koji Google Ads koristi za iskustvo odredišne stranice. p75 LCP > 2,5 s na mobilnim uređajima primarni je uzrok ocjena 'Ispod prosjeka'."
+        ),
         recommendation:
           status === "PASS"
-            ? "LCP is healthy."
-            : "Optimize the hero image: serve as WebP/AVIF, set explicit width/height, preload it, lazy-load everything else.",
+            ? this.L("LCP is healthy.", "LCP je u redu.")
+            : this.L("Optimize the hero image: serve as WebP/AVIF, set explicit width/height, preload it, lazy-load everything else.", "Optimizirajte hero sliku: poslužujte kao WebP/AVIF, postavite eksplicitne width/height, prethodno je učitajte, a sve ostalo lijenо učitavajte."),
         fixType: "page-level",
         technicalFix:
           status === "PASS"
@@ -1146,16 +1178,20 @@ class AdsLandingPageAnalyzer {
       const status: AdsCheck["status"] =
         fieldData.cls.category === "FAST" ? "PASS" : fieldData.cls.category === "AVERAGE" ? "WARNING" : "FAIL";
       checks.push({
-        name: "Cumulative Layout Shift (field)",
+        name: this.L("Cumulative Layout Shift (field)", "Kumulativni pomak izgleda — stvarni podaci"),
         status,
-        details: `Real-user p75 CLS: ${clsVal.toFixed(3)} — ${fieldData.cls.category}.`,
+        details: this.lang === 'hr'
+          ? `Stvarni korisnici p75 CLS: ${clsVal.toFixed(3)} — ${fieldData.cls.category}.`
+          : `Real-user p75 CLS: ${clsVal.toFixed(3)} — ${fieldData.cls.category}.`,
         category: "ux",
-        impact:
+        impact: this.L(
           "Layout shifts during page load make ad visitors mis-tap and bounce. Google directly penalizes CLS > 0.1 in Landing Page Experience.",
+          "Pomaci izgleda tijekom učitavanja stranice uzrokuju pogrešne klikove i odlazak. Google izravno kažnjava CLS > 0,1 u iskustvu odredišne stranice."
+        ),
         recommendation:
           status === "PASS"
-            ? "Layout stability is good."
-            : "Add explicit width/height to all media, reserve space for ads/embeds, avoid injecting content above existing content.",
+            ? this.L("Layout stability is good.", "Stabilnost izgleda je dobra.")
+            : this.L("Add explicit width/height to all media, reserve space for ads/embeds, avoid injecting content above existing content.", "Dodajte eksplicitne width/height svim medijima, rezervirajte prostor za oglase/ugrađeni sadržaj, izbjegavajte ubacivanje sadržaja iznad postojećeg."),
         fixType: "page-level",
         technicalFix:
           status === "PASS"
@@ -1169,16 +1205,20 @@ class AdsLandingPageAnalyzer {
       const status: AdsCheck["status"] =
         fieldData.inp.category === "FAST" ? "PASS" : fieldData.inp.category === "AVERAGE" ? "WARNING" : "FAIL";
       checks.push({
-        name: "Interaction to Next Paint (field)",
+        name: this.L("Interaction to Next Paint (field)", "Interakcija do sljedećeg prikaza — stvarni podaci"),
         status,
-        details: `Real-user p75 INP: ${Math.round(inpMs)}ms — ${fieldData.inp.category}.`,
+        details: this.lang === 'hr'
+          ? `Stvarni korisnici p75 INP: ${Math.round(inpMs)}ms — ${fieldData.inp.category}.`
+          : `Real-user p75 INP: ${Math.round(inpMs)}ms — ${fieldData.inp.category}.`,
         category: "performance",
-        impact:
+        impact: this.L(
           "INP measures real-world responsiveness. Slow INP correlates strongly with bounces from ad clicks, which Google tracks as a negative engagement signal.",
+          "INP mjeri odzivnost u stvarnom svijetu. Spori INP snažno korelira s odbijanjem od Ads klikova, što Google prati kao negativan signal angažmana."
+        ),
         recommendation:
           status === "PASS"
-            ? "Interaction responsiveness is healthy."
-            : "Reduce main-thread work: split large JS bundles, defer third-party tags, avoid heavy work in click/input handlers.",
+            ? this.L("Interaction responsiveness is healthy.", "Odzivnost interakcija je dobra.")
+            : this.L("Reduce main-thread work: split large JS bundles, defer third-party tags, avoid heavy work in click/input handlers.", "Smanjite rad na glavnoj niti: dijelite velike JS pakete, odgodite tagove trećih strana, izbjegavajte teški rad u rukovateljima klikova/unosa."),
         fixType: "page-level",
         technicalFix:
           status === "PASS"
@@ -1235,37 +1275,41 @@ class AdsLandingPageAnalyzer {
     const infraFails = failedChecks.filter(c => c.fixType === "infrastructure");
     if (infraFails.length > 0) {
       recs.push({
-        title: "Fix Critical Infrastructure Issues",
-        description: "Your server infrastructure is causing slow delivery for Google Ads traffic. These issues directly lower your Quality Score.",
+        title: this.L("Fix Critical Infrastructure Issues", "Riješite kritične infrastrukturne probleme"),
+        description: this.L("Your server infrastructure is causing slow delivery for Google Ads traffic. These issues directly lower your Quality Score.", "Vaša serverska infrastruktura uzrokuje sporu isporuku za Google Ads promet. Ovi problemi izravno snižavaju vaš Quality Score."),
         priority: "Critical",
         fixType: "infrastructure",
-        impact: "Fixing infrastructure issues can improve TTFB by 50-80%, directly raising your Landing Page Experience rating and lowering CPC",
+        impact: this.L("Fixing infrastructure issues can improve TTFB by 50-80%, directly raising your Landing Page Experience rating and lowering CPC", "Rješavanje infrastrukturnih problema može poboljšati TTFB za 50–80%, izravno podižući ocjenu Landing Page Experience i snižavajući CPC"),
         actionItems: infraFails.map(c => `${c.name}: ${c.recommendation}`),
       });
     }
 
     if (cache.fragmented) {
       recs.push({
-        title: "Resolve Cache Fragmentation",
-        description: "Your caching setup treats Ads traffic differently from organic traffic, causing cache misses for every paid click.",
+        title: this.L("Resolve Cache Fragmentation", "Riješite fragmentaciju cachea"),
+        description: this.L("Your caching setup treats Ads traffic differently from organic traffic, causing cache misses for every paid click.", "Vaše postavke cachea tretiraju Ads promet drugačije od organskog prometa, uzrokujući cache promašaje za svaki plaćeni klik."),
         priority: "High",
         fixType: "infrastructure",
-        impact: "Fixing cache fragmentation ensures Ads traffic benefits from cached responses, reducing TTFB by 60-90% for repeat visitors",
+        impact: this.L("Fixing cache fragmentation ensures Ads traffic benefits from cached responses, reducing TTFB by 60-90% for repeat visitors", "Rješavanje fragmentacije cachea osigurava da Ads promet ima koristi od keširanih odgovora, smanjujući TTFB za 60–90% za ponovne posjetitelje"),
         actionItems: cache.details.filter(d => !d.includes("No cache")),
       });
     }
 
     if (redirects.hasRedirects) {
       recs.push({
-        title: "Eliminate Redirect Chain",
-        description: `Your landing page has ${redirects.hops} redirect(s) adding ${redirects.totalLatency}ms of unnecessary latency before content is served.`,
+        title: this.L("Eliminate Redirect Chain", "Eliminirajte lanac preusmjeravanja"),
+        description: this.lang === 'hr'
+          ? `Vaša odredišna stranica ima ${redirects.hops} preusmjeravanje(a) koja dodaju ${redirects.totalLatency}ms nepotrebne latencije prije posluživanja sadržaja.`
+          : `Your landing page has ${redirects.hops} redirect(s) adding ${redirects.totalLatency}ms of unnecessary latency before content is served.`,
         priority: redirects.hops > 1 ? "Critical" : "High",
         fixType: "page-level",
-        impact: "Each redirect adds 100-500ms of latency. Eliminating redirects provides instant TTFB improvement",
+        impact: this.L("Each redirect adds 100-500ms of latency. Eliminating redirects provides instant TTFB improvement", "Svako preusmjeravanje dodaje 100–500ms latencije. Eliminiranje preusmjeravanja pruža trenutno poboljšanje TTFB-a"),
         actionItems: [
-          `Update Google Ads destination URL to: ${redirects.chain[redirects.chain.length - 1]}`,
-          "Set up permanent 301 redirects only where absolutely necessary",
-          "Never chain multiple redirects (HTTP → HTTPS → www → final page)",
+          this.lang === 'hr'
+            ? `Ažurirajte odredišni URL Google Adsa na: ${redirects.chain[redirects.chain.length - 1]}`
+            : `Update Google Ads destination URL to: ${redirects.chain[redirects.chain.length - 1]}`,
+          this.L("Set up permanent 301 redirects only where absolutely necessary", "Postavite trajna 301 preusmjeravanja samo tamo gdje je to apsolutno nužno"),
+          this.L("Never chain multiple redirects (HTTP → HTTPS → www → final page)", "Nikada ne ulančavajte višestruka preusmjeravanja (HTTP → HTTPS → www → finalna stranica)"),
         ],
       });
     }
@@ -1273,27 +1317,27 @@ class AdsLandingPageAnalyzer {
     const pageFails = failedChecks.filter(c => c.fixType === "page-level" && c.category === "ux");
     if (pageFails.length > 0) {
       recs.push({
-        title: "Improve Landing Page UX for Ads Traffic",
-        description: "Your page content and layout need optimization for paid traffic visitors who expect immediate relevance and clear action paths.",
+        title: this.L("Improve Landing Page UX for Ads Traffic", "Poboljšajte UX odredišne stranice za Ads promet"),
+        description: this.L("Your page content and layout need optimization for paid traffic visitors who expect immediate relevance and clear action paths.", "Sadržaj i raspored vaše stranice trebaju optimizaciju za posjetitelje plaćenog prometa koji očekuju trenutnu relevantnost i jasne akcijske puteve."),
         priority: "High",
         fixType: "page-level",
-        impact: "Better message match and CTA visibility reduce bounce rates by 20-40%, which Google tracks as an engagement signal for Quality Score",
+        impact: this.L("Better message match and CTA visibility reduce bounce rates by 20-40%, which Google tracks as an engagement signal for Quality Score", "Bolje podudaranje poruka i vidljivost CTA smanjuju stopu napuštanja za 20–40%, što Google prati kao signal angažmana za Quality Score"),
         actionItems: pageFails.map(c => `${c.name}: ${c.recommendation}`),
       });
     }
 
     if (hosting.isLikelyShared) {
       recs.push({
-        title: "Improve Hosting Performance",
-        description: "Shared hosting patterns detected. Your server may struggle under Ads traffic spikes, causing inconsistent page load times that hurt Quality Score.",
+        title: this.L("Improve Hosting Performance", "Poboljšajte performanse hostinga"),
+        description: this.L("Shared hosting patterns detected. Your server may struggle under Ads traffic spikes, causing inconsistent page load times that hurt Quality Score.", "Otkriveni su obrasci dijeljenog hostinga. Vaš server može imati poteškoća pod naletima Ads prometa, uzrokujući nekonzistentna vremena učitavanja stranice koja narušavaju Quality Score."),
         priority: "Critical",
         fixType: "infrastructure",
-        impact: "Adding a CDN layer + server-side caching typically improves TTFB by 60-80% and eliminates cold-cache delays during campaign bursts",
+        impact: this.L("Adding a CDN layer + server-side caching typically improves TTFB by 60-80% and eliminates cold-cache delays during campaign bursts", "Dodavanje CDN sloja + poslužiteljsko keširanje tipično poboljšava TTFB za 60–80% i eliminira kašnjenja hladnog cachea tijekom kampanjskih naleta"),
         actionItems: [
-          "Add Cloudflare (free tier) as a CDN — update nameservers and enable 'Cache Everything' for your landing page",
-          "Enable a caching plugin on your current host (e.g. W3 Total Cache for WordPress)",
-          "Enable OPcache and Gzip/Brotli compression via your host's control panel",
-          "Test TTFB from multiple locations using tools.keycdn.com/performance — target under 400ms",
+          this.L("Add Cloudflare (free tier) as a CDN — update nameservers and enable 'Cache Everything' for your landing page", "Dodajte Cloudflare (besplatni plan) kao CDN — ažurirajte nameservere i omogućite 'Cache Everything' za vašu odredišnu stranicu"),
+          this.L("Enable a caching plugin on your current host (e.g. W3 Total Cache for WordPress)", "Omogućite dodatak za keširanje na vašem trenutnom hostu (npr. W3 Total Cache za WordPress)"),
+          this.L("Enable OPcache and Gzip/Brotli compression via your host's control panel", "Omogućite OPcache i Gzip/Brotli kompresiju putem kontrolne ploče vašeg hosta"),
+          this.L("Test TTFB from multiple locations using tools.keycdn.com/performance — target under 400ms", "Testirajte TTFB s više lokacija pomoću tools.keycdn.com/performance — cilj je ispod 400ms"),
         ],
       });
     }
@@ -1303,22 +1347,22 @@ class AdsLandingPageAnalyzer {
 
     if (infraWarnings.length > 0 && recs.length < 4) {
       recs.push({
-        title: "Optimize Infrastructure Performance",
-        description: "Minor infrastructure issues that could be improved for better Ads performance.",
+        title: this.L("Optimize Infrastructure Performance", "Optimizirajte infrastrukturne performanse"),
+        description: this.L("Minor infrastructure issues that could be improved for better Ads performance.", "Manji infrastrukturni problemi koji se mogu poboljšati za bolje Ads performanse."),
         priority: "Medium",
         fixType: "infrastructure",
-        impact: "Addressing these issues helps maintain consistent performance as your Ads traffic scales",
+        impact: this.L("Addressing these issues helps maintain consistent performance as your Ads traffic scales", "Rješavanje ovih problema pomaže u održavanju konzistentnih performansi kako vaš Ads promet raste"),
         actionItems: infraWarnings.map(c => `${c.name}: ${c.recommendation}`),
       });
     }
 
     if (pageWarnings.length > 0 && recs.length < 5) {
       recs.push({
-        title: "Optimize Page-Level Experience",
-        description: "Minor UX improvements that can boost engagement metrics for Ads traffic.",
+        title: this.L("Optimize Page-Level Experience", "Optimizirajte iskustvo na razini stranice"),
+        description: this.L("Minor UX improvements that can boost engagement metrics for Ads traffic.", "Manja UX poboljšanja koja mogu povećati metrike angažmana za Ads promet."),
         priority: "Medium",
         fixType: "page-level",
-        impact: "Small UX improvements compound over time, gradually improving Quality Score and reducing CPC",
+        impact: this.L("Small UX improvements compound over time, gradually improving Quality Score and reducing CPC", "Mala UX poboljšanja se akumuliraju s vremenom, postupno poboljšavajući Quality Score i smanjujući CPC"),
         actionItems: pageWarnings.map(c => `${c.name}: ${c.recommendation}`),
       });
     }

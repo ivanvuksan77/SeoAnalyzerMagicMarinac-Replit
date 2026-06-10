@@ -1,0 +1,1 @@
+- [Bilingual analyzer pattern](bilingual-analyzers.md) — all 5 analyzers + siteTools use `private lang`/`L(en,hr)` pattern; technicalFix blocks stay English-only.
