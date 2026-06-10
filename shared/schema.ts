@@ -573,9 +573,22 @@ export interface SitemapResult {
   issues: string[];
 }
 
+export interface LlmsFileCheck {
+  url: string;
+  exists: boolean;
+}
+
+export interface LlmsFilesResult {
+  llmsTxt: LlmsFileCheck;
+  llmsFullTxt: LlmsFileCheck;
+  llmInfoJson: LlmsFileCheck;
+  knowledgeEndpoint: LlmsFileCheck;
+}
+
 export interface SitemapValidatorResult {
   robotsTxt: RobotsTxtResult;
   sitemap: SitemapResult;
+  llmsFiles: LlmsFilesResult;
   score: number;
   summary: string;
   recommendations: string[];

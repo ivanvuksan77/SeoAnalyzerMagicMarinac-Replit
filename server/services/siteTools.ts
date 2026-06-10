@@ -6,6 +6,8 @@ import {
   ImageOptimizationResult,
   InternalLink,
   InternalLinkingResult,
+  LlmsFileCheck,
+  LlmsFilesResult,
   RobotsTxtResult,
   SitemapResult,
   SitemapValidatorResult,
@@ -474,7 +476,10 @@ class SiteToolsService {
     this.lang = lang;
     const baseUrl = getBaseUrl(url);
 
-    const robotsTxt = await this.analyzeRobotsTxt(baseUrl);
+    const [robotsTxt, llmsFiles] = await Promise.all([
+      this.analyzeRobotsTxt(baseUrl),
+      this.checkLlmsFiles(baseUrl),
+    ]);
     const sitemapUrl = robotsTxt.sitemapReferences.length > 0
       ? robotsTxt.sitemapReferences[0]
       : `${baseUrl}/sitemap.xml`;
@@ -534,21 +539,78 @@ class SiteToolsService {
       issues.push(...robotsTxt.issues);
     }
 
+    if (!llmsFiles.llmsTxt.exists) {
+      recommendations.push(this.L(
+        `Create a llms.txt file to guide AI crawlers:\n\n# Your Site Name\n> Brief description of what your site covers.\n\n## Allowed\n- /blog/\n- /docs/\n\n## Disallowed\n- /private/\n- /admin/\n\nPlace it at: ${llmsFiles.llmsTxt.url}`,
+        `Stvorite llms.txt datoteku za usmjeravanje AI crawlera:\n\n# Naziv vaše stranice\n> Kratki opis o čemu govori vaša stranica.\n\n## Dopušteno\n- /blog/\n- /docs/\n\n## Zabranjeno\n- /private/\n- /admin/\n\nPostavite na: ${llmsFiles.llmsTxt.url}`
+      ));
+    }
+    if (llmsFiles.llmsTxt.exists && !llmsFiles.llmsFullTxt.exists) {
+      recommendations.push(this.L(
+        `Consider adding llms-full.txt with your complete content for AI training and retrieval. Place it at: ${llmsFiles.llmsFullTxt.url}`,
+        `Razmislite o dodavanju llms-full.txt s cjelokupnim sadržajem za AI treniranje i dohvat. Postavite na: ${llmsFiles.llmsFullTxt.url}`
+      ));
+    }
+
     let score = 0;
-    if (robotsTxt.exists) score += 20;
-    if (robotsTxt.exists && !robotsTxt.hasWildcardBlock) score += 10;
-    if (robotsTxt.exists && robotsTxt.sitemapReferences.length > 0) score += 10;
-    if (robotsTxt.exists && !robotsTxt.blocksImportantPaths) score += 10;
-    if (sitemap.exists) score += 20;
-    if (sitemap.exists && sitemap.urlCount > 0) score += 10;
-    if (sitemap.exists && sitemap.hasLastmod) score += 10;
-    if (sitemap.exists && sitemap.issues.length === 0) score += 10;
+    if (robotsTxt.exists) score += 15;
+    if (robotsTxt.exists && !robotsTxt.hasWildcardBlock) score += 8;
+    if (robotsTxt.exists && robotsTxt.sitemapReferences.length > 0) score += 8;
+    if (robotsTxt.exists && !robotsTxt.blocksImportantPaths) score += 9;
+    if (sitemap.exists) score += 15;
+    if (sitemap.exists && sitemap.urlCount > 0) score += 8;
+    if (sitemap.exists && sitemap.hasLastmod) score += 8;
+    if (sitemap.exists && sitemap.issues.length === 0) score += 9;
+    if (llmsFiles.llmsTxt.exists) score += 10;
+    if (llmsFiles.llmsFullTxt.exists) score += 5;
+    if (llmsFiles.llmInfoJson.exists) score += 3;
+    if (llmsFiles.knowledgeEndpoint.exists) score += 2;
+
+    const llmsFound = [llmsFiles.llmsTxt, llmsFiles.llmsFullTxt, llmsFiles.llmInfoJson, llmsFiles.knowledgeEndpoint].filter(f => f.exists).length;
 
     const summary = this.lang === 'hr'
-      ? `Robots.txt: ${robotsTxt.exists ? "Pronađen" : "Nedostaje"}. Sitemap: ${sitemap.exists ? `Pronađen s ${sitemap.urlCount} URL-ova` : "Nedostaje"}. Ocjena: ${score}/100.`
-      : `Robots.txt: ${robotsTxt.exists ? "Found" : "Missing"}. Sitemap: ${sitemap.exists ? `Found with ${sitemap.urlCount} URLs` : "Missing"}. Score: ${score}/100.`;
+      ? `Robots.txt: ${robotsTxt.exists ? "Pronađen" : "Nedostaje"}. Sitemap: ${sitemap.exists ? `Pronađen s ${sitemap.urlCount} URL-ova` : "Nedostaje"}. AI datoteke: ${llmsFound}/4 pronađeno. Ocjena: ${score}/100.`
+      : `Robots.txt: ${robotsTxt.exists ? "Found" : "Missing"}. Sitemap: ${sitemap.exists ? `Found with ${sitemap.urlCount} URLs` : "Missing"}. AI files: ${llmsFound}/4 found. Score: ${score}/100.`;
 
-    return { robotsTxt, sitemap, score, summary, recommendations };
+    return { robotsTxt, sitemap, llmsFiles, score, summary, recommendations };
+  }
+
+  private async checkLlmsFiles(baseUrl: string): Promise<LlmsFilesResult> {
+    const tryHead = async (url: string): Promise<boolean> => {
+      try {
+        const res = await fetch(url, {
+          method: 'HEAD',
+          headers: { 'User-Agent': USER_AGENT },
+          signal: AbortSignal.timeout(5000),
+        });
+        return res.ok;
+      } catch {
+        return false;
+      }
+    };
+
+    const [llmsTxtOk, llmsFullTxtOk, llmInfoJsonOk] = await Promise.all([
+      tryHead(`${baseUrl}/llms.txt`),
+      tryHead(`${baseUrl}/llms-full.txt`),
+      tryHead(`${baseUrl}/llm-info.json`),
+    ]);
+
+    let knowledgeUrl = `${baseUrl}/api/ai/knowledge.json`;
+    let knowledgeOk = await tryHead(knowledgeUrl);
+    if (!knowledgeOk) {
+      const wpUrl = `${baseUrl}/wp-json/ai/v1/knowledge`;
+      if (await tryHead(wpUrl)) {
+        knowledgeUrl = wpUrl;
+        knowledgeOk = true;
+      }
+    }
+
+    return {
+      llmsTxt: { url: `${baseUrl}/llms.txt`, exists: llmsTxtOk },
+      llmsFullTxt: { url: `${baseUrl}/llms-full.txt`, exists: llmsFullTxtOk },
+      llmInfoJson: { url: `${baseUrl}/llm-info.json`, exists: llmInfoJsonOk },
+      knowledgeEndpoint: { url: knowledgeUrl, exists: knowledgeOk },
+    };
   }
 
   private async analyzeRobotsTxt(baseUrl: string): Promise<RobotsTxtResult> {

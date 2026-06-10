@@ -949,7 +949,15 @@
       "noSitemapFound": "No sitemap found.",
       "lastmod": "lastmod",
       "changefreq": "changefreq",
-      "priority": "priority"
+      "priority": "priority",
+      "llmsTab": "LLMs / AI",
+      "llmsAnalysis": "AI Crawler Files",
+      "llmsTxtDesc": "Guides AI language models about your site content and what they are permitted to use.",
+      "llmsFullTxtDesc": "Extended AI context file with complete content details for LLMs.",
+      "llmInfoJsonDesc": "Machine-readable metadata about your site for AI systems.",
+      "knowledgeEndpoint": "Knowledge Endpoint",
+      "knowledgeEndpointDesc": "Structured knowledge API for AI systems (/api/ai/knowledge.json or WordPress /wp-json/ai/v1/knowledge).",
+      "aiFiles": "AI Files"
     },
     "seo": {
       "accessibilityNotAvailable": "Accessibility data not available.",

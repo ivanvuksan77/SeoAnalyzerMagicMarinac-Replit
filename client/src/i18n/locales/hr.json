@@ -949,7 +949,15 @@
       "noSitemapFound": "Sitemap nije pronađen.",
       "lastmod": "lastmod",
       "changefreq": "changefreq",
-      "priority": "priority"
+      "priority": "priority",
+      "llmsTab": "LLMs / AI",
+      "llmsAnalysis": "AI Crawler datoteke",
+      "llmsTxtDesc": "Vodi AI jezične modele o sadržaju vaše stranice i što smiju koristiti.",
+      "llmsFullTxtDesc": "Proširena AI kontekst datoteka s potpunim detaljima sadržaja za LLM-ove.",
+      "llmInfoJsonDesc": "Strojno čitljivi metapodaci o vašoj stranici za AI sustave.",
+      "knowledgeEndpoint": "Knowledge endpoint",
+      "knowledgeEndpointDesc": "Strukturirani API znanja za AI sustave (/api/ai/knowledge.json ili WordPress /wp-json/ai/v1/knowledge).",
+      "aiFiles": "AI datoteke"
     },
     "seo": {
       "accessibilityNotAvailable": "Podaci o pristupačnosti nisu dostupni.",

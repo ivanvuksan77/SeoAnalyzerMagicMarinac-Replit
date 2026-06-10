@@ -3465,10 +3465,13 @@ function InternalLinkSection({ data, paidTier, onUpgrade }: { data: InternalLink
 function SitemapSummary({ data }: { data: SitemapValidatorResult }) {
   const { t } = useTranslation();
   const { robotsTxt, sitemap } = data;
+  const llmsFound = data.llmsFiles
+    ? [data.llmsFiles.llmsTxt, data.llmsFiles.llmsFullTxt, data.llmsFiles.llmInfoJson, data.llmsFiles.knowledgeEndpoint].filter(f => f?.exists).length
+    : 0;
 
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card><CardContent className="pt-6 text-center"><ScoreBadge score={data.score} /><p className="text-sm text-muted-foreground mt-1">{t('master.sitemap.validationScore')}</p></CardContent></Card>
         <Card>
           <CardContent className="pt-6 text-center">
@@ -3486,6 +3489,15 @@ function SitemapSummary({ data }: { data: SitemapValidatorResult }) {
               <span className="text-lg font-bold">{sitemap.exists ? t('master.sitemap.urlsCount', { count: sitemap.urlCount }) : t('master.common.missing')}</span>
             </div>
             <p className="text-sm text-muted-foreground mt-1">{t('master.sitemap.sitemap')}</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="pt-6 text-center">
+            <div className="flex items-center justify-center gap-2">
+              {llmsFound > 0 ? <CheckCircle2 className="w-5 h-5 text-green-500" /> : <XCircle className="w-5 h-5 text-red-500" />}
+              <span className="text-lg font-bold">{llmsFound}/4</span>
+            </div>
+            <p className="text-sm text-muted-foreground mt-1">{t('master.sitemap.aiFiles')}</p>
           </CardContent>
         </Card>
       </div>
@@ -3546,6 +3558,7 @@ function SitemapSection({ data, paidTier, onUpgrade }: { data: SitemapValidatorR
           <TabsList className="flex-wrap h-auto">
             <TabsTrigger value="robots">{t('master.sitemap.robotsTxt')}</TabsTrigger>
             <TabsTrigger value="sitemap">{t('master.sitemap.sitemap')}</TabsTrigger>
+            <TabsTrigger value="llms">{t('master.sitemap.llmsTab')}</TabsTrigger>
             {paidTier === 'pro' && <TabsTrigger value="recommendations">{t('tabs.recommendations')}</TabsTrigger>}
           </TabsList>
 
@@ -3655,6 +3668,42 @@ function SitemapSection({ data, paidTier, onUpgrade }: { data: SitemapValidatorR
                 <span className="text-sm text-red-800 dark:text-red-200">{t('master.sitemap.noSitemapFound')}</span>
               </div>
             )}
+          </TabsContent>
+
+          <TabsContent value="llms">
+            <Card data-testid="sitemap-llms">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2"><Bot className="w-5 h-5" />{t('master.sitemap.llmsAnalysis')}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {data.llmsFiles ? (
+                  [
+                    { key: 'llmsTxt', label: 'llms.txt', desc: t('master.sitemap.llmsTxtDesc'), file: data.llmsFiles.llmsTxt },
+                    { key: 'llmsFullTxt', label: 'llms-full.txt', desc: t('master.sitemap.llmsFullTxtDesc'), file: data.llmsFiles.llmsFullTxt },
+                    { key: 'llmInfoJson', label: 'llm-info.json', desc: t('master.sitemap.llmInfoJsonDesc'), file: data.llmsFiles.llmInfoJson },
+                    { key: 'knowledge', label: t('master.sitemap.knowledgeEndpoint'), desc: t('master.sitemap.knowledgeEndpointDesc'), file: data.llmsFiles.knowledgeEndpoint },
+                  ].map(item => (
+                    <div key={item.key} className="flex items-start gap-3 p-3 rounded-lg border bg-muted/30">
+                      {item.file.exists
+                        ? <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
+                        : <XCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="font-mono text-sm font-medium">{item.label}</span>
+                          <Badge variant={item.file.exists ? "default" : "secondary"} className={item.file.exists ? "bg-green-500 text-white text-[10px]" : "text-[10px]"}>
+                            {item.file.exists ? t('master.common.found') : t('master.common.missing')}
+                          </Badge>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
+                        {item.file.exists && <p className="text-xs font-mono text-muted-foreground mt-1 truncate">{item.file.url}</p>}
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-sm text-muted-foreground">{t('master.common.notAvailable')}</p>
+                )}
+              </CardContent>
+            </Card>
           </TabsContent>
 
           {paidTier === 'pro' && (

@@ -795,7 +795,7 @@ type PdfLabels = {
   linkStats: { total: string; working: string; broken: string; redirects: string; score: string };
   imgStats: { score: string; totalImages: string; withAlt: string; withoutAlt: string; modernFormat: string };
   ilStats: { score: string; totalLinks: string; uniqueLinks: string; descriptive: string; generic: string };
-  sitemapLabels: { robotsTxt: string; sitemap: string; found: string; notFound: string; urlsInSitemap: string; score: string; issues: string };
+  sitemapLabels: { robotsTxt: string; sitemap: string; found: string; notFound: string; urlsInSitemap: string; score: string; issues: string; llmsTxt: string; llmsFullTxt: string; llmInfoJson: string; knowledgeEndpoint: string };
   sectionTitles: { technicalChecks: string; adsChecks: string; aeoChecks: string; geoChecks: string; brokenLinksFound: string; issues: string };
   metaSubject: string;
   issueDetected: string;
@@ -853,7 +853,7 @@ const PDF_LABELS: Record<Lang, PdfLabels> = {
     linkStats: { total: 'Total', working: 'Working', broken: 'Broken', redirects: 'Redirects', score: 'Score' },
     imgStats: { score: 'Score', totalImages: 'Total Images', withAlt: 'With Alt Text', withoutAlt: 'Without Alt', modernFormat: 'Modern Format' },
     ilStats: { score: 'Score', totalLinks: 'Total Links', uniqueLinks: 'Unique Links', descriptive: 'Descriptive', generic: 'Generic' },
-    sitemapLabels: { robotsTxt: 'Robots.txt', sitemap: 'Sitemap', found: 'Found', notFound: 'Not Found', urlsInSitemap: 'URLs in Sitemap', score: 'Score', issues: 'Issues' },
+    sitemapLabels: { robotsTxt: 'Robots.txt', sitemap: 'Sitemap', found: 'Found', notFound: 'Not Found', urlsInSitemap: 'URLs in Sitemap', score: 'Score', issues: 'Issues', llmsTxt: 'llms.txt', llmsFullTxt: 'llms-full.txt', llmInfoJson: 'llm-info.json', knowledgeEndpoint: 'Knowledge Endpoint' },
     sectionTitles: { technicalChecks: 'Technical Checks', adsChecks: 'Ads Checks', aeoChecks: 'AEO Checks', geoChecks: 'GEO Checks', brokenLinksFound: 'Broken Links Found:', issues: 'Issues:' },
     metaSubject: 'Comprehensive Website Analysis',
     issueDetected: 'Issue detected',
@@ -910,7 +910,7 @@ const PDF_LABELS: Record<Lang, PdfLabels> = {
     linkStats: { total: 'Ukupno', working: 'Radi', broken: 'Pokvareno', redirects: 'Preusmj.', score: 'Ocjena' },
     imgStats: { score: 'Ocjena', totalImages: 'Ukupno slika', withAlt: 'S alt tekstom', withoutAlt: 'Bez alt teksta', modernFormat: 'Moderni format' },
     ilStats: { score: 'Ocjena', totalLinks: 'Ukupno veza', uniqueLinks: 'Jedinstvene veze', descriptive: 'Opisne', generic: 'Generičke' },
-    sitemapLabels: { robotsTxt: 'Robots.txt', sitemap: 'Sitemap', found: 'Pronađen', notFound: 'Nije pronađen', urlsInSitemap: 'URL-ovi u sitemapu', score: 'Ocjena', issues: 'Problemi' },
+    sitemapLabels: { robotsTxt: 'Robots.txt', sitemap: 'Sitemap', found: 'Pronađen', notFound: 'Nije pronađen', urlsInSitemap: 'URL-ovi u sitemapu', score: 'Ocjena', issues: 'Problemi', llmsTxt: 'llms.txt', llmsFullTxt: 'llms-full.txt', llmInfoJson: 'llm-info.json', knowledgeEndpoint: 'Knowledge Endpoint' },
     sectionTitles: { technicalChecks: 'Tehničke provjere', adsChecks: 'Provjere oglasa', aeoChecks: 'AEO provjere', geoChecks: 'GEO provjere', brokenLinksFound: 'Pronađene neispravne veze:', issues: 'Problemi:' },
     metaSubject: 'Sveobuhvatna analiza web-stranice',
     issueDetected: 'Otkriven problem',
@@ -1124,6 +1124,12 @@ function getToolChecks(
         status: smExists ? 'PASS' : 'FAIL',
         details: smExists ? L.sitemapLabels.found : L.sitemapLabels.notFound,
       });
+      if (data.llmsFiles) {
+        out.push({ name: L.sitemapLabels.llmsTxt, status: data.llmsFiles.llmsTxt?.exists ? 'PASS' : 'WARNING', details: data.llmsFiles.llmsTxt?.exists ? L.sitemapLabels.found : L.sitemapLabels.notFound });
+        out.push({ name: L.sitemapLabels.llmsFullTxt, status: data.llmsFiles.llmsFullTxt?.exists ? 'PASS' : 'WARNING', details: data.llmsFiles.llmsFullTxt?.exists ? L.sitemapLabels.found : L.sitemapLabels.notFound });
+        out.push({ name: L.sitemapLabels.llmInfoJson, status: data.llmsFiles.llmInfoJson?.exists ? 'PASS' : 'WARNING', details: data.llmsFiles.llmInfoJson?.exists ? L.sitemapLabels.found : L.sitemapLabels.notFound });
+        out.push({ name: L.sitemapLabels.knowledgeEndpoint, status: data.llmsFiles.knowledgeEndpoint?.exists ? 'PASS' : 'WARNING', details: data.llmsFiles.knowledgeEndpoint?.exists ? L.sitemapLabels.found : L.sitemapLabels.notFound });
+      }
       // Schema: SitemapValidatorResult has no top-level `issues`. Real
       // issues live nested under robotsTxt.issues + sitemap.issues. Merge,
       // dedupe, and cap at 5 so the section card doesn't sprawl.
