@@ -45,6 +45,14 @@
         "adsLp": "Google Ads LP"
       },
       "domain": "yourdomain.com"
+    },
+    "heroSvg": {
+      "label1": "Artificial Intelligence Optimization",
+      "title1": "AIO/AEO/GEO",
+      "label2": "Core Website Optimization",
+      "title2": "SEO Optimization",
+      "label3": "Pro Report with Fixes and Solutions",
+      "title3": "Pro Solutions"
     }
   },
   "form": {

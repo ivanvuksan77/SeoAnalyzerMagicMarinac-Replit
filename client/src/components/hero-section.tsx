@@ -90,8 +90,8 @@ export function HeroSection() {
                 <path d="M92.8595 117.593C92.1363 117.594 91.4253 117.407 90.7954 117.052" stroke="#7F22FE" strokeWidth="2.51852" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M107.516 117.052C106.886 117.407 106.175 117.594 105.452 117.593" stroke="#7F22FE" strokeWidth="2.51852" strokeLinecap="round" strokeLinejoin="round" />
               </g>
-              <text fill="#6A7282" style={{ whiteSpace: "pre" }} xmlSpace="preserve" fontSize="12.5926" fontWeight="500" letterSpacing="-0.02em"><tspan x="141.321" y="101.533">Optimizacija za umjetnu inteligenciju</tspan></text>
-              <text fill="#7F22FE" style={{ whiteSpace: "pre" }} xmlSpace="preserve" fontSize="22.6667" fontWeight="bold" letterSpacing="-0.02em"><tspan x="141.321" y="127.863">AIO/AEO/GEO</tspan></text>
+              <text fill="#6A7282" style={{ whiteSpace: "pre" }} xmlSpace="preserve" fontSize="12.5926" fontWeight="500" letterSpacing="-0.02em"><tspan x="141.321" y="101.533">{t("hero.label1")}</tspan></text>
+              <text fill="#7F22FE" style={{ whiteSpace: "pre" }} xmlSpace="preserve" fontSize="22.6667" fontWeight="bold" letterSpacing="-0.02em"><tspan x="141.321" y="127.863">{t("hero.title1")}</tspan></text>
             </g>
             <g filter="url(#filter1_d_374_821)">
               <rect x="139" y="278" width="340.519" height="81.8519" rx="10.0741" fill="white" shapeRendering="crispEdges" />
@@ -100,8 +100,8 @@ export function HeroSection() {
                 <path d="M180.766 325.642C185.402 325.642 189.161 321.883 189.161 317.247C189.161 312.61 185.402 308.852 180.766 308.852C176.129 308.852 172.371 312.61 172.371 317.247C172.371 321.883 176.129 325.642 180.766 325.642Z" stroke="#155DFC" strokeWidth="2.51852" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M191.259 327.741L186.747 323.229" stroke="#155DFC" strokeWidth="2.51852" strokeLinecap="round" strokeLinejoin="round" />
               </g>
-              <text fill="#6A7282" style={{ whiteSpace: "pre" }} xmlSpace="preserve" fontSize="12.5926" fontWeight="500" letterSpacing="-0.02em"><tspan x="224.629" y="308.533">Temeljna optimizacija web stranice</tspan></text>
-              <text fill="#155DFC" style={{ whiteSpace: "pre" }} xmlSpace="preserve" fontSize="22.6667" fontWeight="bold" letterSpacing="-0.02em"><tspan x="224.629" y="334.862">SEO optimizacija</tspan></text>
+              <text fill="#6A7282" style={{ whiteSpace: "pre" }} xmlSpace="preserve" fontSize="12.5926" fontWeight="500" letterSpacing="-0.02em"><tspan x="224.629" y="308.533">{t("hero.label2")}</tspan></text>
+              <text fill="#155DFC" style={{ whiteSpace: "pre" }} xmlSpace="preserve" fontSize="22.6667" fontWeight="bold" letterSpacing="-0.02em"><tspan x="224.629" y="334.862">{t("hero.title2")}</tspan></text>
             </g>
             <g filter="url(#filter3_d_374_821)">
               <rect x="231" y="174" width="364.519" height="81.8519" rx="10.0741" fill="white" shapeRendering="crispEdges" />
@@ -109,8 +109,8 @@ export function HeroSection() {
                 <path d="M246.111 204.222C246.111 194.486 254.004 186.593 263.74 186.593H283.889C293.625 186.593 301.518 194.486 301.518 204.222V224.371C301.518 234.107 293.625 242 283.889 242H263.74C254.004 242 246.111 234.107 246.111 224.371V204.222Z" fill="#D5FBE9" shapeRendering="crispEdges" />
                 <path d="M276.648 208.315C276.456 208.511 276.348 208.775 276.348 209.05C276.348 209.324 276.456 209.588 276.648 209.784L278.327 211.463C278.523 211.655 278.787 211.763 279.062 211.763C279.337 211.763 279.6 211.655 279.796 211.463L283.753 207.507C284.28 208.673 284.44 209.972 284.211 211.231C283.981 212.491 283.373 213.65 282.468 214.555C281.563 215.46 280.404 216.068 279.145 216.297C277.886 216.527 276.587 216.367 275.421 215.839L268.169 223.09C267.752 223.508 267.186 223.742 266.595 223.742C266.005 223.742 265.439 223.508 265.021 223.09C264.604 222.673 264.369 222.107 264.369 221.516C264.369 220.926 264.604 220.36 265.021 219.942L272.272 212.691C271.745 211.525 271.585 210.226 271.814 208.967C272.044 207.707 272.652 206.548 273.557 205.643C274.462 204.738 275.621 204.13 276.88 203.901C278.139 203.671 279.438 203.831 280.604 204.359L276.659 208.305L276.648 208.315Z" stroke="#009966" strokeWidth="2.51852" strokeLinecap="round" strokeLinejoin="round" />
               </g>
-              <text fill="#6A7282" style={{ whiteSpace: "pre" }} xmlSpace="preserve" fontSize="12.5926" fontWeight="500" letterSpacing="-0.02em"><tspan x="316.629" y="204.533">Pro izvještaj sa popravcima i rješenjima</tspan></text>
-              <text fill="#009966" style={{ whiteSpace: "pre" }} xmlSpace="preserve" fontSize="22.6667" fontWeight="bold" letterSpacing="-0.02em"><tspan x="316.629" y="230.862">Pro rješenja</tspan></text>
+              <text fill="#6A7282" style={{ whiteSpace: "pre" }} xmlSpace="preserve" fontSize="12.5926" fontWeight="500" letterSpacing="-0.02em"><tspan x="316.629" y="204.533">{t("hero.label3")}</tspan></text>
+              <text fill="#009966" style={{ whiteSpace: "pre" }} xmlSpace="preserve" fontSize="22.6667" fontWeight="bold" letterSpacing="-0.02em"><tspan x="316.629" y="230.862">{t("hero.title3")}</tspan></text>
             </g>
             <path d="M30 245C63.6894 245 91 272.311 91 306C91 272.311 118.311 245 152 245C118.311 245 91 217.689 91 184C91 217.689 63.6894 245 30 245Z" fill="white" />
             <path d="M30 245C63.6894 245 91 272.311 91 306C91 272.311 118.311 245 152 245C118.311 245 91 217.689 91 184C91 217.689 63.6894 245 30 245Z" fill="url(#paint0_linear_374_821)" />

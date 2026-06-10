@@ -45,6 +45,14 @@
         "adsLp": "Google Ads LP"
       },
       "domain": "vasadomena.hr"
+    },
+    "heroSvg": {
+      "label1": "Optimizacija za umjetnu inteligenciju",
+      "title1": "AIO/AEO/GEO",
+      "label2": "Temeljna optimizacija web stranice",
+      "title2": "SEO optimizacija",
+      "label3": "Pro izvještaj sa popravcima i rješenjima",
+      "title3": "Pro rješenja"
     }
   },
   "form": {
