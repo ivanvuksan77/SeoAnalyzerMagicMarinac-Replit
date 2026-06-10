@@ -1,0 +1,169 @@
+Add a page type detection and confirmation step to the scanning flow.
+
+Current flow:
+
+User enters a URL.
+
+The analyzer scans the page.
+
+The user gets the final report.
+
+New flow:
+
+User enters a URL and starts the scan.
+
+Before generating the final report, run a quick pre-scan of the page.
+
+Based on the page content, URL structure, headings, schema, navigation, forms, products, and visible content, detect the most likely page type.
+
+Show a modal popup asking the user to confirm the detected page type or choose another one.
+
+After the user confirms and clicks “Continue Scanning”, continue the full scan and generate the final report.
+
+The final SEO / AI / AEO / GEO / AIO scoring and recommendations must be adjusted based on the selected page type.
+
+Modal copy:
+
+Title:
+We detected this page type
+
+Description:
+To give you a more accurate analysis, please confirm what kind of page you are scanning. Different page types should be evaluated differently.
+
+Detected page type:
+[Detected page type]
+
+Options:
+
+Homepage
+
+Service page
+
+Product page
+
+Product category / shop archive
+
+Blog article / guide
+
+Contact page
+
+Landing page for ads
+
+Other / not sure
+
+Primary button:
+Continue Scanning
+
+Secondary action:
+Change page type
+
+Behavior:
+
+Preselect the detected page type.
+
+Allow the user to select a different page type.
+
+Do not continue the full scan until the user clicks “Continue Scanning”.
+
+Store the selected page type and use it in all scoring logic, report text, issue prioritization, and recommendations.
+
+In the final report, clearly display:
+“Analyzed as: [Selected page type]”
+
+Detection logic suggestions:
+
+Homepage:
+
+URL is root domain or language root.
+
+Contains broad brand messaging, main navigation, multiple service/product sections, general CTA, testimonials, or company overview.
+
+Often uses Organization, LocalBusiness, WebSite or SiteNavigation schema.
+
+Service page:
+
+URL or headings include service-related terms.
+
+Content explains a specific service, offer, process, benefits, pricing, FAQ, case studies or contact CTA.
+
+Should be evaluated for problem/solution clarity, service relevance, trust signals, FAQ coverage, internal links and conversion CTA.
+
+Product page:
+
+Contains a single product, product title, price, availability, add-to-cart button, specifications, images, reviews or Product schema.
+
+Should be evaluated for product schema, unique product description, price/availability, CTA clarity, reviews, delivery/returns info and image optimization.
+
+Product category / shop archive:
+
+Contains multiple products, filters, sorting, category title, product grid, category description or pagination.
+
+Should be evaluated for crawlable product listings, category intro text, filters, internal linking, indexability, pagination and category schema where relevant.
+
+Blog article / guide:
+
+Contains article-like structure, author/date, long-form informational content, headings, table of contents, references or Article schema.
+
+Should be evaluated for search intent match, topical depth, structure, author/entity signals, FAQ, internal links and AI-answer readiness.
+
+Contact page:
+
+Contains contact form, email, phone number, address, map, opening hours, social links or LocalBusiness/NAP information.
+
+Should not be penalized for having little long-form content.
+
+Should be evaluated for clarity of contact options, local SEO signals, NAP consistency, form usability, trust and privacy/GDPR notes.
+
+Landing page for ads:
+
+Contains campaign-focused messaging, strong CTA, form, offer, lead magnet, booking flow or paid traffic intent.
+
+Should be evaluated for message match, conversion clarity, speed, trust signals, form friction, CTA placement and Google Ads relevance.
+
+Other / not sure:
+
+Use a balanced default scoring model.
+
+Avoid over-penalizing the page for missing elements that may not apply.
+
+Important scoring requirement:
+The same URL score should change depending on the selected page type. For example:
+
+A contact page should not be penalized heavily for not having long SEO content.
+
+A product page should be penalized if it has no price, availability, product schema or CTA.
+
+A service page should be penalized if it does not clearly explain the service, audience, benefits, proof and next step.
+
+A homepage should be evaluated for brand clarity, navigation, trust and broad entity understanding.
+
+A Google Ads landing page should be evaluated more strongly for conversion intent, message match and form/CTA quality.
+
+Update report recommendations:
+Recommendations must mention the selected page type where relevant.
+
+Example:
+Instead of:
+“Add more content to this page.”
+
+Use:
+“Because this was analyzed as a Service page, add a clearer explanation of the service, who it is for, what problem it solves, proof points, FAQ and a stronger CTA.”
+
+Example:
+Instead of:
+“Add FAQ content.”
+
+Use:
+“Because this was analyzed as a Contact page, FAQ content is optional. More important improvements are clear contact information, opening hours, map, form usability and LocalBusiness/NAP consistency.”
+
+UI requirement:
+The popup should appear after the quick pre-scan and before the full report is generated. The user should feel that the scan has started, but that the analyzer needs one quick confirmation to improve accuracy.
+
+Suggested loading state before modal:
+“Checking page type…”
+
+Suggested loading state after confirmation:
+“Continuing analysis based on selected page type…”
+
+Final report label:
+Analyzed as: [Selected page type]

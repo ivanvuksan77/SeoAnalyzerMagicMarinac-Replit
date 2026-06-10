@@ -25,7 +25,17 @@ class AdsLandingPageAnalyzer {
   private lang: string = 'en';
   private L(en: string, hr: string): string { return this.lang === 'hr' ? hr : en; }
 
-  async analyzeLandingPage(url: string, lang: string = 'en'): Promise<InsertAdsAnalysis> {
+  private applyPageTypeAdjustment(score: number, pageType: string): number {
+    const relevanceMap: Record<string, number> = {
+      landing: 1.0, product: 0.93, service: 0.88, homepage: 0.85,
+      category: 0.80, blog: 0.72, contact: 0.72, other: 0.85,
+    };
+    const relevance = relevanceMap[pageType] ?? 0.85;
+    const neutral = 58;
+    return Math.round(score * relevance + neutral * (1 - relevance));
+  }
+
+  async analyzeLandingPage(url: string, lang: string = 'en', pageType: string = 'other'): Promise<InsertAdsAnalysis> {
     this.lang = lang;
     const checks: AdsCheck[] = [];
 
@@ -47,7 +57,8 @@ class AdsLandingPageAnalyzer {
     this.addMobileUxChecks(checks, mobileUx);
     this.addFieldDataChecks(checks, fieldData);
 
-    const score = this.calculateScore(checks);
+    const rawScore = this.calculateScore(checks);
+    const score = this.applyPageTypeAdjustment(rawScore, pageType);
     const rating = this.deriveRating(score);
     const qualityScoreImpact = this.getQualityScoreImpact(rating, score, fieldData);
     const cpcImpact = this.getCpcImpact(rating);

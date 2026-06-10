@@ -1,0 +1,67 @@
+Blog article / guide:
+
+- Contains article-like structure, author/date, long-form informational content, headings, table of contents, references or Article schema.
+
+- Should be evaluated for search intent match, topical depth, structure, author/entity signals, FAQ, internal links and AI-answer readiness.
+
+Contact page:
+
+- Contains contact form, email, phone number, address, map, opening hours, social links or LocalBusiness/NAP information.
+
+- Should not be penalized for having little long-form content.
+
+- Should be evaluated for clarity of contact options, local SEO signals, NAP consistency, form usability, trust and privacy/GDPR notes.
+
+Landing page for ads:
+
+- Contains campaign-focused messaging, strong CTA, form, offer, lead magnet, booking flow or paid traffic intent.
+
+- Should be evaluated for message match, conversion clarity, speed, trust signals, form friction, CTA placement and Google Ads relevance.
+
+Other / not sure:
+
+- Use a balanced default scoring model.
+
+- Avoid over-penalizing the page for missing elements that may not apply.
+
+Important scoring requirement:
+The same URL score should change depending on the selected page type. For example:
+
+- A contact page should not be penalized heavily for not having long SEO content.
+
+- A product page should be penalized if it has no price, availability, product schema or CTA.
+
+- A service page should be penalized if it does not clearly explain the service, audience, benefits, proof and next step.
+
+- A homepage should be evaluated for brand clarity, navigation, trust and broad entity understanding.
+
+- A Google Ads landing page should be evaluated more strongly for conversion intent, message match and form/CTA quality.
+
+Update report recommendations:
+Recommendations must mention the selected page type where relevant.
+
+Example:
+Instead of:
+“Add more content to this page.”
+
+Use:
+“Because this was analyzed as a Service page, add a clearer explanation of the service, who it is for, what problem it solves, proof points, FAQ and a stronger CTA.”
+
+Example:
+Instead of:
+“Add FAQ content.”
+
+Use:
+“Because this was analyzed as a Contact page, FAQ content is optional. More important improvements are clear contact information, opening hours, map, form usability and LocalBusiness/NAP consistency.”
+
+UI requirement:
+The popup should appear after the quick pre-scan and before the full report is generated. The user should feel that the scan has started, but that the analyzer needs one quick confirmation to improve accuracy.
+
+Suggested loading state before modal:
+“Checking page type…”
+
+Suggested loading state after confirmation:
+“Continuing analysis based on selected page type…”
+
+Final report label:
+Analyzed as: [Selected page type]
