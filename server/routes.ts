@@ -1035,8 +1035,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/robots.txt", (_req, res) => {
     const body =
       `User-agent: *\nContent-Signal: search=yes, ai-input=yes, ai-train=yes\nAllow: /\nDisallow: /api/\nDisallow: /checkout\nDisallow: /verify-email\n\n` +
-      `# Curated AI / LLM information\n# ${SITE_ORIGIN}/llm-info.json\n# Root index for LLMs (llmstxt.org):\n
-        # ${SITE_ORIGIN}/llms.txt\n# Structured Knowledge\n# ${SITE_ORIGIN}/api/ai/knowledge.json\n\n` +
+      `# Curated AI / LLM information\n# ${SITE_ORIGIN}/llm-info.json\n# Root index for LLMs (llmstxt.org):\n# ${SITE_ORIGIN}/llms.txt\n# ${SITE_ORIGIN}/llms-full.txt\n# Structured Knowledge\n# ${SITE_ORIGIN}/api/ai/knowledge.json\n\n` +
       `# AI crawlers welcome\nUser-agent: GPTBot\nAllow: /\nUser-agent: ClaudeBot\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\nUser-agent: Google-Extended\nAllow: /\n\n` +
       `Sitemap: ${SITE_ORIGIN}/sitemap.xml\n`;
     res.type("text/plain").set("Cache-Control", "public, max-age=3600").send(body);
@@ -1121,6 +1120,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       structured_data: {
         knowledge_endpoint: `${SITE_ORIGIN}/api/ai/knowledge.json`,
         llms_txt: `${SITE_ORIGIN}/llms.txt`,
+        llms_full_txt: `${SITE_ORIGIN}/llms-full.txt`,
+        llm_info_json: `${SITE_ORIGIN}/llm-info.json`,
         sitemap: `${SITE_ORIGIN}/sitemap.xml`,
         robots_txt: `${SITE_ORIGIN}/robots.txt`,
       },
@@ -1151,7 +1152,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       `- Sitemap: ${SITE_ORIGIN}/sitemap.xml\n` +
       `- Privacy: ${SITE_ORIGIN}/privacy-policy\n` +
       `- Terms: ${SITE_ORIGIN}/terms-of-service\n\n` +
-      `## Structured Data\n` +
+      `## AI Resources\n` +
+      `${SITE_ORIGIN}/llm-info.json\n\n` +
+      `## Structured Knowledge\n` +
       `${SITE_ORIGIN}/api/ai/knowledge.json\n\n` +
       `## Languages\n` +
       `English (en) and Croatian (hr). Append ?lang=hr for the Croatian version.\n`;
