@@ -30,12 +30,10 @@ function getPriorityByStatus(status: string): "Excellent" | "Good" | "Medium" | 
 
 class SeoAnalyzer {
   private lang: string = 'en';
-  private pageType: string = 'other';
   private L(en: string, hr: string): string { return this.lang === 'hr' ? hr : en; }
 
-  async analyzeWebsite(url: string, lang: string = 'en', pageType: string = 'other'): Promise<InsertSeoAnalysis> {
+  async analyzeWebsite(url: string, lang: string = 'en'): Promise<InsertSeoAnalysis> {
     this.lang = lang;
-    this.pageType = pageType;
     // Try to fetch the page content using a simple HTTP request first
     let html: string;
     let $ : cheerio.CheerioAPI;
@@ -214,12 +212,7 @@ class SeoAnalyzer {
 
     const contentText = extractMainContent($);
     const wordCount = contentText.split(/\s+/).length;
-    const contentWordThreshold = this.pageType === 'contact' ? 50
-      : this.pageType === 'landing' || this.pageType === 'category' ? 100
-      : this.pageType === 'product' ? 100
-      : this.pageType === 'blog' ? 500
-      : 300;
-    const contentLengthStatus = wordCount > contentWordThreshold ? "PASS" : "WARNING";
+    const contentLengthStatus = wordCount > 300 ? "PASS" : "WARNING";
     checks.push({
       name: this.L("Content Length", "Duljina sadržaja"),
       status: contentLengthStatus,
@@ -865,25 +858,17 @@ class SeoAnalyzer {
 
   private calculateContentScore(analysis: ContentQuality): number {
     let score = 0;
-
-    const threshold = this.pageType === 'contact' ? 50
-      : this.pageType === 'landing' || this.pageType === 'category' ? 100
-      : this.pageType === 'product' ? 150
-      : this.pageType === 'blog' ? 500
-      : 300;
-    const halfThreshold = Math.floor(threshold * 0.5);
-
-    if (analysis.wordCount >= threshold) score += 30;
-    else if (analysis.wordCount >= halfThreshold) score += 15;
-
+    
+    if (analysis.wordCount >= 300) score += 30;
+    else if (analysis.wordCount >= 150) score += 15;
+    
     score += Math.round(analysis.readabilityScore * 0.25);
-
+    
     if (analysis.imageAltTags.percentage >= 80) score += 25;
     else if (analysis.imageAltTags.percentage >= 50) score += 10;
-
-    const schemaWeight = this.pageType === 'product' ? 25 : 20;
-    if (analysis.structuredData) score += schemaWeight;
-
+    
+    if (analysis.structuredData) score += 20;
+    
     return Math.min(100, score);
   }
 
@@ -933,47 +918,15 @@ class SeoAnalyzer {
       });
     }
 
-    // Content recommendations (page-type-aware threshold and description)
-    const contentThreshold = this.pageType === 'contact' ? 50
-      : this.pageType === 'landing' || this.pageType === 'category' ? 100
-      : this.pageType === 'product' ? 150
-      : this.pageType === 'blog' ? 500
-      : 300;
-    if (results.content.wordCount < contentThreshold) {
-      const pageTypeDesc = this.pageType === 'contact'
-        ? this.L(
-            "As a Contact page, focus on clear contact information, phone, address, map embed, and a simple contact form rather than long content.",
-            "Kao kontakt stranica, fokusirajte se na jasne kontaktne podatke, telefon, adresu, kartu i jednostavan obrazac, a ne na dugačak sadržaj."
-          )
-        : this.pageType === 'blog'
-        ? this.L(
-            "As a Blog article, aim for 500+ words of well-structured content with clear headings, author signals, publication date, and helpful internal links.",
-            "Kao blog članak, cilj je 500+ riječi dobro strukturiranog sadržaja s jasnim naslovima, informacijama o autoru, datumom objave i korisnim internim vezama."
-          )
-        : this.pageType === 'product'
-        ? this.L(
-            "As a Product page, add a unique product description, key specifications, availability status, clear CTA, customer reviews, and delivery/returns information.",
-            "Kao stranica proizvoda, dodajte jedinstveni opis, ključne specifikacije, status dostupnosti, jasan poziv na akciju, recenzije kupaca i informacije o dostavi."
-          )
-        : this.pageType === 'service'
-        ? this.L(
-            "As a Service page, clearly explain the service, who it is for, what problem it solves, proof points (testimonials/case studies), FAQ section, and a strong CTA.",
-            "Kao uslužna stranica, jasno objasnite uslugu, komu je namijenjena, koji problem rješava, dokaze (svjedočanstva/studije slučaja), FAQ sekciju i snažan poziv na akciju."
-          )
-        : this.pageType === 'landing'
-        ? this.L(
-            "As a Landing page, ensure a clear value proposition, strong headline, social proof, minimal form friction, and a prominent CTA visible above the fold.",
-            "Kao odredišna stranica, osigurajte jasnu vrijednosnu ponudu, snažan naslov, društvene dokaze, minimalne prepreke u obrascu i istaknuti poziv na akciju iznad linije savijanja."
-          )
-        : this.L(
-            "Pages with more comprehensive content tend to perform better in search results.",
-            "Stranice s iscrpnijim sadržajem obično se bolje rangiraju u rezultatima pretraživanja."
-          );
-
+    // Content recommendations
+    if (results.content.wordCount < 300) {
       recommendations.push({
-        title: this.L("Improve Page Content", "Poboljšajte sadržaj stranice"),
-        description: pageTypeDesc,
-        priority: this.pageType === 'contact' ? "Low" : "Medium",
+        title: this.L("Increase Content Length", "Povećajte duljinu sadržaja"),
+        description: this.L(
+          "Pages with more comprehensive content tend to perform better in search results.",
+          "Stranice s iscrpnijim sadržajem obično se bolje rangiraju u rezultatima pretraživanja."
+        ),
+        priority: "Medium",
         category: this.L("Content", "Sadržaj"),
         impact: this.L("Medium", "Srednji"),
         timeToFix: this.L("2-4 hours", "2-4 sata"),

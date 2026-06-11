@@ -719,11 +719,3 @@ export const insertGeoAnalysisSchema = createInsertSchema(geoAnalyses).omit({
 
 export type InsertGeoAnalysis = z.infer<typeof insertGeoAnalysisSchema>;
 export type GeoAnalysis = typeof geoAnalyses.$inferSelect;
-
-export type PageType = 'homepage' | 'service' | 'product' | 'category' | 'blog' | 'contact' | 'landing' | 'other';
-
-export interface PageTypeDetectionResult {
-  detectedType: PageType;
-  confidence: 'high' | 'medium' | 'low';
-  signals: string[];
-}

@@ -20,7 +20,6 @@ import { createEmailSession, verifyEmailSession } from "./services/emailSession"
 import { createOrGetPdfLink, getPdfByToken, markPdfEmailSent } from "./services/pdfDeliveryStore";
 import { promises as fs } from "fs";
 import { getFetchErrorCode } from "./services/httpClient";
-import { pageTypeDetector } from "./services/pageTypeDetector";
 
 function classifyAnalysisError(error: any): { status: number; body: { code: string; message: string } } {
   const fetchCode = getFetchErrorCode(error);
@@ -350,28 +349,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Page type detection (lightweight, no auth required)
-  app.post("/api/detect-page-type", async (req, res) => {
-    try {
-      const { url } = z.object({
-        url: z.string().transform(normalizeUrl).pipe(z.string().url()),
-      }).parse(req.body);
-      const result = await pageTypeDetector.detect(url);
-      res.json(result);
-    } catch {
-      res.json({ detectedType: 'other', confidence: 'low', signals: [] });
-    }
-  });
-
   // Master Analyzer - runs all tools in parallel, with rate limiting
   app.post("/api/master-analyze", async (req, res) => {
     try {
-      const { url, accessCode, turnstileToken, lang, pageType } = z.object({
+      const { url, accessCode, turnstileToken, lang } = z.object({
         url: z.string().transform(normalizeUrl).pipe(z.string().url("Please enter a valid URL")),
         accessCode: z.string().optional(),
         turnstileToken: z.string().optional(),
         lang: z.enum(['en', 'hr']).optional().default('en'),
-        pageType: z.enum(['homepage','service','product','category','blog','contact','landing','other']).optional().default('other'),
       }).parse(req.body);
 
       const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
@@ -462,10 +447,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const results = await Promise.allSettled([
-        seoAnalyzer.analyzeWebsite(url, lang, pageType),
-        adsAnalyzer.analyzeLandingPage(url, lang, pageType),
-        aeoAnalyzer.analyzeWebsite(url, lang, pageType),
-        geoAnalyzer.analyzeWebsite(url, lang, pageType),
+        seoAnalyzer.analyzeWebsite(url, lang),
+        adsAnalyzer.analyzeLandingPage(url, lang),
+        aeoAnalyzer.analyzeWebsite(url, lang),
+        geoAnalyzer.analyzeWebsite(url, lang),
         siteTools.checkBrokenLinks(url, lang),
         siteTools.analyzeImages(url, lang),
         siteTools.analyzeInternalLinking(url, lang),
@@ -485,7 +470,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const masterResult = {
         url,
-        pageType,
         seo: extract(seo),
         ads: extract(ads),
         aeo: extract(aeo),

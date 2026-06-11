@@ -18,17 +18,7 @@ class GeoAnalyzer {
   private lang: string = 'en';
   private L(en: string, hr: string): string { return this.lang === 'hr' ? hr : en; }
 
-  private applyPageTypeAdjustment(score: number, pageType: string): number {
-    const relevanceMap: Record<string, number> = {
-      blog: 1.0, service: 0.93, product: 0.88, homepage: 0.88,
-      category: 0.78, landing: 0.73, contact: 0.68, other: 0.88,
-    };
-    const relevance = relevanceMap[pageType] ?? 0.88;
-    const neutral = 58;
-    return Math.round(score * relevance + neutral * (1 - relevance));
-  }
-
-  async analyzeWebsite(url: string, lang: string = 'en', pageType: string = 'other'): Promise<InsertGeoAnalysis> {
+  async analyzeWebsite(url: string, lang: string = 'en'): Promise<InsertGeoAnalysis> {
     this.lang = lang;
     const normalizedUrl = url.startsWith("http") ? url : `https://${url}`;
 
@@ -47,14 +37,13 @@ class GeoAnalyzer {
     const entityOptimizationScore = this.scoreEntityOptimization(entityOptimization);
     const multiFormatScore = this.scoreMultiFormat(multiFormat);
 
-    const rawScore = Math.round(
+    const overallScore = Math.round(
       sourceAuthorityScore * 0.25 +
       contentFluencyScore * 0.20 +
       uniqueValueScore * 0.25 +
       entityOptimizationScore * 0.15 +
       multiFormatScore * 0.15
     );
-    const overallScore = this.applyPageTypeAdjustment(rawScore, pageType);
 
     const checks = this.generateChecks(sourceAuthority, contentFluency, uniqueValue, entityOptimization, multiFormat);
     const rating = this.getRating(overallScore);

@@ -23,17 +23,7 @@ class AeoAnalyzer {
   private lang: string = 'en';
   private L(en: string, hr: string): string { return this.lang === 'hr' ? hr : en; }
 
-  private applyPageTypeAdjustment(score: number, pageType: string): number {
-    const relevanceMap: Record<string, number> = {
-      blog: 1.0, service: 0.93, homepage: 0.88, product: 0.82,
-      category: 0.78, landing: 0.73, contact: 0.65, other: 0.88,
-    };
-    const relevance = relevanceMap[pageType] ?? 0.88;
-    const neutral = 58;
-    return Math.round(score * relevance + neutral * (1 - relevance));
-  }
-
-  async analyzeWebsite(url: string, lang: string = 'en', pageType: string = 'other'): Promise<InsertAeoAnalysis> {
+  async analyzeWebsite(url: string, lang: string = 'en'): Promise<InsertAeoAnalysis> {
     this.lang = lang;
     const normalizedUrl = url.startsWith("http") ? url : `https://${url}`;
 
@@ -52,14 +42,13 @@ class AeoAnalyzer {
     const semanticScore = this.scoreSemantic(semantic);
     const aiAccessibilityScore = this.scoreAiAccessibility(aiAccessibility);
 
-    const rawScore = Math.round(
+    const overallScore = Math.round(
       structuredDataScore * 0.25 +
       contentFormatScore * 0.25 +
       authorityScore * 0.2 +
       semanticScore * 0.15 +
       aiAccessibilityScore * 0.15
     );
-    const overallScore = this.applyPageTypeAdjustment(rawScore, pageType);
 
     const checks = this.generateChecks(structuredData, contentFormat, authority, semantic, aiAccessibility);
     const rating = this.getRating(overallScore);

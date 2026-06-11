@@ -85,7 +85,6 @@ import { useToast } from "@/hooks/use-toast";
 import type {
   SeoAnalysis,
   AnalysisResults,
-  PageType,
   PerformanceMetrics,
   AccessibilityCheck,
   KeywordAnalysis,
@@ -132,7 +131,6 @@ type FormSchema = ReturnType<typeof createFormSchema>;
 
 interface MasterResult {
   url: string;
-  pageType?: string;
   sessionId?: string;
   remaining?: number;
   seo: { data: SeoAnalysis | null; error: string | null };
@@ -219,12 +217,6 @@ function OverallDashboard({ data, onDownloadPdf, sessionId, paidTier, emailCaptu
               </div>
             </div>
             <Badge className="mt-2" style={{ backgroundColor: overallColor, color: "white" }}>{overallLabel}</Badge>
-            {data.pageType && data.pageType !== 'other' && (
-              <span className="mt-1.5 inline-flex items-center gap-1 text-xs text-muted-foreground" data-testid="analyzed-as-badge">
-                <span>{t('analyzedAs')}</span>
-                <span className="font-medium">{t(`pageTypeModal.${data.pageType}`)}</span>
-              </span>
-            )}
           </div>
           <div className="flex-1">
             <div className="flex flex-wrap justify-center gap-4">
@@ -3785,83 +3777,6 @@ function ImageRow({ image }: { image: ImageIssue }) {
   );
 }
 
-function PageTypeConfirmModal({ open, detected, selected, onSelect, onConfirm, onClose }: {
-  open: boolean;
-  detected: PageType;
-  selected: PageType;
-  onSelect: (t: PageType) => void;
-  onConfirm: () => void;
-  onClose: () => void;
-}) {
-  const { t } = useTranslation();
-  const PAGE_TYPES: { key: PageType; descKey: string }[] = [
-    { key: 'homepage', descKey: 'homepageDesc' },
-    { key: 'service', descKey: 'serviceDesc' },
-    { key: 'product', descKey: 'productDesc' },
-    { key: 'category', descKey: 'categoryDesc' },
-    { key: 'blog', descKey: 'blogDesc' },
-    { key: 'contact', descKey: 'contactDesc' },
-    { key: 'landing', descKey: 'landingDesc' },
-    { key: 'other', descKey: 'otherDesc' },
-  ];
-
-  return (
-    <Dialog open={open} onOpenChange={(o) => { if (!o) onClose(); }}>
-      <DialogContent className="max-w-lg" data-testid="page-type-modal">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <Search className="w-5 h-5 text-primary" />
-            {t('pageTypeModal.title')}
-          </DialogTitle>
-          <DialogDescription className="text-sm">
-            {t('pageTypeModal.description')}
-          </DialogDescription>
-        </DialogHeader>
-
-        {detected !== 'other' && (
-          <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-primary/8 border border-primary/20 text-sm">
-            <span className="text-muted-foreground">{t('pageTypeModal.detectedLabel')}</span>
-            <span className="font-semibold text-primary">{t(`pageTypeModal.${detected}`)}</span>
-          </div>
-        )}
-
-        <div className="grid grid-cols-2 gap-2 mt-1" role="radiogroup" aria-label={t('pageTypeModal.selectLabel')}>
-          {PAGE_TYPES.map(({ key, descKey }) => (
-            <button
-              key={key}
-              type="button"
-              role="radio"
-              aria-checked={selected === key}
-              onClick={() => onSelect(key)}
-              data-testid={`page-type-option-${key}`}
-              className={`flex flex-col items-start gap-0.5 rounded-lg border px-3 py-2.5 text-left text-sm transition-colors cursor-pointer
-                ${selected === key
-                  ? 'border-primary bg-primary/8 text-primary'
-                  : 'border-border bg-background hover:border-primary/40 hover:bg-muted/40'
-                }`}
-            >
-              <span className="flex items-center gap-1.5 font-medium leading-tight">
-                {t(`pageTypeModal.${key}`)}
-                {key === detected && (
-                  <Badge variant="secondary" className="text-[10px] h-4 px-1 py-0 leading-none">auto</Badge>
-                )}
-              </span>
-              <span className="text-xs text-muted-foreground leading-tight">{t(`pageTypeModal.${descKey}`)}</span>
-            </button>
-          ))}
-        </div>
-
-        <div className="flex justify-end pt-1">
-          <Button onClick={onConfirm} data-testid="page-type-confirm" className="gap-2">
-            <Zap className="w-4 h-4" />
-            {t('pageTypeModal.continueButton')}
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-}
-
 export default function MasterAnalyzerPage() {
   const { t, i18n } = useTranslation();
   useSeo({ title: t("seo.home.title"), description: t("seo.home.description"), path: "/" });
@@ -4095,9 +4010,6 @@ export default function MasterAnalyzerPage() {
   const turnstileWidgetId = useRef<string | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const pendingSubmitValues = useRef<z.infer<FormSchema> | null>(null);
-  const pendingScanValues = useRef<{ url: string; token?: string } | null>(null);
-  const [selectedPageType, setSelectedPageType] = useState<PageType>('other');
-  const [pageTypeModal, setPageTypeModal] = useState<{ show: boolean; detected: PageType } | null>(null);
 
   useEffect(() => {
     if (!turnstileSiteKey) return;
@@ -4133,9 +4045,8 @@ export default function MasterAnalyzerPage() {
           if (pendingSubmitValues.current) {
             const pending = pendingSubmitValues.current;
             pendingSubmitValues.current = null;
-            console.info("[turnstile] running page type detection after token callback");
-            pendingScanValues.current = { url: pending.url, token };
-            detectMutation.mutate({ url: pending.url });
+            console.info("[turnstile] submitting queued request after token callback");
+            analyzeMutation.mutate({ ...pending, turnstileToken: token });
           }
         },
         'expired-callback': () => {
@@ -4172,8 +4083,8 @@ export default function MasterAnalyzerPage() {
   };
 
   const analyzeMutation = useMutation({
-    mutationFn: async (data: { url: string; turnstileToken?: string; pageType?: string }) => {
-      const payload: any = { url: data.url, lang: i18n.language === 'hr' ? 'hr' : 'en', pageType: data.pageType || 'other' };
+    mutationFn: async (data: { url: string; turnstileToken?: string }) => {
+      const payload: any = { url: data.url, lang: i18n.language === 'hr' ? 'hr' : 'en' };
       if (activeAccessCode) {
         payload.accessCode = activeAccessCode.code;
         try {
@@ -4240,30 +4151,6 @@ export default function MasterAnalyzerPage() {
     },
   });
 
-  const detectMutation = useMutation({
-    mutationFn: async (data: { url: string }) => {
-      const response = await apiRequest("POST", "/api/detect-page-type", { url: data.url });
-      return response.json() as Promise<{ detectedType: PageType; confidence: string; signals: string[] }>;
-    },
-    onSuccess: (data) => {
-      const detected = data.detectedType as PageType;
-      setSelectedPageType(detected);
-      setPageTypeModal({ show: true, detected });
-    },
-    onError: () => {
-      setSelectedPageType('other');
-      setPageTypeModal({ show: true, detected: 'other' });
-    },
-  });
-
-  const handlePageTypeConfirm = () => {
-    const scan = pendingScanValues.current;
-    if (!scan) return;
-    pendingScanValues.current = null;
-    setPageTypeModal(null);
-    analyzeMutation.mutate({ url: scan.url, turnstileToken: scan.token, pageType: selectedPageType });
-  };
-
   const onSubmit = (values: z.infer<FormSchema>) => {
     console.info("[turnstile] submit invoked", {
       hasSiteKey: !!turnstileSiteKey,
@@ -4290,8 +4177,7 @@ export default function MasterAnalyzerPage() {
       }
       return;
     }
-    pendingScanValues.current = { url: values.url, token: turnstileToken || undefined };
-    detectMutation.mutate({ url: values.url });
+    analyzeMutation.mutate({ ...values, turnstileToken: turnstileToken || undefined });
   };
 
   const handleDownloadPdf = async (tier: 'free' | 'basic' | 'pro' = 'free') => {
@@ -4499,10 +4385,8 @@ export default function MasterAnalyzerPage() {
                   )}
                 />
                 {turnstileSiteKey && <div ref={turnstileRef} className="hidden" />}
-                <Button type="submit" disabled={analyzeMutation.isPending || detectMutation.isPending} className="h-12 px-6 w-full md:w-auto" data-testid="master-analyze">
-                  {detectMutation.isPending ? (
-                    <><Loader2 className="w-4 h-4 mr-2 animate-spin" />{t('form.checkingPageType')}</>
-                  ) : analyzeMutation.isPending ? (
+                <Button type="submit" disabled={analyzeMutation.isPending} className="h-12 px-6 w-full md:w-auto" data-testid="master-analyze">
+                  {analyzeMutation.isPending ? (
                     <><Loader2 className="w-4 h-4 mr-2 animate-spin" />{t('form.analyzing')}</>
                   ) : (
                     <><Zap className="w-4 h-4 mr-2" />{t('form.runAll')}</>
@@ -4721,19 +4605,6 @@ export default function MasterAnalyzerPage() {
         <FaqSection />
 
         <UpgradeCta />
-
-        <PageTypeConfirmModal
-          open={!!pageTypeModal?.show}
-          detected={pageTypeModal?.detected ?? 'other'}
-          selected={selectedPageType}
-          onSelect={setSelectedPageType}
-          onConfirm={handlePageTypeConfirm}
-          onClose={() => {
-            setPageTypeModal(null);
-            pendingScanValues.current = null;
-            resetTurnstile();
-          }}
-        />
 
         {(() => {
           const emailModalNs = pendingPdfTier === 'pro' ? 'modals.proReport' : pendingPdfTier === 'basic' ? 'modals.basicReport' : 'modals.freeReport';
