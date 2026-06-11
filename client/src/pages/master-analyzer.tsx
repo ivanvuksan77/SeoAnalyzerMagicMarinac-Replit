@@ -3968,7 +3968,7 @@ export default function MasterAnalyzerPage() {
         setPaidTier(data.tier);
         setShowAccessCodeInput(false);
         setVerificationPendingEmail(null);
-        toast({ title: isAdminCode ? "Admin Access Activated" : "Access Code Activated", description: isAdminCode ? "Pro tier unlocked with unlimited scans." : `${data.tier === 'pro' ? 'Pro' : 'Basic'} tier unlocked with ${data.scansRemaining} scan${data.scansRemaining !== 1 ? 's' : ''} remaining.` });
+        toast({ title: isAdminCode ? t('master.toast.adminAccessTitle') : t('master.toast.accessCodeTitle'), description: isAdminCode ? t('master.toast.adminAccessDescription') : t('master.toast.accessCodeDescription', { tier: data.tier === 'pro' ? 'Pro' : 'Basic', count: data.scansRemaining }) });
       } else if (data.requiresVerification) {
         // Need an email to send the magic link to.
         const target = emailTrim || data.boundEmail;
@@ -4130,7 +4130,7 @@ export default function MasterAnalyzerPage() {
 
       toast({
         title: t('master.payment.analysisCompleteTitle'),
-        description: `All tools finished analyzing ${data.url}${scanInfo ? `. ${scanInfo}` : ''}`
+        description: `${t('master.toast.analysisCompleteDescription', { url: data.url })}${scanInfo ? `. ${scanInfo}` : ''}`
       });
       setResult(data);
       setEmailCaptured(false);
@@ -4143,8 +4143,8 @@ export default function MasterAnalyzerPage() {
         setFreeScansLeft(0);
       }
       toast({ 
-        title: isRateLimit ? "Daily Limit Reached" : isNoScans ? "No Scans Left" : "Analysis Failed", 
-        description: isRateLimit ? "You've used all 3 free analyses today. Upgrade for unlimited access." : isNoScans ? "Your access code has no scans remaining. Purchase a new plan for more scans." : (error.message || "Something went wrong"), 
+        title: isRateLimit ? t('master.toast.rateLimitTitle') : isNoScans ? t('master.toast.noScansTitle') : t('master.toast.analysisFailed'), 
+        description: isRateLimit ? t('master.toast.rateLimitDescription') : isNoScans ? t('master.toast.noScansDescription') : (error.message || t('master.compare.somethingWentWrong')), 
         variant: "destructive" 
       });
       resetTurnstile();

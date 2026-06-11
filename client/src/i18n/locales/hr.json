@@ -6,7 +6,8 @@
     "languageEnglish": "Engleski",
     "languageCroatian": "Hrvatski",
     "languageLabel": "Jezik",
-    "slogan": "Scan. Snap. Fix What Matters."
+    "slogan": "Scan. Snap. Fix What Matters.",
+    "important": "Važno"
   },
   "hero": {
     "badge": "Svih 8 alata jednim klikom",
@@ -1217,6 +1218,253 @@
     "siteTools": {
       "title": "Alati za stranicu — pokvarene veze, slike, sitemap i robots | FreeSiteAnalyzer",
       "description": "Besplatni alati za cijelu stranicu: provjera pokvarenih veza, optimizacija slika, interno povezivanje, sitemap i robots.txt validacija."
+    }
+  },
+  "standalone": {
+    "nav": {
+      "masterAnalyzer": "Master Analizator",
+      "adLandingPage": "Ads odredišna stranica",
+      "aeoSeo": "AEO / AI SEO",
+      "siteTools": "Alati za stranicu",
+      "account": "Korisnički račun"
+    },
+    "footer": {
+      "copyright": "© 2024 FreeSiteAnalyzer. Sva prava pridržana.",
+      "privacy": "Pravila privatnosti",
+      "terms": "Uvjeti korištenja",
+      "support": "Podrška"
+    },
+    "form": {
+      "analyzing": "Analiziram...",
+      "analyze": "Analiziraj",
+      "urlError": "Molimo unesite ispravan URL"
+    },
+    "checks": {
+      "detailedTitle": "Detalji rezultata provjera",
+      "detailedDesc": "Kliknite \"Vodič za popravak\" na neuspješnoj provjeri za upute korak po korak s primjerima koda",
+      "impact": "Utjecaj:",
+      "fix": "Popravak:",
+      "statusPass": "Prolazi",
+      "statusFail": "Pada",
+      "statusWarning": "Upozorenje"
+    },
+    "technicalFix": {
+      "toggle": "Vodič za popravak",
+      "steps": "Upute korak po korak"
+    },
+    "recommendations": {
+      "title": "Prioritetne preporuke"
+    },
+    "priority": {
+      "critical": "Kritično",
+      "high": "Visoko",
+      "medium": "Srednje",
+      "low": "Nisko"
+    }
+  },
+  "aeo": {
+    "toast": {
+      "analysisCompleteTitle": "Analiza završena",
+      "analysisCompleteDescription": "AEO analiza za {{url}}",
+      "failedTitle": "Analiza nije uspjela",
+      "failedDescription": "Nije moguće analizirati stranicu",
+      "comparisonCompleteTitle": "Usporedba završena",
+      "comparisonCompleteDescription": "Uspoređeno {{count}} web stranica",
+      "comparisonFailedTitle": "Usporedba nije uspjela",
+      "comparisonFailedDescription": "Nije moguće usporediti",
+      "needTwoUrlsTitle": "Potrebna su najmanje 2 URL-a",
+      "needTwoUrlsDescription": "Unesite najmanje 2 URL-a za usporedbu"
+    },
+    "analyze": {
+      "badge": "Spreman za AI pretraživanje",
+      "title": "AEO / AI SEO Analizator",
+      "description": "Procijenite koliko je vaš sadržaj optimiziran za AI pretraživače poput ChatGPT-a, Perplexityja i Google AI Overviews-a. Mjeri strukturirane podatke, format sadržaja, autoritativne signale i AI dostupnost.",
+      "tab": "Analiziraj",
+      "compareTab": "Usporedi konkurenciju",
+      "featureStructuredData": "Strukturirani podaci",
+      "featureContentFormat": "Format sadržaja",
+      "featureEEAT": "E-E-A-T signali",
+      "featureAiAccess": "AI dostupnost"
+    },
+    "citation": {
+      "title": "Vjerojatnost citiranja",
+      "outOf": "od 100",
+      "veryLikely": "Vrlo vjerojatno",
+      "likely": "Vjerojatno",
+      "possible": "Moguće",
+      "unlikely": "Malo vjerojatno"
+    },
+    "aiPreview": {
+      "title": "AI pregled pretrage",
+      "extractionSuffix": "Kvaliteta ekstrakcije",
+      "simulatedCitation": "Simulirano AI citiranje",
+      "quotableExcerpts": "Citabilni isječci ({{count}})",
+      "from": "izvor:",
+      "typeAnswer": "Direktni odgovor",
+      "typeFaq": "FAQ",
+      "typeDefinition": "Definicija",
+      "typeStatistic": "Statistika",
+      "typeList": "Lista"
+    },
+    "schema": {
+      "title": "Generator Schema Markup-a",
+      "description": "JSON-LD kôd generiran iz sadržaja vaše stranice, spreman za kopiranje. Zalijepite u HTML <head>.",
+      "alreadyPresent": "Već prisutno"
+    },
+    "contentGaps": {
+      "title": "Pronalazač semantičkih praznina",
+      "description": "Provjerava je li sadržaj vaše stranice strukturiran za AI dohvat. Uspoređuje naslov, H1, meta opis i tekst tijela kako bi otkrio neusklađene naslove, implicitne mogućnosti, nedostajuće konkretne činjenice i nedostatak strojno čitljivih oznaka — najčešće razloge zašto AI pretraživači preskaču ili pogrešno klasificiraju stranicu.",
+      "semanticAlignment": "Semantičko poravnanje",
+      "coverageChecks": "Provjere semantičke pokrivenosti",
+      "noGaps": "Nisu pronađene značajne semantičke praznine. Pozicioniranje sadržaja čini se koherentnim."
+    },
+    "compare": {
+      "badge": "Uspoređeno",
+      "title": "AEO usporedba konkurenata",
+      "description": "Usporedite 2-3 web stranice jedna pored druge da vidite tko je bolje optimiziran za AI pretraživače.",
+      "addUrl": "Dodaj URL",
+      "comparing": "Uspoređujem...",
+      "compare": "Usporedi",
+      "summaryTitle": "Sažetak usporedbe",
+      "strengths": "Prednosti",
+      "weaknesses": "Slabosti",
+      "categoryComparison": "Usporedba po kategorijama",
+      "catStructuredData": "Strukturirani podaci",
+      "catContentFormat": "Format sadržaja",
+      "catAuthority": "Autoritet",
+      "catSemantic": "Semantika",
+      "catAiAccess": "AI pristup",
+      "catCitation": "Citiranje"
+    },
+    "rating": {
+      "title": "AEO rezultat spremnosti",
+      "highlyOptimized": "Visoko optimizirano",
+      "aiReady": "Spreman za AI",
+      "partiallyReady": "Djelomično spreman",
+      "notReady": "Nije spreman"
+    },
+    "categories": {
+      "structuredData": "Strukturirani podaci",
+      "contentFormat": "Format sadržaja",
+      "authority": "Autoritet i E-E-A-T",
+      "semantic": "Semantička struktura",
+      "aiAccessibility": "AI dostupnost",
+      "metricJsonLd": "JSON-LD",
+      "metricFaqSchema": "FAQ Schema",
+      "metricOrgSchema": "Organization Schema",
+      "metricQuestionHeadings": "Naslovi s pitanjima",
+      "metricDirectAnswers": "Direktni odgovori",
+      "metricListsTables": "Liste/Tablice",
+      "metricAuthorInfo": "Informacije o autoru",
+      "metricCitations": "Citati",
+      "metricDatePublished": "Datum objave",
+      "metricHeadingHierarchy": "Hijerarhija naslova",
+      "metricSemanticHtml": "Semantic HTML",
+      "metricTableOfContents": "Sadržaj",
+      "metricAiCrawlers": "AI crawleri",
+      "metricMetaDescription": "Meta Description",
+      "metricCanonicalUrl": "Canonical URL"
+    },
+    "checks": {
+      "title": "Detalji rezultata provjera",
+      "description": "Kliknite \"Vodič za popravak\" na neuspješnoj provjeri za upute korak po korak s primjerima koda",
+      "impact": "Utjecaj:",
+      "fix": "Popravak:",
+      "catStructuredData": "Strukturirani podaci",
+      "catContentFormat": "Format sadržaja",
+      "catAuthority": "Autoritet i E-E-A-T",
+      "catSemantic": "Semantička struktura",
+      "catAiAccess": "AI dostupnost"
+    },
+    "technicalFix": {
+      "toggle": "Vodič za popravak",
+      "steps": "Upute korak po korak"
+    },
+    "recommendations": {
+      "title": "Prioritetne preporuke"
+    }
+  },
+  "ads": {
+    "toast": {
+      "analysisCompleteTitle": "Analiza završena",
+      "analysisCompleteDescription": "Analiza Ads odredišne stranice za {{url}}",
+      "failedTitle": "Analiza nije uspjela",
+      "failedDescription": "Nije moguće analizirati odredišnu stranicu"
+    },
+    "hero": {
+      "badge": "Fokusirano na Google Ads",
+      "title": "Analizirajte iskustvo odredišne stranice",
+      "description": "Procijenite svoju odredišnu stranicu za Google Ads Ocjenu kvalitete — ne SEO. Mjeri brzinu isporuke, cache, infrastrukturu i mobilno UX iskustvo iz perspektive plaćenog prometa.",
+      "featureTtfb": "Mjerenje TTFB-a",
+      "featureCdn": "Detekcija CDN-a",
+      "featureCache": "Analiza cachea",
+      "featureMobile": "Mobilni UX"
+    },
+    "rating": {
+      "title": "Iskustvo odredišne stranice",
+      "aboveAverage": "Iznad prosjeka",
+      "average": "Prosječno",
+      "belowAverage": "Ispod prosjeka"
+    },
+    "categories": {
+      "serverSpeed": "Brzina servera",
+      "cdnDelivery": "CDN i isporuka",
+      "cacheHealth": "Zdravlje cachea",
+      "redirectChain": "Lanac preusmjeravanja",
+      "hosting": "Hosting",
+      "mobileUx": "Mobilni UX",
+      "detailEdgeCaching": "(edge caching aktivan)",
+      "detailNoCdn": "CDN nije otkriven",
+      "detailCacheFragmented": "Otkrivena fragmentacija cachea",
+      "detailCacheHealthy": "Upravljanje cacheom je uredno",
+      "detailDirect": "Direktna isporuka",
+      "detailRedirects": "{{count}} preusmjeravanje(a) — dodano {{latency}}ms",
+      "detailSharedHosting": "Otkriven dijeljeni hosting",
+      "detailHostingOk": "Hosting OK",
+      "detailKeywordsMatch": "Ključne riječi se podudaraju",
+      "detailNoKeywordsMatch": "Ključne riječi se ne podudaraju",
+      "detailCtaVisible": "CTA vidljiv",
+      "detailCtaNotVisible": "CTA nije vidljiv"
+    },
+    "checks": {
+      "catPerformance": "Performanse i brzina",
+      "catDelivery": "Isporuka i infrastruktura",
+      "catCaching": "Cache i fragmentacija",
+      "catUx": "Mobilni UX i relevantnost",
+      "typeInfrastructure": "Infrastruktura",
+      "typePage": "Razina stranice",
+      "impact": "Utjecaj:",
+      "fix": "Popravak:"
+    },
+    "technicalFix": {
+      "toggle": "Vodič za popravak",
+      "steps": "Upute korak po korak"
+    },
+    "recommendations": {
+      "title": "Prioritetne preporuke",
+      "typeInfrastructure": "Infrastruktura",
+      "typePage": "Razina stranice"
+    },
+    "impact": {
+      "title": "Utjecaj na Google Ads",
+      "qualityScore": "Utjecaj na Ocjenu kvalitete",
+      "cpc": "Utjecaj na CPC i troškove",
+      "disclaimer": "Ova analiza fokusira se isključivo na Iskustvo odredišne stranice — jednu od tri komponente Google Ads Ocjene kvalitete (uz Očekivani CTR i Relevantnost oglasa). Iskustvo odredišne stranice tretira se kao problem performansi, namjere i isporuke, a ne SEO faktor rangiranja. Analiza povratnih veza, gustoća ključnih riječi i signali organskog rangiranja namjerno su isključeni."
+    }
+  },
+  "master": {
+    "toast": {
+      "adminAccessTitle": "Aktiviran admin pristup",
+      "adminAccessDescription": "Pro razina otključana s neograničenim skeniranjima.",
+      "accessCodeTitle": "Pristupni kôd aktiviran",
+      "accessCodeDescription_one": "{{tier}} razina otključana s {{count}} preostalim skeniranjem.",
+      "accessCodeDescription_other": "{{tier}} razina otključana s {{count}} preostalih skeniranja.",
+      "analysisCompleteDescription": "Svi alati završili analizu za {{url}}",
+      "rateLimitTitle": "Dostignut dnevni limit",
+      "rateLimitDescription": "Iskoristili ste sva 3 besplatna skeniranja danas. Nadogradite za neograničeni pristup.",
+      "noScansTitle": "Nema preostalih skeniranja",
+      "noScansDescription": "Vaš pristupni kôd nema preostalih skeniranja. Kupite novi plan za više skeniranja.",
+      "analysisFailed": "Analiza nije uspjela"
     }
   }
 }

@@ -6,7 +6,8 @@
     "languageEnglish": "English",
     "languageCroatian": "Croatian",
     "languageLabel": "Language",
-    "slogan": "Scan. Snap. Fix What Matters."
+    "slogan": "Scan. Snap. Fix What Matters.",
+    "important": "Important"
   },
   "hero": {
     "badge": "All 8 Tools in One Click",
@@ -1217,6 +1218,253 @@
     "siteTools": {
       "title": "Site Tools — Broken Links, Images, Sitemap & Robots | FreeSiteAnalyzer",
       "description": "Free site-wide tools: broken-link checker, image optimization, internal linking, sitemap and robots.txt validation."
+    }
+  },
+  "standalone": {
+    "nav": {
+      "masterAnalyzer": "Master Analyzer",
+      "adLandingPage": "Ads Landing Page",
+      "aeoSeo": "AEO / AI SEO",
+      "siteTools": "Site Tools",
+      "account": "Account"
+    },
+    "footer": {
+      "copyright": "© 2024 FreeSiteAnalyzer. All rights reserved.",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "support": "Support"
+    },
+    "form": {
+      "analyzing": "Analyzing...",
+      "analyze": "Analyze",
+      "urlError": "Please enter a valid URL"
+    },
+    "checks": {
+      "detailedTitle": "Detailed Check Results",
+      "detailedDesc": "Click \"Technical Fix Guide\" on any failing check for step-by-step instructions with code examples",
+      "impact": "Impact:",
+      "fix": "Fix:",
+      "statusPass": "Pass",
+      "statusFail": "Fail",
+      "statusWarning": "Warning"
+    },
+    "technicalFix": {
+      "toggle": "Technical Fix Guide",
+      "steps": "Step-by-step instructions"
+    },
+    "recommendations": {
+      "title": "Priority Recommendations"
+    },
+    "priority": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    }
+  },
+  "aeo": {
+    "toast": {
+      "analysisCompleteTitle": "Analysis Complete",
+      "analysisCompleteDescription": "AEO analysis for {{url}}",
+      "failedTitle": "Analysis Failed",
+      "failedDescription": "Failed to analyze page",
+      "comparisonCompleteTitle": "Comparison Complete",
+      "comparisonCompleteDescription": "Compared {{count}} websites",
+      "comparisonFailedTitle": "Comparison Failed",
+      "comparisonFailedDescription": "Failed to compare",
+      "needTwoUrlsTitle": "Need at least 2 URLs",
+      "needTwoUrlsDescription": "Enter at least 2 URLs to compare"
+    },
+    "analyze": {
+      "badge": "AI Search Ready",
+      "title": "AEO / AI SEO Analyzer",
+      "description": "Evaluate how well your content is optimized for AI answer engines like ChatGPT, Perplexity, and Google AI Overviews. Measures structured data, content format, authority signals, and AI accessibility.",
+      "tab": "Analyze",
+      "compareTab": "Compare Competitors",
+      "featureStructuredData": "Structured Data",
+      "featureContentFormat": "Content Format",
+      "featureEEAT": "E-E-A-T Signals",
+      "featureAiAccess": "AI Accessibility"
+    },
+    "citation": {
+      "title": "Citation Likelihood",
+      "outOf": "out of 100",
+      "veryLikely": "Very Likely",
+      "likely": "Likely",
+      "possible": "Possible",
+      "unlikely": "Unlikely"
+    },
+    "aiPreview": {
+      "title": "AI Search Preview",
+      "extractionSuffix": "Extraction Quality",
+      "simulatedCitation": "Simulated AI Citation",
+      "quotableExcerpts": "Quotable Excerpts ({{count}})",
+      "from": "from:",
+      "typeAnswer": "Direct Answer",
+      "typeFaq": "FAQ",
+      "typeDefinition": "Definition",
+      "typeStatistic": "Statistic",
+      "typeList": "List"
+    },
+    "schema": {
+      "title": "Schema Markup Generator",
+      "description": "Ready-to-copy JSON-LD code generated from your page content. Paste into your HTML <head>.",
+      "alreadyPresent": "Already Present"
+    },
+    "contentGaps": {
+      "title": "Content Gap Finder",
+      "description": "Checks whether your page content is structured for AI retrieval. It compares your title, H1, meta description, and body copy to detect misaligned headlines, implicit-only capabilities, missing concrete facts, and lack of machine-readable markup — the most common reasons AI engines skip or misclassify a page.",
+      "semanticAlignment": "Semantic Alignment",
+      "coverageChecks": "Semantic Coverage Checks",
+      "noGaps": "No significant semantic gaps detected. Content positioning appears coherent."
+    },
+    "compare": {
+      "badge": "Side-by-Side",
+      "title": "Competitor AEO Comparison",
+      "description": "Compare 2-3 websites side by side to see who's better optimized for AI search engines.",
+      "addUrl": "Add URL",
+      "comparing": "Comparing...",
+      "compare": "Compare",
+      "summaryTitle": "Comparison Summary",
+      "strengths": "Strengths",
+      "weaknesses": "Weaknesses",
+      "categoryComparison": "Category Comparison",
+      "catStructuredData": "Structured Data",
+      "catContentFormat": "Content Format",
+      "catAuthority": "Authority",
+      "catSemantic": "Semantic",
+      "catAiAccess": "AI Access",
+      "catCitation": "Citation"
+    },
+    "rating": {
+      "title": "AEO Readiness Score",
+      "highlyOptimized": "Highly Optimized",
+      "aiReady": "AI-Ready",
+      "partiallyReady": "Partially Ready",
+      "notReady": "Not Ready"
+    },
+    "categories": {
+      "structuredData": "Structured Data",
+      "contentFormat": "Content Format",
+      "authority": "Authority & E-E-A-T",
+      "semantic": "Semantic Structure",
+      "aiAccessibility": "AI Accessibility",
+      "metricJsonLd": "JSON-LD",
+      "metricFaqSchema": "FAQ Schema",
+      "metricOrgSchema": "Organization Schema",
+      "metricQuestionHeadings": "Question Headings",
+      "metricDirectAnswers": "Direct Answers",
+      "metricListsTables": "Lists/Tables",
+      "metricAuthorInfo": "Author Info",
+      "metricCitations": "Citations",
+      "metricDatePublished": "Date Published",
+      "metricHeadingHierarchy": "Heading Hierarchy",
+      "metricSemanticHtml": "Semantic HTML",
+      "metricTableOfContents": "Table of Contents",
+      "metricAiCrawlers": "AI Crawlers",
+      "metricMetaDescription": "Meta Description",
+      "metricCanonicalUrl": "Canonical URL"
+    },
+    "checks": {
+      "title": "Detailed Check Results",
+      "description": "Click \"Technical Fix Guide\" on any failing check for step-by-step instructions with code examples",
+      "impact": "Impact:",
+      "fix": "Fix:",
+      "catStructuredData": "Structured Data",
+      "catContentFormat": "Content Format",
+      "catAuthority": "Authority & E-E-A-T",
+      "catSemantic": "Semantic Structure",
+      "catAiAccess": "AI Accessibility"
+    },
+    "technicalFix": {
+      "toggle": "Technical Fix Guide",
+      "steps": "Step-by-step instructions"
+    },
+    "recommendations": {
+      "title": "Priority Recommendations"
+    }
+  },
+  "ads": {
+    "toast": {
+      "analysisCompleteTitle": "Analysis Complete",
+      "analysisCompleteDescription": "Ads landing page analysis for {{url}}",
+      "failedTitle": "Analysis Failed",
+      "failedDescription": "Failed to analyze landing page"
+    },
+    "hero": {
+      "badge": "Google Ads Focused",
+      "title": "Analyze Landing Page Experience",
+      "description": "Evaluate your landing page for Google Ads Quality Score — not SEO. Measures delivery speed, caching, infrastructure, and mobile UX from a paid traffic perspective.",
+      "featureTtfb": "TTFB Measurement",
+      "featureCdn": "CDN Detection",
+      "featureCache": "Cache Analysis",
+      "featureMobile": "Mobile UX"
+    },
+    "rating": {
+      "title": "Landing Page Experience",
+      "aboveAverage": "Above average",
+      "average": "Average",
+      "belowAverage": "Below average"
+    },
+    "categories": {
+      "serverSpeed": "Server Speed",
+      "cdnDelivery": "CDN & Delivery",
+      "cacheHealth": "Cache Health",
+      "redirectChain": "Redirect Chain",
+      "hosting": "Hosting",
+      "mobileUx": "Mobile UX",
+      "detailEdgeCaching": "(edge caching active)",
+      "detailNoCdn": "No CDN detected",
+      "detailCacheFragmented": "Cache fragmentation detected",
+      "detailCacheHealthy": "Cache handling is healthy",
+      "detailDirect": "Direct delivery",
+      "detailRedirects": "{{count}} redirect(s) — {{latency}}ms added",
+      "detailSharedHosting": "Shared hosting detected",
+      "detailHostingOk": "Hosting OK",
+      "detailKeywordsMatch": "Keywords match",
+      "detailNoKeywordsMatch": "No keyword match",
+      "detailCtaVisible": "CTA visible",
+      "detailCtaNotVisible": "CTA not visible"
+    },
+    "checks": {
+      "catPerformance": "Performance & Speed",
+      "catDelivery": "Delivery & Infrastructure",
+      "catCaching": "Caching & Fragmentation",
+      "catUx": "Mobile UX & Relevance",
+      "typeInfrastructure": "Infrastructure",
+      "typePage": "Page-level",
+      "impact": "Impact:",
+      "fix": "Fix:"
+    },
+    "technicalFix": {
+      "toggle": "Technical Fix Guide",
+      "steps": "Step-by-step instructions"
+    },
+    "recommendations": {
+      "title": "Priority Recommendations",
+      "typeInfrastructure": "Infrastructure",
+      "typePage": "Page-level"
+    },
+    "impact": {
+      "title": "Impact on Google Ads",
+      "qualityScore": "Quality Score Impact",
+      "cpc": "CPC & Cost Impact",
+      "disclaimer": "This analysis focuses exclusively on Landing Page Experience — one of three components of Google Ads Quality Score (alongside Expected CTR and Ad Relevance). Landing Page Experience is treated as a performance + intent + delivery problem, not an SEO ranking factor. Backlink analysis, keyword density, and organic ranking signals are intentionally excluded."
+    }
+  },
+  "master": {
+    "toast": {
+      "adminAccessTitle": "Admin Access Activated",
+      "adminAccessDescription": "Pro tier unlocked with unlimited scans.",
+      "accessCodeTitle": "Access Code Activated",
+      "accessCodeDescription_one": "{{tier}} tier unlocked with {{count}} scan remaining.",
+      "accessCodeDescription_other": "{{tier}} tier unlocked with {{count}} scans remaining.",
+      "analysisCompleteDescription": "All tools finished analyzing {{url}}",
+      "rateLimitTitle": "Daily Limit Reached",
+      "rateLimitDescription": "You've used all 3 free analyses today. Upgrade for unlimited access.",
+      "noScansTitle": "No Scans Left",
+      "noScansDescription": "Your access code has no scans remaining. Purchase a new plan for more scans.",
+      "analysisFailed": "Analysis Failed"
     }
   }
 }
