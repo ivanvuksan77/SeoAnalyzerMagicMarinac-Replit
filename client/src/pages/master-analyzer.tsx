@@ -167,11 +167,6 @@ function ScoreCircle({ score, label, color }: { score: number; label: string; co
   );
 }
 
-const PAGE_TYPE_ICONS: Record<string, string> = {
-  homepage: '🏠', service: '🔧', product: '🛒', category: '🗂️',
-  blog: '📝', contact: '📞', landing: '🎯', other: '📄',
-};
-
 function OverallDashboard({ data, onDownloadPdf, sessionId, paidTier, emailCaptured }: { data: MasterResult; onDownloadPdf: (tier?: 'free' | 'basic' | 'pro') => void; sessionId?: string; paidTier: string; emailCaptured: boolean }) {
   const { t } = useTranslation();
   const scores: { label: string; score: number; icon: any; color: string }[] = [];
@@ -227,7 +222,7 @@ function OverallDashboard({ data, onDownloadPdf, sessionId, paidTier, emailCaptu
             {data.pageType && data.pageType !== 'other' && (
               <span className="mt-1.5 inline-flex items-center gap-1 text-xs text-muted-foreground" data-testid="analyzed-as-badge">
                 <span>{t('analyzedAs')}</span>
-                <span className="font-medium">{PAGE_TYPE_ICONS[data.pageType] || '📄'} {t(`pageTypeModal.${data.pageType}`)}</span>
+                <span className="font-medium">{t(`pageTypeModal.${data.pageType}`)}</span>
               </span>
             )}
           </div>
@@ -3826,7 +3821,7 @@ function PageTypeConfirmModal({ open, detected, selected, onSelect, onConfirm, o
         {detected !== 'other' && (
           <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-primary/8 border border-primary/20 text-sm">
             <span className="text-muted-foreground">{t('pageTypeModal.detectedLabel')}</span>
-            <span className="font-semibold text-primary">{PAGE_TYPE_ICONS[detected]} {t(`pageTypeModal.${detected}`)}</span>
+            <span className="font-semibold text-primary">{t(`pageTypeModal.${detected}`)}</span>
           </div>
         )}
 
@@ -3846,7 +3841,6 @@ function PageTypeConfirmModal({ open, detected, selected, onSelect, onConfirm, o
                 }`}
             >
               <span className="flex items-center gap-1.5 font-medium leading-tight">
-                <span>{PAGE_TYPE_ICONS[key]}</span>
                 {t(`pageTypeModal.${key}`)}
                 {key === detected && (
                   <Badge variant="secondary" className="text-[10px] h-4 px-1 py-0 leading-none">auto</Badge>
