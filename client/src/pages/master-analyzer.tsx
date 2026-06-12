@@ -2271,7 +2271,7 @@ function AeoAiSearchPreviewCard({ preview }: { preview: AiSearchPreview }) {
           </div>
           <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${qualityColors[preview.extractionQuality]}`}>{t(`master.aeo.extractionQuality${preview.extractionQuality}`)} {t('master.aeo.extractionQualitySuffix')}</span>
         </div>
-        <p className="text-sm text-muted-foreground mb-4">{preview.extractionDetails}</p>
+        <p className="text-sm text-muted-foreground mb-4">{preview.extractionQuality === "High" ? t('master.aeo.extractionDetailsHigh') : preview.extractionQuality === "Medium" ? t('master.aeo.extractionDetailsMedium') : t('master.aeo.extractionDetailsLow')}</p>
         <div className="bg-muted/50 rounded-lg border border-border p-4 mb-4">
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="w-4 h-4 text-blue-500" />
