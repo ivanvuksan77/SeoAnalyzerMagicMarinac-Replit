@@ -2380,6 +2380,22 @@ function AeoSchemaGeneratorCard({ suggestions }: { suggestions: SchemaSuggestion
 function AeoContentGapCard({ gaps }: { gaps: ContentGapsAnalysis }) {
   const { t } = useTranslation();
 
+  const failCount = gaps.findings.filter((f: any) => f.status === "fail").length;
+  const warnCount = gaps.findings.filter((f: any) => f.status === "warning").length;
+  const passCount = gaps.findings.filter((f: any) => f.status === "pass").length;
+  const coverageDetailsKey = gaps.findings.length === 0
+    ? 'master.aeo.coverageDetailsGood'
+    : failCount > 0 ? 'master.aeo.coverageDetailsFail'
+    : warnCount > 0 ? 'master.aeo.coverageDetailsWarn'
+    : 'master.aeo.coverageDetailsPass';
+  const findingLabelMap: Record<string, string> = {
+    'Positioning coherence': t('master.aeo.findingLabelPositioningCoherence'),
+    'H1 and title tag alignment': t('master.aeo.findingLabelH1TitleAlignment'),
+    'Implicit capabilities': t('master.aeo.findingLabelImplicitCapabilities'),
+    'Factual specificity': t('master.aeo.findingLabelFactualSpecificity'),
+    'Machine-readable structure': t('master.aeo.findingLabelMachineReadableStructure'),
+  };
+
   return (
     <Card className="rounded-xl border border-border shadow-sm" data-testid="content-gaps">
       <CardContent className="p-6">
@@ -2403,7 +2419,7 @@ function AeoContentGapCard({ gaps }: { gaps: ContentGapsAnalysis }) {
             </div>
           </div>
         </div>
-        <p className="text-sm text-muted-foreground mb-3">{gaps.coverageDetails}</p>
+        <p className="text-sm text-muted-foreground mb-3">{t(coverageDetailsKey, { failCount, warnCount, passCount })}</p>
         {gaps.findings.length > 0 && (
           <div>
             <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">{t('master.aeo.semanticFindings')}</p>
@@ -2422,7 +2438,7 @@ function AeoContentGapCard({ gaps }: { gaps: ContentGapsAnalysis }) {
                     <div className="flex items-start gap-2 p-2">
                       <FindingIcon className={`w-4 h-4 ${iconClass} mt-0.5 flex-shrink-0`} />
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-foreground">{finding.label}</p>
+                        <p className="text-sm font-medium text-foreground">{findingLabelMap[finding.label] || finding.label}</p>
                         <p className="text-xs text-muted-foreground">{finding.detail}</p>
                       </div>
                       <span className={`px-1.5 py-0.5 rounded text-xs font-medium flex-shrink-0 ${pillClass}`}>{pillLabel}</span>
