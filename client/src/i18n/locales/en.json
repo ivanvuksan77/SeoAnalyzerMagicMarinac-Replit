@@ -704,7 +704,10 @@
         "scoreLow": "Below average — fix the gaps below",
         "scoreMedium": "OK — close the missing terms for a quick win",
         "scoreHigh": "Strong message match"
-      }
+      },
+      "infrastructure": "Infrastructure",
+      "pageLevel": "Page-level",
+      "priorityRecommendations": "Priority Recommendations"
     },
     "labels": {
       "seo": "SEO",
@@ -736,7 +739,12 @@
       "noStructuredData": "No structured data found",
       "schemaHelps": "Schema markup helps search engines understand your content",
       "schemaCanImprove": "Adding schema markup can improve rich snippet appearance",
-      "schemaFix": "Add JSON-LD structured data to your page."
+      "schemaFix": "Add JSON-LD structured data to your page.",
+      "readabilityVeryEasy": "Very Easy",
+      "readabilityEasy": "Easy",
+      "readabilityModerate": "Moderate",
+      "readabilityDifficult": "Difficult",
+      "readabilityVeryDifficult": "Very Difficult"
     },
     "payment": {
       "processingTitle": "Payment Processing",
@@ -803,7 +811,31 @@
       "detectedTopics": "Detected Topics",
       "semanticFindings": "Semantic Coverage Checks",
       "noSemanticFindings": "No significant semantic gaps detected. Content positioning appears coherent.",
-      "recommendations": "AEO Recommendations"
+      "recommendations": "AEO Recommendations",
+      "typeAnswer": "Direct Answer",
+      "typeFaq": "FAQ",
+      "typeDefinition": "Definition",
+      "typeStatistic": "Statistic",
+      "typeList": "List",
+      "extractionQualitySuffix": "Extraction Quality",
+      "extractionQualityHigh": "High",
+      "extractionQualityMedium": "Medium",
+      "extractionQualityLow": "Low",
+      "quotableExcerpts": "Quotable Excerpts ({{count}})",
+      "excerptFrom": "from:",
+      "citationVeryLikely": "Very Likely",
+      "citationLikely": "Likely",
+      "citationPossible": "Possible",
+      "citationUnlikely": "Unlikely",
+      "jsonLd": "JSON-LD",
+      "faqSchemaMetric": "FAQ Schema",
+      "orgSchema": "Organization Schema",
+      "metaDescMetric": "Meta Description",
+      "priorityRecsTitle": "Priority Recommendations",
+      "detailedChecksTitle": "Detailed Check Results",
+      "technicalFixHint": "Click \"Technical Fix Guide\" on any failing check for step-by-step instructions with code examples",
+      "impactLabel": "Impact:",
+      "fixLabel": "Fix:"
     },
     "geo": {
       "readinessScore": "GEO Readiness Score",
@@ -842,7 +874,11 @@
       "tables": "Tables",
       "charts": "Charts",
       "interactive": "Interactive",
-      "formats": "Formats"
+      "formats": "Formats",
+      "impactSuffix": "Impact",
+      "impactHigh": "High",
+      "impactMedium": "Medium",
+      "impactLow": "Low"
     },
     "brokenLinks": {
       "healthScore": "Health Score",
@@ -973,7 +1009,17 @@
       "keywordPhrasesHelp": "Multi-word phrases reveal the actual topics search engines associate with your page.",
       "tip": "Tip",
       "keywordPhrasesTip": "These phrases should align with your target search queries. If your primary keywords do not appear here, use them more naturally in your content.",
-      "keywordDensityTip": "Ideal keyword density is 1-3%. Too high may trigger keyword stuffing penalties; too low means weak optimization."
+      "keywordDensityTip": "Ideal keyword density is 1-3%. Too high may trigger keyword stuffing penalties; too low means weak optimization.",
+      "checksPassed": "{{pass}}/{{total}} checks passed",
+      "titleLength": "Length: {{count}} characters",
+      "missingTitle": "Missing meta title",
+      "titleOptimalRange": "(optimal: 30-60 characters)",
+      "titleWellOptimized": "— Well optimized",
+      "missingDescription": "Missing meta description",
+      "descOptimalRange": "(optimal: 120-160 characters)",
+      "h1TagsFound": "{{count}} H1 tag found",
+      "h1TagsFoundPlural": "{{count}} H1 tags found",
+      "h1ValidHierarchy": "— Valid hierarchy"
     }
   },
   "verification": {
@@ -1218,5 +1264,72 @@
       "title": "Site Tools — Broken Links, Images, Sitemap & Robots | FreeSiteAnalyzer",
       "description": "Free site-wide tools: broken-link checker, image optimization, internal linking, sitemap and robots.txt validation."
     }
+  },
+  "priority": {
+    "critical": "Critical",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  },
+  "standaloneAeo": {
+    "sideBySide": "Side-by-Side",
+    "compareTitle": "Competitor AEO Comparison",
+    "compareDesc": "Compare 2-3 websites side by side to see who's better optimized for AI search engines.",
+    "compareBtn": "Compare",
+    "comparingBtn": "Comparing...",
+    "addUrl": "Add URL",
+    "needAt2Title": "Need at least 2 URLs",
+    "needAt2Desc": "Enter at least 2 URLs to compare",
+    "compareCompleteTitle": "Comparison Complete",
+    "compareCompleteDesc": "Compared {{count}} websites",
+    "compareFailTitle": "Comparison Failed",
+    "compareFailDesc": "Failed to compare",
+    "comparisonSummary": "Comparison Summary",
+    "strengths": "Strengths",
+    "weaknesses": "Weaknesses",
+    "categoryComparison": "Category Comparison",
+    "catStructuredData": "Structured Data",
+    "catContentFormat": "Content Format",
+    "catAuthority": "Authority",
+    "catSemantic": "Semantic",
+    "catAiAccess": "AI Access",
+    "catCitation": "Citation"
+  },
+  "standaloneAds": {
+    "importantLabel": "Important:",
+    "impactDisclaimer": "This analysis focuses exclusively on Landing Page Experience — one of three components of Google Ads Quality Score (alongside Expected CTR and Ad Relevance). Landing Page Experience is treated as a performance + intent + delivery problem, not an SEO ranking factor. Backlink analysis, keyword density, and organic ranking signals are intentionally excluded.",
+    "catServerSpeed": "Server Speed",
+    "catCdnDelivery": "CDN & Delivery",
+    "catCacheHealth": "Cache Health",
+    "catRedirectChain": "Redirect Chain",
+    "catHosting": "Hosting",
+    "detailCleanVsAds": "{{clean}}ms clean / {{ads}}ms with ads params",
+    "detailNoCdn": "No CDN detected",
+    "detailCdnEdge": "{{provider}} (edge caching active)",
+    "detailCdnNoEdge": "{{provider}}",
+    "detailCacheFrag": "Cache fragmentation detected",
+    "detailCacheHealthy": "Cache handling is healthy",
+    "detailDirect": "Direct delivery",
+    "detailRedirects": "{{count}} redirect(s) — {{latency}}ms added",
+    "detailSharedHosting": "Shared hosting detected",
+    "detailHostingOk": "Hosting OK",
+    "detailKeywordsMatch": "Keywords match",
+    "detailNoKeywordMatch": "No keyword match",
+    "detailCtaVisible": "CTA visible",
+    "detailCtaNotVisible": "CTA not visible",
+    "infrastructure": "Infrastructure",
+    "pageLevel": "Page-level",
+    "priorityRecommendations": "Priority Recommendations",
+    "analysisDoneTitle": "Analysis Complete",
+    "analysisDoneDesc": "Ads landing page analysis for {{url}}",
+    "analysisFailTitle": "Analysis Failed",
+    "analysisFailDesc": "Failed to analyze landing page",
+    "googleAdsFocused": "Google Ads Focused",
+    "pageTitle": "Analyze Landing Page Experience",
+    "pageDesc": "Evaluate your landing page for Google Ads Quality Score — not SEO. Measures delivery speed, caching, infrastructure, and mobile UX from a paid traffic perspective.",
+    "analyzingBtn": "Analyzing...",
+    "analyzeBtn": "Analyze",
+    "impactLabel": "Impact:",
+    "fixLabel": "Fix:"
   }
 }

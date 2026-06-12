@@ -704,7 +704,10 @@
         "scoreLow": "Ispod prosjeka — popravite rupe ispod",
         "scoreMedium": "OK — zatvorite pojmove koji nedostaju za brzu pobjedu",
         "scoreHigh": "Snažno poklapanje poruke"
-      }
+      },
+      "infrastructure": "Infrastruktura",
+      "pageLevel": "Na razini stranice",
+      "priorityRecommendations": "Prioritetne preporuke"
     },
     "labels": {
       "seo": "SEO",
@@ -736,7 +739,12 @@
       "noStructuredData": "Nisu pronađeni strukturirani podaci",
       "schemaHelps": "Schema oznake pomažu tražilicama razumjeti sadržaj",
       "schemaCanImprove": "Dodavanje schema oznaka može poboljšati rich snippet prikaz",
-      "schemaFix": "Dodajte JSON-LD strukturirane podatke na stranicu."
+      "schemaFix": "Dodajte JSON-LD strukturirane podatke na stranicu.",
+      "readabilityVeryEasy": "Jako lako",
+      "readabilityEasy": "Lako",
+      "readabilityModerate": "Umjereno",
+      "readabilityDifficult": "Teško",
+      "readabilityVeryDifficult": "Jako teško"
     },
     "payment": {
       "processingTitle": "Obrada plaćanja",
@@ -803,7 +811,31 @@
       "detectedTopics": "Otkrivene teme",
       "semanticFindings": "Provjere semantičke pokrivenosti",
       "noSemanticFindings": "Nisu otkrivene značajne semantičke praznine. Pozicioniranje sadržaja izgleda koherentno.",
-      "recommendations": "AEO preporuke"
+      "recommendations": "AEO preporuke",
+      "typeAnswer": "Izravni odgovor",
+      "typeFaq": "FAQ",
+      "typeDefinition": "Definicija",
+      "typeStatistic": "Statistika",
+      "typeList": "Popis",
+      "extractionQualitySuffix": "Kvaliteta ekstrakcije",
+      "extractionQualityHigh": "Visoka",
+      "extractionQualityMedium": "Srednja",
+      "extractionQualityLow": "Niska",
+      "quotableExcerpts": "Citabilni odlomci ({{count}})",
+      "excerptFrom": "izvor:",
+      "citationVeryLikely": "Vrlo vjerojatno",
+      "citationLikely": "Vjerojatno",
+      "citationPossible": "Moguće",
+      "citationUnlikely": "Malo vjerojatno",
+      "jsonLd": "JSON-LD",
+      "faqSchemaMetric": "FAQ shema",
+      "orgSchema": "Shema organizacije",
+      "metaDescMetric": "Meta opis",
+      "priorityRecsTitle": "Prioritetne preporuke",
+      "detailedChecksTitle": "Detaljni rezultati provjere",
+      "technicalFixHint": "Kliknite \"Vodič za tehničke popravke\" na bilo kojoj neuspješnoj provjeri za upute korak po korak s primjerima koda",
+      "impactLabel": "Utjecaj:",
+      "fixLabel": "Popravak:"
     },
     "geo": {
       "readinessScore": "GEO rezultat spremnosti",
@@ -842,7 +874,11 @@
       "tables": "Tablice",
       "charts": "Grafikoni",
       "interactive": "Interaktivno",
-      "formats": "Formati"
+      "formats": "Formati",
+      "impactSuffix": "utjecaj",
+      "impactHigh": "Visoki",
+      "impactMedium": "Srednji",
+      "impactLow": "Niski"
     },
     "brokenLinks": {
       "healthScore": "Rezultat zdravlja",
@@ -973,7 +1009,17 @@
       "keywordPhrasesHelp": "Višerječne fraze otkrivaju teme koje tražilice povezuju s vašom stranicom.",
       "tip": "Savjet",
       "keywordPhrasesTip": "Ove fraze trebaju odgovarati ciljanim upitima. Ako glavne ključne riječi nisu prisutne, koristite ih prirodnije kroz sadržaj.",
-      "keywordDensityTip": "Idealna gustoća ključnih riječi je 1-3%. Previsoka gustoća može izazvati kazne, preniska znači slabu optimizaciju."
+      "keywordDensityTip": "Idealna gustoća ključnih riječi je 1-3%. Previsoka gustoća može izazvati kazne, preniska znači slabu optimizaciju.",
+      "checksPassed": "{{pass}}/{{total}} provjera prošlo",
+      "titleLength": "Duljina: {{count}} znakova",
+      "missingTitle": "Nedostaje meta naslov",
+      "titleOptimalRange": "(optimalno: 30-60 znakova)",
+      "titleWellOptimized": "— Dobro optimizirano",
+      "missingDescription": "Nedostaje meta opis",
+      "descOptimalRange": "(optimalno: 120-160 znakova)",
+      "h1TagsFound": "Pronađen {{count}} H1 naslov",
+      "h1TagsFoundPlural": "Pronađena {{count}} H1 naslova",
+      "h1ValidHierarchy": "— Ispravna hijerarhija"
     }
   },
   "verification": {
@@ -1218,5 +1264,72 @@
       "title": "Alati za stranicu — pokvarene veze, slike, sitemap i robots | FreeSiteAnalyzer",
       "description": "Besplatni alati za cijelu stranicu: provjera pokvarenih veza, optimizacija slika, interno povezivanje, sitemap i robots.txt validacija."
     }
+  },
+  "priority": {
+    "critical": "Kritično",
+    "high": "Visoko",
+    "medium": "Srednje",
+    "low": "Nisko"
+  },
+  "standaloneAeo": {
+    "sideBySide": "Usporedba",
+    "compareTitle": "Usporedba AEO s konkurencijom",
+    "compareDesc": "Usporedite 2-3 web-stranice kako biste vidjeli tko je bolje optimiziran za AI tražilice.",
+    "compareBtn": "Usporedi",
+    "comparingBtn": "Uspoređivanje...",
+    "addUrl": "Dodaj URL",
+    "needAt2Title": "Potrebna su najmanje 2 URL-a",
+    "needAt2Desc": "Unesite najmanje 2 URL-a za usporedbu",
+    "compareCompleteTitle": "Usporedba dovršena",
+    "compareCompleteDesc": "Uspoređeno {{count}} web-stranica",
+    "compareFailTitle": "Usporedba neuspješna",
+    "compareFailDesc": "Usporedba nije uspjela",
+    "comparisonSummary": "Sažetak usporedbe",
+    "strengths": "Prednosti",
+    "weaknesses": "Slabosti",
+    "categoryComparison": "Usporedba kategorija",
+    "catStructuredData": "Strukturirani podaci",
+    "catContentFormat": "Format sadržaja",
+    "catAuthority": "Autoritet",
+    "catSemantic": "Semantika",
+    "catAiAccess": "AI pristup",
+    "catCitation": "Citiranje"
+  },
+  "standaloneAds": {
+    "importantLabel": "Važno:",
+    "impactDisclaimer": "Ova analiza fokusira se isključivo na iskustvo odredišne stranice — jednu od tri komponente Google Ads Quality Scorea (zajedno s očekivanim CTR-om i relevantnosti oglasa). Iskustvo odredišne stranice tretira se kao problem performansi, namjere i isporuke, a ne kao SEO faktor rangiranja. Analiza backlinkova, gustoće ključnih riječi i organski signali rangiranja namjerno su isključeni.",
+    "catServerSpeed": "Brzina poslužitelja",
+    "catCdnDelivery": "CDN i isporuka",
+    "catCacheHealth": "Zdravlje predmemorije",
+    "catRedirectChain": "Lanac preusmjeravanja",
+    "catHosting": "Hosting",
+    "detailCleanVsAds": "{{clean}}ms čisto / {{ads}}ms s parametrima oglasa",
+    "detailNoCdn": "CDN nije otkriven",
+    "detailCdnEdge": "{{provider}} (edge predmemorija aktivna)",
+    "detailCdnNoEdge": "{{provider}}",
+    "detailCacheFrag": "Otkrivena fragmentacija predmemorije",
+    "detailCacheHealthy": "Upravljanje predmemorijom je ispravno",
+    "detailDirect": "Izravna isporuka",
+    "detailRedirects": "{{count}} preusmjeravanje — dodano {{latency}}ms",
+    "detailSharedHosting": "Otkriveni dijeljeni hosting",
+    "detailHostingOk": "Hosting OK",
+    "detailKeywordsMatch": "Ključne riječi se podudaraju",
+    "detailNoKeywordMatch": "Nema podudaranja ključnih riječi",
+    "detailCtaVisible": "CTA vidljiv",
+    "detailCtaNotVisible": "CTA nije vidljiv",
+    "infrastructure": "Infrastruktura",
+    "pageLevel": "Na razini stranice",
+    "priorityRecommendations": "Prioritetne preporuke",
+    "analysisDoneTitle": "Analiza završena",
+    "analysisDoneDesc": "Analiza odredišne stranice za oglase za {{url}}",
+    "analysisFailTitle": "Analiza neuspješna",
+    "analysisFailDesc": "Nije moguće analizirati odredišnu stranicu",
+    "googleAdsFocused": "Fokusirano na Google Ads",
+    "pageTitle": "Analiziraj iskustvo odredišne stranice",
+    "pageDesc": "Procijenite svoju odredišnu stranicu prema ocjeni kvalitete Google Adsa — ne SEO-u. Mjeri brzinu isporuke, predmemoriranje, infrastrukturu i mobilno korisničko iskustvo iz perspektive plaćenog prometa.",
+    "analyzingBtn": "Analiziranje...",
+    "analyzeBtn": "Analiziraj",
+    "impactLabel": "Utjecaj:",
+    "fixLabel": "Popravak:"
   }
 }

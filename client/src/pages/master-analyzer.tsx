@@ -758,7 +758,7 @@ function SeoAccessibilityTab({ checks, paidTier }: { checks: AccessibilityCheck[
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-3 mb-2">
-        <div className={`text-lg font-bold ${score >= 70 ? "text-green-600" : score >= 40 ? "text-yellow-600" : "text-red-600"}`}>{passCount}/{checks.length} checks passed</div>
+        <div className={`text-lg font-bold ${score >= 70 ? "text-green-600" : score >= 40 ? "text-yellow-600" : "text-red-600"}`}>{t('master.seo.checksPassed', { pass: passCount, total: checks.length })}</div>
       </div>
       <div className="space-y-3">
         {checks.map((check, idx) => (
@@ -811,9 +811,9 @@ function SeoKeywordsTab({ keywords, paidTier }: { keywords: KeywordAnalysis; pai
               <StatusBadge status={titleStatus} />
             </div>
             <p className="text-sm text-muted-foreground ml-6">
-              {keywords.metaTitle.present ? `Length: ${keywords.metaTitle.length} characters` : "Missing meta title"} 
-              {keywords.metaTitle.present && !keywords.metaTitle.optimized && ` (optimal: 30-60 characters)`}
-              {keywords.metaTitle.optimized && " — Well optimized"}
+              {keywords.metaTitle.present ? t('master.seo.titleLength', { count: keywords.metaTitle.length }) : t('master.seo.missingTitle')}
+              {keywords.metaTitle.present && !keywords.metaTitle.optimized && ` ${t('master.seo.titleOptimalRange')}`}
+              {keywords.metaTitle.optimized && ` ${t('master.seo.titleWellOptimized')}`}
             </p>
             {paidTier === 'pro' && titleStatus !== "PASS" && (
               <p className="text-sm ml-6 mt-1"><span className="font-medium text-foreground">{t('common.fix')}</span> <span className="text-muted-foreground">{t('master.seo.metaTitleFix')}</span></p>
@@ -829,9 +829,9 @@ function SeoKeywordsTab({ keywords, paidTier }: { keywords: KeywordAnalysis; pai
               <StatusBadge status={descStatus} />
             </div>
             <p className="text-sm text-muted-foreground ml-6">
-              {keywords.metaDescription.present ? `Length: ${keywords.metaDescription.length} characters` : "Missing meta description"}
-              {keywords.metaDescription.present && !keywords.metaDescription.optimized && ` (optimal: 120-160 characters)`}
-              {keywords.metaDescription.optimized && " — Well optimized"}
+              {keywords.metaDescription.present ? t('master.seo.titleLength', { count: keywords.metaDescription.length }) : t('master.seo.missingDescription')}
+              {keywords.metaDescription.present && !keywords.metaDescription.optimized && ` ${t('master.seo.descOptimalRange')}`}
+              {keywords.metaDescription.optimized && ` ${t('master.seo.titleWellOptimized')}`}
             </p>
             {paidTier === 'pro' && descStatus !== "PASS" && (
               <p className="text-sm ml-6 mt-1"><span className="font-medium text-foreground">{t('common.fix')}</span> <span className="text-muted-foreground">{t('master.seo.metaDescriptionFix')}</span></p>
@@ -847,9 +847,9 @@ function SeoKeywordsTab({ keywords, paidTier }: { keywords: KeywordAnalysis; pai
               <StatusBadge status={h1Status} />
             </div>
             <p className="text-sm text-muted-foreground ml-6">
-              {keywords.headingStructure.h1Count} H1 tag{keywords.headingStructure.h1Count !== 1 ? 's' : ''} found
+              {keywords.headingStructure.h1Count !== 1 ? t('master.seo.h1TagsFoundPlural', { count: keywords.headingStructure.h1Count }) : t('master.seo.h1TagsFound', { count: keywords.headingStructure.h1Count })}
               {keywords.headingStructure.h1Text.length > 0 && `: "${keywords.headingStructure.h1Text[0]}"`}
-              {keywords.headingStructure.hierarchyValid ? " — Valid hierarchy" : ""}
+              {keywords.headingStructure.hierarchyValid ? ` ${t('master.seo.h1ValidHierarchy')}` : ""}
             </p>
             {paidTier === 'pro' && h1Status !== "PASS" && (
               <p className="text-sm ml-6 mt-1"><span className="font-medium text-foreground">{t('common.fix')}</span> <span className="text-muted-foreground">{keywords.headingStructure.h1Count === 0 ? t('master.seo.h1FixMissing') : t('master.seo.h1FixMultiple')}</span></p>
@@ -934,7 +934,7 @@ function SeoContentTab({ content, paidTier }: { content: ContentQuality; paidTie
   const altTagStatus = content.imageAltTags.percentage >= 80 ? "PASS" : content.imageAltTags.percentage >= 50 ? "WARNING" : "FAIL";
   const schemaStatus = content.structuredData ? "PASS" : "WARNING";
 
-  const readabilityLabel = content.readabilityScore >= 80 ? "Very Easy" : content.readabilityScore >= 60 ? "Easy" : content.readabilityScore >= 40 ? "Moderate" : content.readabilityScore >= 20 ? "Difficult" : "Very Difficult";
+  const readabilityLabel = content.readabilityScore >= 80 ? t('master.content.readabilityVeryEasy') : content.readabilityScore >= 60 ? t('master.content.readabilityEasy') : content.readabilityScore >= 40 ? t('master.content.readabilityModerate') : content.readabilityScore >= 20 ? t('master.content.readabilityDifficult') : t('master.content.readabilityVeryDifficult');
 
   const items = [
     { label: t('master.content.wordCount'), value: t('master.content.wordCountValue', { count: content.wordCount }), status: wordCountStatus, detail: content.wordCount >= 300 ? t('master.content.goodLength') : t('master.content.aimFor300'), fix: t('master.content.wordCountFix') },
@@ -2258,7 +2258,7 @@ function AeoAiSearchPreviewCard({ preview }: { preview: AiSearchPreview }) {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState(false);
   const qualityColors: Record<string, string> = { High: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200", Medium: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200", Low: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200" };
-  const typeLabels: Record<string, string> = { answer: "Direct Answer", faq: "FAQ", definition: "Definition", statistic: "Statistic", list: "List" };
+  const typeLabels: Record<string, string> = { answer: t('master.aeo.typeAnswer'), faq: t('master.aeo.typeFaq'), definition: t('master.aeo.typeDefinition'), statistic: t('master.aeo.typeStatistic'), list: t('master.aeo.typeList') };
   const typeColors: Record<string, string> = { answer: "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300", faq: "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300", definition: "bg-teal-100 text-teal-700 dark:bg-teal-900 dark:text-teal-300", statistic: "bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300", list: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300" };
 
   return (
@@ -2269,7 +2269,7 @@ function AeoAiSearchPreviewCard({ preview }: { preview: AiSearchPreview }) {
             <Eye className="w-5 h-5 text-primary" />
             <h3 className="text-xl font-bold text-foreground">{t('master.aeo.aiSearchPreview')}</h3>
           </div>
-          <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${qualityColors[preview.extractionQuality]}`}>{preview.extractionQuality} Extraction Quality</span>
+          <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${qualityColors[preview.extractionQuality]}`}>{t(`master.aeo.extractionQuality${preview.extractionQuality}`)} {t('master.aeo.extractionQualitySuffix')}</span>
         </div>
         <p className="text-sm text-muted-foreground mb-4">{preview.extractionDetails}</p>
         <div className="bg-muted/50 rounded-lg border border-border p-4 mb-4">
@@ -2284,7 +2284,7 @@ function AeoAiSearchPreviewCard({ preview }: { preview: AiSearchPreview }) {
         {preview.quotableExcerpts.length > 0 && (
           <>
             <button onClick={() => setExpanded(!expanded)} className="flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors mb-3" data-testid="preview-excerpts-toggle">
-              <span>Quotable Excerpts ({preview.quotableExcerpts.length})</span>
+              <span>{t('master.aeo.quotableExcerpts', { count: preview.quotableExcerpts.length })}</span>
               {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
             {expanded && (
@@ -2293,7 +2293,7 @@ function AeoAiSearchPreviewCard({ preview }: { preview: AiSearchPreview }) {
                   <div key={i} className="border border-border rounded-lg p-3">
                     <div className="flex items-center gap-2 mb-1">
                       <span className={`px-2 py-0.5 rounded text-xs font-medium ${typeColors[excerpt.type] || "bg-gray-100 text-gray-700"}`}>{typeLabels[excerpt.type] || excerpt.type}</span>
-                      <span className="text-xs text-muted-foreground">from: {excerpt.source}</span>
+                      <span className="text-xs text-muted-foreground">{t('master.aeo.excerptFrom')} {excerpt.source}</span>
                     </div>
                     <p className="text-sm text-foreground whitespace-pre-line">{excerpt.text}</p>
                   </div>
@@ -2351,7 +2351,7 @@ function AeoSchemaGeneratorCard({ suggestions }: { suggestions: SchemaSuggestion
                 <div className="flex items-center justify-between mb-1">
                   <div className="flex items-center gap-2">
                     <span className="font-semibold text-sm text-foreground">{suggestion.label}</span>
-                    <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${priorityColors[suggestion.priority]}`}>{suggestion.priority}</span>
+                    <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${priorityColors[suggestion.priority]}`}>{t(`priority.${suggestion.priority.toLowerCase()}`)}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <button onClick={() => setExpandedIndex(isExpanded ? null : i)} className="p-1 text-muted-foreground hover:text-foreground transition-colors" data-testid="schema-toggle">
@@ -2860,7 +2860,7 @@ function GeoSection({ data, url, paidTier, onUpgrade }: { data: any; url: string
                       <div className="flex items-center gap-2 mb-1">
                         <span className="font-medium">{check.name}</span>
                         <Badge variant="outline" className="text-xs">{check.category}</Badge>
-                        <Badge variant={check.impact === "High" ? "destructive" : "secondary"} className="text-xs">{check.impact} Impact</Badge>
+                        <Badge variant={check.impact === "High" ? "destructive" : "secondary"} className="text-xs">{t(`master.geo.impact${check.impact}`)} {t('master.geo.impactSuffix')}</Badge>
                       </div>
                       <p className="text-sm text-muted-foreground">{check.details}</p>
                       {paidTier === 'pro' && check.status !== "PASS" && (
