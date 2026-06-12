@@ -1470,35 +1470,37 @@ class AeoAnalyzer {
           findings.push({
             label: "Positioning coherence",
             status: "pass",
-            detail: `Broad strategic positioning is consistently supported by ${distinctServiceTerms.size} distinct implementation-focused services detected in the page content (${[...distinctServiceTerms].slice(0, 3).join(", ")}).`,
+            detailKey: "findingDetailPositioningBroadPass",
+            detailParams: { count: distinctServiceTerms.size, terms: [...distinctServiceTerms].slice(0, 3).join(", ") },
           });
         } else if (distinctServiceTerms.size >= 1) {
           findings.push({
             label: "Positioning coherence",
             status: "warning",
-            detail: `Broad positioning headline is only partially supported by specific implementation services in the body (${distinctServiceTerms.size} service term found). Strengthening explicit service descriptions improves AI retrieval clarity.`,
-            fix: `Add 2–3 dedicated service sections to your page body, each with an H2 heading (e.g. "Web Development", "SEO Consulting", "Branding") followed by 2+ sentences describing what that service involves. The more explicitly you describe each capability, the better AI engines can categorise and cite your page.`,
+            detailKey: "findingDetailPositioningBroadWarn",
+            detailParams: { count: distinctServiceTerms.size },
+            fixKey: "findingFixPositioningBroadWarn",
           });
         } else {
           findings.push({
             label: "Positioning coherence",
             status: "fail",
-            detail: `The positioning headline makes claims that the body content does not substantiate with specific services or capabilities. AI engines may struggle to classify this page accurately.`,
-            fix: `Add at least 3 clearly described service sections to the page body. Each should use an H2 heading naming the service, followed by a short paragraph explaining what it is and who it's for. Every capability claimed in your headline must have a corresponding content block below it.`,
+            detailKey: "findingDetailPositioningBroadFail",
+            fixKey: "findingFixPositioningBroadFail",
           });
         }
       } else if (distinctServiceTerms.size >= 2) {
         findings.push({
           label: "Positioning coherence",
           status: "pass",
-          detail: `Specific headline positioning is supported by matching implementation-focused content in the page body.`,
+          detailKey: "findingDetailPositioningSpecificPass",
         });
       } else {
         findings.push({
           label: "Positioning coherence",
           status: "warning",
-          detail: `The headline describes a specific topic but the body lacks enough supporting service or implementation terms for AI engines to confidently categorise the page.`,
-          fix: `Expand the body copy with explicit descriptions of the services or topics your headline references. Aim for at least 2–3 distinct service terms backed by descriptive sentences rather than just bullet points or labels.`,
+          detailKey: "findingDetailPositioningSpecificWarn",
+          fixKey: "findingFixPositioningSpecificWarn",
         });
       }
     }
@@ -1509,14 +1511,15 @@ class AeoAnalyzer {
         findings.push({
           label: "H1 and title tag alignment",
           status: "fail",
-          detail: `The H1 ("${h1.slice(0, 80)}${h1.length > 80 ? "…" : ""}") and the page title appear to address different topics. AI engines use both signals together — misalignment reduces citation confidence.`,
-          fix: `Align your H1 and title tag so they share at least one core keyword describing your primary service or offer. For example, if your H1 says "Web Design Agency", your title should also include "web design" or "agency". They don't need to be identical — just topically consistent.`,
+          detailKey: "findingDetailH1TitleFail",
+          detailParams: { h1: `${h1.slice(0, 80)}${h1.length > 80 ? "…" : ""}` },
+          fixKey: "findingFixH1TitleFail",
         });
       } else if (h1TitleOverlap > 0 || h1MetaDescOverlap > 0) {
         findings.push({
           label: "H1 and title tag alignment",
           status: "pass",
-          detail: `The H1, title tag, and meta description share semantic terms, reinforcing a consistent topical signal for AI retrieval systems.`,
+          detailKey: "findingDetailH1TitlePass",
         });
       }
     }
@@ -1526,8 +1529,9 @@ class AeoAnalyzer {
       findings.push({
         label: "Implicit capabilities",
         status: "warning",
-        detail: `${navServicesNotInBody.length} service terms appear in the navigation but are not described in the page body (e.g. ${navServicesNotInBody.slice(0, 2).join(", ")}). AI engines prioritize explicitly described capabilities over navigation labels alone.`,
-        fix: `For each service listed in your navigation, add a corresponding section in the page body describing what it involves. A 2–3 sentence description per service — using the service name explicitly — is enough for AI engines to register the capability as intentional rather than implied.`,
+        detailKey: "findingDetailImplicitCapabilitiesWarn",
+        detailParams: { count: navServicesNotInBody.length, terms: navServicesNotInBody.slice(0, 2).join(", ") },
+        fixKey: "findingFixImplicitCapabilitiesWarn",
       });
     }
 
@@ -1537,14 +1541,14 @@ class AeoAnalyzer {
         findings.push({
           label: "Factual specificity",
           status: "pass",
-          detail: `Concrete factual signals (numbers, years, or specific deliverables) are present, which improves AI retrieval confidence and entity clarity.`,
+          detailKey: "findingDetailFactualSpecificityPass",
         });
       } else {
         findings.push({
           label: "Factual specificity",
           status: "warning",
-          detail: `No statistics, year references, project counts, or specific deliverables were detected in the body copy. Concrete figures significantly improve AI retrieval confidence.`,
-          fix: `Add at least 2–3 data points to the page: years in business ("Since 2012"), number of clients or projects ("50+ completed projects"), or measurable results ("3× faster load times"). Even a single credible statistic meaningfully increases the likelihood that AI engines will cite your page.`,
+          detailKey: "findingDetailFactualSpecificityWarn",
+          fixKey: "findingFixFactualSpecificityWarn",
         });
       }
     }
@@ -1554,8 +1558,8 @@ class AeoAnalyzer {
       findings.push({
         label: "Machine-readable structure",
         status: "warning",
-        detail: `No structured data markup and no definition-style paragraphs were detected. AI engines extract answers from clearly structured, self-contained text blocks.`,
-        fix: `Do one or both of the following: (1) Add a JSON-LD block in your <head> — at minimum an Organization or LocalBusiness schema describing your business — so AI crawlers can parse your identity in a machine-readable format. (2) Write at least one "definition paragraph" that directly answers "What is [your service/product]?" in 2–3 plain sentences. Both help AI engines extract and cite your content accurately.`,
+        detailKey: "findingDetailMachineReadableWarn",
+        fixKey: "findingFixMachineReadableWarn",
       });
     }
 

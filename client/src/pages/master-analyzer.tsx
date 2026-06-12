@@ -2439,16 +2439,16 @@ function AeoContentGapCard({ gaps }: { gaps: ContentGapsAnalysis }) {
                       <FindingIcon className={`w-4 h-4 ${iconClass} mt-0.5 flex-shrink-0`} />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-foreground">{findingLabelMap[finding.label] || finding.label}</p>
-                        <p className="text-xs text-muted-foreground">{finding.detail}</p>
+                        <p className="text-xs text-muted-foreground">{t(`master.aeo.${finding.detailKey}`, finding.detailParams)}</p>
                       </div>
                       <span className={`px-1.5 py-0.5 rounded text-xs font-medium flex-shrink-0 ${pillClass}`}>{pillLabel}</span>
                     </div>
-                    {finding.fix && (
+                    {finding.fixKey && (
                       <div className="flex items-start gap-2 px-2 pb-2 pt-0">
                         <div className="w-4 flex-shrink-0" />
                         <div className="flex-1 flex items-start gap-1.5 p-2 rounded-md bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800">
                           <Wrench className="w-3 h-3 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                          <p className="text-xs text-blue-700 dark:text-blue-300">{finding.fix}</p>
+                          <p className="text-xs text-blue-700 dark:text-blue-300">{t(`master.aeo.${finding.fixKey}`)}</p>
                         </div>
                       </div>
                     )}

@@ -342,8 +342,9 @@ export interface AiSearchPreview {
 export interface SemanticFinding {
   label: string;
   status: "pass" | "warning" | "fail";
-  detail: string;
-  fix?: string;
+  detailKey: string;
+  detailParams?: Record<string, string | number>;
+  fixKey?: string;
 }
 
 export interface ContentGapsAnalysis {
