@@ -2362,7 +2362,7 @@ function AeoSchemaGeneratorCard({ suggestions }: { suggestions: SchemaSuggestion
                     </button>
                   </div>
                 </div>
-                <p className="text-xs text-muted-foreground">{suggestion.description}</p>
+                <p className="text-xs text-muted-foreground">{suggestion.alreadyPresent ? t('master.aeo.schemaDescAlreadyPresent') : t(`master.aeo.schemaDesc${suggestion.type}`)}</p>
                 {isExpanded && (
                   <pre className="mt-2 p-3 bg-muted/50 rounded-lg text-xs font-mono overflow-x-auto text-foreground max-h-48 overflow-y-auto border border-border" data-testid="schema-code">
                     {`<script type="application/ld+json">\n${suggestion.code}\n</script>`}
