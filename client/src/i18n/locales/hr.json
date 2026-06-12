@@ -710,7 +710,15 @@
       "priorityRecommendations": "Prioritetne preporuke",
       "cpcAboveAverage": "Odredišne stranice iznad prosjeka tipično ostvaruju 16-50% nižu CPC u usporedbi s ispodprosječnim stranicama. Vaši oglasi dobit će prioritet na oglasnim aukcijama, pojavljujući se češće i na višim pozicijama.",
       "cpcAverage": "Prosječne odredišne stranice plaćaju standardne CPC stope. Poboljšanje na iznad prosjeka moglo bi smanjiti vašu CPC za 16-30% i poboljšati rang oglasa bez povećanja ponuda.",
-      "cpcBelowAverage": "Ispodprosječne odredišne stranice plaćaju 25-400% više po kliku od iznadprosječnih stranica. Google smanjuje vaš udio pojavljivanja i pozicije oglasa. Popravljanje infrastrukture i UX problema može dramatično smanjiti vaše troškove oglašavanja."
+      "cpcBelowAverage": "Ispodprosječne odredišne stranice plaćaju 25-400% više po kliku od iznadprosječnih stranica. Google smanjuje vaš udio pojavljivanja i pozicije oglasa. Popravljanje infrastrukture i UX problema može dramatično smanjiti vaše troškove oglašavanja.",
+      "qsiAboveAverage": "Vaša odredišna stranica postiže {{score}}/100. Ovo bi trebalo pozitivno doprinijeti vašem Quality Scoreu (tipično 7-10/10 za komponentu Landing Page Experience). Viši Quality Score znači niži CPC i bolje pozicioniranje oglasa.",
+      "qsiAverage": "Vaša odredišna stranica postiže {{score}}/100. To vam daje neutralnu ocjenu Landing Page Experience (tipično 5-6/10 za ovu komponentu). Niste kažnjeni, ali ne dobivate ni CPC popust koji primaju stranice \"Iznad prosjeka\".",
+      "qsiBelowAverage": "Vaša odredišna stranica postiže {{score}}/100. To vjerojatno rezultira ocjenom \"Ispod prosjeka\" za Landing Page Experience (tipično 1-4/10 za ovu komponentu). Google aktivno kažnjava vaše oglase višim CPC-om, nižim rangom oglasa i potencijalno smanjenim udjelom pojavljivanja.",
+      "qsiFieldNoteNoData": " Napomena: Chrome UX Report nema terenskih podataka za ovu URL adresu još — vaša ocjena temelji se na laboratorijskim signalima.",
+      "qsiFieldNoteSlow": " ⚠ Podaci stvarnih korisnika ({{sourceLevel}} CrUX) pokazuju da je ova stranica SPORA za stvarne posjetitelje — to je najjači negativni LPE signal bez obzira na laboratorijsku ocjenu.",
+      "qsiFieldNoteAverage": " Podaci stvarnih korisnika ({{sourceLevel}} CrUX) pokazuju PROSJEČNE Core Web Vitals — ima prostora za napredak u BRZU kategoriju.",
+      "qsiSourceUrl": "URL-razina",
+      "qsiSourceOrigin": "razina izvora"
     },
     "labels": {
       "seo": "SEO",

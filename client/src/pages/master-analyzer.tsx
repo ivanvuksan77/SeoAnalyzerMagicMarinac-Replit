@@ -1239,6 +1239,17 @@ function AdsSection({ data, url, paidTier, onUpgrade }: { data: any; url: string
   const getIconBg = (c: string) => ({ blue: "bg-blue-100 dark:bg-blue-900", green: "bg-green-100 dark:bg-green-900", purple: "bg-purple-100 dark:bg-purple-900", orange: "bg-orange-100 dark:bg-orange-900", red: "bg-red-100 dark:bg-red-900", indigo: "bg-indigo-100 dark:bg-indigo-900" }[c] || "bg-gray-100");
   const getIconColor = (c: string) => ({ blue: "text-blue-600", green: "text-green-600", purple: "text-purple-600", orange: "text-orange-600", red: "text-red-600", indigo: "text-indigo-600" }[c] || "text-gray-600");
 
+  const qsiFieldNote = (() => {
+    if (!results.fieldData) return '';
+    if (results.fieldData.source === 'none') return results.fieldData.error === 'NO_FIELD_DATA' ? t('master.ads.qsiFieldNoteNoData') : '';
+    const sourceLevel = results.fieldData.source === 'url' ? t('master.ads.qsiSourceUrl') : t('master.ads.qsiSourceOrigin');
+    if (results.fieldData.overall === 'SLOW') return t('master.ads.qsiFieldNoteSlow', { sourceLevel });
+    if (results.fieldData.overall === 'AVERAGE') return t('master.ads.qsiFieldNoteAverage', { sourceLevel });
+    return '';
+  })();
+  const qsiBaseKey = results.rating === 'Above average' ? 'master.ads.qsiAboveAverage' : results.rating === 'Average' ? 'master.ads.qsiAverage' : 'master.ads.qsiBelowAverage';
+  const qualityScoreImpactText = t(qsiBaseKey, { score: results.score }) + qsiFieldNote;
+
   const groupedChecks: Record<string, AdsCheck[]> = {};
   for (const check of results.checks) {
     if (!groupedChecks[check.category]) groupedChecks[check.category] = [];
@@ -1397,7 +1408,7 @@ function AdsSection({ data, url, paidTier, onUpgrade }: { data: any; url: string
                       <LayoutGrid className="w-5 h-5 text-primary" />
                       <h4 className="font-semibold text-foreground">{t('master.ads.qualityScoreImpact')}</h4>
                     </div>
-                    <p className="text-sm text-muted-foreground">{results.qualityScoreImpact}</p>
+                    <p className="text-sm text-muted-foreground">{qualityScoreImpactText}</p>
                   </div>
                   <div className="rounded-lg border border-border p-5">
                     <div className="flex items-center gap-2 mb-3">

@@ -710,7 +710,15 @@
       "priorityRecommendations": "Priority Recommendations",
       "cpcAboveAverage": "Above average landing pages typically see 16-50% lower CPC compared to below average pages. Your ads will also get priority in ad auctions, appearing more often and in higher positions.",
       "cpcAverage": "Average landing pages pay standard CPC rates. Improving to Above average could reduce your CPC by 16-30% and improve ad rank without increasing bids.",
-      "cpcBelowAverage": "Below average landing pages pay 25-400% more per click than Above average pages. Google reduces your impression share and ad positions. Fixing infrastructure and UX issues can dramatically reduce your ad spend."
+      "cpcBelowAverage": "Below average landing pages pay 25-400% more per click than Above average pages. Google reduces your impression share and ad positions. Fixing infrastructure and UX issues can dramatically reduce your ad spend.",
+      "qsiAboveAverage": "Your landing page scores {{score}}/100. This should contribute positively to your Quality Score (typically 7-10/10 for Landing Page Experience component). Higher Quality Score means lower CPC and better ad positioning.",
+      "qsiAverage": "Your landing page scores {{score}}/100. This gives you a neutral Landing Page Experience rating (typically 5-6/10 for this component). You're not being penalized, but you're also not getting the CPC discount that \"Above average\" pages receive.",
+      "qsiBelowAverage": "Your landing page scores {{score}}/100. This likely results in a \"Below average\" Landing Page Experience (typically 1-4/10 for this component). Google actively penalizes your ads with higher CPC, lower ad rank, and potentially reduced impression share.",
+      "qsiFieldNoteNoData": " Note: No Chrome UX Report field data is available for this URL yet — your rating is based on lab signals.",
+      "qsiFieldNoteSlow": " ⚠ Real-user field data ({{sourceLevel}} CrUX) shows this page is SLOW for actual visitors — this is the strongest negative LPE signal regardless of lab score.",
+      "qsiFieldNoteAverage": " Real-user field data ({{sourceLevel}} CrUX) shows AVERAGE Core Web Vitals — there is room to push into the FAST bucket.",
+      "qsiSourceUrl": "URL-level",
+      "qsiSourceOrigin": "origin-level"
     },
     "labels": {
       "seo": "SEO",
