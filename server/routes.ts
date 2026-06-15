@@ -18,6 +18,7 @@ import { sendPdfReportEmail, sendVerificationEmail, isSmtpConfigured } from "./s
 import { createVerificationToken, consumeVerificationToken } from "./services/verificationStore";
 import { createEmailSession, verifyEmailSession } from "./services/emailSession";
 import { createOrGetPdfLink, getPdfByToken, markPdfEmailSent } from "./services/pdfDeliveryStore";
+import { getPageMarkdown, wantsMarkdown } from "./services/pageMarkdown";
 import { promises as fs } from "fs";
 import { getFetchErrorCode } from "./services/httpClient";
 
@@ -1168,7 +1169,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       `## Structured Knowledge\n` +
       `${SITE_ORIGIN}/api/ai/knowledge.json\n\n` +
       `## Languages\n` +
-      `English (en) and Croatian (hr). Append ?lang=hr for the Croatian version.\n`;
+      `English (en) and Croatian (hr). Append ?lang=hr for the Croatian version.\n\n` +
+      `## Markdown Content Negotiation\n` +
+      `Every page returns clean markdown when requested with Accept: text/markdown or ?format=markdown.\n` +
+      `Examples:\n` +
+      `${SITE_ORIGIN}/?format=markdown\n` +
+      `${SITE_ORIGIN}/privacy-policy?format=markdown\n` +
+      `${SITE_ORIGIN}/terms-of-service?format=markdown\n`;
     res.type("text/plain; charset=utf-8").set("Cache-Control", "public, max-age=3600").send(body);
   });
 
@@ -1334,6 +1341,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       .set("Access-Control-Allow-Origin", "*")
       .set("Cache-Control", "public, max-age=3600")
       .json(info);
+  });
+
+  app.get("*", (req, res, next) => {
+    if (!wantsMarkdown(req as any)) return next();
+    const path = req.path;
+    if (path.startsWith("/api/")) return next();
+    const { body, found } = getPageMarkdown(path);
+    res
+      .status(found ? 200 : 404)
+      .set("Content-Type", "text/markdown; charset=utf-8")
+      .set("Cache-Control", "public, max-age=3600")
+      .set("Access-Control-Allow-Origin", "*")
+      .send(body);
   });
 
   const httpServer = createServer(app);
