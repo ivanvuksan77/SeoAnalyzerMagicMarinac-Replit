@@ -1143,14 +1143,14 @@ class AeoAnalyzer {
           )
         : ai.markdownMethod === 'linked-files'
           ? this.L(
-              "Good start — your linked .md files are accessible. Add server-side content negotiation for full coverage.",
-              "Dobar početak — vaše povezane .md datoteke su dostupne. Dodajte server-side content negotiation za potpunu pokrivenost."
+              "Correctly implemented for a static site — linked .md files in llms.txt are the right approach when server-side content negotiation is not available.",
+              "Ispravno implementirano za statičnu stranicu — povezane .md datoteke u llms.txt pravi su pristup kada server-side content negotiation nije dostupan."
             )
           : this.L(
               "Implement at least one markdown readability method to improve AI discoverability.",
               "Implementirajte barem jednu metodu markdown čitljivosti kako biste poboljšali AI pretraživost."
             ),
-      technicalFix: ai.markdownMethod !== 'negotiation' ? [
+      technicalFix: ai.markdownMethod === 'none' ? [
         "METHOD A — Server-side content negotiation (ideal for dynamic sites):",
         "",
         "  Node.js / Express:",
