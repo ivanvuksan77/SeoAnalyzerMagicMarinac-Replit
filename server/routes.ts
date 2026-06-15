@@ -1270,7 +1270,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       `English (en) is the default. Croatian (hr) is fully supported. ` +
       `The UI language can be toggled in the header and is persisted via localStorage. ` +
       `PDF reports are generated in the active UI language. ` +
-      `Append ?lang=hr to any page URL for the Croatian version.\n`;
+      `Append ?lang=hr to any page URL for the Croatian version.\n` +
+      `## Markdown Content Negotiation\n` +
+      `Every page returns clean markdown when requested with Accept: text/markdown or ?format=markdown.\n` +
+      `Examples:\n` +
+      `${SITE_ORIGIN}/?format=markdown\n` +
+      `${SITE_ORIGIN}/privacy-policy?format=markdown\n` +
+      `${SITE_ORIGIN}/terms-of-service?format=markdown\n`;
     res.type("text/plain; charset=utf-8").set("Cache-Control", "public, max-age=3600").send(body);
   });
 
@@ -1348,7 +1354,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         delivery: `${SITE_ORIGIN}/delivery-fulfillment`
       },
       sitemap: `${SITE_ORIGIN}/sitemap.xml`,
-      robots: `${SITE_ORIGIN}/robots.txt`
+      robots: `${SITE_ORIGIN}/robots.txt`,
+      markdownDiscovery: "Every page returns clean markdown when requested with Accept: text/markdown or ?format=markdown."
     };
     res
       .set("Content-Type", "application/json")
