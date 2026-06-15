@@ -2059,48 +2059,111 @@ function AeoSection({ data, url, paidTier, onUpgrade, sitemapData }: { data: any
           <TabsContent value="sitemap-tab">
             {sitemapData ? (
               sitemap?.exists ? (
-                <Card data-testid="sitemap-details">
-                  <CardHeader>
-                    <CardTitle className="text-lg flex items-center gap-2"><Map className="w-5 h-5" />{t('master.sitemap.sitemapAnalysis')}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                      <div><p className="text-lg font-bold">{sitemap.urlCount}</p><p className="text-xs text-muted-foreground">{t('master.sitemap.urls')}</p></div>
-                      <div><StatusIconTri status={sitemap.hasLastmod ? "pass" : "warning"} /><p className="text-xs text-muted-foreground mt-1">{t('master.sitemap.lastmod')}</p></div>
-                      <div><StatusIconTri status={sitemap.hasChangefreq ? "pass" : "warning"} /><p className="text-xs text-muted-foreground mt-1">{t('master.sitemap.changefreq')}</p></div>
-                      <div><StatusIconTri status={sitemap.hasPriority ? "pass" : "warning"} /><p className="text-xs text-muted-foreground mt-1">{t('master.sitemap.priority')}</p></div>
+                <div className="space-y-4" data-testid="sitemap-details">
+                  {/* URL count hero */}
+                  <div className="flex items-center gap-3 p-4 rounded-xl border border-border bg-muted/30">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 shrink-0">
+                      <Map className="w-6 h-6 text-primary" />
                     </div>
-                    {sitemap.isSitemapIndex && (
-                      <div>
-                        <p className="text-sm font-medium mb-1">{t('master.sitemap.sitemapIndexChildSitemaps')}</p>
-                        <div className="space-y-1">
-                          {sitemap.childSitemaps.slice(0, 10).map((sm: string, i: number) => (<p key={i} className="text-xs font-mono truncate text-muted-foreground">{sm}</p>))}
+                    <div>
+                      <p className="text-2xl font-bold text-foreground leading-none">{sitemap.urlCount}</p>
+                      <p className="text-sm text-muted-foreground mt-0.5">{t('master.sitemap.urlsInSitemap')}</p>
+                    </div>
+                  </div>
+
+                  {/* Attribute cards */}
+                  <div className="space-y-3">
+                    {[
+                      {
+                        key: 'lastmod',
+                        present: sitemap.hasLastmod,
+                        label: t('master.sitemap.lastmod'),
+                        desc: t('master.sitemap.lastmodDesc'),
+                        presentMsg: t('master.sitemap.lastmodPresent'),
+                        missingMsg: t('master.sitemap.lastmodMissing'),
+                        important: true,
+                      },
+                      {
+                        key: 'changefreq',
+                        present: sitemap.hasChangefreq,
+                        label: t('master.sitemap.changefreq'),
+                        desc: t('master.sitemap.changefreqDesc'),
+                        presentMsg: t('master.sitemap.changefreqPresent'),
+                        missingMsg: t('master.sitemap.changefreqMissing'),
+                        important: false,
+                      },
+                      {
+                        key: 'priority',
+                        present: sitemap.hasPriority,
+                        label: t('master.sitemap.priority'),
+                        desc: t('master.sitemap.priorityDesc'),
+                        presentMsg: t('master.sitemap.priorityPresent'),
+                        missingMsg: t('master.sitemap.priorityMissing'),
+                        important: false,
+                      },
+                    ].map(attr => (
+                      <div key={attr.key} className={`rounded-xl border p-4 ${attr.present ? 'border-green-200 dark:border-green-800 bg-green-50/40 dark:bg-green-950/20' : attr.important ? 'border-yellow-200 dark:border-yellow-800 bg-yellow-50/40 dark:bg-yellow-950/20' : 'border-border bg-muted/20'}`}>
+                        <div className="flex items-start gap-3">
+                          <div className="mt-0.5 shrink-0">
+                            {attr.present
+                              ? <CheckCircle2 className="w-5 h-5 text-green-500" />
+                              : attr.important
+                                ? <AlertTriangle className="w-5 h-5 text-yellow-500" />
+                                : <XCircle className="w-5 h-5 text-muted-foreground/50" />}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="font-semibold text-sm text-foreground">{attr.label}</p>
+                            <p className="text-xs text-muted-foreground mt-0.5 mb-2">{attr.desc}</p>
+                            <p className={`text-xs ${attr.present ? 'text-green-700 dark:text-green-300' : attr.important ? 'text-yellow-700 dark:text-yellow-300' : 'text-muted-foreground'}`}>
+                              {attr.present ? attr.presentMsg : attr.missingMsg}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    )}
-                    {sitemap.sampleUrls.length > 0 && !sitemap.isSitemapIndex && (
-                      <div>
-                        <p className="text-sm font-medium mb-1">{t('master.sitemap.sampleUrls')}</p>
-                        <div className="space-y-1">
-                          {sitemap.sampleUrls.slice(0, 5).map((u: string, i: number) => (<p key={i} className="text-xs font-mono truncate text-muted-foreground">{u}</p>))}
-                        </div>
+                    ))}
+                  </div>
+
+                  {/* Child sitemaps */}
+                  {sitemap.isSitemapIndex && (
+                    <div className="rounded-xl border border-border p-4">
+                      <p className="text-sm font-semibold mb-2">{t('master.sitemap.sitemapIndexChildSitemaps')}</p>
+                      <div className="space-y-1">
+                        {sitemap.childSitemaps.slice(0, 10).map((sm: string, i: number) => (
+                          <p key={i} className="text-xs font-mono truncate text-muted-foreground">{sm}</p>
+                        ))}
                       </div>
-                    )}
-                    {sitemap.issues.length > 0 && (
-                      <div>
-                        <p className="text-sm font-medium mb-1 text-yellow-600">{t('master.common.issues')}:</p>
-                        <ul className="space-y-1">
-                          {sitemap.issues.map((issue: string, i: number) => (
-                            <li key={i} className="text-sm flex items-start gap-2"><AlertTriangle className="w-4 h-4 text-yellow-500 mt-0.5 shrink-0" />{issue}</li>
-                          ))}
-                        </ul>
+                    </div>
+                  )}
+
+                  {/* Sample URLs */}
+                  {sitemap.sampleUrls.length > 0 && !sitemap.isSitemapIndex && (
+                    <div className="rounded-xl border border-border p-4">
+                      <p className="text-sm font-semibold mb-2">{t('master.sitemap.sampleUrls')}</p>
+                      <div className="space-y-1">
+                        {sitemap.sampleUrls.slice(0, 5).map((u: string, i: number) => (
+                          <p key={i} className="text-xs font-mono truncate text-muted-foreground">{u}</p>
+                        ))}
                       </div>
-                    )}
-                  </CardContent>
-                </Card>
+                    </div>
+                  )}
+
+                  {/* Issues */}
+                  {sitemap.issues.length > 0 && (
+                    <div className="rounded-xl border border-yellow-200 dark:border-yellow-800 bg-yellow-50/40 dark:bg-yellow-950/20 p-4">
+                      <p className="text-sm font-semibold mb-2 text-yellow-700 dark:text-yellow-300">{t('master.common.issues')}</p>
+                      <ul className="space-y-1.5">
+                        {sitemap.issues.map((issue: string, i: number) => (
+                          <li key={i} className="text-sm flex items-start gap-2 text-yellow-800 dark:text-yellow-200">
+                            <AlertTriangle className="w-4 h-4 text-yellow-500 mt-0.5 shrink-0" />{issue}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
               ) : (
-                <div className="flex items-center gap-2 p-4 bg-red-50 dark:bg-red-950 rounded-lg border border-red-200 dark:border-red-800">
-                  <XCircle className="w-5 h-5 text-red-600" />
+                <div className="flex items-center gap-3 p-4 bg-red-50 dark:bg-red-950 rounded-xl border border-red-200 dark:border-red-800">
+                  <XCircle className="w-5 h-5 text-red-600 shrink-0" />
                   <span className="text-sm text-red-800 dark:text-red-200">{t('master.sitemap.noSitemapFound')}</span>
                 </div>
               )
