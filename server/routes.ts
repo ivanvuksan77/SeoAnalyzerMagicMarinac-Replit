@@ -1049,7 +1049,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       `User-agent: *\nContent-Signal: search=yes, ai-input=yes, ai-train=yes\nAllow: /\nDisallow: /api/\nDisallow: /checkout\nDisallow: /verify-email\n\n` +
       `# Curated AI / LLM information\n# ${SITE_ORIGIN}/llm-info.json\n# Root index for LLMs (llmstxt.org):\n# ${SITE_ORIGIN}/llms.txt\n# ${SITE_ORIGIN}/llms-full.txt\n# Structured Knowledge\n# ${SITE_ORIGIN}/api/ai/knowledge.json\n\n` +
       `# AI crawlers welcome\nUser-agent: GPTBot\nAllow: /\nUser-agent: ClaudeBot\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\nUser-agent: Google-Extended\nAllow: /\n\n` +
-      `Sitemap: ${SITE_ORIGIN}/sitemap.xml\n`;
+      `Sitemap: ${SITE_ORIGIN}/sitemap.xml\n` +
+      `Sitemap: ${SITE_ORIGIN}/sitemap-markdown.txt\n`;
     res.type("text/plain").set("Cache-Control", "public, max-age=3600").send(body);
   });
 
@@ -1058,6 +1059,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const urls = PUBLIC_PAGES.map((p) => {
       const en = `${SITE_ORIGIN}${p.loc}`;
       const hr = `${SITE_ORIGIN}${p.loc}${p.loc.includes("?") ? "&" : "?"}lang=hr`;
+      const md = `${en}${p.loc.includes("?") ? "&" : "?"}format=markdown`;
       return (
         `  <url>\n` +
         `    <loc>${en}</loc>\n` +
@@ -1067,6 +1069,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         `    <xhtml:link rel="alternate" hreflang="en" href="${en}"/>\n` +
         `    <xhtml:link rel="alternate" hreflang="hr" href="${hr}"/>\n` +
         `    <xhtml:link rel="alternate" hreflang="x-default" href="${en}"/>\n` +
+        `    <xhtml:link rel="alternate" type="text/markdown" href="${md}"/>\n` +
         `  </url>`
       );
     }).join("\n");
@@ -1074,6 +1077,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       `<?xml version="1.0" encoding="UTF-8"?>\n` +
       `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls}\n</urlset>\n`;
     res.type("application/xml").set("Cache-Control", "public, max-age=3600").send(body);
+  });
+
+  app.get("/sitemap-markdown.txt", (_req, res) => {
+    const lines = PUBLIC_PAGES.map((p) => {
+      const en = `${SITE_ORIGIN}${p.loc}`;
+      return `${en}${p.loc.includes("?") ? "&" : "?"}format=markdown`;
+    });
+    const body = lines.join("\n") + "\n";
+    res.type("text/plain; charset=utf-8").set("Cache-Control", "public, max-age=3600").send(body);
   });
 
   app.get("/api/ai/knowledge.json", (_req, res) => {
@@ -1135,6 +1147,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         llms_full_txt: `${SITE_ORIGIN}/llms-full.txt`,
         llm_info_json: `${SITE_ORIGIN}/llm-info.json`,
         sitemap: `${SITE_ORIGIN}/sitemap.xml`,
+        sitemap_markdown: `${SITE_ORIGIN}/sitemap-markdown.txt`,
         robots_txt: `${SITE_ORIGIN}/robots.txt`,
       },
     };
@@ -1162,6 +1175,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       `## Key URLs\n` +
       `- Home: ${SITE_ORIGIN}/\n` +
       `- Sitemap: ${SITE_ORIGIN}/sitemap.xml\n` +
+      `- Markdown Sitemap: ${SITE_ORIGIN}/sitemap-markdown.txt\n` +
       `- Privacy: ${SITE_ORIGIN}/privacy-policy\n` +
       `- Terms: ${SITE_ORIGIN}/terms-of-service\n\n` +
       `## AI Resources\n` +
