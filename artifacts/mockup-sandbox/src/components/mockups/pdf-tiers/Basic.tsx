@@ -96,7 +96,7 @@ export function Basic() {
       <div className="card mb-4">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-[12px] font-bold">Overall Score Dashboard</h3>
-          <span className="muted text-[10px]">8 tools · All data included</span>
+          <span className="muted text-[10px]">7 tools · All data included</span>
         </div>
         <div className="flex flex-wrap justify-between gap-y-2">
           {TOOLS.map(t => <ScoreCircle key={t.name} score={t.score} color={t.color} label={t.name} />)}

@@ -12,7 +12,7 @@ type DepthRow = {
 const ROWS: DepthRow[] = [
   {
     Icon: Search,
-    feature: "SEO audit (8 tools)",
+    feature: "SEO audit (7 tools)",
     desc: "Meta tags, headings, Core Web Vitals, schema, mobile, links, images, sitemap",
     depths: {
       free: "Score + top 3 issues per section",

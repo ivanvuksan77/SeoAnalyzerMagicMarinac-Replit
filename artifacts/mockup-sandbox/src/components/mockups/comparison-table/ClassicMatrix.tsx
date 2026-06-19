@@ -13,7 +13,7 @@ const SECTIONS: { title: string; rows: Row[] }[] = [
   {
     title: "Audits included",
     rows: [
-      { label: "SEO audit (8 tools, one click)", cells: [true, true, true] },
+      { label: "SEO audit (7 tools, one click)", cells: [true, true, true] },
       { label: "Google Ads landing-page audit", cells: [true, true, true] },
       { label: "AEO / AI SEO readiness", cells: [true, true, true] },
       { label: "GEO / Generative Engine readiness", cells: [true, true, true] },

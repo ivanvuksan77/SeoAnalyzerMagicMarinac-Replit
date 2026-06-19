@@ -2040,7 +2040,7 @@ export async function generateMasterPdfReport(data: MasterResult, tier: 'free' |
       // FREE TIER → key findings + locked section previews + CTA
       // ─────────────────────────────────────────────────────
       if (tier === 'free') {
-        // Collect issues from all 8 tools by reusing getToolChecks(), the
+        // Collect issues from all 7 tools by reusing getToolChecks(), the
         // single source of truth for schema-to-PDF field resolution. This
         // prevents drift: the section cards below and the Key Findings card
         // always agree on which rows exist for each tool.

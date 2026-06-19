@@ -14,7 +14,7 @@ export function HeroEn() {
       trust={[
         "Free · No signup",
         "Results in 30 seconds",
-        "8 tools in one report",
+        "7 tools in one report",
       ]}
       proofTitle="Sample Pro Report"
       reportLabel="PRO REPORT · €29"

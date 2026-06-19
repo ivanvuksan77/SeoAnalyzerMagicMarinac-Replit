@@ -9,7 +9,7 @@
     "slogan": "Scan. Snap. Fix What Matters."
   },
   "hero": {
-    "badge": "Svih 8 alata jednim klikom",
+    "badge": "Svih 7 alata jednim klikom",
     "title": "Master SEO Analizator",
     "description": "Unesite URL i pokrenite sve alate za analizu odjednom: SEO audit, Google Ads iskustvo odredišne stranice, ocjenu kvalitete oglasnog teksta (naslovi i opisi), AEO spremnost, GEO spremnost, provjera neispravnih linkova, optimizacija slika, interna povezanost i validacija mape stranica.",
     "eyebrow": "AI Search Optimization / AEO / GEO / SEO",
@@ -182,7 +182,7 @@
     },
     "basicReport": {
       "title": "Preuzmite Basic SEO izvještaj",
-      "description": "Unesite email za Basic SEO izvještaj s potpunim tehničkim pregledom i svim detaljnim provjerama kroz 8 alata.",
+      "description": "Unesite email za Basic SEO izvještaj s potpunim tehničkim pregledom i svim detaljnim provjerama kroz 7 alata.",
       "emailLabel": "Email adresa",
       "emailPlaceholder": "vi@primjer.com",
       "sending": "Šaljem...",
@@ -204,7 +204,7 @@
       "basicPrice": "€19",
       "basicTitle": "Basic izvještaj",
       "basicFeatures": {
-        "fullBreakdown": "Potpuni tehnički pregled svih 8 alata",
+        "fullBreakdown": "Potpuni tehnički pregled svih 7 alata",
         "detailedScores": "Detaljni rezultati i provjere",
         "downloadPdf": "PDF izvještaj za preuzimanje",
         "noFix": "Upute za popravke i preporuke"
@@ -216,7 +216,7 @@
       "proPrice": "€29",
       "proTitle": "Pro izvještaj",
       "proFeatures": {
-        "fullBreakdown": "Potpuni tehnički pregled svih 8 alata",
+        "fullBreakdown": "Potpuni tehnički pregled svih 7 alata",
         "completeFix": "Potpune upute za popravke i preporuke",
         "downloadPdf": "PDF sa svim popravcima i isječcima koda"
       },
@@ -1198,7 +1198,7 @@
         "tagline": "Ocjena + ključni problemi.",
         "cta": "Pokreni besplatno",
         "features": [
-          "8-u-1 SEO analiza",
+          "7-u-1 SEO analiza",
           "AEO / AI SEO spremnost",
           "GEO provjera spremnosti",
           "Analiza Google Ads odredišne stranice",
@@ -1243,7 +1243,7 @@
     "items": {
       "whatIsFreeSiteAnalyzer": {
         "q": "Što je FreeSiteAnalyzer i kako analizira SEO moje web stranice?",
-        "a": "FreeSiteAnalyzer je 8-u-1 skener za SEO i spremnost za AI. Zalijepite URL i u oko 30 sekundi analiziramo stranicu kroz klasični SEO, tehnički SEO, kvalitetu odredišne stranice za Google Ads, AEO (optimizaciju za ChatGPT, Perplexity, Gemini) i GEO (optimizaciju za generativnu tražilicu) — i točno vam kažemo što je pokvareno i što popraviti."
+        "a": "FreeSiteAnalyzer je 7-u-1 skener za SEO i spremnost za AI. Zalijepite URL i u oko 30 sekundi analiziramo stranicu kroz klasični SEO, tehnički SEO, kvalitetu odredišne stranice za Google Ads, AEO (optimizaciju za ChatGPT, Perplexity, Gemini) i GEO (optimizaciju za generativnu tražilicu) — i točno vam kažemo što je pokvareno i što popraviti."
       },
       "whatChecked": {
         "q": "Što obuhvaća kompletna SEO analiza — što FreeSiteAnalyzer provjerava na stranici?",

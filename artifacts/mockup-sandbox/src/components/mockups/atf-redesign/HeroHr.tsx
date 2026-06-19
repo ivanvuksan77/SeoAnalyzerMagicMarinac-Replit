@@ -14,7 +14,7 @@ export function HeroHr() {
       trust={[
         "Besplatno · Bez registracije",
         "Rezultati za 30 sekundi",
-        "8 alata u jednom izvješću",
+        "7 alata u jednom izvješću",
       ]}
       proofTitle="Primjer Pro izvješća"
       reportLabel="PRO IZVJEŠĆE · €29"

@@ -61,7 +61,7 @@ export function Free() {
           <div>
             <div className="text-[10px] uppercase tracking-widest opacity-90">FreeSiteAnalyzer · Free Report</div>
             <div className="text-lg font-bold mt-0.5">example.com</div>
-            <div className="text-[10px] opacity-90 mt-0.5">Generated 02 May 2026 · 8 tools analyzed</div>
+            <div className="text-[10px] opacity-90 mt-0.5">Generated 02 May 2026 · 7 tools analyzed</div>
           </div>
           <div className="text-right">
             <div className="text-[9px] uppercase opacity-80">Overall</div>
@@ -74,7 +74,7 @@ export function Free() {
       <div className="card mb-4">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-[12px] font-bold">Overall Score Dashboard</h3>
-          <span className="muted text-[10px]">8 tools · Snapshot</span>
+          <span className="muted text-[10px]">7 tools · Snapshot</span>
         </div>
         <div className="flex flex-wrap justify-between gap-y-2">
           {TOOLS.map(t => <ScoreCircle key={t.name} score={t.score} color={t.color} label={t.name} />)}

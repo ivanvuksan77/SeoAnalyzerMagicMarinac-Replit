@@ -2,7 +2,7 @@ import { Check, Crown, Zap, FileText, Wrench, ArrowRight } from "lucide-react";
 
 const FEATURES = {
   free: [
-    "8-in-1 SEO audit",
+    "7-in-1 SEO audit",
     "Google Ads landing-page audit",
     "AEO / AI SEO readiness",
     "GEO readiness check",

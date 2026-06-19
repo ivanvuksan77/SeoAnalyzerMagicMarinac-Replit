@@ -9,7 +9,7 @@
     "slogan": "Scan. Snap. Fix What Matters."
   },
   "hero": {
-    "badge": "All 8 Tools in One Click",
+    "badge": "All 7 tools in One Click",
     "title": "Master SEO Analyzer",
     "description": "Enter a URL and run every analysis tool at once: SEO audit, Google Ads landing page experience, an ad-copy quality rater for your headlines & descriptions, AEO readiness, GEO readiness, broken links, image optimization, internal linking, and sitemap validation.",
     "eyebrow": "AI Search Optimization / AEO / GEO / SEO",
@@ -182,7 +182,7 @@
     },
     "basicReport": {
       "title": "Get Your Basic SEO Report",
-      "description": "Enter your email to receive your Basic SEO report with full technical breakdown and all detailed checks across 8 tools.",
+      "description": "Enter your email to receive your Basic SEO report with full technical breakdown and all detailed checks across 7 tools.",
       "emailLabel": "Email address",
       "emailPlaceholder": "you@example.com",
       "sending": "Sending...",
@@ -204,7 +204,7 @@
       "basicPrice": "€19",
       "basicTitle": "Basic Report",
       "basicFeatures": {
-        "fullBreakdown": "Full technical breakdown across all 8 tools",
+        "fullBreakdown": "Full technical breakdown across all 7 tools",
         "detailedScores": "Detailed scores and check results",
         "downloadPdf": "Downloadable PDF report",
         "noFix": "Fix instructions & recommendations"
@@ -216,7 +216,7 @@
       "proPrice": "€29",
       "proTitle": "Pro Report",
       "proFeatures": {
-        "fullBreakdown": "Full technical breakdown across all 8 tools",
+        "fullBreakdown": "Full technical breakdown across all 7 tools",
         "completeFix": "Complete fix instructions & recommendations",
         "downloadPdf": "Downloadable PDF with all fixes & code snippets"
       },
@@ -1198,7 +1198,7 @@
         "tagline": "Score + key issues.",
         "cta": "Run for free",
         "features": [
-          "8-in-1 SEO analysis",
+          "7-in-1 SEO analysis",
           "AEO / AI SEO readiness",
           "GEO readiness check",
           "Google Ads landing page analysis",
@@ -1243,7 +1243,7 @@
     "items": {
       "whatIsFreeSiteAnalyzer": {
         "q": "What is FreeSiteAnalyzer and how does it audit my website's SEO?",
-        "a": "FreeSiteAnalyzer is an 8-in-1 SEO and AI-readiness scanner. You paste a URL and within ~30 seconds we audit your page across classic SEO, technical SEO, Google Ads landing-page quality, AEO (Answer Engine Optimization for ChatGPT, Perplexity, Gemini), and GEO (Generative Engine Optimization) — then we tell you exactly what's broken and what to fix."
+        "a": "FreeSiteAnalyzer is an 7-in-1 SEO and AI-readiness scanner. You paste a URL and within ~30 seconds we audit your page across classic SEO, technical SEO, Google Ads landing-page quality, AEO (Answer Engine Optimization for ChatGPT, Perplexity, Gemini), and GEO (Generative Engine Optimization) — then we tell you exactly what's broken and what to fix."
       },
       "whatChecked": {
         "q": "What does a full SEO audit check — and what does FreeSiteAnalyzer analyze on my page?",
