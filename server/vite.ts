@@ -1,10 +1,19 @@
 import express, { type Express } from "express";
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
 import viteConfig from "../vite.config";
 import { nanoid } from "nanoid";
+
+// Reliable __dirname for both tsx (dev) and esbuild ESM bundle (prod).
+// import.meta.dirname can be undefined in some esbuild configurations,
+// so we fall back to fileURLToPath(import.meta.url) which is always set.
+const _dirname: string =
+  typeof import.meta.dirname === "string"
+    ? import.meta.dirname
+    : path.dirname(fileURLToPath(import.meta.url));
 
 const viteLogger = createLogger();
 
@@ -40,18 +49,22 @@ function detectLang(req: express.Request): "en" | "hr" {
 async function loadStaticContent(lang: "en" | "hr"): Promise<string> {
   const filename = `${lang}.html`;
   const candidates = [
-    path.resolve(import.meta.dirname, "static_content", filename),
-    path.resolve(import.meta.dirname, "..", "server", "static_content", filename),
+    path.resolve(_dirname, "static_content", filename),
+    path.resolve(_dirname, "..", "server", "static_content", filename),
+    path.resolve(_dirname, "..", "static_content", filename),
     path.resolve(process.cwd(), "server", "static_content", filename),
+    path.resolve(process.cwd(), "static_content", filename),
   ];
   for (const candidate of candidates) {
     try {
-      return await fs.promises.readFile(candidate, "utf-8");
+      const content = await fs.promises.readFile(candidate, "utf-8");
+      console.log(`[static-content] loaded ${filename} from ${candidate}`);
+      return content;
     } catch {
       // try next candidate
     }
   }
-  console.warn(`[static-content] Could not load ${filename} from any candidate path`);
+  console.warn(`[static-content] Could not load ${filename}. Tried:\n${candidates.map(c => "  " + c).join("\n")}`);
   return "";
 }
 
@@ -108,7 +121,7 @@ export async function setupVite(app: Express, server: Server) {
 }
 
 export function serveStatic(app: Express) {
-  const distPath = path.resolve(import.meta.dirname, "public");
+  const distPath = path.resolve(_dirname, "public");
 
   if (!fs.existsSync(distPath)) {
     throw new Error(
@@ -118,26 +131,33 @@ export function serveStatic(app: Express) {
 
   // Ensure static_content is co-located with the bundle so loadStaticContent
   // always finds it via candidate 1 — regardless of cwd or deployment layout.
-  const staticContentDst = path.resolve(import.meta.dirname, "static_content");
+  const staticContentDst = path.resolve(_dirname, "static_content");
   if (!fs.existsSync(staticContentDst)) {
-    const candidates = [
-      path.resolve(import.meta.dirname, "..", "server", "static_content"),
+    const copyCandidates = [
+      path.resolve(_dirname, "..", "server", "static_content"),
       path.resolve(process.cwd(), "server", "static_content"),
     ];
-    for (const src of candidates) {
+    let copied = false;
+    for (const src of copyCandidates) {
       if (fs.existsSync(src)) {
         try {
           fs.cpSync(src, staticContentDst, { recursive: true });
           console.log(`[static-content] copied from ${src} → ${staticContentDst}`);
+          copied = true;
         } catch (e) {
-          console.warn(`[static-content] copy failed: ${e}`);
+          console.warn(`[static-content] copy failed from ${src}: ${e}`);
         }
         break;
       }
     }
+    if (!copied) {
+      console.warn(`[static-content] no source found to copy. Tried:\n${copyCandidates.map(c => "  " + c).join("\n")}`);
+    }
+  } else {
+    console.log(`[static-content] dist/static_content already present, skipping copy`);
   }
 
-  app.use(express.static(distPath));
+  app.use(express.static(distPath, { index: false }));
 
   app.use("*", async (req, res) => {
     try {
