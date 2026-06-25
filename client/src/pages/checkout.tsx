@@ -18,10 +18,6 @@ type CheckoutCustomerForm = {
   firstName: string;
   lastName: string;
   phone: string;
-  country: string;
-  city: string;
-  zipCode: string;
-  address: string;
 };
 
 export default function CheckoutPage() {
@@ -36,10 +32,6 @@ export default function CheckoutPage() {
     firstName: "",
     lastName: "",
     phone: "",
-    country: "",
-    city: "",
-    zipCode: "",
-    address: "",
   });
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window !== "undefined") {
@@ -90,10 +82,6 @@ export default function CheckoutPage() {
         firstName: customerForm.firstName.trim(),
         lastName: customerForm.lastName.trim(),
         phone: customerForm.phone.trim() || undefined,
-        country: customerForm.country.trim().toUpperCase() || undefined,
-        city: customerForm.city.trim() || undefined,
-        zipCode: customerForm.zipCode.trim() || undefined,
-        address: customerForm.address.trim() || undefined,
       });
       const data = await response.json();
 
@@ -260,40 +248,6 @@ export default function CheckoutPage() {
                       value={customerForm.lastName}
                       onChange={(e) => setCustomerForm((prev) => ({ ...prev, lastName: e.target.value }))}
                       required
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="checkout-country">Country (ISO3)</Label>
-                    <Input
-                      id="checkout-country"
-                      placeholder="HRV"
-                      maxLength={3}
-                      value={customerForm.country}
-                      onChange={(e) => setCustomerForm((prev) => ({ ...prev, country: e.target.value }))}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="checkout-city">City</Label>
-                    <Input
-                      id="checkout-city"
-                      value={customerForm.city}
-                      onChange={(e) => setCustomerForm((prev) => ({ ...prev, city: e.target.value }))}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="checkout-zip">ZIP code</Label>
-                    <Input
-                      id="checkout-zip"
-                      value={customerForm.zipCode}
-                      onChange={(e) => setCustomerForm((prev) => ({ ...prev, zipCode: e.target.value }))}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="checkout-address">Address</Label>
-                    <Input
-                      id="checkout-address"
-                      value={customerForm.address}
-                      onChange={(e) => setCustomerForm((prev) => ({ ...prev, address: e.target.value }))}
                     />
                   </div>
                 </div>

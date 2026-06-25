@@ -768,7 +768,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         tzOffsetMinutes: requestReceivedAt.getTimezoneOffset(),
         nodeVersion: process.version,
       });
-      const { sessionId, tier, lang: checkoutLang, email, firstName, lastName, phone, country, city, zipCode, address } = z.object({
+      const { sessionId, tier, lang: checkoutLang, email, firstName, lastName, phone } = z.object({
         sessionId: z.string(),
         tier: z.enum(['basic', 'pro']),
         lang: z.enum(['en', 'hr']).default('en'),
@@ -776,10 +776,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         firstName: z.string().trim().min(1, "First name is required"),
         lastName: z.string().trim().min(1, "Last name is required"),
         phone: z.string().trim().optional(),
-        country: z.string().trim().length(3, "Country must be ISO3 code (e.g. HRV)").optional(),
-        city: z.string().trim().optional(),
-        zipCode: z.string().trim().optional(),
-        address: z.string().trim().optional(),
       }).parse(req.body);
       console.debug('[myPOS] /api/create-checkout parsed', {
         sessionIdPreview: `${sessionId.slice(0, 8)}...${sessionId.slice(-8)}`,
@@ -851,10 +847,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
           firstName,
           lastName,
           phone: phone || undefined,
-          country: country || undefined,
-          city: city || undefined,
-          zipCode: zipCode || undefined,
-          address: address || undefined,
         },
       });
 
