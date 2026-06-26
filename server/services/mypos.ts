@@ -88,23 +88,6 @@ const extractPemHeader = (value?: string): string | null => {
   return firstLine || null;
 };
 
-console.debug('[myPOS] env snapshot', {
-  hasSid: !!MYPOS_SID,
-  hasWallet: !!MYPOS_WALLET_NUMBER,
-  hasPrivateKey: !!MYPOS_PRIVATE_KEY,
-  hasPublicKey: !!MYPOS_PUBLIC_KEY,
-  keyIndex: MYPOS_KEY_INDEX,
-  sidMasked: MYPOS_SID ? maskMiddle(MYPOS_SID, 4, 3) : null,
-  walletMasked: MYPOS_WALLET_NUMBER ? maskMiddle(MYPOS_WALLET_NUMBER, 3, 3) : null,
-  privateKeyHeader: extractPemHeader(MYPOS_PRIVATE_KEY),
-  publicKeyHeader: extractPemHeader(MYPOS_PUBLIC_KEY),
-  privateKeyFingerprint: keyFingerprint(MYPOS_PRIVATE_KEY),
-  publicKeyFingerprint: keyFingerprint(MYPOS_PUBLIC_KEY),
-  privateKeyLength: MYPOS_PRIVATE_KEY?.length || 0,
-  publicKeyLength: MYPOS_PUBLIC_KEY?.length || 0,
-  useSandbox: USE_SANDBOX,
-});
-
 export function isMyPOSConfigured(): boolean {
   return !!(MYPOS_SID && MYPOS_WALLET_NUMBER && MYPOS_PRIVATE_KEY);
 }
@@ -132,23 +115,8 @@ function signData(fields: Record<string, string>, privateKey: string, orderedKey
   sign.end();
 
   const formattedKey = privateKey.includes('-----BEGIN') ? privateKey : `-----BEGIN RSA PRIVATE KEY-----\n${privateKey}\n-----END RSA PRIVATE KEY-----`;
-  const dataToSignHash = crypto.createHash('sha256').update(dataToSign).digest('hex');
-  console.debug('[myPOS] signing payload', {
-    orderedKeys,
-    fieldCount: orderedKeys.length,
-    payloadMode: 'base64_dash_joined_values',
-    dataToSignLength: dataToSign.length,
-    dataToSignHash,
-    dataToSignPreview: `${dataToSign.slice(0, 64)}...`,
-    privateKeyHeader: extractPemHeader(formattedKey),
-    privateKeyFingerprint: keyFingerprint(formattedKey),
-  });
   try {
     const signature = sign.sign(formattedKey, 'base64');
-    console.debug('[myPOS] signature generated', {
-      signatureLength: signature.length,
-      signaturePreview: `${signature.slice(0, 16)}...${signature.slice(-16)}`,
-    });
     return { signature, dataToSign };
   } catch (error: any) {
     console.error('[myPOS] signData failed', {
@@ -172,24 +140,12 @@ export function createMyPOSCheckoutForm(params: {
   urlNotify: string;
   customer: CheckoutCustomerData;
 }): { url: string; fields: Record<string, string>; orderedFields: Array<{ key: string; value: string }> } | null {
-  const requestStartedAt = new Date();
-  console.debug('[myPOS] create checkout request', {
-    sessionIdPreview: maskMiddle(params.sessionId, 8, 8),
-    tier: params.tier,
-    urlOk: params.urlOk,
-    urlCancel: params.urlCancel,
-    urlNotify: params.urlNotify,
-    startedAtUtc: requestStartedAt.toISOString(),
-    startedAtLocal: requestStartedAt.toString(),
-    tzOffsetMinutes: requestStartedAt.getTimezoneOffset(),
-  });
   if (!MYPOS_SID || !MYPOS_WALLET_NUMBER || !MYPOS_PRIVATE_KEY) return null;
 
   const product = PRICING[params.tier];
   if (!product) return null;
 
   const orderId = generateOrderId();
-  const checkoutAttemptId = `chk_${orderId}`;
 
   const fields: Record<string, string> = {
     IPCmethod: 'IPCPurchase',
@@ -225,43 +181,12 @@ export function createMyPOSCheckoutForm(params: {
   if (params.customer.address) fields.CustomerAddress = params.customer.address;
 
   const orderedKeys = CHECKOUT_SIGNATURE_ORDER.filter((key) => typeof fields[key] === 'string');
-  const fieldLengths = Object.fromEntries(
-    orderedKeys.map((key) => [key, fields[key]?.length || 0])
-  );
-  console.debug('[myPOS] fields before signing', {
-    checkoutAttemptId,
-    orderedKeys,
-    fieldLengths,
-    orderId: fields.OrderID,
-    emailDomain: params.customer.email.includes('@') ? params.customer.email.split('@')[1] : null,
-  });
-  const { signature, dataToSign } = signData(fields, MYPOS_PRIVATE_KEY, orderedKeys);
+  const { signature } = signData(fields, MYPOS_PRIVATE_KEY, orderedKeys);
   fields.Signature = signature;
   const orderedFields = [
     ...orderedKeys.map((key) => ({ key, value: fields[key] })),
     { key: 'Signature', value: signature },
   ];
-
-  // Safe diagnostics for gateway signature debugging.
-  const payloadHash = crypto.createHash('sha256').update(dataToSign).digest('hex');
-  console.log('[myPOS] checkout fields generated', {
-    checkoutAttemptId,
-    signedKeys: orderedKeys,
-    urlOk: fields.URL_OK,
-    urlCancel: fields.URL_Cancel,
-    urlNotify: fields.URL_Notify,
-    orderIdLength: fields.OrderID.length,
-    signatureLength: signature.length,
-    payloadHash,
-    sid: fields.SID,
-    walletTail: fields.WalletNumber.slice(-4),
-    keyIndex: fields.KeyIndex,
-    paymentParametersRequired: fields.PaymentParametersRequired,
-    generatedAtUtc: new Date().toISOString(),
-    generatedAtLocal: new Date().toString(),
-    nodeVersion: process.version,
-    signatureMode: 'docs_base64_dash_joined_values_rsa_sha256',
-  });
 
   return {
     url: USE_SANDBOX ? SANDBOX_URL : PRODUCTION_URL,
@@ -297,18 +222,6 @@ export function verifyMyPOSNotification(postData: Record<string, string>): {
   const amount = postData.Amount || '';
   const currency = postData.Currency || '';
   const transactionRef = postData.IPC_Trnref || '';
-  console.debug('[myPOS] verify notification payload', {
-    ipcMethod,
-    responseFieldOrder: verificationKeys,
-    presentKeys: presentFields.map((entry) => entry.key),
-    payloadMode: 'base64_dash_joined_values',
-    signatureLength: signature.length,
-    dataToVerifyLength: dataToVerify.length,
-    dataToVerifyHash: crypto.createHash('sha256').update(dataToVerify).digest('hex'),
-    orderId,
-    trnRefTail: transactionRef ? transactionRef.slice(-8) : null,
-  });
-
   try {
     const publicKey = MYPOS_PUBLIC_KEY.includes('-----BEGIN')
       ? MYPOS_PUBLIC_KEY
