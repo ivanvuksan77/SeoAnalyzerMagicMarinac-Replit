@@ -759,15 +759,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/create-checkout", async (req, res) => {
     try {
-      const requestReceivedAt = new Date();
-      console.debug('[myPOS] /api/create-checkout incoming', {
-        hasBody: !!req.body,
-        bodyKeys: req.body ? Object.keys(req.body) : [],
-        receivedAtUtc: requestReceivedAt.toISOString(),
-        receivedAtLocal: requestReceivedAt.toString(),
-        tzOffsetMinutes: requestReceivedAt.getTimezoneOffset(),
-        nodeVersion: process.version,
-      });
       const { sessionId, tier, lang: checkoutLang, email, firstName, lastName, phone } = z.object({
         sessionId: z.string(),
         tier: z.enum(['basic', 'pro']),
@@ -777,20 +768,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         lastName: z.string().trim().min(1, "Last name is required"),
         phone: z.string().trim().optional(),
       }).parse(req.body);
-      console.debug('[myPOS] /api/create-checkout parsed', {
-        sessionIdPreview: `${sessionId.slice(0, 8)}...${sessionId.slice(-8)}`,
-        tier,
-        emailDomain: email && email.includes('@') ? email.split('@')[1] : null,
-        host: req.get('host'),
-        forwardedFor: req.headers['x-forwarded-for'] || null,
-        userAgent: req.headers['user-agent'] || null,
-      });
-
       const data = getAnalysis(sessionId);
       if (!data) {
-        console.debug('[myPOS] /api/create-checkout session missing', {
-          sessionIdPreview: `${sessionId.slice(0, 8)}...${sessionId.slice(-8)}`,
-        });
         return res.status(404).json({ message: "Analysis session not found or expired" });
       }
 
@@ -823,18 +802,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (process.env.NODE_ENV === "production" && baseUrl.startsWith("http://")) {
         baseUrl = baseUrl.replace("http://", "https://");
       }
-      console.debug('[myPOS] /api/create-checkout urls resolved', {
-        configuredBaseUrl,
-        forwardedProto,
-        detectedProtocol,
-        host: req.get('host'),
-        baseUrl,
-      });
-      console.log({
-        production: process.env.MYPOS_PRODUCTION,
-        sid: process.env.MYPOS_SID,
-        wallet: process.env.MYPOS_WALLET,
-      });
       const result = createMyPOSCheckoutForm({
         sessionId,
         tier,
@@ -853,23 +820,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!result) {
         return res.status(500).json({ message: "Failed to create checkout session" });
       }
-      console.debug('[myPOS] /api/create-checkout form ready', {
-        actionUrl: result.url,
-        fieldCount: Object.keys(result.fields).length,
-        fieldKeys: Object.keys(result.fields),
-        signatureLength: result.fields.Signature?.length || 0,
-      });
-
       const orderId = result.fields?.OrderID;
       if (!orderId) {
         return res.status(500).json({ message: "Failed to create checkout order id" });
       }
       setPendingPayment(sessionId, orderId, tier);
-      console.debug('[myPOS] /api/create-checkout pending payment set', {
-        sessionIdPreview: `${sessionId.slice(0, 8)}...${sessionId.slice(-8)}`,
-        orderId,
-        tier,
-      });
 
       res.json(result);
     } catch (error: any) {
